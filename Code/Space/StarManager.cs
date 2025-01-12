@@ -1466,7 +1466,7 @@ private void BottomBar()
     {
         if (GUI.Button(new Rect(websiteButtonX, Screen.height - 50, buttonWidth, buttonHeight), localizationManager.Localize("arg_redacted"), buttonStyle))
         {
-            Application.OpenURL("https://tuxxego.us/rock2");
+            Application.OpenURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         }
     }
 
