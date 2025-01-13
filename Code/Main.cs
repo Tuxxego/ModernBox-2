@@ -155,6 +155,14 @@ public void Awake()
  Drugs.init();
  Debug.Log("[M2] Drugs loaded!");
 
+ Debug.Log("[M2] Initializing GoliathCannon...");
+ GoliathCannon.init();
+ Debug.Log("[M2] GoliathCannon loaded!");
+ 
+  Debug.Log("[M2] Initializing GoliathVehicles...");
+ GoliathVehicles.init();
+ Debug.Log("[M2] GoliathVehicles loaded!");
+ 
   Debug.Log("[M2] Initializing Creatures...");
   Creatures.init();
   Debug.Log("[M2] Creatures loaded!");
