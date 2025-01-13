@@ -47,9 +47,11 @@ namespace M2
 			{"Developer_Mode",  false},			
 			{"IdeologiesOption",  true},		
 			{"FactoriesOption",  true},		
-			{"GunOption",  true},		
-			{"DronesOption",  true},	
-			{"ShakeOption",  true}			
+			{"GunOption",  true},
+			{"DronesOption",  true},
+			{"ShakeOption",  true},
+			{"P9000Option",  true},
+			{"TerranOption",  true}
         };
 	}
 	

@@ -136,7 +136,7 @@ namespace M2
 			AssetManager.actor_library.CallMethod("loadShadow", Terran);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             Terran.animation_walk = "walk_0,walk_1,walk_2,walk_3,walk_4,walk_5";
-			Terran.animation_idle = "walk_5";
+			Terran.animation_idle = "walk_1";
             Terran.animation_swim = "walk_0,walk_1,walk_2,walk_3";
             Terran.texture_path = "Terran";
 			AssetManager.actor_library.addColorSet("heliColor");

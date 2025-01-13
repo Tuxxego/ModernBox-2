@@ -167,7 +167,38 @@ class Commerce {
 
     AddBuildingOrderKeysToCivRaces("order_TankFactory", "TankFactory");
 
+    BuildingAsset TerranFactory = AssetManager.buildings.clone("TerranFactory", "!city_building");
+    AssetManager.buildings.add(TerranFactory);
+    TerranFactory.id = "TerranFactory";
 
+    TerranFactory.priority = 69999;
+    TerranFactory.fundament = new BuildingFundament(2, 2, 2, 0);
+    TerranFactory.cost = new ConstructionCost(0, 2, 1, 1);
+    TerranFactory.tech = "Terrans";
+    TerranFactory.housing = 60;
+	TerranFactory.spawnUnits = true;
+    TerranFactory.spawnUnits_asset = "Terran";
+    TerranFactory.base_stats[S.health] = 3000f;
+    loadSprites(TerranFactory);
+
+    AddBuildingOrderKeysToCivRaces("order_TerranFactory", "TerranFactory");
+	
+    BuildingAsset P9000Factory = AssetManager.buildings.clone("P9000Factory", "!city_building");
+    AssetManager.buildings.add(P9000Factory);
+    P9000Factory.id = "P9000Factory";
+
+    P9000Factory.priority = 69999;
+    P9000Factory.fundament = new BuildingFundament(2, 2, 2, 0);
+    P9000Factory.cost = new ConstructionCost(0, 2, 1, 1);
+    P9000Factory.tech = "P9000s";
+    P9000Factory.housing = 60;
+	P9000Factory.spawnUnits = true;
+    P9000Factory.spawnUnits_asset = "P9000";
+    P9000Factory.base_stats[S.health] = 3000f;
+    loadSprites(P9000Factory);
+
+    AddBuildingOrderKeysToCivRaces("order_P9000Factory", "P9000Factory");
+	
             BuildingAsset RailgunFactory = AssetManager.buildings.clone("RailgunFactory", "!city_building");
             AssetManager.buildings.add(RailgunFactory);
             RailgunFactory.id = "RailgunFactory";
@@ -402,6 +433,32 @@ class Commerce {
   public static void turnOnTankFactory() { SetFactorySpawnUnits("TankFactory", true); }
 
   public static void turnOffTankFactory() { SetFactorySpawnUnits("TankFactory", false); }
+  
+    public static void toggleTerranFactory() {
+    Main.modifyBoolOption("TerranOption", PowerButtons.GetToggleValue("TerranFactory_toggle"));
+    if (PowerButtons.GetToggleValue("TerranFactory_toggle")) {
+      turnOnTerranFactory();
+    } else {
+      turnOffTerranFactory();
+    }
+  }
+
+  public static void turnOnTerranFactory() { SetFactorySpawnUnits("TerranFactory", true); }
+
+  public static void turnOffTerranFactory() { SetFactorySpawnUnits("TerranFactory", false); }
+  
+      public static void toggleP9000Factory() {
+    Main.modifyBoolOption("P9000Option", PowerButtons.GetToggleValue("P9000Factory_toggle"));
+    if (PowerButtons.GetToggleValue("P9000Factory_toggle")) {
+      turnOnP9000Factory();
+    } else {
+      turnOffP9000Factory();
+    }
+  }
+
+  public static void turnOnP9000Factory() { SetFactorySpawnUnits("P9000Factory", true); }
+
+  public static void turnOffP9000Factory() { SetFactorySpawnUnits("P9000Factory", false); }
   
   public static void toggleBarracks() {
     Main.modifyBoolOption("SoldierOption", PowerButtons.GetToggleValue("Soldier_toggle"));
