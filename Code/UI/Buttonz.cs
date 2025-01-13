@@ -389,24 +389,29 @@ class Buttonz {
     PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Jupiterbutton", Resources.Load<Sprite>("ui/Icons/Jupiter"), "Jupiter Bomb", "The new monster.", new Vector2(612, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Eraserbutton",Resources.Load<Sprite>("ui/Icons/Eraser"),"Eraser Bomb","also known as the overcompensating bomb.",new Vector2(648, -18),NCMS.Utils.ButtonType.GodPower,tab.transform,null);
-    PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1152, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
+    PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
       PowerButtons.ToggleButton("Cyberware_toggle");
       cyberware.toggleCyberware();
     }
 
-    PowerButtons.CreateButton("Drugs_toggle", Resources.Load<Sprite>("ui/Icons/Drugs"), "Drugs", "(GREEN MEANS ON, GREY IS OFF) Toggle Drugs from being developed (this won't remove existing Drugs already made)", new Vector2(1152, -18), ButtonType.Toggle, tab.transform, Drugs.toggleDrugs);
+    PowerButtons.CreateButton("Drugs_toggle", Resources.Load<Sprite>("ui/Icons/Drugs"), "Drugs", "(GREEN MEANS ON, GREY IS OFF) Toggle Drugs from being developed (this won't remove existing Drugs already made)", new Vector2(1224, -18), ButtonType.Toggle, tab.transform, Drugs.toggleDrugs);
     if (Main.savedSettings.boolOptions["DrugsOption"]) {
       PowerButtons.ToggleButton("Drugs_toggle");
       Drugs.toggleDrugs();
     }
 
-    PowerButtons.CreateButton("Drones_Toggle", Resources.Load<Sprite>("ui/Icons/Drone"), "Drones", "(GREEN MEANS ON, GREY IS OFF) Toggle if kingdoms can create Drones.", new Vector2(1080, -18), ButtonType.Toggle, tab.transform, Commerce.toggleDrones);
+    PowerButtons.CreateButton("Drones_Toggle", Resources.Load<Sprite>("ui/Icons/Drone"), "Drones", "(GREEN MEANS ON, GREY IS OFF) Toggle if kingdoms can create Drones.", new Vector2(1152, -18), ButtonType.Toggle, tab.transform, Commerce.toggleDrones);
     if (Main.savedSettings.boolOptions["DronesOption"]) {
       PowerButtons.ToggleButton("Drones_Toggle");
       Commerce.toggleDrones();
     }
-
+	
+			    PowerButtons.CreateButton("what2", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, 18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("what3", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, -18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("what4", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, 18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("what5", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, -18), ButtonType.Click, tab.transform, null);
+				
     PowerButtons.CreateButton("heli_spawn", Resources.Load<Sprite>("ui/Icons/Heli"), "Helicopter Spawn", "Spawn a Helicopter", new Vector2(720, 18), ButtonType.GodPower, tab.transform, null);
 
     PowerButtons.CreateButton("HelicopterFactory_toggle", Resources.Load<Sprite>("ui/Icons/Heli"), "Helicopter Factories", "(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Helicopters", new Vector2(720, -18), ButtonType.Toggle, tab.transform, Commerce.toggleHelicopterFactory);
@@ -485,14 +490,14 @@ class Buttonz {
       Commerce.toggleGunshipFactory();
     }
 
-    PowerButtons.CreateButton("PipeGun_toggle", Resources.Load<Sprite>("ui/Icons/lowfirearm"), "Toggle Pipe Guns.", "(GREEN MEANS ON, GREY IS OFF) Toggle Pipe Guns from being developed (this won't remove existing Pipe Guns already made). You're welcome LonelyFear.", new Vector2(1116, 18), // ok
+    PowerButtons.CreateButton("PipeGun_toggle", Resources.Load<Sprite>("ui/Icons/lowfirearm"), "Toggle Pipe Guns.", "(GREEN MEANS ON, GREY IS OFF) Toggle Pipe Guns from being developed (this won't remove existing Pipe Guns already made). You're welcome LonelyFear.", new Vector2(1188, 18), // ok
                               ButtonType.Toggle, tab.transform, guns.togglePipeGuns);
     if (Main.savedSettings.boolOptions["PipeGunOption"]) {
       PowerButtons.ToggleButton("PipeGun_toggle");
       guns.togglePipeGuns();
     }
 
-    PowerButtons.CreateButton("Gun_toggle", Resources.Load<Sprite>("ui/Icons/firearm"), "Toggle Guns.", "(GREEN MEANS ON, GREY IS OFF) Toggle Guns from being developed (this won't remove existing Guns already made).", new Vector2(1116, -18), ButtonType.Toggle, tab.transform, guns.toggleGuns);
+    PowerButtons.CreateButton("Gun_toggle", Resources.Load<Sprite>("ui/Icons/firearm"), "Toggle Guns.", "(GREEN MEANS ON, GREY IS OFF) Toggle Guns from being developed (this won't remove existing Guns already made).", new Vector2(1188, -18), ButtonType.Toggle, tab.transform, guns.toggleGuns);
     if (Main.savedSettings.boolOptions["GunOption"]) {
       PowerButtons.ToggleButton("Gun_toggle");
       guns.toggleGuns();
@@ -514,7 +519,7 @@ class Buttonz {
     // Vehicles.toggleMiniMapFigure();
     // }
 
-    PowerButtons.CreateButton("Devmode", Resources.Load<Sprite>("ui/Icons/tabIconModernWarfare"), "Toggle Developer Mode", "Secret stuff", new Vector2(1188, 18), ButtonType.Toggle, tab.transform, DeveloperMode.toggleDevMode);
+    PowerButtons.CreateButton("Devmode", Resources.Load<Sprite>("ui/Icons/tabIconModernWarfare"), "Toggle Developer Mode", "Secret stuff", new Vector2(1260, 18), ButtonType.Toggle, tab.transform, DeveloperMode.toggleDevMode);
     if (Main.savedSettings.boolOptions["Developer_Mode"]) {
       PowerButtons.ToggleButton("Devmode");
       DeveloperMode.toggleDevMode();
@@ -522,7 +527,7 @@ class Buttonz {
 
     PowerButtons.CreateButton("discord_server", Resources.Load<Sprite>("ui/Icons/DiscordServer"), "Discord Server", "Click this to join the ModernBox Discord server!", new Vector2(180, -18), ButtonType.Click, tab.transform, OpenDiscordServerLink);
     PowerButtons.CreateButton("about", Resources.Load<Sprite>("ui/icons/Guide"), "Guide", "Read the guide on how ModernBox works.", new Vector2(180, 18), ButtonType.Click, tab.transform, OpenInfoWindow);
-    PowerButtons.CreateButton("Soldier_toggle", Resources.Load<Sprite>("actors/Soldier/walk_0"), "Modern Militaries", "(GREEN MEANS ON, GREY IS OFF) Toggles if modern soldiers can be enlisted.", new Vector2(1080, 18), ButtonType.Toggle, tab.transform, Commerce.toggleBarracks);
+    PowerButtons.CreateButton("Soldier_toggle", Resources.Load<Sprite>("actors/Soldier/walk_0"), "Modern Militaries", "(GREEN MEANS ON, GREY IS OFF) Toggles if modern soldiers can be enlisted.", new Vector2(1152, 18), ButtonType.Toggle, tab.transform, Commerce.toggleBarracks);
 
     if (Main.savedSettings.boolOptions["SoldierOption"]) {
       PowerButtons.ToggleButton("Soldier_toggle");
