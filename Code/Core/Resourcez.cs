@@ -156,6 +156,27 @@ namespace M2
 				removeBorders = false,
 			  });
 			  
+			  AssetManager.terraform.add(new TerraformOptions {
+				id = "plasmaass",
+				damage = 30,
+				damageBuildings = true,
+				explode_tile = true,
+				removeBorders = false,
+			  });
+			  
+			  	AssetManager.projectiles.add(new ProjectileAsset {
+				id = "big_plasma_bomb",
+				speed = 200f,
+				texture = "big_plasma_bomb",
+				parabolic = true,
+				terraformOption = "plasmaass",
+				texture_shadow = "shadow_arrow",
+				sound_launch = "event:/SFX/WEAPONS/WeaponStartThrow",
+				sound_impact = "event:/SFX/WEAPONS/WeaponShotgunLand",
+				hitShake = false,
+				terraformRange = 1,
+			  });
+			  
 			  ItemAsset PipeGun = new ItemAsset {
 			  id = "PipeGun",
 			  equipment_value = 100
