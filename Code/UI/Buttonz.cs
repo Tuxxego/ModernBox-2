@@ -105,6 +105,11 @@ class Buttonz {
     P9000Power.actor_asset_id = "P9000";
     P9000Power.click_action = new PowerActionWithID(action_spawn_jet);
 
+    GodPower TerranPower = AssetManager.powers.clone("spawn_Terran", "_spawnActor");
+    TerranPower.name = "spawn_Terran";
+    TerranPower.actor_asset_id = "Terran";
+    TerranPower.click_action = new PowerActionWithID(action_spawn_jet);
+	
     DropAsset Droppy = new DropAsset();
     Droppy.id = "spawnnuke";
     Droppy.path_texture = "drops/drop_czarbomba";
@@ -437,8 +442,8 @@ class Buttonz {
     }
 	
 			    PowerButtons.CreateButton("spawn_P9000", Resources.Load<Sprite>("ui/icons/P9000"), "Spawn P9000", "The goat.", new Vector2(1044, 18), ButtonType.GodPower, tab.transform, null);
-			    PowerButtons.CreateButton("what3", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, -18), ButtonType.Click, tab.transform, null);
-			    PowerButtons.CreateButton("what4", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, 18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("what4", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, -18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("spawn_Terran", Resources.Load<Sprite>("ui/icons/Terran"), "Spawn Terran Goliath", "Spawn a mech.", new Vector2(1080, 18), ButtonType.GodPower, tab.transform, null);
 			    PowerButtons.CreateButton("what5", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, -18), ButtonType.Click, tab.transform, null);
 				
     PowerButtons.CreateButton("heli_spawn", Resources.Load<Sprite>("ui/Icons/Heli"), "Helicopter Spawn", "Spawn a Helicopter", new Vector2(720, 18), ButtonType.GodPower, tab.transform, null);

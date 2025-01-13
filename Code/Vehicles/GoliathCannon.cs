@@ -37,6 +37,7 @@ namespace M2
 				bigplasmabomb.base_stats[S.damage] = 600f;
 				bigplasmabomb.base_stats[S.damage_range] = 0.7f;
 					bigplasmabomb.path_slash_animation = "effects/slashes/slash_punch";
+					
 		ProjectileAsset big_plasma_bomb = new ProjectileAsset();
 				  big_plasma_bomb.id = "big_plasma_bomb";
 				  big_plasma_bomb.texture = "big_plasma_bomb";
