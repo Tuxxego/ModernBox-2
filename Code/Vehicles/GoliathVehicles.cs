@@ -96,10 +96,10 @@ namespace M2
 			Terran.kingdom = "ModernKingdom";
             Terran.base_stats[S.health] = 200f;
             Terran.base_stats[S.speed] = 70f;
-            Terran.base_stats[S.armor] = 100f;
+            Terran.base_stats[S.armor] = 15f;
             Terran.base_stats[S.damage] = 40f;
             Terran.base_stats[S.scale] = 0.2f;
-            Terran.base_stats[S.attack_speed] = 0;
+            Terran.base_stats[S.attack_speed] = 35;
 			Terran.base_stats[S.range] = 150f;
 			Terran.base_stats[S.knockback_reduction] = 300f;
             Terran.drawBoatMark_big = true;
