@@ -1854,13 +1854,12 @@ private void PlanetInfoWindow(int windowID)
 {
     PlanetInfo planetInfo = selectedStar.planetInfo[selectedStar.selectedPlanet];
 
-    
     GUIStyle titleStyle = new GUIStyle(GUI.skin.label)
     {
         fontSize = 28,
         fontStyle = FontStyle.Bold,
         alignment = TextAnchor.MiddleCenter,
-        normal = { textColor = new Color(0.4f, 0.9f, 1.0f) }, 
+        normal = { textColor = new Color(0.4f, 0.9f, 1.0f) },
         wordWrap = true
     };
 
@@ -1883,40 +1882,45 @@ private void PlanetInfoWindow(int windowID)
     {
         fontSize = 16,
         fontStyle = FontStyle.Bold,
-        normal = { textColor = new Color(0.6f, 1.0f, 0.6f) }, 
+        normal = { textColor = new Color(0.6f, 1.0f, 0.6f) },
         hover = { textColor = Color.cyan },
         alignment = TextAnchor.MiddleCenter
     };
 
-    
-    GUILayout.Label($"Planet Information", titleStyle); 
-    GUILayout.Space(10); 
+    GUILayout.Label($"Planet Information", titleStyle);
+    GUILayout.Space(10);
+
+    string displayPlanetType = planetInfo.planetType.Contains("(Habitable)") 
+        ? "Gas Giant" 
+        : planetInfo.planetType;
 
     GUILayout.Label($"Name: {planetInfo.name}", contentStyle);
-    GUILayout.Label($"Type: {planetInfo.planetType}", contentStyle);
+    GUILayout.Label($"Type: {displayPlanetType}", contentStyle);
 
     if (IsPlanetVisited(planetInfo.name))
     {
         GUILayout.Label(localizationManager.Localize("visited"), visitedStyle);
     }
 
-    
     GUILayout.Space(15);
-    
-    if (GUILayout.Button(localizationManager.Localize("visit"), buttonStyle))
+
+    if (!planetInfo.planetType.ToLower().Contains("gas giant"))
     {
-        Debug.Log($"Visiting planet: {planetInfo.name}");
-        ClearAllActiveSprites();
-        SaveVisitedPlanet(planetInfo.name);
-        SpaceManager.GeneratePlanet(planetInfo.name, planetInfo.planetType, planetInfo.size);
+        if (GUILayout.Button(localizationManager.Localize("visit"), buttonStyle))
+        {
+            Debug.Log($"Visiting planet: {planetInfo.name}");
+            ClearAllActiveSprites();
+            SaveVisitedPlanet(planetInfo.name);
+            SpaceManager.GeneratePlanet(planetInfo.name, planetInfo.planetType, planetInfo.size);
+        }
     }
 
     if (GUILayout.Button(localizationManager.Localize("parameters"), buttonStyle))
     {
-        showParametersWindow = true; 
+        showParametersWindow = true;
     }
 
-    GUILayout.Space(10); 
+    GUILayout.Space(10);
     if (GUILayout.Button(localizationManager.Localize("close"), buttonStyle))
     {
         showPlanetWindow = false;
