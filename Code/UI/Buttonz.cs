@@ -797,6 +797,13 @@ class Buttonz {
     // return true;
   }
 
+  public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
+    EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
+    MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
+    World.world.startShake(0.3f, 0.01f, 2f, true, true);
+    // return true;
+  }
+
   public static void action_XeniumClick(WorldTile pTile, string pPowerID) {
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 4.3f, 7.9f);
     MapAction.damageWorld(pTile, 400, TerraformLibrary.czarBomba, null);
