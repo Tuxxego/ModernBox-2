@@ -42,7 +42,7 @@ namespace M2
             P9000.base_stats[S.health] = 20000f;
             P9000.base_stats[S.speed] = 70f;
             P9000.base_stats[S.armor] = 100f;
-            P9000.base_stats[S.damage] = 40f;
+            P9000.base_stats[S.damage] = 100f;
             P9000.base_stats[S.scale] = 0.1f;
             P9000.base_stats[S.attack_speed] = 0;
 			P9000.base_stats[S.range] = 150f;
