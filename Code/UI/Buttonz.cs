@@ -98,6 +98,12 @@ class Buttonz {
     MissileSystemPower.name = "spawn_MissileSystem";
     MissileSystemPower.actor_asset_id = "MissileSystem";
     MissileSystemPower.click_action = new PowerActionWithID(action_spawn_jet);
+	
+	
+    GodPower P9000Power = AssetManager.powers.clone("spawn_P9000", "_spawnActor");
+    P9000Power.name = "spawn_P9000";
+    P9000Power.actor_asset_id = "P9000";
+    P9000Power.click_action = new PowerActionWithID(action_spawn_jet);
 
     DropAsset Droppy = new DropAsset();
     Droppy.id = "spawnnuke";
@@ -407,7 +413,7 @@ class Buttonz {
       Commerce.toggleDrones();
     }
 	
-			    PowerButtons.CreateButton("what2", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, 18), ButtonType.Click, tab.transform, null);
+			    PowerButtons.CreateButton("spawn_P9000", Resources.Load<Sprite>("ui/icons/P9000"), "Spawn P9000", "The goat.", new Vector2(1044, 18), ButtonType.GodPower, tab.transform, null);
 			    PowerButtons.CreateButton("what3", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1044, -18), ButtonType.Click, tab.transform, null);
 			    PowerButtons.CreateButton("what4", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, 18), ButtonType.Click, tab.transform, null);
 			    PowerButtons.CreateButton("what5", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(1080, -18), ButtonType.Click, tab.transform, null);

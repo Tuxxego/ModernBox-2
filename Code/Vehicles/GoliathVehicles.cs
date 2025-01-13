@@ -81,7 +81,8 @@ namespace M2
 			AssetManager.actor_library.CallMethod("loadShadow", P9000);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             P9000.animation_walk = "walk_0,walk_1,walk_2,walk_3";
-            P9000.animation_swim = "swim_0,swim_1";
+			P9000.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+            P9000.animation_swim = "walk_0,walk_1,walk_2,walk_3";
             P9000.texture_path = "P9000";
 			AssetManager.actor_library.addColorSet("heliColor");
 			P9000.color = Toolbox.makeColor("#33724D");
