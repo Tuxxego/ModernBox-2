@@ -416,7 +416,7 @@ class Buttonz {
     ZeusRagePower.dropID = "zeusrage";
     ZeusRagePower.click_power_action = new PowerAction(Stuff_Drop);
     ZeusRagePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-    AssetManager.powers.add(ZeusRagePower)
+    AssetManager.powers.add(ZeusRagePower);
 
     GodPower RandomPower = new GodPower();
     RandomPower.id = "Randombutton";
