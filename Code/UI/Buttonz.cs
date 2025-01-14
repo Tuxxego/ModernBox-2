@@ -181,6 +181,15 @@ class Buttonz {
     EraserDrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
     EraserDrop.action_landed = new DropsAction(action_EraserClick);
     AssetManager.drops.add(EraserDrop);
+
+    DropAsset ZeusRageDrop = new DropAsset();
+    ZeusRageDrop.id = "zeusrage";
+    ZeusRageDrop.path_texture = "drops/drop_czarbomba";
+    ZeusRageDrop.random_frame = false;
+    ZeusRageDrop.default_scale = 0.2f;
+    ZeusRageDrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
+    ZeusRageDrop.action_landed = new DropsAction(action_ZeusRageClick);
+    AssetManager.drops.add(ZeusRageDrop);
 	
 	
     DropAsset DeathDrop = new DropAsset();
@@ -396,6 +405,19 @@ class Buttonz {
     AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(AtomicGrenadePower);
 
+    GodPower ZeusRagePower = new GodPower();
+    ZeusRagePower.id = "ZeusRagebutton";
+    ZeusRagePower.name = "ZeusRagebutton";
+    ZeusRagePower.holdAction = true;
+    ZeusRagePower.fallingChance = 0.01f;
+    ZeusRagePower.showToolSizes = true;
+    ZeusRagePower.unselectWhenWindow = false;
+    ZeusRagePower.ignore_cursor_icon = true;
+    ZeusRagePower.dropID = "zeusrage";
+    ZeusRagePower.click_power_action = new PowerAction(Stuff_Drop);
+    ZeusRagePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(ZeusRagePower)
+
     GodPower RandomPower = new GodPower();
     RandomPower.id = "Randombutton";
     RandomPower.name = "Randombutton";
@@ -418,6 +440,7 @@ class Buttonz {
     PowerButtons.CreateButton("Ultronbutton", Resources.Load<Sprite>("ui/Icons/Ultron"), "Ultron Bomb", "WOOOAH", new Vector2(504, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Deathbutton", Resources.Load<Sprite>("ui/Icons/Death"), "Death Bomb", "Such an original name.", new Vector2(612, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(2000, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+    PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(2000, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Randombutton", Resources.Load<Sprite>("ui/Icons/wat"), "Random Bomb", "You could be dropping a proton bomb, or a mini nuke, it's random!", new Vector2(648, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Minibutton", Resources.Load<Sprite>("ui/Icons/Mini"), "Mini Nuke", "Small nukes, great for minor scuffles.", new Vector2(540, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
@@ -813,6 +836,13 @@ class Buttonz {
   public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
     MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
+    World.world.startShake(0.3f, 0.01f, 2f, true, true);
+    // return true;
+  }
+
+  public static void action_ZeusRageClick(WorldTile pTile, string pPowerID) {
+    EffectsLibrary.spawnAtTileRandomScale("fx_lightning_big", pTile, 4.3f, 7.9f);
+    MapAction.damageWorld(pTile, 600, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
     // return true;
   }
