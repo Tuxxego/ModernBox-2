@@ -328,6 +328,7 @@ if (nextPlanetLoadDirectory == null)
     }
 
             MapBox.instance.generateNewMap();
+			MapBox.instance.mapStats.name = "test";
 			PlanetManager.instance.ShowTouchdownGUI(planetType);
 }
 
