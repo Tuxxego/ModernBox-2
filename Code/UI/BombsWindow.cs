@@ -39,11 +39,11 @@ namespace M2
           viewportRect.sizeDelta = new Vector2(0, 17);
           content = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View/Viewport/Content");
 			
-			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, tileButtonClick);
-			
+			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
+			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/wat"), "Multi Bomb", "Multiple nukes in the same area, with one click.", new Vector2(96, MoveDown), ButtonType.Click, content.transform, MultiBombFunc);			
 	
         }
-		private static void tileButtonClick()
+		private static void AtomicGrenadeFunc()
 		{
 			
 			window.clickHide();
@@ -73,6 +73,42 @@ namespace M2
 			
 
 			PowerButtonSelector.instance.setSelectedPower(AHHHH, AtomicGrenadePower);
+
+
+	//		PowerTracker.setPower((GodPower), null);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS);
+			Debug.Log("tileButtonClick execution completed.");
+		}
+		private static void MultiBombFunc()
+		{
+			
+			window.clickHide();
+			
+				DropAsset MultiBombDrop = new DropAsset();
+				MultiBombDrop.id = "multi";
+				MultiBombDrop.path_texture = "drops/drop_czarbomba";
+				MultiBombDrop.random_frame = false;
+				MultiBombDrop.default_scale = 0.2f;
+				MultiBombDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+				MultiBombDrop.action_landed = new DropsAction(action_AtomicGClick);
+				AssetManager.drops.add(MultiBombDrop);
+	
+				GodPower MultiBombPower = new GodPower();
+				MultiBombPower.id = "MultiBombbutton";
+				MultiBombPower.name = "MultiBombbutton";
+				MultiBombPower.holdAction = true;
+				MultiBombPower.fallingChance = 0.01f;
+				MultiBombPower.showToolSizes = true;
+				MultiBombPower.unselectWhenWindow = false;
+				MultiBombPower.ignore_cursor_icon = true;
+				MultiBombPower.dropID = "multi";
+				MultiBombPower.click_power_action = new PowerAction(Stuff_Drop);
+				MultiBombPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+				AssetManager.powers.add(MultiBombPower);
+				
+			
+
+			PowerButtonSelector.instance.setSelectedPower(AHHHH, MultiBombPower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
