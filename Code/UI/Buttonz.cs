@@ -426,6 +426,7 @@ class Buttonz {
     PowerButtons.CreateButton("Deathbutton", Resources.Load<Sprite>("ui/Icons/Death"), "Death Bomb", "Such an original name.", new Vector2(612, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     ASS = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(2000, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Randombutton", Resources.Load<Sprite>("ui/Icons/wat"), "Random Bomb", "You could be dropping a proton bomb, or a mini nuke, it's random!", new Vector2(648, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+    PowerButtons.CreateButton("BombMenu", Resources.Load<Sprite>("ui/Icons/Bomber"), "Bomb Menu", "Tux and Dank got bored and added a lot of extra bombs....", new Vector2(684, -18), NCMS.Utils.ButtonType.Click, tab.transform, BombsMenu);
     PowerButtons.CreateButton("Minibutton", Resources.Load<Sprite>("ui/Icons/Mini"), "Mini Nuke", "Small nukes, great for minor scuffles.", new Vector2(540, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab2.transform, null);
     PowerButtons.CreateButton("Jupiterbutton", Resources.Load<Sprite>("ui/Icons/Jupiter"), "Jupiter Bomb", "The new monster.", new Vector2(612, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
@@ -683,7 +684,9 @@ class Buttonz {
     Application.OpenURL(discordServerLink);
   }
 
-  private static void OpenInfoWindow() { Windows.ShowWindow("EXTRA BOMBS"); }
+  private static void OpenInfoWindow() { Windows.ShowWindow("GuideWindow"); }
+  
+  private static void BombsMenu() { Windows.ShowWindow("EXTRA BOMBS"); }
 
   private static void OpenMajorUpdateWindow() { Windows.ShowWindow("MajorUpdateWindow"); }
   private static void OpenCreditsWindow() { Windows.ShowWindow("CreditsWindow"); }
