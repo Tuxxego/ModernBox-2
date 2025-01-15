@@ -22,16 +22,20 @@ namespace M2
 {
     class BombsWindow
     {
-		public static int MoveDown = -40;
+		public static int MoveDown = -50;
         private static ScrollWindow window;
         private static GameObject content;
 		
 		private static PowerButton AHHHH;
 		private static PowerButton AHHHH2;
+		private static PowerButton AHHHH3;
+		private static PowerButton AHHHH4;
 		private static PowerButton ASS2;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;
 		private static GodPower FuryOfTuxiaFuncPower;
+		private static GodPower ZeusRagePower;
+		private static GodPower ClusterNukePower;
 		
 	  private static PowersTab getPowersTab(string id) {
 		GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
@@ -50,9 +54,34 @@ namespace M2
           viewportRect.sizeDelta = new Vector2(0, 17);
           content = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View/Viewport/Content");
 			
+			          string gold = "#FFD700";
+					  string Dgold = "#ffae00";
+					  var description =
+			@"<color='" + gold + @"'>Dank and Tux got bored so here's a bunch of destructive stuff. </color>
+
+			";
+					  var name = window.transform.Find("Background").Find("Name").gameObject;
+					  var nameText = name.GetComponent<Text>();
+					  nameText.text = description;
+					  nameText.color = new Color(0.9f, 0.6f, 0, 1);
+					  nameText.fontSize = 10;
+					  nameText.alignment = TextAnchor.UpperCenter;
+					  nameText.supportRichText = true;
+					  name.transform.SetParent(window.transform.Find("Background").Find("Scroll View").Find("Viewport").Find("Content"));
+					  name.SetActive(true);
+					  var nameRect = name.GetComponent<RectTransform>();
+					  nameRect.anchorMin = new Vector2(0.5f, 1);
+					  nameRect.anchorMax = new Vector2(0.5f, 1);
+					  nameRect.offsetMin = new Vector2(-90f, nameText.preferredHeight * -1);
+					  nameRect.offsetMax = new Vector2(90f, -17);
+					  nameRect.sizeDelta = new Vector2(180, nameText.preferredHeight + 50);
+					  window.GetComponent<RectTransform>().sizeDelta = new Vector2(0, nameText.preferredHeight + 50);
+					  name.transform.localPosition = new Vector2(name.transform.localPosition.x, ((nameText.preferredHeight / 2) + 30) * -1);
+		  
 			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
 			    AHHHH2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
-	
+			    AHHHH3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
+			    AHHHH4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
 
         }
 		private static void AtomicGrenadeFunc()
@@ -83,9 +112,34 @@ namespace M2
 	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS3);
 		}
-		    public static bool Stuff_Drop(WorldTile pTile, GodPower pPower) {
-			AssetManager.powers.CallMethod("spawnDrops", pTile, pPower);
-			return true;
-		  }
+		private static void ZeusRageFunc()
+		{
+			
+			window.clickHide();
+			
+				
+			
+
+			PowerButtonSelector.instance.setSelectedPower(AHHHH3, ZeusRagePower);
+
+
+	//		PowerTracker.setPower((GodPower), null);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS);
+		}
+		
+		private static void ClusterNukeFunc()
+		{
+			
+			window.clickHide();
+			
+				
+			
+
+			PowerButtonSelector.instance.setSelectedPower(AHHHH4, ClusterNukePower);
+
+
+	//		PowerTracker.setPower((GodPower), null);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS4);
+		}
   }
 }
