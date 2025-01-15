@@ -40,7 +40,7 @@ namespace M2
           content = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View/Viewport/Content");
 			
 			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
-			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/wat"), "Multi Bomb", "Multiple nukes in the same area, with one click.", new Vector2(96, MoveDown), ButtonType.Click, content.transform, MultiBombFunc);			
+			    AHHHH = PowerButtons.CreateButton("roar", Resources.Load<Sprite>("ui/Icons/wat"), "Multi Bomb", "Multiple nukes in the same area, with one click.", new Vector2(96, MoveDown), ButtonType.Click, content.transform, MultiBombFunc);			
 	
         }
 		private static void AtomicGrenadeFunc()
