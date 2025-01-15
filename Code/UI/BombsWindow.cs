@@ -27,10 +27,21 @@ namespace M2
         private static GameObject content;
 		
 		private static PowerButton AHHHH;
-
+		private static PowerButton AHHHH2;
+		private static PowerButton ASS2;
+		private static GodPower AtomicGrenadePower;
+		private static DropAsset AtomicGrenadeDrop;
+		private static GodPower FuryOfTuxiaFuncPower;
+		
+	  private static PowersTab getPowersTab(string id) {
+		GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
+		return gameObject.GetComponent<PowersTab>();
+	  }
 
         public static void init()
         {
+			    PowersTab tab = getPowersTab("ModernBox");
+
           window = Windows.CreateNewWindow("EXTRA BOMBS", "ModernBox");
           var scrollView = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View");
           scrollView.gameObject.SetActive(true);
@@ -40,35 +51,15 @@ namespace M2
           content = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View/Viewport/Content");
 			
 			    AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
-			    AHHHH = PowerButtons.CreateButton("roar", Resources.Load<Sprite>("ui/Icons/wat"), "Multi Bomb", "Multiple nukes in the same area, with one click.", new Vector2(96, MoveDown), ButtonType.Click, content.transform, MultiBombFunc);			
+			    AHHHH2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
 	
+
         }
 		private static void AtomicGrenadeFunc()
 		{
 			
 			window.clickHide();
 			
-				DropAsset AtomicGrenadeDrop = new DropAsset();
-				AtomicGrenadeDrop.id = "atomicgrenade";
-				AtomicGrenadeDrop.path_texture = "drops/drop_czarbomba";
-				AtomicGrenadeDrop.random_frame = false;
-				AtomicGrenadeDrop.default_scale = 0.2f;
-				AtomicGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-				AtomicGrenadeDrop.action_landed = new DropsAction(action_AtomicGClick);
-				AssetManager.drops.add(AtomicGrenadeDrop);
-	
-				GodPower AtomicGrenadePower = new GodPower();
-				AtomicGrenadePower.id = "AtomicGrenadebutton";
-				AtomicGrenadePower.name = "AtomicGrenadebutton";
-				AtomicGrenadePower.holdAction = true;
-				AtomicGrenadePower.fallingChance = 0.01f;
-				AtomicGrenadePower.showToolSizes = true;
-				AtomicGrenadePower.unselectWhenWindow = false;
-				AtomicGrenadePower.ignore_cursor_icon = true;
-				AtomicGrenadePower.dropID = "atomicgrenade";
-				AtomicGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
-				AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-				AssetManager.powers.add(AtomicGrenadePower);
 				
 			
 
@@ -76,51 +67,22 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS);
-			Debug.Log("tileButtonClick execution completed.");
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS2);
 		}
-		private static void MultiBombFunc()
+		private static void FuryOfTuxiaFunc()
 		{
 			
 			window.clickHide();
 			
-				DropAsset MultiBombDrop = new DropAsset();
-				MultiBombDrop.id = "multi";
-				MultiBombDrop.path_texture = "drops/drop_czarbomba";
-				MultiBombDrop.random_frame = false;
-				MultiBombDrop.default_scale = 0.2f;
-				MultiBombDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-				MultiBombDrop.action_landed = new DropsAction(action_AtomicGClick);
-				AssetManager.drops.add(MultiBombDrop);
-	
-				GodPower MultiBombPower = new GodPower();
-				MultiBombPower.id = "MultiBombbutton";
-				MultiBombPower.name = "MultiBombbutton";
-				MultiBombPower.holdAction = true;
-				MultiBombPower.fallingChance = 0.01f;
-				MultiBombPower.showToolSizes = true;
-				MultiBombPower.unselectWhenWindow = false;
-				MultiBombPower.ignore_cursor_icon = true;
-				MultiBombPower.dropID = "multi";
-				MultiBombPower.click_power_action = new PowerAction(Stuff_Drop);
-				MultiBombPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-				AssetManager.powers.add(MultiBombPower);
-				
+
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH, MultiBombPower);
+			PowerButtonSelector.instance.setSelectedPower(AHHHH2, FuryOfTuxiaFuncPower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS);
-			Debug.Log("tileButtonClick execution completed.");
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS3);
 		}
-		  public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
-			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
-			MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
-			World.world.startShake(0.3f, 0.01f, 2f, true, true);
-			// return true;
-		  }
 		    public static bool Stuff_Drop(WorldTile pTile, GodPower pPower) {
 			AssetManager.powers.CallMethod("spawnDrops", pTile, pPower);
 			return true;

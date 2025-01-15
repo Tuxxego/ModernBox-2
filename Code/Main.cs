@@ -73,15 +73,14 @@ public void Awake()
 	 loadSettings();
 
  Debug.Log("[M2] Mod Core has been called, booting mod core.");
+     tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
+
  Debug.Log("[M2] Loading SaveSystemWindow...");
  SaveSystemWindow.init();
  Debug.Log("[M2] SaveSystemWindow loaded!");
  Debug.Log("[M2] Loading InfoWindow...");
  InfoWindow.init();
  Debug.Log("[M2] InfoWindow loaded!");
- Debug.Log("[M2] Loading BombsWindow...");
- BombsWindow.init();
- Debug.Log("[M2] BombsWindow loaded!");
  Debug.Log("[M2] Loading DiscordWindow...");
  DiscordWindow.init();
  Debug.Log("[M2] DiscordWindow loaded!");
@@ -115,6 +114,9 @@ public void Awake()
  Debug.Log("[M2] Initializing cyberware...");
  cyberware.init();
  Debug.Log("[M2] cyberware loaded!");
+   Debug.Log("[M2] Loading BombsWindow...");
+ BombsWindow.init();
+ Debug.Log("[M2] BombsWindow loaded!");
  Debug.Log("[M2] Initializing Buttonz...");
  Buttonz.init();
  Debug.Log("[M2] Buttonz loaded!");
@@ -162,6 +164,7 @@ public void Awake()
  GoliathCannon.init();
  Debug.Log("[M2] GoliathCannon loaded!");
  
+
   Debug.Log("[M2] Initializing GoliathVehicles...");
  GoliathVehicles.init();
  Debug.Log("[M2] GoliathVehicles loaded!");

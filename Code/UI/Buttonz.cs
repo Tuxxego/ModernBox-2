@@ -28,11 +28,13 @@ namespace M2 {
 class Buttonz {
 	
 		internal static PowerButton ASS;
-
-
+		internal static PowerButton ASS2;
+		internal static PowerButton ASS3;
+		private static GodPower AtomicGrenadePower;
+		private static DropAsset AtomicGrenadeDrop;		
   public static void init() {
 
-    tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
+   // tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
     loadButtons();
   }
   private static void loadButtons() {
@@ -196,7 +198,51 @@ class Buttonz {
     ZeusRageDrop.action_landed = new DropsAction(action_ZeusRageClick);
     AssetManager.drops.add(ZeusRageDrop);
 	
+					AtomicGrenadeDrop = new DropAsset();
+				AtomicGrenadeDrop.id = "atomicgrenade";
+				AtomicGrenadeDrop.path_texture = "drops/drop_czarbomba";
+				AtomicGrenadeDrop.random_frame = false;
+				AtomicGrenadeDrop.default_scale = 0.2f;
+				AtomicGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+				AtomicGrenadeDrop.action_landed = new DropsAction(action_AtomicGClick);
+				AssetManager.drops.add(AtomicGrenadeDrop);
 	
+				AtomicGrenadePower = new GodPower();
+				AtomicGrenadePower.id = "AtomicGrenadebuttonLOSER";
+				AtomicGrenadePower.name = "AtomicGrenadebuttonLOSER";
+				AtomicGrenadePower.holdAction = true;
+				AtomicGrenadePower.fallingChance = 0.01f;
+				AtomicGrenadePower.showToolSizes = true;
+				AtomicGrenadePower.unselectWhenWindow = false;
+				AtomicGrenadePower.ignore_cursor_icon = true;
+				AtomicGrenadePower.dropID = "atomicgrenade";
+				AtomicGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
+				AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+				AssetManager.powers.add(AtomicGrenadePower);
+
+				DropAsset FuryOfTuxiaFuncDrop = new DropAsset();
+				FuryOfTuxiaFuncDrop.id = "fury";
+				FuryOfTuxiaFuncDrop.path_texture = "drops/drop_czarbomba";
+				FuryOfTuxiaFuncDrop.random_frame = false;
+				FuryOfTuxiaFuncDrop.default_scale = 0.2f;
+				FuryOfTuxiaFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+				FuryOfTuxiaFuncDrop.action_landed = new DropsAction(action_FuryClick);
+				AssetManager.drops.add(FuryOfTuxiaFuncDrop);
+	
+				GodPower FuryOfTuxiaFuncPower = new GodPower();
+				FuryOfTuxiaFuncPower.id = "FuryOfTuxiaButtonLOSER";
+				FuryOfTuxiaFuncPower.name = "FuryOfTuxiaButtonLOSER";
+				FuryOfTuxiaFuncPower.holdAction = true;
+				FuryOfTuxiaFuncPower.fallingChance = 0.01f;
+				FuryOfTuxiaFuncPower.showToolSizes = true;
+				FuryOfTuxiaFuncPower.unselectWhenWindow = false;
+				FuryOfTuxiaFuncPower.ignore_cursor_icon = true;
+				FuryOfTuxiaFuncPower.dropID = "fury";
+				FuryOfTuxiaFuncPower.click_power_action = new PowerAction(Stuff_Drop);
+				FuryOfTuxiaFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+				AssetManager.powers.add(FuryOfTuxiaFuncPower);
+				
+				
     DropAsset DeathDrop = new DropAsset();
     DeathDrop.id = "deaths";
     DeathDrop.path_texture = "drops/drop_czarbomba";
@@ -431,6 +477,14 @@ class Buttonz {
     PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab2.transform, null);
     PowerButtons.CreateButton("Jupiterbutton", Resources.Load<Sprite>("ui/Icons/Jupiter"), "Jupiter Bomb", "The new monster.", new Vector2(612, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Eraserbutton",Resources.Load<Sprite>("ui/Icons/Eraser"),"Eraser Bomb","also known as the overcompensating bomb.",new Vector2(648, -18),NCMS.Utils.ButtonType.GodPower,tab.transform,null);
+	
+	// LOSER BUTTONS 
+	
+					// loser buttons
+				    ASS2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+					
+				    ASS3 = PowerButtons.CreateButton("FuryOfTuxiaButtonLOSER", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury Of Tuxia", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+					
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
       PowerButtons.ToggleButton("Cyberware_toggle");
@@ -861,6 +915,19 @@ class Buttonz {
             World.world.startShake(0.3f, 0.01f, 2f, true, true);
             // return true;
         }
+		
+				  public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
+			MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+		  public static void action_FuryClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 160.3f, 280.9f);
+			MapAction.damageWorld(pTile, 7860, TerraformLibrary.czarBomba, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
   public static void action_RandomClick(WorldTile pTile, string pPowerID) {
     List<int> damageWorldNumbers = new List<int>{50, 120, 100, 100, 400, 5, 786};
     List<float> scaleNumbersMin = new List<float>{0.2f, 0.4f, 0.8f, 1.2f, 4.3f, 0.4f, 16.3f};
@@ -879,7 +946,7 @@ class Buttonz {
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
   }
 
-  private static PowersTab getPowersTab(string id) {
+  public static PowersTab getPowersTab(string id) {
     GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
     return gameObject.GetComponent<PowersTab>();
   }
