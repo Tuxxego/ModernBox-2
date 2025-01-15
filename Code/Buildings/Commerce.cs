@@ -621,7 +621,9 @@ class Commerce {
   
   }
 
-  public static void turnOffNukes() { }
+  public static void turnOffNukes() { 	      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+
+			RemoveBuilding(human, "order_MissileSilo"); }
 
 
   private static void OpenNukeWindow() {

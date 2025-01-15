@@ -79,6 +79,9 @@ public void Awake()
  Debug.Log("[M2] Loading InfoWindow...");
  InfoWindow.init();
  Debug.Log("[M2] InfoWindow loaded!");
+ Debug.Log("[M2] Loading BombsWindow...");
+ BombsWindow.init();
+ Debug.Log("[M2] BombsWindow loaded!");
  Debug.Log("[M2] Loading DiscordWindow...");
  DiscordWindow.init();
  Debug.Log("[M2] DiscordWindow loaded!");

@@ -26,15 +26,20 @@ using Assets.SimpleZip;
 
 namespace M2 {
 class Buttonz {
+	
+		internal static PowerButton ASS;
+
 
   public static void init() {
 
     tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
     loadButtons();
   }
-
   private static void loadButtons() {
     PowersTab tab = getPowersTab("ModernBox");
+
+    ScrollWindow tab2 = ScrollWindow.get("EXTRA BOMBS");
+
 
     // DropAsset spawnBoat2 = new DropAsset();
     // spawnBoat2.id = "spawnJob";
@@ -201,14 +206,6 @@ class Buttonz {
     DeathDrop.action_landed = new DropsAction(action_DeathClick);
     AssetManager.drops.add(DeathDrop);
 
-    DropAsset AtomicGrenadeDrop = new DropAsset();
-    AtomicGrenadeDrop.id = "atomicgrenade";
-    AtomicGrenadeDrop.path_texture = "drops/drop_czarbomba";
-    AtomicGrenadeDrop.random_frame = false;
-    AtomicGrenadeDrop.default_scale = 0.2f;
-    AtomicGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-    AtomicGrenadeDrop.action_landed = new DropsAction(action_AtomicGClick);
-    AssetManager.drops.add(AtomicGrenadeDrop);
 
     DropAsset RandomDrop = new DropAsset();
     RandomDrop.id = "randomdrop";
@@ -392,18 +389,6 @@ class Buttonz {
     DeathPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(DeathPower);
 
-    GodPower AtomicGrenadePower = new GodPower();
-    AtomicGrenadePower.id = "AtomicGrenadebutton";
-    AtomicGrenadePower.name = "AtomicGrenadebutton";
-    AtomicGrenadePower.holdAction = true;
-    AtomicGrenadePower.fallingChance = 0.01f;
-    AtomicGrenadePower.showToolSizes = true;
-    AtomicGrenadePower.unselectWhenWindow = false;
-    AtomicGrenadePower.ignore_cursor_icon = true;
-    AtomicGrenadePower.dropID = "atomicgrenade";
-    AtomicGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
-    AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-    AssetManager.powers.add(AtomicGrenadePower);
 
     GodPower ZeusRagePower = new GodPower();
     ZeusRagePower.id = "ZeusRagebutton";
@@ -439,11 +424,10 @@ class Buttonz {
     PowerButtons.CreateButton("Cobaltbutton", Resources.Load<Sprite>("ui/Icons/Cobalt"), "Cobalt Bomb", "Small Mushroom but huge radius, watch out with this one.", new Vector2(540, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Ultronbutton", Resources.Load<Sprite>("ui/Icons/Ultron"), "Ultron Bomb", "WOOOAH", new Vector2(504, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Deathbutton", Resources.Load<Sprite>("ui/Icons/Death"), "Death Bomb", "Such an original name.", new Vector2(612, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
-    PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(2000, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
-    PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(2000, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+    ASS = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(2000, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Randombutton", Resources.Load<Sprite>("ui/Icons/wat"), "Random Bomb", "You could be dropping a proton bomb, or a mini nuke, it's random!", new Vector2(648, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Minibutton", Resources.Load<Sprite>("ui/Icons/Mini"), "Mini Nuke", "Small nukes, great for minor scuffles.", new Vector2(540, 18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
-    PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+    PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "Proton Bomb", "wtf is this?", new Vector2(504, -18), NCMS.Utils.ButtonType.GodPower, tab2.transform, null);
     PowerButtons.CreateButton("Jupiterbutton", Resources.Load<Sprite>("ui/Icons/Jupiter"), "Jupiter Bomb", "The new monster.", new Vector2(612, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
     PowerButtons.CreateButton("Eraserbutton",Resources.Load<Sprite>("ui/Icons/Eraser"),"Eraser Bomb","also known as the overcompensating bomb.",new Vector2(648, -18),NCMS.Utils.ButtonType.GodPower,tab.transform,null);
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
@@ -699,7 +683,7 @@ class Buttonz {
     Application.OpenURL(discordServerLink);
   }
 
-  private static void OpenInfoWindow() { Windows.ShowWindow("GuideWindow"); }
+  private static void OpenInfoWindow() { Windows.ShowWindow("EXTRA BOMBS"); }
 
   private static void OpenMajorUpdateWindow() { Windows.ShowWindow("MajorUpdateWindow"); }
   private static void OpenCreditsWindow() { Windows.ShowWindow("CreditsWindow"); }
@@ -829,13 +813,6 @@ class Buttonz {
   public static void action_DeathClick(WorldTile pTile, string pPowerID) {
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 1.2f, 1.6f);
     MapAction.damageWorld(pTile, 100, TerraformLibrary.czarBomba, null);
-    World.world.startShake(0.3f, 0.01f, 2f, true, true);
-    // return true;
-  }
-
-  public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
-    EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
-    MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
     // return true;
   }
