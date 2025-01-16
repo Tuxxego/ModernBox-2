@@ -122,6 +122,9 @@ public class StarManager : MonoBehaviour
     private static string[] prefixes = { "Al", "Betel", "Proxi", "Vega", "Anta", "Capel", "Siri", "Tauri", "Poll", "Cen", "Alpha", "Beta", "Delta", "Epsilon", "Gamma", "Cenu" };
     private static string[] syllables = { "al", "bel", "den", "mar", "nus", "zar", "pho", "cos", "tera", "van", "ly", "pe", "xor", "sta", "pro", "lux", "tor", "el", "ris", "zir", "quar", "vix" };
     private static string[] suffixes = { "on", "or", "a", "us", "ae", "um", "is", "us", "i", "an", "es", "ia", "ar", "il", "or", "an", "is" };
+    private string galaxiesFolder = Path.Combine(Application.dataPath, "../galaxies/");
+	private Dictionary<string, string> CustomGalaxyDescriptions = new Dictionary<string, string>();
+
 
     private List<string> randomFacts = new List<string>
     {
@@ -138,10 +141,44 @@ public class StarManager : MonoBehaviour
 		    localizationManager = FindObjectOfType<LocalizationManager>();
         activeGalaxyFilePath = Path.Combine(Application.persistentDataPath, "activeGalaxy.txt");
         LoadActiveGalaxy();
+        LoadGalaxies();
         StartCoroutine(InitializeAndGenerateStars());
 		LoadJourneyTracker();
     }
 
+    public void LoadGalaxies()
+    {
+        string[] galaxyFiles = Directory.GetFiles(galaxiesFolder, "*.gal");
+
+        foreach (string filePath in galaxyFiles)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                GalaxyData galaxy = JsonUtility.FromJson<GalaxyData>(json);
+
+                predefinedGalaxies = AddToArray(predefinedGalaxies, galaxy.name);
+				CustomGalaxyDescriptions[galaxy.name] = galaxy.description;
+                galaxyRequirements[galaxy.name] = galaxy.requirement;
+                galaxyStarCounts[galaxy.name] = galaxy.starCount;
+                galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
+                galaxyStarWeights[galaxy.name] = galaxy.starWeights;
+
+                Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Error loading galaxy file '{filePath}': {ex.Message}");
+            }
+        }
+    }
+
+    private string[] AddToArray(string[] array, string newItem)
+    {
+        var list = new List<string>(array) { newItem };
+        return list.ToArray();
+    }
+	
     private void LoadActiveGalaxy()
     {
         if (File.Exists(activeGalaxyFilePath))
@@ -2146,6 +2183,7 @@ private string GenerateStarType()
     return starTypes[starTypes.Length - 1]; 
 }
 
+
 private string GetGalaxyDescription(string galaxyName)
 {
     switch (galaxyName)
@@ -2165,9 +2203,17 @@ private string GetGalaxyDescription(string galaxyName)
         case "Dank":
             return localizationManager.Localize("dank");
         default:
-            return "No description available.";
+            if (CustomGalaxyDescriptions.ContainsKey(galaxyName))
+            {
+                return CustomGalaxyDescriptions[galaxyName];
+            }
+            else
+            {
+                return "No description available.";
+            }
     }
 }
+
 
 	private string ToRomanNumeral(int number)
 {
@@ -2685,6 +2731,17 @@ public class PlanetInfo
         }
     }
 
+    [System.Serializable]
+    public class GalaxyData
+    {
+        public string name;
+        public string description;
+        public int requirement;
+        public int starCount;
+        public int dangerRating;
+        public float[] starWeights;
+    }
+	
 public class Vector3Converter : JsonConverter
 {
     public override bool CanConvert(Type objectType)
