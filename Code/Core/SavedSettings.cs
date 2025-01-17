@@ -50,7 +50,7 @@ namespace M2
 			{"GunOption",  true},
 			{"DronesOption",  true},
 			{"ShakeOption",  true},
-			{"P9000Option",  true},
+			{"P9000Option",  false},
 			{"TerranOption",  true}
         };
 	}

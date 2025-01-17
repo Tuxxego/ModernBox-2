@@ -530,11 +530,11 @@ class Buttonz {
 	
 			    PowerButtons.CreateButton("spawn_P9000", Resources.Load<Sprite>("ui/icons/P9000"), "Spawn P9000", "The goat.", new Vector2(1044, 18), ButtonType.GodPower, tab.transform, null);
 			    PowerButtons.CreateButton("spawn_Terran", Resources.Load<Sprite>("ui/icons/Terran"), "Spawn Terran Goliath", "Spawn a mech.", new Vector2(1080, 18), ButtonType.GodPower, tab.transform, null);
-				    PowerButtons.CreateButton("P9000Factory_toggle", Resources.Load<Sprite>("ui/Icons/P9000"), "P9000 Factories", "(GREEN MEANS ON, GREY IS OFF) Toggles if factories make P9000 Tanks.", new Vector2(1044, -18), ButtonType.Toggle, tab.transform, Commerce.toggleP9000Factory);
-					if (Main.savedSettings.boolOptions["P9000Option"]) {
-					  PowerButtons.ToggleButton("P9000Factory_toggle");
-					  Commerce.toggleP9000Factory();
-					}					
+				    PowerButtons.CreateButton("P9000Factory_toggle", Resources.Load<Sprite>("ui/Icons/P9000"), "P9000 Factories", "DISABLED, COMING SOON!!!", new Vector2(1044, -18), ButtonType.Click, tab.transform, null);
+				//	if (Main.savedSettings.boolOptions["P9000Option"]) {
+				//	  PowerButtons.ToggleButton("P9000Factory_toggle");
+				//	  Commerce.toggleP9000Factory();
+				//	}					
 				    PowerButtons.CreateButton("TerranFactory_toggle", Resources.Load<Sprite>("ui/Icons/Terran"), "Terran Goliath Factories", "(GREEN MEANS ON, GREY IS OFF) Toggles if factories make the Terran Goliath.", new Vector2(1080, -18), ButtonType.Toggle, tab.transform, Commerce.toggleTerranFactory);
 					if (Main.savedSettings.boolOptions["TerranOption"]) {
 					  PowerButtons.ToggleButton("TerranFactory_toggle");
@@ -764,6 +764,7 @@ class Buttonz {
   }
 
   private static void OpenInfoWindow() { Windows.ShowWindow("GuideWindow"); }
+  private static void OpenAHHWindow() { Windows.ShowWindow("AHHWindow"); }
   
   private static void BombsMenu() { Windows.ShowWindow("EXTRA BOMBS"); }
 

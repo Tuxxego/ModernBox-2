@@ -192,7 +192,7 @@ class Commerce {
     P9000Factory.cost = new ConstructionCost(0, 2, 1, 1);
     P9000Factory.tech = "P9000s";
     P9000Factory.housing = 60;
-	P9000Factory.spawnUnits = true;
+	P9000Factory.spawnUnits = false;
     P9000Factory.spawnUnits_asset = "P9000";
     P9000Factory.base_stats[S.health] = 3000f;
     loadSprites(P9000Factory);

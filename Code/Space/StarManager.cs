@@ -124,6 +124,8 @@ public class StarManager : MonoBehaviour
     private static string[] suffixes = { "on", "or", "a", "us", "ae", "um", "is", "us", "i", "an", "es", "ia", "ar", "il", "or", "an", "is" };
     private string galaxiesFolder = Path.Combine(Application.dataPath, "../galaxies/");
 	private Dictionary<string, string> CustomGalaxyDescriptions = new Dictionary<string, string>();
+	private int loadedGalaxyCount = 0; 
+	private bool isCustomGalaxiesMode = false; 
 
 
     private List<string> randomFacts = new List<string>
@@ -133,12 +135,16 @@ public class StarManager : MonoBehaviour
         "Space Serpants are real, one was observed in HD-843 in Crabby Way.",
         "I hate the ModernBox save system.",
         "Dank is a relativly new galaxy, odd considering it's apparent abundence of alien intellegence, somethings going on here...",
-        "Tuxxus is not gay."
+        "Tuxxus is not gay.",
+		"You can add custom galaxies, check the discord server for more info.",
+		"What if Tuxxus is gay????? (he's not)",
+		"Filama is goated.",
+		"I WANNA STAR WARS MOD!!!!!!"
     };
 
     private void Start()
     {
-		    localizationManager = FindObjectOfType<LocalizationManager>();
+		localizationManager = FindObjectOfType<LocalizationManager>();
         activeGalaxyFilePath = Path.Combine(Application.persistentDataPath, "activeGalaxy.txt");
         LoadActiveGalaxy();
         LoadGalaxies();
@@ -163,7 +169,7 @@ public class StarManager : MonoBehaviour
                 galaxyStarCounts[galaxy.name] = galaxy.starCount;
                 galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
                 galaxyStarWeights[galaxy.name] = galaxy.starWeights;
-
+				loadedGalaxyCount++;
                 Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
             }
             catch (System.Exception ex)
@@ -927,7 +933,7 @@ private void OnGUI()
     GUI.Window(5, smallWindowRect, SmallWindow, localizationManager.Localize("options"));
 
 
-if (showGalaxySelectionWindow) 
+if (showGalaxySelectionWindow)
 {
     Rect galaxyWindowRect = new Rect((Screen.width - 400) / 2, (Screen.height - 300) / 2, 400, 400);
     Rect descriptionWindowRect = new Rect(galaxyWindowRect.x + galaxyWindowRect.width + 20, galaxyWindowRect.y, 300, 400);
@@ -939,9 +945,17 @@ if (showGalaxySelectionWindow)
 
     Rect closeButtonRect = new Rect(galaxyWindowRect.x + (galaxyWindowRect.width / 2) - 50, galaxyWindowRect.y + galaxyWindowRect.height + 15, 100, 35);
 
+    Rect customButtonRect = new Rect(closeButtonRect.x + closeButtonRect.width + 10, closeButtonRect.y, 150, 35); 
+
     if (GUI.Button(closeButtonRect, localizationManager.Localize("close")))
     {
         showGalaxySelectionWindow = false;
+    }
+
+    string buttonText = isCustomGalaxiesMode ? "Normal Galaxies" : "Custom Galaxies";
+    if (GUI.Button(customButtonRect, buttonText))
+    {
+        isCustomGalaxiesMode = !isCustomGalaxiesMode; 
     }
 }
 
@@ -1130,7 +1144,6 @@ private void StarLoadingWindow(int windowID)
 
     string randomFact = randomFacts[UnityEngine.Random.Range(0, randomFacts.Count)];
 
-    
     GUIStyle titleStyle = new GUIStyle(GUI.skin.label)
     {
         fontSize = 50, 
@@ -1140,7 +1153,24 @@ private void StarLoadingWindow(int windowID)
         normal = { textColor = Color.cyan }
     };
 
-    
+    GUIStyle titleStyle2 = new GUIStyle(GUI.skin.label)
+    {
+        fontSize = 16, 
+        fontStyle = FontStyle.Bold,
+        alignment = TextAnchor.MiddleCenter,
+        wordWrap = true,
+        normal = { textColor = Color.cyan }
+    };
+
+    GUIStyle subtitleStyle2 = new GUIStyle(GUI.skin.label)
+    {
+        fontSize = 10, 
+        fontStyle = FontStyle.Italic,
+        alignment = TextAnchor.MiddleCenter,
+        wordWrap = true,
+        normal = { textColor = Color.yellow }
+    };
+	
     GUIStyle subtitleStyle = new GUIStyle(GUI.skin.label)
     {
         fontSize = 36, 
@@ -1150,16 +1180,14 @@ private void StarLoadingWindow(int windowID)
         normal = { textColor = Color.yellow }
     };
 
-    
     GUIStyle italicStyle = new GUIStyle(GUI.skin.label)
     {
-        fontSize = 24, 
+        fontSize = 20, 
         fontStyle = FontStyle.Italic,
         alignment = TextAnchor.UpperCenter,
         wordWrap = true
     };
 
-    
     GUILayout.BeginVertical();
 
     GUILayout.Space(10);
@@ -1172,10 +1200,17 @@ private void StarLoadingWindow(int windowID)
     GUILayout.Space(15);
     GUILayout.Label(localizationManager.Localize("did_you_know"), italicStyle);
 
-    
     GUILayout.BeginScrollView(Vector2.zero, GUILayout.Height(120));
     GUILayout.Label($"*{randomFact}*", italicStyle);
     GUILayout.EndScrollView();
+
+    GUILayout.EndVertical();
+
+    GUILayout.Space(10); 
+    GUILayout.BeginVertical();
+
+    GUILayout.Label("GalaxyCrafter", titleStyle2); 
+    GUILayout.Label($"Custom Galaxies Loaded: {loadedGalaxyCount}", subtitleStyle2); 
 
     GUILayout.EndVertical();
 }
@@ -1588,7 +1623,6 @@ private void GalaxySelectionWindow(int windowID)
         planetsVisited = 0;
     }
 
-    
     GUIStyle galaxyButtonStyle = new GUIStyle(GUI.skin.button)
     {
         fontSize = 15,
@@ -1600,7 +1634,6 @@ private void GalaxySelectionWindow(int windowID)
         hover = { textColor = new Color(1f, 0.5f, 0.8f) }  
     };
 
-    
     GUIStyle unavailableLabelStyle = new GUIStyle(GUI.skin.label)
     {
         fontSize = 18,
@@ -1610,7 +1643,6 @@ private void GalaxySelectionWindow(int windowID)
         normal = { textColor = new Color(1f, 0.3f, 0.3f) }  
     };
 
-    
     GUILayout.Label("Explore the Galaxies", new GUIStyle(GUI.skin.label)
     {
         fontSize = 30,
@@ -1621,11 +1653,23 @@ private void GalaxySelectionWindow(int windowID)
 
     GUILayout.Space(20); 
 
-    
+
+    HashSet<string> excludedGalaxies = new HashSet<string>
+    {
+        "Crabby Way", "Tuxxus", "Krummple", "BlueNight", "Centuga", "Glass", "Dank"
+    };
+
+    GUILayout.Space(20); 
+
     scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(350), GUILayout.Height(400));
 
     foreach (string galaxy in predefinedGalaxies)
     {
+        if (isCustomGalaxiesMode && excludedGalaxies.Contains(galaxy))
+        {
+            continue;
+        }
+
         int requiredPlanets = galaxyRequirements.ContainsKey(galaxy) ? galaxyRequirements[galaxy] : 0;
 
         if (planetsVisited >= requiredPlanets)
@@ -1662,7 +1706,6 @@ private void GalaxySelectionWindow(int windowID)
             GUILayout.Label(labelText, unavailableLabelStyle);
         }
 
-        
         if (GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
         {
             galaxyDescription = GetGalaxyDescription(galaxy);
@@ -1673,22 +1716,8 @@ private void GalaxySelectionWindow(int windowID)
     GUILayout.EndScrollView();
 
     GUILayout.Space(20); 
-
-    
-    GUIStyle closeButtonStyle = new GUIStyle(GUI.skin.button)
-    {
-        fontSize = 18,
-        fontStyle = FontStyle.Bold,
-        alignment = TextAnchor.MiddleCenter,
-        normal = { textColor = Color.white },
-        hover = { textColor = Color.red }  
-    };
-
-    if (GUILayout.Button(localizationManager.Localize("close"), closeButtonStyle))
-    {
-        showGalaxySelectionWindow = false;
-    }
 }
+
 
 
 private void GalaxyDescriptionWindow(int windowID)
