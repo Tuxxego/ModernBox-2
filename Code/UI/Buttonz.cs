@@ -31,6 +31,10 @@ class Buttonz {
 		internal static PowerButton ASS2;
 		internal static PowerButton ASS3;
 		internal static PowerButton ASS4;
+                internal static PowerButton ASS5;
+                internal static PowerButton ASS6;
+   	        internal static PowerButton ASS7;
+                internal static PowerButton ASS8;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
   public static void init() {
