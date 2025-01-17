@@ -206,13 +206,13 @@ namespace M2
             }
 			
 			
-			if (!PlayerPrefs.HasKey("SpaceEnabled"))
-			{
-				isPopupOpen = true;
-			}
-			else {
+			//if (!PlayerPrefs.HasKey("SpaceEnabled"))
+		//	{
+		//		isPopupOpen = true;
+		//	}
+		//	else {
             instance.StartCoroutine(instance.EnableSpaceCoroutine());
-			}
+		//	}
         }
 
         private IEnumerator EnableSpaceCoroutine()
