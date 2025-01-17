@@ -48,24 +48,19 @@ thedesertroad
 luck (some of the guns)
 alexnitaly (a lot of the nuclear missile code is from gunsmith book)
 greencalor/ full auto sherman (tank sprite)
+MORFOS
+Gecko/Allen
 <color='" + gold + @"'>DISCORD SERVER:</color>
 Admins:
 slowatplaye
-gm_blahaj
 keymasterer
 
 Moderators:
 matthewn0008
-michealllllllllllllll
 the_state_of_florida
 cakewashere
 .xiexel
-h_d.v0rtex
-mynameisfakher
-geckofficial
-geckomobile
 _harrier
-honeybee1661
 <color='" + gold + @"'>SERVER BOOSTERS:</color>
 keymasterer
 sog1029
