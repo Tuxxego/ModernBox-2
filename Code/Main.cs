@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.0.1.0 ============//
+//========= MODERNBOX 2.1.0.0 ============//
 //
 // Made by Tuxxego
 //
@@ -32,7 +32,7 @@ namespace M2
  public Commerce Commerce = new Commerce();
  public Resourcez Resourcez = new Resourcez();
  public static SavedSettings savedSettings = new SavedSettings();
- private static string correctSettingsVersion = "2.0.1.0"; 
+ private static string correctSettingsVersion = "2.1.0.0"; 
  public ModernKingdoms ModernKingdoms = new ModernKingdoms();
  public const string settingsKey = "MBoxSettings"; 
  public SpaceManager SpaceManager = new SpaceManager();
@@ -96,7 +96,7 @@ public void Awake()
  Debug.Log("[M2] Patching stuff...");
  PatchStuff();
  Debug.Log("===============================");
- Debug.Log("ModernBox 2.0.1.0");
+ Debug.Log("ModernBox 2.1.0.0");
  Debug.Log("MADE BY TUXXEGO");
  Debug.Log("===============================");
  Debug.Log("[M2] Initializing Name...");
@@ -203,7 +203,7 @@ public void Awake()
 
  audioSource = GetComponent<AudioSource>();
  PlayMP3("file");
- Debug.Log("ModernBox 2.0.1.0: Loaded.");
+ Debug.Log("ModernBox 2.1.0.0: Loaded.");
  if (isNewVersion)
  {
  Debug.Log("[M2] Showing SaveSystemWindow...");
@@ -233,7 +233,7 @@ public void Awake()
  return; 
  }
  Debug.Log("===============================");
- Debug.Log("ModernBox 2.0.1.0");
+ Debug.Log("ModernBox 2.1.0.0");
  Debug.Log("Changes were made, saving!");
  Debug.Log("===============================");
  foreach (var option in savedSettings.boolOptions)

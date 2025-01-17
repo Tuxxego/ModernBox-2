@@ -1561,7 +1561,7 @@ private void BottomBar()
     float centerX = Screen.width / 2f;
     float barY = Screen.height - 60 + 15f; 
 
-    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.0.1.0", fancyTextStyle);
+    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.1.0.0", fancyTextStyle);
     GUI.Label(new Rect(centerX - textWidth / 2, barY + 20f, textWidth, textHeight), "BY TUXXEGO", smallerTextStyle);
 
 }

@@ -17,13 +17,30 @@ namespace M2
         private static bool isSpaceEnabled = false;
         public static SpaceManager instance;
 		public static string otherfilePath;
-
+		private static MusicBox musicBox;
+		private static bool isPopupOpen = false;
+		private static int popupStage = 0;
         private void Awake()
         {
 
                 instance = this;
                 DontDestroyOnLoad(gameObject); 
+				InitializeMusicBox();
         }
+
+		private void InitializeMusicBox()
+		{
+			musicBox = FindObjectOfType<MusicBox>();
+			
+			if (musicBox != null)
+			{
+				Debug.Log($"MusicBox found: {musicBox.gameObject.name}");
+			}
+			else
+			{
+				Debug.LogWarning("No MusicBox found in the scene.");
+			}
+		}
 
         private void Start()
         {
@@ -122,15 +139,86 @@ namespace M2
             Debug.LogError("Config.disableDiscord property not found.");
         }
     }
+	
+				static void OnGUI()
+				{
+					if (!isPopupOpen) return;
+
+					GUIStyle popupStyle = new GUIStyle(GUI.skin.window)
+					{
+						fontSize = 18,
+						fontStyle = FontStyle.Bold,
+						alignment = TextAnchor.MiddleCenter,
+						wordWrap = true
+					};
+
+					GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
+					{
+						fontSize = 14,
+						fontStyle = FontStyle.Bold
+					};
+
+					Rect popupRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 300, 200);
+					GUILayout.BeginArea(popupRect, "Incoming Transmission", popupStyle);
+					GUILayout.Space(20);
+
+					if (popupStage == 0)
+					{
+						GUILayout.Label("HELP 1-9-5-7-0", popupStyle);
+						if (GUILayout.Button("Continue", buttonStyle))
+						{
+							popupStage++;
+						}
+					}
+					else if (popupStage == 1)
+					{
+						GUILayout.Label("The direction it came from wasn't tracked.", popupStyle);
+						if (GUILayout.Button("Continue", buttonStyle))
+						{
+							popupStage++;
+						}
+					}
+					else if (popupStage == 2)
+					{
+						GUILayout.Label("Looks like we've got work to do.", popupStyle);
+						if (GUILayout.Button("OK", buttonStyle))
+						{
+							popupStage++;
+							isPopupOpen = false;
+							PlayerPrefs.SetInt("SpaceEnabled", 1);
+							PlayerPrefs.Save();
+							instance.StartCoroutine(instance.EnableSpaceCoroutine());
+						}
+					}
+
+					GUILayout.EndArea();
+				}
 
         public static void EnableSpace()
         {
             if (instance == null || isSpaceEnabled) return;
+			
+			ScanExistingGameObjects();
+            foreach (var obj in existingGameObjects)
+            {
+                if (obj != instance.gameObject && obj != null) 
+                    obj.SetActive(false);
+            }
+			
+			
+			if (!PlayerPrefs.HasKey("SpaceEnabled"))
+			{
+				isPopupOpen = true;
+			}
+			else {
             instance.StartCoroutine(instance.EnableSpaceCoroutine());
+			}
         }
 
         private IEnumerator EnableSpaceCoroutine()
         {
+
+			musicBox.bus_master.setVolume(0.0f);
 
             if (instance == null)
             {
@@ -138,15 +226,9 @@ namespace M2
                 yield break;
             }
 
-            ScanExistingGameObjects();
 
-        //    yield return new WaitForSeconds(2);
 
-            foreach (var obj in existingGameObjects)
-            {
-                if (obj != instance.gameObject && obj != null) 
-                    obj.SetActive(false);
-            }
+
 
             if (spaceGameObject == null)
             {
@@ -197,6 +279,7 @@ public static void DisableSpace()
             }
 		}
 
+        musicBox.bus_master.setVolume(1.0f);
 
 		GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
 		foreach (GameObject obj in allGameObjects)
