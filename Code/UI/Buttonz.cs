@@ -198,73 +198,100 @@ class Buttonz {
     ZeusRageDrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
     ZeusRageDrop.action_landed = new DropsAction(action_ZeusRageClick);
     AssetManager.drops.add(ZeusRageDrop);
-	
-					AtomicGrenadeDrop = new DropAsset();
-				AtomicGrenadeDrop.id = "atomicgrenade";
-				AtomicGrenadeDrop.path_texture = "drops/drop_czarbomba";
-				AtomicGrenadeDrop.random_frame = false;
-				AtomicGrenadeDrop.default_scale = 0.2f;
-				AtomicGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-				AtomicGrenadeDrop.action_landed = new DropsAction(action_AtomicGClick);
-				AssetManager.drops.add(AtomicGrenadeDrop);
-	
-				AtomicGrenadePower = new GodPower();
-				AtomicGrenadePower.id = "AtomicGrenadebuttonLOSER";
-				AtomicGrenadePower.name = "AtomicGrenadebuttonLOSER";
-				AtomicGrenadePower.holdAction = true;
-				AtomicGrenadePower.fallingChance = 0.01f;
-				AtomicGrenadePower.showToolSizes = true;
-				AtomicGrenadePower.unselectWhenWindow = false;
-				AtomicGrenadePower.ignore_cursor_icon = true;
-				AtomicGrenadePower.dropID = "atomicgrenade";
-				AtomicGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
-				AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-				AssetManager.powers.add(AtomicGrenadePower);
 
-				DropAsset FuryOfTuxiaFuncDrop = new DropAsset();
-				FuryOfTuxiaFuncDrop.id = "fury";
-				FuryOfTuxiaFuncDrop.path_texture = "drops/drop_czarbomba";
-				FuryOfTuxiaFuncDrop.random_frame = false;
-				FuryOfTuxiaFuncDrop.default_scale = 0.2f;
-				FuryOfTuxiaFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-				FuryOfTuxiaFuncDrop.action_landed = new DropsAction(action_FuryClick);
-				AssetManager.drops.add(FuryOfTuxiaFuncDrop);
-	
-				GodPower FuryOfTuxiaFuncPower = new GodPower();
-				FuryOfTuxiaFuncPower.id = "FuryOfTuxiaButtonLOSER";
-				FuryOfTuxiaFuncPower.name = "FuryOfTuxiaButtonLOSER";
-				FuryOfTuxiaFuncPower.holdAction = true;
-				FuryOfTuxiaFuncPower.fallingChance = 0.01f;
-				FuryOfTuxiaFuncPower.showToolSizes = true;
-				FuryOfTuxiaFuncPower.unselectWhenWindow = false;
-				FuryOfTuxiaFuncPower.ignore_cursor_icon = true;
-				FuryOfTuxiaFuncPower.dropID = "fury";
-				FuryOfTuxiaFuncPower.click_power_action = new PowerAction(Stuff_Drop);
-				FuryOfTuxiaFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-				AssetManager.powers.add(FuryOfTuxiaFuncPower);
-		
+	  DropAsset EXDrop = new DropAsset();
+    EXDrop.id = "experimental";
+    EXDrop.path_texture = "drops/drop_czarbomba";
+    EXDrop.random_frame = false;
+    EXDrop.default_scale = 0.2f;
+    EXDrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
+    EXDrop.action_landed = new DropsAction(action_EXClick);
+    AssetManager.drops.add(EXDrop);
 
-				DropAsset ClusterNukeFuncDrop = new DropAsset();
-				ClusterNukeFuncDrop.id = "cluster";
-				ClusterNukeFuncDrop.path_texture = "drops/drop_czarbomba";
-				ClusterNukeFuncDrop.random_frame = false;
-				ClusterNukeFuncDrop.default_scale = 0.2f;
-				ClusterNukeFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
-				ClusterNukeFuncDrop.action_landed = new DropsAction(action_ClusterClick);
-				AssetManager.drops.add(ClusterNukeFuncDrop);
+    DropAsset NSADrop = new DropAsset();
+    NSADrop.id = "notsoatomic";
+    NSADrop.path_texture = "drops/drop_czarbomba";
+    NSADrop.random_frame = false;
+    NSADrop.default_scale = 0.2f;
+    NSADrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
+    NSADrop.action_landed = new DropsAction(action_NSAClick);
+    AssetManager.drops.add(NSADrop);
+
+    DropAsset ClusterStrikeDrop = new DropAsset();
+    ClusterStrikeDrop.id = "clusterstrike";
+    ClusterStrikeDrop.path_texture = "drops/drop_czarbomba";
+    ClusterStrikeDrop.random_frame = false;
+    ClusterStrikeDrop.default_scale = 0.2f;
+    ClusterStrikeDrop.fallingHeight = (Vector3)new Vector2(60f, 70f);
+    ClusterStrikeDrop.action_landed = new DropsAction(action_ClusterStrikeClick);
+    AssetManager.drops.add(ClusterStrikeDrop);
 	
-				GodPower ClusterNukeFuncPower = new GodPower();
-				ClusterNukeFuncPower.id = "ClusterNukeButtonLOSER";
-				ClusterNukeFuncPower.name = "ClusterNukeButtonLOSER";
-				ClusterNukeFuncPower.holdAction = true;
-				ClusterNukeFuncPower.fallingChance = 0.01f;
-				ClusterNukeFuncPower.showToolSizes = true;
-				ClusterNukeFuncPower.unselectWhenWindow = false;
-				ClusterNukeFuncPower.ignore_cursor_icon = true;
-				ClusterNukeFuncPower.dropID = "cluster";
-				ClusterNukeFuncPower.click_power_action = new PowerAction(Stuff_Drop);
-				ClusterNukeFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-				AssetManager.powers.add(ClusterNukeFuncPower);		
+    AtomicGrenadeDrop = new DropAsset();
+    AtomicGrenadeDrop.id = "atomicgrenade";
+    AtomicGrenadeDrop.path_texture = "drops/drop_czarbomba";
+    AtomicGrenadeDrop.random_frame = false;
+    AtomicGrenadeDrop.default_scale = 0.2f;
+    AtomicGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    AtomicGrenadeDrop.action_landed = new DropsAction(action_AtomicGClick);
+    AssetManager.drops.add(AtomicGrenadeDrop);
+	
+    AtomicGrenadePower = new GodPower();
+    AtomicGrenadePower.id = "AtomicGrenadebuttonLOSER";
+    AtomicGrenadePower.name = "AtomicGrenadebuttonLOSER";
+    AtomicGrenadePower.holdAction = true;
+    AtomicGrenadePower.fallingChance = 0.01f;
+    AtomicGrenadePower.showToolSizes = true;
+    AtomicGrenadePower.unselectWhenWindow = false;
+    AtomicGrenadePower.ignore_cursor_icon = true;
+    AtomicGrenadePower.dropID = "atomicgrenade";
+    AtomicGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
+    AtomicGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(AtomicGrenadePower);
+
+    DropAsset FuryOfTuxiaFuncDrop = new DropAsset();
+    FuryOfTuxiaFuncDrop.id = "fury";
+    FuryOfTuxiaFuncDrop.path_texture = "drops/drop_czarbomba";
+    FuryOfTuxiaFuncDrop.random_frame = false;
+    FuryOfTuxiaFuncDrop.default_scale = 0.2f;
+    FuryOfTuxiaFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    FuryOfTuxiaFuncDrop.action_landed = new DropsAction(action_FuryClick);
+    AssetManager.drops.add(FuryOfTuxiaFuncDrop);
+	
+    GodPower FuryOfTuxiaFuncPower = new GodPower();
+    FuryOfTuxiaFuncPower.id = "FuryOfTuxiaButtonLOSER";
+    FuryOfTuxiaFuncPower.name = "FuryOfTuxiaButtonLOSER";
+    FuryOfTuxiaFuncPower.holdAction = true;
+    FuryOfTuxiaFuncPower.fallingChance = 0.01f;
+    FuryOfTuxiaFuncPower.showToolSizes = true;
+    FuryOfTuxiaFuncPower.unselectWhenWindow = false;
+    FuryOfTuxiaFuncPower.ignore_cursor_icon = true;
+    FuryOfTuxiaFuncPower.dropID = "fury";
+    FuryOfTuxiaFuncPower.click_power_action = new PowerAction(Stuff_Drop);
+    FuryOfTuxiaFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(FuryOfTuxiaFuncPower);
+   
+
+    DropAsset ClusterNukeFuncDrop = new DropAsset();
+    ClusterNukeFuncDrop.id = "cluster";
+    ClusterNukeFuncDrop.path_texture = "drops/drop_czarbomba";
+    ClusterNukeFuncDrop.random_frame = false;
+    ClusterNukeFuncDrop.default_scale = 0.2f;
+    ClusterNukeFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    ClusterNukeFuncDrop.action_landed = new DropsAction(action_ClusterClick);
+    AssetManager.drops.add(ClusterNukeFuncDrop);
+   
+    GodPower ClusterNukeFuncPower = new GodPower();
+    ClusterNukeFuncPower.id = "ClusterNukeButtonLOSER";
+    ClusterNukeFuncPower.name = "ClusterNukeButtonLOSER";
+    ClusterNukeFuncPower.holdAction = true;
+    ClusterNukeFuncPower.fallingChance = 0.01f;
+    ClusterNukeFuncPower.showToolSizes = true;
+    ClusterNukeFuncPower.unselectWhenWindow = false;
+    ClusterNukeFuncPower.ignore_cursor_icon = true;
+    ClusterNukeFuncPower.dropID = "cluster";
+    ClusterNukeFuncPower.click_power_action = new PowerAction(Stuff_Drop);
+    ClusterNukeFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(ClusterNukeFuncPower);		
 				
     DropAsset DeathDrop = new DropAsset();
     DeathDrop.id = "deaths";
@@ -407,19 +434,6 @@ class Buttonz {
     MiniPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(MiniPower);
 
-    GodPower ProtonPower = new GodPower();
-    ProtonPower.id = "Protonbutton";
-    ProtonPower.name = "Protonbutton";
-    ProtonPower.fallingChance = 0.01f;
-    ProtonPower.holdAction = true;
-    ProtonPower.showToolSizes = true;
-    ProtonPower.unselectWhenWindow = false;
-    ProtonPower.ignore_cursor_icon = true;
-    ProtonPower.dropID = "protons";
-    ProtonPower.click_power_action = new PowerAction(Stuff_Drop);
-    ProtonPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
-    AssetManager.powers.add(ProtonPower);
-
     GodPower JupiterPower = new GodPower();
     JupiterPower.id = "Jupiterbutton";
     JupiterPower.name = "Jupiterbutton";
@@ -472,6 +486,58 @@ class Buttonz {
     ZeusRagePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(ZeusRagePower);
 
+    GodPower EXPower = new GodPower();
+    EXPower.id = "EXbuttonLOSER";
+    EXPower.name = "EXbuttonLOSER";
+    EXPower.holdAction = true;
+    EXPower.fallingChance = 0.01f;
+    EXPower.showToolSizes = true;
+    EXPower.unselectWhenWindow = false;
+    EXPower.ignore_cursor_icon = true;
+    EXPower.dropID = "experimental";
+    EXPower.click_power_action = new PowerAction(Stuff_Drop);
+    EXPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(EXPower);
+
+    GodPower NSAPower = new GodPower();
+    NSAPower.id = "NSAbuttonLOSER";
+    NSAPower.name = "NSAbuttonLOSER";
+    NSAPower.holdAction = true;
+    NSAPower.fallingChance = 0.01f;
+    NSAPower.showToolSizes = true;
+    NSAPower.unselectWhenWindow = false;
+    NSAPower.ignore_cursor_icon = true;
+    NSAPower.dropID = "notsoatomic";
+    NSAPower.click_power_action = new PowerAction(Stuff_Drop);
+    NSAPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(NSAPower);
+
+    GodPower ClusterStrikePower = new GodPower();
+    ClusterStrikePower.id = "ClusterStrikebuttonLOSER";
+    ClusterStrikePower.name = "ClusterStrikebuttonLOSER";
+    ClusterStrikePower.holdAction = true;
+    ClusterStrikePower.fallingChance = 0.01f;
+    ClusterStrikePower.showToolSizes = true;
+    ClusterStrikePower.unselectWhenWindow = false;
+    ClusterStrikePower.ignore_cursor_icon = true;
+    ClusterStrikePower.dropID = "clusterstrike";
+    ClusterStrikePower.click_power_action = new PowerAction(Stuff_Drop);
+    ClusterStrikePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(ClusterStrikePower);
+
+    GodPower ProtonPower = new GodPower();
+    ProtonPower.id = "ProtonbuttonLOSER";
+    ProtonPower.name = "ProtonbuttonLOSER";
+    ProtonPower.fallingChance = 0.01f;
+    ProtonPower.holdAction = true;
+    ProtonPower.showToolSizes = true;
+    ProtonPower.unselectWhenWindow = false;
+    ProtonPower.ignore_cursor_icon = true;
+    ProtonPower.dropID = "protons";
+    ProtonPower.click_power_action = new PowerAction(Stuff_Drop);
+    ProtonPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(ProtonPower);
+
     GodPower RandomPower = new GodPower();
     RandomPower.id = "Randombutton";
     RandomPower.name = "Randombutton";
@@ -502,13 +568,22 @@ class Buttonz {
 	
 					// LOSER BUTTONS 
 
-					ASS = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          ASS = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 	
-				    ASS2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  ASS2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
-				    ASS3 = PowerButtons.CreateButton("FuryOfTuxiaButtonLOSER", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury Of Tuxia", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  ASS3 = PowerButtons.CreateButton("FuryOfTuxiaButtonLOSER", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury Of Tuxia", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
-				    ASS4 = PowerButtons.CreateButton("ClusterNukeButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  ASS4 = PowerButtons.CreateButton("ClusterNukeButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  
+	  ASS5 = PowerButtons.CreateButton("EXbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+          ASS6 = PowerButtons.CreateButton("NSAbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Not So Atomic Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          
+          ASS7 = PowerButtons.CreateButton("ClusterStrikebuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Cluster Strike", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+          ASS8 = PowerButtons.CreateButton("ProtonbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Proton Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
 					
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
@@ -957,6 +1032,28 @@ class Buttonz {
 			yield return new WaitForSeconds(interval);
 		}
 	}
+	public static void action_ClusterStrikeClick(WorldTile pTile, string pPowerID) {
+		World.world.StartCoroutine(ClusterStrikeCoroutine(pTile));
+	}
+
+	private static IEnumerator ClusterStrikeCoroutine(WorldTile pTile) {
+		float duration = 5f; 
+		float interval = 0.2f; 
+		float elapsed = 0f; 
+
+		while (elapsed < duration) {
+			elapsed += interval;
+
+			WorldTile randomTile = GetRandomTileWithinRadius(pTile, 35);
+			if (randomTile != null) {
+				EffectsLibrary.spawnAtTileRandomScale("fx_lightning_medium", randomTile, 0.4f, 0.6f);
+				MapAction.damageWorld(randomTile, 30, TerraformLibrary.czarBomba, null);
+				World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			}
+
+			yield return new WaitForSeconds(interval);
+		}
+	}
 
 	private static WorldTile GetRandomTileWithinRadius(WorldTile centerTile, int radius) {
 		int x = centerTile.x + UnityEngine.Random.Range(-radius, radius + 1);
@@ -981,6 +1078,18 @@ class Buttonz {
 		  public static void action_FuryClick(WorldTile pTile, string pPowerID) {
 			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 160.3f, 280.9f);
 			MapAction.damageWorld(pTile, 7860, TerraformLibrary.czarBomba, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+	public static void action_EXClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_fireball_explosion", pTile, 5.3f, 7.9f);
+			MapAction.damageWorld(pTile, 30, TerraformLibrary.bomb, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+      public static void action_NSAClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_fireball_explosion", pTile, 5.3f, 7.9f);
+			MapAction.damageWorld(pTile, 30, TerraformLibrary.bomb, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
 			// return true;
 		  }
