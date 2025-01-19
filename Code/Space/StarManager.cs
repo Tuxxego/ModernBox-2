@@ -152,32 +152,53 @@ public class StarManager : MonoBehaviour
 		LoadJourneyTracker();
     }
 
-    public void LoadGalaxies()
-    {
-        string[] galaxyFiles = Directory.GetFiles(galaxiesFolder, "*.gal");
+	public void LoadGalaxies()
+	{
+		if (!Directory.Exists(galaxiesFolder))
+		{
+			Directory.CreateDirectory(galaxiesFolder);
+			Debug.Log($"Created galaxies folder at: {galaxiesFolder}");
 
-        foreach (string filePath in galaxyFiles)
-        {
-            try
-            {
-                string json = File.ReadAllText(filePath);
-                GalaxyData galaxy = JsonUtility.FromJson<GalaxyData>(json);
+			string readmePath = Path.Combine(galaxiesFolder, "CustomGalaxiesReadme.txt");
+			string readmeContent = "Join the discord for help and custom galaxy downloads.";
+			File.WriteAllText(readmePath, readmeContent);
+			Debug.Log($"Created readme file at: {readmePath}");
 
-                predefinedGalaxies = AddToArray(predefinedGalaxies, galaxy.name);
+			return;
+		}
+
+		string[] galaxyFiles = Directory.GetFiles(galaxiesFolder, "*.gal");
+
+		if (galaxyFiles.Length == 0)
+		{
+			Debug.Log("No .gal files found. Skipping galaxy loading.");
+			return;
+		}
+
+		foreach (string filePath in galaxyFiles)
+		{
+			try
+			{
+				string json = File.ReadAllText(filePath);
+				GalaxyData galaxy = JsonUtility.FromJson<GalaxyData>(json);
+
+				predefinedGalaxies = AddToArray(predefinedGalaxies, galaxy.name);
 				CustomGalaxyDescriptions[galaxy.name] = galaxy.description;
-                galaxyRequirements[galaxy.name] = galaxy.requirement;
-                galaxyStarCounts[galaxy.name] = galaxy.starCount;
-                galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
-                galaxyStarWeights[galaxy.name] = galaxy.starWeights;
+				galaxyRequirements[galaxy.name] = galaxy.requirement;
+				galaxyStarCounts[galaxy.name] = galaxy.starCount;
+				galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
+				galaxyStarWeights[galaxy.name] = galaxy.starWeights;
 				loadedGalaxyCount++;
-                Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"Error loading galaxy file '{filePath}': {ex.Message}");
-            }
-        }
-    }
+				Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
+			}
+			catch (System.Exception ex)
+			{
+				Debug.LogError($"Error loading galaxy file '{filePath}': {ex.Message}");
+			}
+		}
+	}
+
+
 
     private string[] AddToArray(string[] array, string newItem)
     {
@@ -1561,7 +1582,7 @@ private void BottomBar()
     float centerX = Screen.width / 2f;
     float barY = Screen.height - 60 + 15f; 
 
-    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.1.0.0", fancyTextStyle);
+    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.1.0.1", fancyTextStyle);
     GUI.Label(new Rect(centerX - textWidth / 2, barY + 20f, textWidth, textHeight), "BY TUXXEGO", smallerTextStyle);
 
 }

@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.1.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -18,7 +18,7 @@ namespace M2
     [Serializable]
     public class SavedSettings
     {
-        public string settingVersion = "2.1.0.0";
+        public string settingVersion = "2.1.0.1";
 
         public Dictionary<string, bool> boolOptions = new Dictionary<string, bool>
         {
