@@ -44,7 +44,7 @@ namespace M2
         private void Start()
         {
 			ListObjectsWithDiscordTracker();
-        ModifyDiscordSetting(true);
+			ModifyDiscordSetting(true);
             CleanUpModernBoxData(); 
 
 
@@ -234,7 +234,7 @@ public static void DisableSpace()
     }
 }
 
-public static void GeneratePlanet(string planetName, string planetType, string planetSize)
+public static void GeneratePlanet(string planetName, string planetType, string planetSize, bool hasFauna)
 {
     Debug.Log($"Generating planet: {planetName}");
 
@@ -332,7 +332,7 @@ if (nextPlanetLoadDirectory == null)
             PlanetManager.instance.SetCurrentPlanet(planetName);
 
             DisableSpace();
-			PlanetGenerator.ChoosePlanetBiomes(planetType);
+			PlanetGenerator.ChoosePlanetBiomes(planetType, hasFauna);
     
     string[] sizeParts = planetSize.Split('x');
     if (sizeParts.Length == 2 && int.TryParse(sizeParts[0].Trim(), out int sizeX) && int.TryParse(sizeParts[1].Trim(), out int sizeY))

@@ -11,6 +11,8 @@ using System.Reflection;
 using Newtonsoft.Json;
 using System.Collections;
 using System.IO.Compression;
+using ai;
+using UnityEngine.Tilemaps;
 
 namespace M2
 {
@@ -65,7 +67,7 @@ namespace M2
             }
         }
 
-        public static void ChoosePlanetBiomes(string type)
+        public static void ChoosePlanetBiomes(string type, bool hasFauna)
         {
 
 			Harmony harmony = new Harmony("tuxxego.worldbox.spaceindabox");
@@ -195,7 +197,8 @@ break;
 			break;
     case "corrupted world":
 				Config.current_map_template = "boring_plains";
-
+           // AssetManager.biome_library.addBiomeToPool(Creatures.Glitch);
+			//	Creatures.addGlitchToPool();
             BiomeAsset CorruptedPlanet = new BiomeAsset();
             CorruptedPlanet.id = "biome_CorruptedPlanet";
 			      CorruptedPlanet.tile_low = "corruption_low";
@@ -210,8 +213,82 @@ break;
 		        CorruptedPlanet.addMineral(SB.mineral_stone, 5);
 		        CorruptedPlanet.addMineral(SB.mineral_metals, 3);
             AssetManager.biome_library.add(CorruptedPlanet);
-            AssetManager.biome_library.addBiomeToPool(CorruptedPlanet);
+           // AssetManager.biome_library.addBiomeToPool(CorruptedPlanet);
 
+			BiomeAsset Glitch = new BiomeAsset();
+            Glitch.id = "biome_Glitch";
+			Glitch.tile_low = "Glitch_low";
+			Glitch.tile_high = "Glitch_high";
+			Glitch.force_unit_skin_set = "infernal";
+			Glitch.grow_strength = 20;
+			Glitch.spread_biome = true;
+			Glitch.generator_pool_amount = 80;
+            Glitch.grow_vegetation_auto = true;
+			Glitch.grow_type_selector_minerals = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomMineral);
+			Glitch.grow_type_selector_trees = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomTrees);
+			Glitch.grow_type_selector_plants = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomPlants);
+			if (hasFauna)
+			{			
+			Glitch.addTree("Glitch_tree", 2);
+			Glitch.addPlant("Glitch_plant", 4);
+			Glitch.addTree("Glitch_tree_big", 1);
+            Glitch.addTree("Glitch_candle", 2);
+			Glitch.addPlant("Glitch_tomb", 4);
+            Glitch.addUnit("glitchspectre", 2);
+            Glitch.addUnit("glitchdrake", 1);
+            Glitch.addUnit("glitchtarantula", 2);
+			}
+			Glitch.addMineral(SB.mineral_bones, 20);
+			Glitch.addMineral(SB.mineral_adamantine, 20);
+            AssetManager.biome_library.add(Glitch);
+            AssetManager.biome_library.addBiomeToPool(Glitch);
+
+            TopTileType Glitch_low = AssetManager.topTiles.clone("Glitch_low", ST.infernal_low);
+            Glitch_low.color = Toolbox.makeColor("#898672", -1f);
+            Glitch_low.setBiome("biome_Glitch");
+			Glitch_low.rank_type = TileRank.Low;
+            Glitch_low.setDrawLayer(TileZIndexes.infernal_low, null);
+            Glitch_low.food_resource = SR.evil_beets;
+            Glitch_low.liquid = false;
+            Glitch_low.ground = true;
+			if (hasFauna)
+			{		
+            Glitch_low.unitDeathAction = new WorldAction(spawnGlitchCreature);
+			}
+		    Glitch_low.stepActionChance = 1f;
+            Glitch_low.hold_lava = false;
+            Glitch_low.can_be_frozen = true;
+            Glitch_low.burnable = false;
+            Glitch_low.walkMod = 1f;
+            Glitch_low.layerType = TileLayerType.Ground;
+			Glitch_low.biome_asset = Glitch;
+            AssetManager.topTiles.add(Glitch_low);
+            AssetManager.topTiles.loadSpritesForTile(Glitch_low);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("Glitch_low"));
+            MapBox.instance.tilemap.layers[Glitch_low.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+
+            TopTileType Glitch_high = AssetManager.topTiles.clone("Glitch_high", ST.infernal_high);
+            Glitch_high.color = Toolbox.makeColor("#343434", -1f);
+            Glitch_high.setBiome("biome_Glitch");
+			Glitch_high.rank_type = TileRank.High;
+            Glitch_high.setDrawLayer(TileZIndexes.infernal_high);
+			if (hasFauna)
+			{	
+            Glitch_high.unitDeathAction = new WorldAction(spawnGlitchCreature);
+			}
+            Glitch_high.stepActionChance = 1f;
+            Glitch_high.food_resource = SR.evil_beets;
+            Glitch_high.liquid = false;
+            Glitch_high.hold_lava = false;
+            Glitch_high.can_be_frozen = true;
+            Glitch_high.burnable = false;
+            Glitch_high.layerType = TileLayerType.Ground;
+			Glitch_high.biome_asset = Glitch;
+            AssetManager.topTiles.add(Glitch_high);
+            AssetManager.topTiles.loadSpritesForTile(Glitch_high);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("Glitch_high"));
+            MapBox.instance.tilemap.layers[Glitch_high.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+			
 			break;
     case "lemon world":
 
@@ -489,6 +566,42 @@ break;
             }
         }
 
+        public static bool spawnGlitchCreature(BaseSimObject pTarget, WorldTile pTile = null)
+        {
+            Actor a = pTarget.a;
+            if (!pTarget.isActor())
+            {
+                return false;
+            }
+
+            if (!a.asset.canTurnIntoTumorMonster)
+            {
+                return false;
+            }
+
+            string newUnitID;
+            if (a.asset.has_soul)
+            {
+                newUnitID = "glitchspectre";
+            }
+            else if (a.asset.animal)
+            {
+                newUnitID = "glitchtarantula";
+            }
+            else
+            {
+                newUnitID = "Terlanius"; // TEMPORARY AS A TEST
+            }
+
+            Actor actor = World.world.units.createNewUnit(newUnitID, pTile);
+            actor.removeTrait("blessed");
+            ActorTool.copyUnitToOtherUnit(pTarget.a, actor);
+            EffectsLibrary.spawnAt("evilspawn", actor.currentTile.posV3, 0.1f);
+            ActionLibrary.removeUnit(a);
+
+            return true;
+        }
+		
      public static void SetRandomMapTemplate()
         {
 

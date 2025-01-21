@@ -126,8 +126,21 @@ public class StarManager : MonoBehaviour
 	private Dictionary<string, string> CustomGalaxyDescriptions = new Dictionary<string, string>();
 	private int loadedGalaxyCount = 0; 
 	private bool isCustomGalaxiesMode = false; 
-
-
+	private Dictionary<string, (Color nebulaColor1, Color nebulaColor2)> CustomGalaxyNebulas = new Dictionary<string, (Color, Color)>();
+	private Dictionary<string, (Color nebulaColor1, Color nebulaColor2)> predefinedNebulas = new Dictionary<string, (Color, Color)>
+	{
+		{ "Crabby Way", (new Color(1f, 1f, 1f, 0.4f), new Color(1f, 1f, 1f, 0.2f)) },
+		{ "Tuxxus", (new Color(1f, 0.843f, 0f, 0.5f), new Color(1f, 0.843f, 0f, 0.3f)) },
+		{ "Krummple", (new Color(1f, 0f, 0f, 0.5f), new Color(0f, 1f, 0f, 0.3f)) },
+		{ "BlueNight", (new Color(0f, 0f, 1f, 0.5f), new Color(0f, 0f, 1f, 0.3f)) },
+		{ "Glass", (new Color(0.5f, 0f, 0.5f, 0.5f), new Color(0.7f, 0f, 0.7f, 0.3f)) },
+		{ "Centuga", (new Color(0f, 1f, 1f, 0.5f), new Color(0f, 1f, 1f, 0.3f)) },
+		{ "Dank", (new Color(0.5f, 0f, 0f, 0.5f), new Color(0.5f, 0f, 0f, 0.3f)) }
+	};
+	private Dictionary<string, bool> GlassGalaxies = new Dictionary<string, bool>
+	{
+		{ "Glass", true }
+	};
     private List<string> randomFacts = new List<string>
     {
         "Krummple and Tuxxus will collide in 6 Billion years.",
@@ -188,6 +201,19 @@ public class StarManager : MonoBehaviour
 				galaxyStarCounts[galaxy.name] = galaxy.starCount;
 				galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
 				galaxyStarWeights[galaxy.name] = galaxy.starWeights;
+				
+				if (galaxy.nebulaColor1 != null && galaxy.nebulaColor2 != null)
+				{
+					Color nebula1 = new Color(galaxy.nebulaColor1[0], galaxy.nebulaColor1[1], galaxy.nebulaColor1[2], galaxy.nebulaColor1[3]);
+					Color nebula2 = new Color(galaxy.nebulaColor2[0], galaxy.nebulaColor2[1], galaxy.nebulaColor2[2], galaxy.nebulaColor2[3]);
+					CustomGalaxyNebulas[galaxy.name] = (nebula1, nebula2);
+				}
+				
+				if (galaxy.GlassStructure)
+				{
+					GlassGalaxies[galaxy.name] = true;
+				}
+
 				loadedGalaxyCount++;
 				Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
 			}
@@ -428,14 +454,15 @@ private void GenerateNebulas()
 
         do
         {
-            if (activeGalaxy == "Glass")
-            {
+            bool useSpiralArms = activeGalaxy == "Glass" || 
+                                 (GlassGalaxies.ContainsKey(activeGalaxy) && GlassGalaxies[activeGalaxy]);
 
+            if (useSpiralArms)
+            {
                 nebulaPosition = GeneratePositionInSpiralArms(cameraWidth, cameraHeight);
             }
             else
             {
-
                 float posX = UnityEngine.Random.Range(-cameraWidth / 2, cameraWidth / 2);
                 float posY = UnityEngine.Random.Range(-cameraHeight / 2, cameraHeight / 2);
                 nebulaPosition = new Vector3(posX, posY, -1);
@@ -460,42 +487,18 @@ private Sprite CreateNebulaSprite(string galaxyName)
     Color nebulaColor1;
     Color nebulaColor2;
 
-    switch (galaxyName)
+    if (predefinedNebulas.TryGetValue(galaxyName, out var colors))
     {
-        case "Crabby Way":
-            nebulaColor1 = new Color(1f, 1f, 1f, 0.4f);
-            nebulaColor2 = new Color(1f, 1f, 1f, 0.2f);
-            break;
-        case "Tuxxus":
-            nebulaColor1 = new Color(1f, 0.843f, 0f, 0.5f);
-            nebulaColor2 = new Color(1f, 0.843f, 0f, 0.3f);
-            break;
-        case "Krummple":
-            nebulaColor1 = RandomColor(new Color[] { Color.red, Color.green, Color.blue, Color.magenta });
-            nebulaColor2 = RandomColor(new Color[] { Color.red, Color.green, Color.blue, Color.magenta });
-            nebulaColor1.a = 0.5f;
-            nebulaColor2.a = 0.3f;
-            break;
-        case "BlueNight":
-            nebulaColor1 = new Color(0f, 0f, 1f, 0.5f);
-            nebulaColor2 = new Color(0f, 0f, 1f, 0.3f);
-            break;
-        case "Glass":
-			nebulaColor1 = new Color(0.5f, 0f, 0.5f, 0.5f); 
-			nebulaColor2 = new Color(0.7f, 0f, 0.7f, 0.3f); 
-			break;
-        case "Centuga":
-            nebulaColor1 = new Color(0f, 1f, 1f, 0.5f);
-            nebulaColor2 = new Color(0f, 1f, 1f, 0.3f);
-            break;
-        case "Dank":
-            nebulaColor1 = new Color(0.5f, 0f, 0f, 0.5f);
-            nebulaColor2 = new Color(0.5f, 0f, 0f, 0.3f);
-            break;
-        default:
-            nebulaColor1 = new Color(1f, 1f, 1f, 0.4f);
-            nebulaColor2 = new Color(1f, 1f, 1f, 0.2f);
-            break;
+        (nebulaColor1, nebulaColor2) = colors;
+    }
+    else if (CustomGalaxyNebulas.TryGetValue(galaxyName, out var customColors))
+    {
+        (nebulaColor1, nebulaColor2) = customColors;
+    }
+    else
+    {
+        nebulaColor1 = new Color(1f, 1f, 1f, 0.4f);
+        nebulaColor2 = new Color(1f, 1f, 1f, 0.2f);
     }
 
     float scale = 0.1f;
@@ -583,6 +586,9 @@ private string GetPlanetTypeBasedOnStar(string starType)
         case "White Dwarf":
             return GetRandomPlanetType(new[] { "Desert World", "Icy", "Mechanical World", "Corrupted World" });
 
+        case "Corrupted Star":
+            return GetRandomPlanetType(new[] { "Corrupted World" });
+			
         case "Neutron Star":
             return GetRandomPlanetType(new[] { "Desert World", "Gas Giant", "Jungle World", "Corrupted World" });
 
@@ -654,7 +660,8 @@ private string GetRandomPlanetType(string[] possibleTypes = null)
 
 private Sprite CreateStarSprite(Star star)
 {
-    int textureSize = 64; 
+    bool isCorrupted = star.starType == "Corrupted Star";
+    int textureSize = isCorrupted ? 192 : 64; 
     Texture2D texture = new Texture2D(textureSize, textureSize);
     Color[] pixels = new Color[textureSize * textureSize];
 
@@ -686,8 +693,13 @@ private Sprite CreateStarSprite(Star star)
     texture.SetPixels(pixels);
     texture.Apply();
 
-    return Sprite.Create(texture, new Rect(0, 0, textureSize, textureSize), new Vector2(0.5f, 0.5f));
+    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, textureSize, textureSize), new Vector2(0.5f, 0.5f));
+
+
+    return sprite;
 }
+
+
 
 private Color GetStarColor(string starType)
 {
@@ -759,6 +771,9 @@ private Color GetStarColor(string starType)
         case "Aurora Star":
             return new Color(72f / 255f, 61f / 255f, 139f / 255f); 
 
+        case "Corrupted Star":
+            return new Color(218f / 255f, 112f / 255f, 214f / 255f); 
+			
         default:
             return Color.white;
     }
@@ -1998,7 +2013,7 @@ private void PlanetInfoWindow(int windowID)
             Debug.Log($"Visiting planet: {planetInfo.name}");
             ClearAllActiveSprites();
             SaveVisitedPlanet(planetInfo.name);
-            SpaceManager.GeneratePlanet(planetInfo.name, planetInfo.planetType, planetInfo.size);
+            SpaceManager.GeneratePlanet(planetInfo.name, planetInfo.planetType, planetInfo.size, planetInfo.hasFauna);
         }
     }
 
@@ -2057,6 +2072,7 @@ private void PlanetParametersWindow(int windowID)
     GUILayout.Space(10); 
 
     GUILayout.Label($"Size: {planetInfo.size}", contentStyle);
+    GUILayout.Label($"Has Fauna?: {planetInfo.hasFauna}", contentStyle);
 
     GUILayout.Space(15); 
     if (GUILayout.Button(localizationManager.Localize("close"), buttonStyle))
@@ -2172,13 +2188,13 @@ private static string GenerateStarName()
 
 private Dictionary<string, float[]> galaxyStarWeights = new Dictionary<string, float[]>
 {
-    { "Crabby Way", new float[] { 0.1f, 0.2f, 0.1f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.05f, 0.1f, 0.1f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f } },
-    { "Tuxxus", new float[] { 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f } },
-    { "Krummple", new float[] { 0.1f, 0.2f, 0.1f, 0.1f, 0.05f, 0.05f, 0.1f, 0.05f, 0.05f, 0.1f, 0.1f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f } },
-    { "BlueNight", new float[] { 0.1f, 0.1f, 0.3f, 0.05f, 0.05f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f } },
-    { "Glass", new float[] { 0.1f, 0.1f, 0.3f, 0.05f, 0.05f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f } },
-    { "Centuga", new float[] { 0.05f, 0.05f, 0.15f, 0.05f, 0.1f, 0.1f, 0.15f, 0.05f, 0.05f, 0.1f, 0.05f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f } }, 
-    { "Dank", new float[] { 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.2f, 0.1f, 0.05f, 0.05f, 0.1f, 0.05f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f } },
+    { "Crabby Way", new float[] { 0.1f, 0.2f, 0.1f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.05f, 0.1f, 0.1f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.00f } },
+    { "Tuxxus", new float[] { 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f, 0.00f } },
+    { "Krummple", new float[] { 0.1f, 0.2f, 0.1f, 0.1f, 0.05f, 0.05f, 0.1f, 0.05f, 0.05f, 0.1f, 0.1f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.00f } },
+    { "BlueNight", new float[] { 0.1f, 0.1f, 0.3f, 0.05f, 0.05f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f, 0.00f } },
+    { "Glass", new float[] { 0.1f, 0.1f, 0.3f, 0.05f, 0.05f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f, 0.1f, 0.05f, 0.05f, 0.04f, 0.04f, 0.04f, 0.03f, 0.03f, 0.03f, 0.03f, 0.03f, 0.00f } },
+    { "Centuga", new float[] { 0.05f, 0.05f, 0.15f, 0.05f, 0.1f, 0.1f, 0.15f, 0.05f, 0.05f, 0.1f, 0.05f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.00f } }, 
+    { "Dank", new float[] { 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.2f, 0.1f, 0.05f, 0.05f, 0.1f, 0.05f, 0.05f, 0.05f, 0.03f, 0.03f, 0.03f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 1f } },
 };
 
 private string[] starTypes = { 
@@ -2203,7 +2219,8 @@ private string[] starTypes = {
     "Prism Star",           
     "Nebula Star",          
     "Graviton Star",        
-    "Aurora Star"           
+    "Aurora Star",
+	"Corrupted Star"
 };
 
 private string GenerateStarType()
@@ -2790,6 +2807,9 @@ public class PlanetInfo
         public int starCount;
         public int dangerRating;
         public float[] starWeights;
+		public float[] nebulaColor1;
+		public float[] nebulaColor2;
+		public bool GlassStructure;
     }
 	
 public class Vector3Converter : JsonConverter
