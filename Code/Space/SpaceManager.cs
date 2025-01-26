@@ -18,6 +18,7 @@ namespace M2
         public static SpaceManager instance;
 		public static string otherfilePath;
 		private static MusicBox musicBox;
+		public PlayWavDirectly PlayWavDirectly = new PlayWavDirectly();
 
         private void Awake()
         {
@@ -150,6 +151,16 @@ namespace M2
 
 			musicBox.bus_master.setVolume(0.0f);
 
+                string fileName = "roar.wav";
+
+              //  string filePath = Path.Combine(modFolderPath, fileName);
+				 string filePath = System.IO.Path.Combine(Application.dataPath, "Resources", fileName);
+
+				
+	Debug.Log(filePath);
+	Vector3 posV3 = new Vector3(0, 0, 0); // Example: Sound plays at (0, 1, 0) in world space
+	PlayWavDirectly.Instance.PlaySoundAtPosition(filePath,posV3);
+	
             if (instance == null)
             {
                 Debug.LogError("SpaceManager instance is not initialized.");

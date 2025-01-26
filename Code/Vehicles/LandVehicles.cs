@@ -71,11 +71,12 @@ namespace M2
 			Tank.hideOnMinimap = false;
             Tank.drawBoatMark = true;
 			Tank.can_edit_traits = false;
+             Tank.disablePunchAttackAnimation = true;
 			Tank.canReceiveTraits = false;
 			Tank.flying = false;
 			//Tank.tech = "Tanks";
 			Tank.very_high_flyer = false;
-			Tank.defaultAttack = "RocketLauncher";
+			Tank.defaultAttack = "tankshellattack";
             Tank.isBoat = false;
 			Tank.dieOnBlocks = true;
 			Tank.ignoreBlocks = false;
@@ -108,7 +109,7 @@ namespace M2
 			//ActorAsset heli = new ActorAsset();
            // MissileSystem.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
 			MissileSystem.race = "human";
-			MissileSystem.kingdom = "ModernKingdom";
+			MissileSystem.kingdom = "MissileLauncherFULLRANGETARGETTING";
             MissileSystem.base_stats[S.health] = 200f;
             MissileSystem.base_stats[S.speed] = 100f;
             MissileSystem.base_stats[S.armor] = 100f;
@@ -125,6 +126,7 @@ namespace M2
 			MissileSystem.hideOnMinimap = false;
             MissileSystem.drawBoatMark = true;
 			MissileSystem.can_edit_traits = false;
+                 MissileSystem.disablePunchAttackAnimation = true;
 			MissileSystem.canReceiveTraits = false;
 			MissileSystem.flying = false;
 			//MissileSystem.tech = "MissileSystems";
@@ -167,13 +169,13 @@ namespace M2
             Railgun.base_stats[S.speed] = 80f;
             Railgun.base_stats[S.armor] = 100f;
             Railgun.base_stats[S.damage] = 60f;
-            Railgun.base_stats[S.scale] = 0.25f;
             Railgun.base_stats[S.attack_speed] = 0;
             Railgun.base_stats[S.range] = 150f;
             Railgun.base_stats[S.knockback_reduction] = 320f;
             Railgun.drawBoatMark_big = true;
             Railgun.skipFightLogic = false;
             Railgun.inspect_stats = true;
+              Railgun.disablePunchAttackAnimation = true;
             Railgun.landCreature = true;
             Railgun.inspect_home = true;
             Railgun.hideOnMinimap = false;
@@ -183,7 +185,7 @@ namespace M2
             Railgun.flying = false;
             //Tank.tech = "Tanks";
             Railgun.very_high_flyer = false;
-            Railgun.defaultAttack = "RocketLauncher";
+            Railgun.defaultAttack = "tankshellattack";
             Railgun.isBoat = false;
             Railgun.dieOnBlocks = true;
             Railgun.ignoreBlocks = false;
@@ -204,9 +206,9 @@ namespace M2
             AssetManager.actor_library.CallMethod("addTrait", "Railgun");
             AssetManager.actor_library.CallMethod("loadShadow", Railgun);
             AssetManager.actor_library.CallMethod("addTrait", "immortal");
-            Railgun.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+            Railgun.animation_walk = "walk_0,walk_1,walk_2";
             Railgun.animation_idle = "walk_0";
-            Railgun.animation_swim = "walk_0,walk_1,walk_2,walk_3";
+            Railgun.animation_swim = "swim_0,swim_1,swim_2";
             Railgun.texture_path = "Railgun";
             AssetManager.actor_library.addColorSet("heliColor");
             Railgun.color = Toolbox.makeColor("#33724D");
@@ -245,6 +247,7 @@ namespace M2
 			Humvee.procreate = false;
 		    Humvee.inspect_children = false;
             Humvee.inspect_experience = true;
+              Humvee.disablePunchAttackAnimation = true;
 			Humvee.defaultAttack = "Minigun";
 			Humvee.canBeCitizen = true;
             Humvee.inspect_kills = true;

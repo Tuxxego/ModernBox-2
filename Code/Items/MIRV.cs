@@ -23,6 +23,14 @@ namespace M2
 
             //makecraftable();
             
+   TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
+          nonannoyingbomb.id = "nonannoyingbomb";
+		nonannoyingbomb.shake = false;
+		nonannoyingbomb.explode_tile = true;
+		nonannoyingbomb.damageBuildings = true;
+		nonannoyingbomb.damage = 0;
+		nonannoyingbomb.setFire = true;
+          AssetManager.terraform.add(nonannoyingbomb);
 
 			
 			            
@@ -74,6 +82,25 @@ namespace M2
             Localization.addLocalization("item_DecentMIRV", "Decent Range MIRV");
             addMIRVSprite(DecentMIRV.id, DecentMIRV.materials[0]);
 			
+          ProjectileAsset MIRVartillery = new ProjectileAsset();
+          MIRVartillery.id = "MIRVartillery";
+          MIRVartillery.texture = "MIRVartillery";
+          MIRVartillery.trailEffect_enabled = false;
+	      MIRVartillery.look_at_target = true;
+          MIRVartillery.draw_light_area = true;
+	      MIRVartillery.draw_light_size = 1f;
+          MIRVartillery.terraformOption = "nonannoyingbomb";
+          MIRVartillery.terraformRange = 3;
+	      MIRVartillery.sound_launch = "event:/SFX/POWERS/NapalmBomb";
+          MIRVartillery.sound_impact = "event:/SFX/POWERS/Bomb";
+          MIRVartillery.startScale = 0.2f;
+          MIRVartillery.targetScale = 0.2f;
+          MIRVartillery.parabolic = true;
+          MIRVartillery.speed = 3f;
+          ProjectileAsset shellboomboomeffect = MIRVartillery;
+          shellboomboomeffect.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
+          AssetManager.projectiles.add(MIRVartillery);
+
 			ItemAsset MIRV = AssetManager.items.clone("MIRV", "bow");
             MIRV.id = "MIRV";
             MIRV.name_templates = Toolbox.splitStringIntoList(new string[]
@@ -81,7 +108,7 @@ namespace M2
                         "MIRV_Names",
             });
             MIRV.materials = List.Of<string>(new string[] { "iron" });
-            MIRV.projectile = "fireball";
+            MIRV.projectile = "MIRVartillery";
             MIRV.setCost(1, "Xenium", 50);
             MIRV.base_stats[S.range] = 50000f;
             MIRV.base_stats[S.accuracy] = 0;
@@ -104,7 +131,7 @@ namespace M2
                         "MIRVBomb_Names",
             });
             MIRVBomb.materials = List.Of<string>(new string[] { "iron" });
-            MIRVBomb.projectile = "fireball";
+            MIRVBomb.projectile = "bigbomb";
             MIRVBomb.setCost(1, "Xenium", 50);
             MIRVBomb.base_stats[S.range] = 0f;
             MIRVBomb.base_stats[S.accuracy] = 0f;
@@ -119,6 +146,8 @@ namespace M2
             AssetManager.items.list.AddItem(MIRVBomb);
             Localization.addLocalization("item_MIRVBomb", "MIRV Bomber Dropper");
             addMIRVSprite(MIRVBomb.id, MIRVBomb.materials[0]);
+
+
 			
 			ItemAsset STRONGMIRV = AssetManager.items.clone("STRONGMIRV", "bow");
             STRONGMIRV.id = "STRONGMIRV";

@@ -44,6 +44,18 @@ namespace M2
             ModernKingdom.addEnemyTag("dwarf");
             newHiddenKingdom(ModernKingdom);
 
+               KingdomAsset MissileLauncherFULLRANGETARGETTING = AssetManager.kingdoms.clone("MissileLauncherFULLRANGETARGETTING", "empty");
+            MissileLauncherFULLRANGETARGETTING.enemies_check_full = true;
+            MissileLauncherFULLRANGETARGETTING.addTag("civ");
+            MissileLauncherFULLRANGETARGETTING.addTag("MissileLauncherFULLRANGETARGETTING");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("MissileLauncherFULLRANGETARGETTING");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("nomads_MissileLauncherFULLRANGETARGETTING");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("human");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("orc");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("elf");
+            MissileLauncherFULLRANGETARGETTING.addEnemyTag("dwarf");
+            newHiddenKingdom(MissileLauncherFULLRANGETARGETTING);
+
             KingdomAsset ModernKingdom1 = AssetManager.kingdoms.clone("nomads_ModernKingdom", "nomads_empty");
             ModernKingdom1.addTag("civ");
             ModernKingdom1.addTag("ModernKingdom");

@@ -45,6 +45,7 @@ namespace M2
             P9000.base_stats[S.damage] = 100f;
             P9000.base_stats[S.scale] = 0.1f;
             P9000.base_stats[S.attack_speed] = 0;
+			       P9000.disablePunchAttackAnimation = true;
 			P9000.base_stats[S.range] = 150f;
 			P9000.base_stats[S.knockback_reduction] = 300f;
             P9000.drawBoatMark_big = true;
@@ -109,6 +110,7 @@ namespace M2
 			Terran.inspect_home = true;
 			Terran.hideOnMinimap = false;
             Terran.drawBoatMark = true;
+			 Terran.disablePunchAttackAnimation = true;
 			Terran.can_edit_traits = false;
 			Terran.canReceiveTraits = false;
 			Terran.flying = false;
@@ -136,8 +138,8 @@ namespace M2
 			AssetManager.actor_library.CallMethod("loadShadow", Terran);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             Terran.animation_walk = "walk_0,walk_1,walk_2,walk_3,walk_4,walk_5";
-			Terran.animation_idle = "walk_1";
-            Terran.animation_swim = "walk_0,walk_1,walk_2,walk_3";
+			Terran.animation_idle = "walk_0";
+            Terran.animation_swim = "swim_0,swim_1,swim_2";
             Terran.texture_path = "Terran";
 			AssetManager.actor_library.addColorSet("heliColor");
 			Terran.color = Toolbox.makeColor("#33724D");

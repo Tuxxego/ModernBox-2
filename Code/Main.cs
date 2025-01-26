@@ -42,6 +42,8 @@ namespace M2
  private AudioSource audioSource;
  public DeveloperMode DeveloperMode = new DeveloperMode();
  public static bool isNewVersion;
+ public PlayWavDirectly PlayWavDirectly = new PlayWavDirectly();
+
  void PlayMP3(string fileName)
  {
  AudioClip clip = Resources.Load<AudioClip>(fileName);
@@ -180,7 +182,7 @@ public void Awake()
          Debug.Log("SpaceBoxModernBox: Pls no lag!");
          //PatchStuff();
 
-	
+
 
 
 			MapGenTemplate ballsTemplate = new MapGenTemplate();
@@ -202,7 +204,7 @@ public void Awake()
 	AssetManager.map_gen_templates.add(ballsTemplate);
 
  audioSource = GetComponent<AudioSource>();
- PlayMP3("file");
+// PlayMP3("file");
  Debug.Log("ModernBox 2.1.0.1: Loaded.");
  if (isNewVersion)
  {

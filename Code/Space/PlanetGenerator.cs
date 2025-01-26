@@ -70,6 +70,33 @@ namespace M2
         public static void ChoosePlanetBiomes(string type, bool hasFauna)
         {
 
+
+         EffectAsset evilspawn = new EffectAsset
+            {
+                id = "evilspawn",
+                use_basic_prefab = true,
+                sprite_path = "effects/fx_teleport_red_t",
+                draw_light_area = true,
+                show_on_mini_map = false,
+                limit = 80,
+                sorting_layer_id = "EffectsTop"
+            };
+            evilspawn.spawn_action = (effect, tile, param1, param2, floatParam) =>
+            {
+                if (effect != null)
+                {
+                    SpriteRenderer renderer = effect.GetComponent<SpriteRenderer>();
+                    if (renderer != null)
+                    {
+                        renderer.sortingLayerName = evilspawn.sorting_layer_id;
+                    }
+                }
+                return effect;
+            };
+            AssetManager.effects_library.add(evilspawn);
+
+
+
 			Harmony harmony = new Harmony("tuxxego.worldbox.spaceindabox");
 
 			MethodInfo original = AccessTools.Method(typeof(MapBox), "setMapSize");
@@ -227,8 +254,6 @@ break;
 			Glitch.grow_type_selector_minerals = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomMineral);
 			Glitch.grow_type_selector_trees = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomTrees);
 			Glitch.grow_type_selector_plants = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomPlants);
-			if (hasFauna)
-			{			
 			Glitch.addTree("Glitch_tree", 2);
 			Glitch.addPlant("Glitch_plant", 4);
 			Glitch.addTree("Glitch_tree_big", 1);
@@ -237,7 +262,6 @@ break;
             Glitch.addUnit("glitchspectre", 2);
             Glitch.addUnit("glitchdrake", 1);
             Glitch.addUnit("glitchtarantula", 2);
-			}
 			Glitch.addMineral(SB.mineral_bones, 20);
 			Glitch.addMineral(SB.mineral_adamantine, 20);
             AssetManager.biome_library.add(Glitch);
@@ -251,10 +275,7 @@ break;
             Glitch_low.food_resource = SR.evil_beets;
             Glitch_low.liquid = false;
             Glitch_low.ground = true;
-			if (hasFauna)
-			{		
             Glitch_low.unitDeathAction = new WorldAction(spawnGlitchCreature);
-			}
 		    Glitch_low.stepActionChance = 1f;
             Glitch_low.hold_lava = false;
             Glitch_low.can_be_frozen = true;
@@ -272,10 +293,7 @@ break;
             Glitch_high.setBiome("biome_Glitch");
 			Glitch_high.rank_type = TileRank.High;
             Glitch_high.setDrawLayer(TileZIndexes.infernal_high);
-			if (hasFauna)
-			{	
             Glitch_high.unitDeathAction = new WorldAction(spawnGlitchCreature);
-			}
             Glitch_high.stepActionChance = 1f;
             Glitch_high.food_resource = SR.evil_beets;
             Glitch_high.liquid = false;
@@ -601,7 +619,7 @@ break;
 
             return true;
         }
-		
+
      public static void SetRandomMapTemplate()
         {
 

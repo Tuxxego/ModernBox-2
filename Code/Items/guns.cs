@@ -24,6 +24,18 @@ namespace M2
             makecraftable();
             
 
+             TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
+          nonannoyingbomb.id = "nonannoyingbomb";
+		nonannoyingbomb.shake = false;
+		nonannoyingbomb.explode_tile = true;
+		nonannoyingbomb.damageBuildings = true;
+		nonannoyingbomb.damage = 0;
+		nonannoyingbomb.setFire = true;
+          AssetManager.terraform.add(nonannoyingbomb);
+
+
+
+
 			
 			//if(Main.settings.Mp5){			            
 			ItemAsset Mp5 = AssetManager.items.clone("Mp5", "_range");
@@ -43,8 +55,8 @@ namespace M2
 			Mp5.tech_needed = "Firearms";			
             Mp5.base_stats[S.range] = 14f;
             Mp5.base_stats[S.accuracy] = 5;
-            Mp5.base_stats[S.attack_speed] = 12f;
-            Mp5.base_stats[S.damage] = 60;
+            Mp5.base_stats[S.attack_speed] = 9000f;
+            Mp5.base_stats[S.damage] = 3;
             Mp5.base_stats[S.health] = 10;
             Mp5.equipment_value = 500;
             Mp5.path_slash_animation = "effects/slashes/slash_punch";
@@ -136,7 +148,7 @@ namespace M2
 			RocketLauncher.tech_needed = "Firearms";
             RocketLauncher.base_stats[S.accuracy] = 400;
             RocketLauncher.base_stats[S.attack_speed] = -101f;
-            RocketLauncher.base_stats[S.damage] = 993;
+            RocketLauncher.base_stats[S.damage] = 100;
             RocketLauncher.base_stats[S.health] = 10;
             RocketLauncher.equipment_value = 1000;
             RocketLauncher.path_slash_animation = "effects/slashes/slash_punch";
@@ -145,6 +157,68 @@ namespace M2
             AssetManager.items.list.AddItem(RocketLauncher);
             Localization.addLocalization("item_RocketLauncher", "Rocket Propelled Grenade (RPG)");
             addgunSprite(RocketLauncher.id, RocketLauncher.materials[0]);
+
+          ProjectileAsset jetrocketprojectile = new ProjectileAsset();
+          jetrocketprojectile.id = "jetrocketprojectile";
+          jetrocketprojectile.texture = "jetrocketprojectile";
+          jetrocketprojectile.trailEffect_enabled = false;
+	      jetrocketprojectile.look_at_target = true;
+          jetrocketprojectile.draw_light_area = true;
+	      jetrocketprojectile.draw_light_size = 1f;
+          jetrocketprojectile.terraformOption = "nonannoyingbomb";
+          jetrocketprojectile.terraformRange = 3;
+	      jetrocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
+          jetrocketprojectile.sound_impact = "event:/SFX/NATURE/EarthQuake";
+          jetrocketprojectile.startScale = 0.3f;
+          jetrocketprojectile.targetScale = 0.3f;
+          jetrocketprojectile.parabolic = false;
+          jetrocketprojectile.speed = 40f;
+          AssetManager.projectiles.add(jetrocketprojectile);
+
+            ItemAsset JetRocket = AssetManager.items.clone("JetRocket", "_range");
+            JetRocket.id = "JetRocket";
+            JetRocket.projectile = "jetrocketprojectile";
+            JetRocket.materials = List.Of<string>(new string[] { "base" });
+        JetRocket.base_stats[S.projectiles] = 2f;
+        JetRocket.base_stats[S.attack_speed] = -101f;
+		JetRocket.base_stats[S.range] = 14f;
+		JetRocket.base_stats[S.targets] = 2f;
+		JetRocket.base_stats[S.damage] = 60f;
+		JetRocket.base_stats[S.damage_range] = 0.5f;
+            JetRocket.base_stats[S.accuracy] = 400;
+            JetRocket.base_stats[S.health] = 10;
+            JetRocket.path_slash_animation = "effects/slashes/slash_punch";
+
+ ProjectileAsset helirocketprojectile = new ProjectileAsset();
+          helirocketprojectile.id = "helirocketprojectile";
+          helirocketprojectile.texture = "jetrocketprojectile";
+          helirocketprojectile.trailEffect_enabled = false;
+	      helirocketprojectile.look_at_target = true;
+          helirocketprojectile.draw_light_area = true;
+	      helirocketprojectile.draw_light_size = 1f;
+          helirocketprojectile.terraformOption = "nonannoyingbomb";
+          helirocketprojectile.terraformRange = 3;
+	      helirocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
+          helirocketprojectile.sound_impact = "event:/SFX/NATURE/EarthQuake";
+          helirocketprojectile.startScale = 0.1f;
+          helirocketprojectile.targetScale = 0.1f;
+          helirocketprojectile.parabolic = false;
+          helirocketprojectile.speed = 30f;
+          AssetManager.projectiles.add(helirocketprojectile);
+
+            ItemAsset heliRocket = AssetManager.items.clone("heliRocket", "_range");
+            heliRocket.id = "heliRocket";
+            heliRocket.projectile = "helirocketprojectile";
+            heliRocket.materials = List.Of<string>(new string[] { "base" });
+        heliRocket.base_stats[S.projectiles] = 10f;
+        heliRocket.base_stats[S.attack_speed] = -101f;
+		heliRocket.base_stats[S.range] = 14f;
+		heliRocket.base_stats[S.targets] = 1f;
+		heliRocket.base_stats[S.damage] = 8f;
+		heliRocket.base_stats[S.damage_range] = 0.5f;
+            heliRocket.base_stats[S.accuracy] = 400;
+            heliRocket.base_stats[S.health] = 10;
+            heliRocket.path_slash_animation = "effects/slashes/slash_punch";
 			
 			//}
 	
@@ -313,7 +387,7 @@ namespace M2
           XM8.base_stats[S.fertility] = 0.0f;
           XM8.base_stats[S.max_children] = 0f;
           XM8.base_stats[S.max_age] = 0f;
-          XM8.base_stats[S.attack_speed] = 180;
+          XM8.base_stats[S.attack_speed] = 1800;
           XM8.base_stats[S.damage] = 13;
           XM8.base_stats[S.speed] = 0f;
           XM8.base_stats[S.health] = 0;

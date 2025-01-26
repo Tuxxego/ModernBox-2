@@ -47,7 +47,7 @@ namespace M2
             Soldier.base_stats[S.health] = 100f;
             Soldier.base_stats[S.speed] = 40f;
             Soldier.base_stats[S.armor] = 100f;
-            Soldier.base_stats[S.damage] = 40f;
+            Soldier.base_stats[S.damage] = 0f;
             Soldier.base_stats[S.scale] = 0.1f;
             Soldier.base_stats[S.attack_speed] = 80;
 			Soldier.base_stats[S.range] = 25f;

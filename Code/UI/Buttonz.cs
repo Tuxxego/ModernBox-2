@@ -373,6 +373,55 @@ class Buttonz {
       MIRV.toggleMIRVS();
     }
 
+
+        var Cyberkaboom = new GodPower();
+            Cyberkaboom.id = "spawnCyberkaboom";
+            Cyberkaboom.showSpawnEffect = true;
+            Cyberkaboom.multiple_spawn_tip = true;
+            Cyberkaboom.actorSpawnHeight = 10f;
+            Cyberkaboom.name = "spawnCyberkaboom";
+            Cyberkaboom.spawnSound = "spawnelf";
+            Cyberkaboom.actor_asset_id = "Assimilatus";
+            Cyberkaboom.click_action = new PowerActionWithID(callSpawnUnit);
+            AssetManager.powers.add(Cyberkaboom);
+
+            var buttonCyberkaboom = NCMS.Utils.PowerButtons.CreateButton(
+            "spawnCyberkaboom",
+            Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.AssimilatusIcon.png"),
+            "Cyber Boss",
+            "Do not spawn in a 69km radius from the closest city, DO NOT, THIS IS NOT REVERSE PSYCHOLOGY, I SWEAR, DO NOT :3",
+            new Vector2(370, 18),
+            ButtonType.GodPower,
+            tab.transform,
+            null
+            );
+
+               var IceTitan = new GodPower();
+            IceTitan.id = "spawnCocytuswalker";
+            IceTitan.showSpawnEffect = true;
+            IceTitan.multiple_spawn_tip = true;
+            IceTitan.actorSpawnHeight = 10f;
+            IceTitan.name = "spawnCocytuswalker";
+            IceTitan.spawnSound = "spawnelf";
+            IceTitan.actor_asset_id = "Cocytuswalker";
+            IceTitan.click_action = new PowerActionWithID(callSpawnUnit);
+            AssetManager.powers.add(IceTitan);
+
+            var buttonIceTitan = NCMS.Utils.PowerButtons.CreateButton(
+            "spawnCocytuswalker",
+            Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.Walker_TitanIcon.png"),
+            "Ice Walker Boss",
+            "He came to worldbox to get away from Shinji, he do not trust what Shinji would do to him if he falls into a coma",
+            new Vector2(370, -18),
+            ButtonType.GodPower,
+            tab.transform,
+            null
+            );
+
+
+
+
+
     GodPower MOABPower = new GodPower();
     MOABPower.id = "MOABbutton";
     MOABPower.name = "MOABbutton";
@@ -827,6 +876,12 @@ class Buttonz {
 	);		
     // index++;
   }
+        public static bool callSpawnUnit(WorldTile pTile, string pPowerID)
+        {
+            AssetManager.powers.CallMethod("spawnUnit", pTile, pPowerID);
+            return true;
+        }
+
 
   public static bool Stuff_Drop(WorldTile pTile, GodPower pPower) {
     AssetManager.powers.CallMethod("spawnDrops", pTile, pPower);
