@@ -569,6 +569,39 @@ private void GeneratePlanetsForStar(Star star)
     }
 }
 
+/*
+private void GenerateMoonsForStar(PlanetInfo planet)
+{
+    planet.moonInfo = new MoonInfo[planet.moonCount];
+    string planetName = planet.name;
+    string starType = star.starType; 
+
+    for (int i = 0; i < star.planetCount; i++)
+    {
+        string planetType = GetPlanetTypeBasedOnStar(moonType); 
+
+        
+        int sizeX = UnityEngine.Random.Range(1, 25);
+        int sizeY = UnityEngine.Random.Range(1, 25);
+        string size = $"{sizeX} x {sizeY}";
+
+        
+        bool hasFauna = UnityEngine.Random.value > 0.5f; 
+
+        star.planetInfo[i] = new PlanetInfo
+        {
+            name = $"{starSystemName} {ToRomanNumeral(i + 1)}",
+            description = GenerateNormalDescription(starType, planetType),
+            resources = GenerateResources(),
+            dangerRating = UnityEngine.Random.Range(1, 10),
+            dangerDescription = GenerateDangerDescription(starType, planetType),
+            planetType = planetType,
+            size = size, 
+            hasFauna = hasFauna 
+        };
+    }
+}
+*/
 
 private string GetPlanetTypeBasedOnStar(string starType)
 {
@@ -2795,6 +2828,7 @@ public class MoonInfo
     public string size; 
     public bool hasFauna; 
 }
+
     public class CompendiumEntry
     {
         public string Title { get; }
