@@ -1436,7 +1436,7 @@ private void StarLoadingWindow(int windowID)
 private List<Star> GetAllStarGameObjects()
 {
     List<Star> stars = GameObject.FindObjectsOfType<Star>().ToList();
-    Debug.Log($"Found {stars.Count} stars in the scene.");
+  //  Debug.Log($"Found {stars.Count} stars in the scene.");
     return stars;
 }
 
@@ -1529,9 +1529,9 @@ private void BottomBar()
     }
 
 
-    GUIStyle barStyle = new GUIStyle();
-    barStyle.normal.background = MakeGradientTexture(Screen.width, 50, new Color(0.15f, 0.15f, 0.2f, 0.8f), new Color(0f, 0f, 0.2f, 0.9f));
-    GUI.Box(new Rect(0, Screen.height - 60, Screen.width, 60), GUIContent.none, barStyle);
+ //   GUIStyle barStyle = new GUIStyle();
+ //   barStyle.normal.background = MakeGradientTexture(Screen.width, 50, new Color(0.15f, 0.15f, 0.2f, 0.8f), new Color(0f, 0f, 0.2f, 0.9f));
+ //   GUI.Box(new Rect(0, Screen.height - 60, Screen.width, 60), GUIContent.none, barStyle);
 
 
     GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
