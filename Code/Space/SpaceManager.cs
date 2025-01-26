@@ -210,10 +210,7 @@ namespace M2
 
 			musicBox.bus_master.setVolume(0.0f);
 
-                string fileName = "roar.wav";
-
-              //  string filePath = Path.Combine(modFolderPath, fileName);
-				 string filePath = System.IO.Path.Combine(Application.dataPath, "Resources", fileName);
+				 string filePath = System.IO.Path.Combine($"{Mod.Info.Path}/EmbededResources/Sounds/roar.wav");
 
 				
 	Debug.Log(filePath);
@@ -284,7 +281,7 @@ public static void DisableSpace()
                     obj.SetActive(true);
             }
 		}
-
+		PlayWavDirectly.Instance.StopAllSounds();
         musicBox.bus_master.setVolume(1.0f);
 
 		GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();

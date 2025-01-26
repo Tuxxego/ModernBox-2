@@ -236,6 +236,22 @@ namespace M2
             }
 
         }
+		/// <summary>
+        /// Stops all sounds currently playing in the master channel group.
+        /// </summary>
+        public void StopAllSounds()
+        {
+
+            var result = masterChannelGroup.stop();
+            if (result != RESULT.OK)
+            {
+                LogService.LogError($"Failed to stop all sounds. Result: {result}");
+            }
+            else
+            {
+                LogService.LogInfo("All sounds stopped successfully.");
+            }
+        }
 
     }
 
