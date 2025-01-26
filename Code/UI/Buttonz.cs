@@ -35,6 +35,7 @@ class Buttonz {
                 internal static PowerButton ASS6;
    	        internal static PowerButton ASS7;
                 internal static PowerButton ASS8;
+                internal static PowerButton ASS9;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
   public static void init() {
@@ -296,7 +297,20 @@ class Buttonz {
     ClusterNukeFuncPower.click_power_action = new PowerAction(Stuff_Drop);
     ClusterNukeFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(ClusterNukeFuncPower);		
-				
+	
+    GodPower DeleterFuncPower = new GodPower();
+    DeleterFuncPower.id = "DeleterButtonLOSER";
+    DeleterFuncPower.name = "DeleterButtonLOSER";
+    DeleterFuncPower.holdAction = true;
+    DeleterFuncPower.fallingChance = 0.01f;
+    DeleterFuncPower.showToolSizes = true;
+    DeleterFuncPower.unselectWhenWindow = false;
+    DeleterFuncPower.ignore_cursor_icon = true;
+    DeleterFuncPower.dropID = "deleter";
+    DeleterFuncPower.click_power_action = new PowerAction(Stuff_Drop);
+    DeleterFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(DeleterFuncPower);	
+	
     DropAsset DeathDrop = new DropAsset();
     DeathDrop.id = "deaths";
     DeathDrop.path_texture = "drops/drop_czarbomba";
@@ -306,7 +320,15 @@ class Buttonz {
     DeathDrop.action_landed = new DropsAction(action_DeathClick);
     AssetManager.drops.add(DeathDrop);
 
-
+    DropAsset DeleterDrop = new DropAsset();
+    DeleterDrop.id = "deleter";
+    DeleterDrop.path_texture = "drops/drop_czarbomba";
+    DeleterDrop.random_frame = false;
+    DeleterDrop.default_scale = 0.2f;
+    DeleterDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    DeleterDrop.action_landed = new DropsAction(action_DeleterClick);
+    AssetManager.drops.add(DeleterDrop);
+	
     DropAsset RandomDrop = new DropAsset();
     RandomDrop.id = "randomdrop";
     RandomDrop.path_texture = "drops/drop_czarbomba";
@@ -636,7 +658,8 @@ class Buttonz {
           ASS7 = PowerButtons.CreateButton("ClusterStrikebuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Cluster Strike", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 
           ASS8 = PowerButtons.CreateButton("ProtonbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Proton Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
-
+		  
+          ASS9 = PowerButtons.CreateButton("DeleterButtonLOSER", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "TUDDS", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
@@ -1055,6 +1078,19 @@ class Buttonz {
     // return true;
   }
 
+  public static void action_DeleterClick(WorldTile pTile, string pPowerID) {
+	SpaceManager.DeleteBomb();
+	
+        foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
+        {
+            obj.SetActive(false);
+        }
+
+        GameObject endScreenManager = new GameObject("EndScreenManager");
+        endScreenManager.AddComponent<UniverseDestructionManager>();
+		
+  }
+  
   public static void action_ProtonClick(WorldTile pTile, string pPowerID) {
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 16.3f, 28.9f);
     MapAction.damageWorld(pTile, 786, TerraformLibrary.czarBomba, null);
@@ -1346,5 +1382,47 @@ class Buttonz {
             public bool isForResize;
             public Vector2Int oldPos;
         }
+}
+
+public class UniverseDestructionManager : MonoBehaviour
+{
+    private bool showEndScreen = true;
+    private Texture2D blackTexture;
+
+    private void Awake()
+    {
+        blackTexture = new Texture2D(1, 1);
+        blackTexture.SetPixel(0, 0, Color.black);
+        blackTexture.Apply();
+    }
+
+    private void OnGUI()
+    {
+        if (showEndScreen)
+        {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackTexture);
+
+            float windowWidth = 500;
+            float windowHeight = 200;
+            Rect windowRect = new Rect(
+                (Screen.width - windowWidth) / 2,
+                (Screen.height - windowHeight) / 2,
+                windowWidth,
+                windowHeight
+            );
+
+            GUILayout.BeginArea(windowRect, GUI.skin.box);
+
+            GUILayout.Label("Suddenly, in the blink of an eye, everything was destroyed in every way it is possible to be destroyed, thousands of galaxies vanished in an instant. The timeline has been destroyed.");
+            GUILayout.Space(20);
+
+            if (GUILayout.Button("Quit Game", GUILayout.Height(40)))
+            {
+                Application.Quit();
+            }
+
+            GUILayout.EndArea();
+        }
+    }
 }
 }

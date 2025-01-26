@@ -22,6 +22,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Net.Http;
 using System.Threading.Tasks;
+using WorldBoxConsole;
+
 namespace M2
 {
  [ModEntry]
@@ -37,6 +39,7 @@ namespace M2
  public const string settingsKey = "MBoxSettings"; 
  public SpaceManager SpaceManager = new SpaceManager();
  public PlanetGenerator PlanetGenerator = new PlanetGenerator();
+ // public DeveloperConsole DeveloperConsole = new DeveloperConsole();
  public PlanetManager PlanetManager = new PlanetManager();
  public LocalizationManager LocalizationManager = new LocalizationManager ();
  private AudioSource audioSource;
@@ -76,6 +79,21 @@ public void Awake()
 
  Debug.Log("[M2] Mod Core has been called, booting mod core.");
      tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
+	 
+	         // Find the first instance of the WorldBoxConsole script in the scene
+        var worldBoxConsole = FindObjectOfType<WorldBoxConsole.Console>();
+        if (worldBoxConsole != null)
+        {
+            // Disable the script
+            worldBoxConsole.gameObject.SetActive(false);
+            Debug.Log("WorldBoxConsole script has been disabled.");
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject with WorldBoxConsole script found in the scene.");
+        }
+		
+LoadReplacement();
 
  Debug.Log("[M2] Loading SaveSystemWindow...");
  SaveSystemWindow.init();
@@ -182,6 +200,7 @@ public void Awake()
          Debug.Log("SpaceBoxModernBox: Pls no lag!");
          //PatchStuff();
 
+ // DeveloperConsole = gameObject.AddComponent<DeveloperConsole>();
 
 
 
@@ -203,6 +222,9 @@ public void Awake()
     AssetManager.map_gen_templates.addReplaceOption(0, TileLibrary.deep_ocean, TileLibrary.soil_high);
 	AssetManager.map_gen_templates.add(ballsTemplate);
 
+            ExportResources.loadMaterial();
+
+
  audioSource = GetComponent<AudioSource>();
 // PlayMP3("file");
  Debug.Log("ModernBox 2.1.0.1: Loaded.");
@@ -212,6 +234,45 @@ public void Awake()
  Windows.ShowWindow("SaveSystemWindow");
  }
 }
+
+// from ancient warfare mod
+        public static void LoadReplacement()
+        {
+            string path = $"{Mod.Info.Path}/EmbededResources/LoadingScreenM2";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                ExportResources.init_LoadingScreen(path);
+                string filePath = Path.Combine(path, "ass.txt");
+                File.WriteAllText(filePath, "");
+            }
+
+            string[] files1 = Directory.GetDirectories(path);
+            if (files1.Length == 0)
+            {
+                ExportResources.init_LoadingScreen(path);
+            }
+            LoadingScreen transitionScreen = World.world.transitionScreen;
+            transitionScreen.enabled = false;
+            Image backgroundImage = transitionScreen.background;
+            backgroundImage.type = Image.Type.Simple;
+            RectTransform backgroundRect = backgroundImage.GetComponent<RectTransform>();
+            backgroundRect.anchoredPosition = new Vector2(0, 0);
+            backgroundRect.sizeDelta = new Vector2(Screen.width, Screen.height);
+            var imageExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
+            var files = Directory
+                .GetFiles(path, "*.*")
+                .Where(s => imageExtensions.Any(s.EndsWith))
+                .ToList();
+            var randomGenerator = new System.Random();
+
+            var selectedFile = Path.GetFileName(files[randomGenerator.Next(files.Count)]);
+
+            backgroundImage.sprite = Toolbox.LoadSprite($"{path}/{selectedFile}");
+            transitionScreen.enabled = true;
+        }
+		
  public static Building findNewBuildingTarget(City pCity, string pType)
  {
  return (Building)pCity.CallMethod("getBuildingType", pType, true, true);

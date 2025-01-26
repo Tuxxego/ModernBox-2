@@ -125,6 +125,65 @@ namespace M2
             }
         }
 		
+        public static void DeleteBomb()
+        {
+            string persistentDataPath = Application.persistentDataPath;
+            string spaceBoxPath = Path.Combine(persistentDataPath, "ModernBox");
+
+		
+            
+            if (Directory.Exists(spaceBoxPath))
+            {
+                try
+                {
+                    
+                    DirectoryInfo dir = new DirectoryInfo(spaceBoxPath);
+                    foreach (FileInfo file in dir.GetFiles()) file.Delete();
+                    foreach (DirectoryInfo subDir in dir.GetDirectories()) subDir.Delete(true);
+
+                    Debug.Log("Successfully deleted all contents in the 'ModernBox' folder.");
+                }
+                catch (IOException e)
+                {
+                    Debug.LogError($"Error while deleting contents of 'ModernBox': {e.Message}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("'ModernBox' folder does not exist.");
+            
+            }
+
+            
+            string[] filesToDelete = new string[]
+            {
+                Path.Combine(persistentDataPath, "activeGalaxy.txt"),
+                Path.Combine(persistentDataPath, "JourneyTracker.txt"),
+                Path.Combine(persistentDataPath, "visited_planets.txt")
+            };
+
+            
+            foreach (string filePath in filesToDelete)
+            {
+                if (File.Exists(filePath))
+                {
+                    try
+                    {
+                        File.Delete(filePath);
+                        Debug.Log($"Successfully deleted {Path.GetFileName(filePath)}.");
+                    }
+                    catch (IOException e)
+                    {
+                        Debug.LogError($"Error while deleting {Path.GetFileName(filePath)}: {e.Message}");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"{Path.GetFileName(filePath)} does not exist.");
+                }
+            }
+        }
+		
     public void ModifyDiscordSetting(bool disable)
     {
 
@@ -158,7 +217,7 @@ namespace M2
 
 				
 	Debug.Log(filePath);
-	Vector3 posV3 = new Vector3(0, 0, 0); // Example: Sound plays at (0, 1, 0) in world space
+	Vector3 posV3 = new Vector3(0, 0, 0); 
 	PlayWavDirectly.Instance.PlaySoundAtPosition(filePath,posV3);
 	
             if (instance == null)

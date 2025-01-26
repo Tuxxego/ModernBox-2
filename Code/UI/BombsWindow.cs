@@ -34,6 +34,7 @@ namespace M2
 		private static PowerButton AHHHH6;
 		private static PowerButton AHHHH7;
 		private static PowerButton AHHHH8;
+		private static PowerButton AHHHH9;
 		private static PowerButton ASS2;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;
@@ -44,6 +45,7 @@ namespace M2
 		private static GodPower NSAPower;
 		private static GodPower ClusterStrikePower;
 		private static GodPower ProtonPower;
+		private static GodPower DeleterFuncPower;
 		
 	  private static PowersTab getPowersTab(string id) {
 		GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
@@ -92,8 +94,9 @@ namespace M2
 			    AHHHH4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
 				//AHHHH5 = PowerButtons.CreateButton("EXbutton", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Nuke", "If you see this then you are a dev or you are snooping around my bomb code. -Dank", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, EXFunc);	//this is the experimental button for nukes
                 AHHHH6 = PowerButtons.CreateButton("NSAbutton", Resources.Load<Sprite>("ui/Icons/NotSoAtomic"), "the Not so atomic Bomb", "The bomb that wanted to become atomic but failed the test in 12th grade to become atomic", new Vector2(204, MoveDown), ButtonType.Click, content.transform, NSAFunc);	
-                AHHHH7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, ClusterStrikeFunc);	
+                AHHHH7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
                 AHHHH8 = PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "The Proton Bomb", "The bomb to be forgoten no longer", new Vector2(96, MoveDown*2), ButtonType.Click, content.transform, ProtonFunc);	
+                AHHHH9 = PowerButtons.CreateButton("DeleterButton", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "The Unholy Universal Destruction System", "Destroys the entire universe (literally it deletes EVERYTHING, watch out with this bad boy.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
 
         }
 		private static void AtomicGrenadeFunc()
@@ -124,6 +127,22 @@ namespace M2
 	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS3);
 		}
+		
+		private static void DeleterFunc()
+		{
+			
+			window.clickHide();
+			
+
+			
+
+			PowerButtonSelector.instance.setSelectedPower(AHHHH9, DeleterFuncPower);
+
+
+	//		PowerTracker.setPower((GodPower), null);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS9);
+		}
+		
 		private static void ZeusRageFunc()
 		{
 			

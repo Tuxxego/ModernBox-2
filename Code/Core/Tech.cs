@@ -181,6 +181,14 @@ namespace M2
             Drone.required_level = 65;
             Localization.addLocalization("tech_Drone", "Drone");
             AssetManager.culture_tech.add(Drone);
+
+			CultureTechAsset Terrans = new CultureTechAsset();
+            Terrans.id = "Terrans";
+            Terrans.path_icon = "Terran";
+            Terrans.priority = false;
+            Terrans.required_level = 65;
+            Localization.addLocalization("tech_Terrans", "Terran Goliath");
+            AssetManager.culture_tech.add(Terrans);
 			
 			CultureTechAsset Nukes = new CultureTechAsset();
             Nukes.id = "Nukes";
