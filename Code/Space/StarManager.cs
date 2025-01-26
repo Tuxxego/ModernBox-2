@@ -2783,9 +2783,18 @@ public class PlanetInfo
     public string planetType; 
     public string size; 
     public bool hasFauna; 
+    public MoonInfo[] moonInfo;
 }
 
-
+[System.Serializable]
+public class MoonInfo
+{
+    public string name;
+    public string description;
+    public string moonType; 
+    public string size; 
+    public bool hasFauna; 
+}
     public class CompendiumEntry
     {
         public string Title { get; }
