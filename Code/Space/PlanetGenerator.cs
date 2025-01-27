@@ -308,6 +308,81 @@ break;
             MapBox.instance.tilemap.layers[Glitch_high.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
 			
 			break;
+    case "chess world":
+				Config.current_map_template = "boring_plains";
+
+
+			BiomeAsset Chess = new BiomeAsset();
+            Chess.id = "biome_Chess";
+			Chess.tile_low = "Chess_low";
+			Chess.tile_high = "Chess_high";
+			Chess.force_unit_skin_set = "infernal";
+			Chess.grow_strength = 20;
+			Chess.spread_biome = true;
+			Chess.generator_pool_amount = 80;
+            Chess.grow_vegetation_auto = true;
+			Chess.grow_type_selector_minerals = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomMineral);
+			Chess.grow_type_selector_trees = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomTrees);
+			Chess.grow_type_selector_plants = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomPlants);
+			Chess.addTree("Chess_tree", 20);
+			Chess.addTree("Chess_tree_2", 20);
+			Chess.addTree("Chess_tree_3", 20);
+			/*
+			Chess.addTree("Chess_tree", 2);
+			Chess.addPlant("Chess_plant", 4);
+			Chess.addTree("Chess_tree_big", 1);
+            Chess.addTree("Chess_candle", 2);
+			Chess.addPlant("Chess_tomb", 4);
+            Chess.addUnit("glitchspectre", 2);
+            Chess.addUnit("glitchdrake", 1);
+            Chess.addUnit("glitchtarantula", 2);
+			Chess.addMineral(SB.mineral_bones, 20);
+			Chess.addMineral(SB.mineral_adamantine, 20);
+            AssetManager.biome_library.add(Chess);
+			*/
+            AssetManager.biome_library.addBiomeToPool(Chess);
+			
+            TopTileType Chess_low = AssetManager.topTiles.clone("Chess_low", ST.infernal_low);
+            Chess_low.color = Toolbox.makeColor("#898672", -1f);
+            Chess_low.setBiome("biome_Chess");
+			Chess_low.rank_type = TileRank.Low;
+            Chess_low.setDrawLayer(TileZIndexes.infernal_low, null);
+            Chess_low.food_resource = SR.evil_beets;
+            Chess_low.liquid = false;
+            Chess_low.ground = true;
+          //  Chess_low.unitDeathAction = new WorldAction(spawnChessCreature);
+		    Chess_low.stepActionChance = 1f;
+            Chess_low.hold_lava = false;
+            Chess_low.can_be_frozen = true;
+            Chess_low.burnable = false;
+            Chess_low.walkMod = 1f;
+            Chess_low.layerType = TileLayerType.Ground;
+			Chess_low.biome_asset = Chess;
+            AssetManager.topTiles.add(Chess_low);
+            AssetManager.topTiles.loadSpritesForTile(Chess_low);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("Chess_low"));
+            MapBox.instance.tilemap.layers[Chess_low.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+
+            TopTileType Chess_high = AssetManager.topTiles.clone("Chess_high", ST.infernal_high);
+            Chess_high.color = Toolbox.makeColor("#808080", -1f);
+            Chess_high.setBiome("biome_Chess");
+			Chess_high.rank_type = TileRank.High;
+            Chess_high.setDrawLayer(TileZIndexes.infernal_high);
+           // Chess_high.unitDeathAction = new WorldAction(spawnChessCreature);
+            Chess_high.stepActionChance = 1f;
+            Chess_high.food_resource = SR.evil_beets;
+            Chess_high.liquid = false;
+            Chess_high.hold_lava = false;
+            Chess_high.can_be_frozen = true;
+            Chess_high.burnable = false;
+            Chess_high.layerType = TileLayerType.Ground;
+			Chess_high.biome_asset = Chess;
+            AssetManager.topTiles.add(Chess_high);
+            AssetManager.topTiles.loadSpritesForTile(Chess_high);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("Chess_high"));
+            MapBox.instance.tilemap.layers[Chess_high.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+			
+			break;
     case "lemon world":
 
             SetRandomMapTemplate();

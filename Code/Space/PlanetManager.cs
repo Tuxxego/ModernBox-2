@@ -89,60 +89,86 @@ namespace M2
             return foundStar;
         }
 
-        private void OnGUI()
-        {
-            if (showTouchdownWindow)
-            {
-                Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 75, 300, 150);
-                GUI.Window(0, windowRect, TouchdownWindow, currentWindowTitle);
-            }
-            else if (showNextWindow)
-            {
-                Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 75, 300, 150);
-                GUI.Window(1, windowRect, NextWindow, "Important");
-            }
-            else if (showFinalWindow)
-            {
-                Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 75, 300, 150);
-                GUI.Window(2, windowRect, FinalWindow, "Important");
-            }
-        }
+		private void OnGUI()
+		{
+			GUI.color = Color.cyan;
+			GUI.backgroundColor = new Color(0.1f, 0.1f, 0.3f);
+			GUI.contentColor = Color.green;
 
-        private void TouchdownWindow(int windowID)
-        {
-            GUILayout.Label(currentWindowDescription);
-            if (GUILayout.Button("OK"))
-            {
-                showTouchdownWindow = false;
-                showNextWindow = true;
-            }
-        }
+			if (showTouchdownWindow)
+			{
+				Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 350, 200);
+				GUI.Window(0, windowRect, TouchdownWindow, currentWindowTitle);
+			}
+			else if (showNextWindow)
+			{
+				Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 350, 200);
+				GUI.Window(1, windowRect, NextWindow, "Directive Alpha");
+			}
+			else if (showFinalWindow)
+			{
+				Rect windowRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 350, 200);
+				GUI.Window(2, windowRect, FinalWindow, "Log Update");
+			}
+		}
 
-        private void NextWindow(int windowID)
-        {
-            GUILayout.Label("Be on the lookout for any alien fauna that could harm any people you bring here.");
-            if (GUILayout.Button("OK"))
-            {
-                showNextWindow = false;
-                showFinalWindow = true;
-            }
-        }
+		private void TouchdownWindow(int windowID)
+		{
+			GUILayout.Label(currentWindowDescription, GetSciFiLabelStyle());
+			if (GUILayout.Button("Acknowledge", GetSciFiButtonStyle()))
+			{
+				showTouchdownWindow = false;
+				showNextWindow = true;
+			}
+		}
 
-        private void FinalWindow(int windowID)
-        {
-            GUILayout.Label("The planet you were previously at has been saved.");
-            if (GUILayout.Button("OK"))
-            {
-                showFinalWindow = false;
-            }
-        }
+		private void NextWindow(int windowID)
+		{
+			GUILayout.Label("Alert: Ensure planetary safety protocols. Scan for hostile alien organisms and hazardous conditions.", GetSciFiLabelStyle());
+			if (GUILayout.Button("Proceed", GetSciFiButtonStyle()))
+			{
+				showNextWindow = false;
+				showFinalWindow = true;
+			}
+		}
 
-        public void ShowTouchdownGUI(string planetType)
-        {
-            currentWindowTitle = "Touchdown!";
-            currentWindowDescription = $"You have successfully landed on a {planetType}.";
-            showTouchdownWindow = true;
-        }
+		private void FinalWindow(int windowID)
+		{
+			GUILayout.Label("System Update: The coordinates and data for your previous location have been archived securely.", GetSciFiLabelStyle());
+			if (GUILayout.Button("Close", GetSciFiButtonStyle()))
+			{
+				showFinalWindow = false;
+			}
+		}
+
+		public void ShowTouchdownGUI(string planetType)
+		{
+			currentWindowTitle = "Landing Sequence Complete";
+			currentWindowDescription = $"Mission Success: Your vessel has safely touched down on a {planetType}.";
+			showTouchdownWindow = true;
+		}
+
+		private GUIStyle GetSciFiLabelStyle()
+		{
+			GUIStyle style = new GUIStyle(GUI.skin.label);
+			style.normal.textColor = Color.green;
+			style.fontStyle = FontStyle.Bold;
+			style.fontSize = 14;
+			return style;
+		}
+
+		private GUIStyle GetSciFiButtonStyle()
+		{
+			GUIStyle style = new GUIStyle(GUI.skin.button);
+			style.normal.textColor = Color.cyan;
+			style.fontStyle = FontStyle.Bold;
+			style.fontSize = 12;
+			style.hover.textColor = Color.white;
+			style.hover.background = Texture2D.grayTexture;
+			return style;
+		}
+
+
 
         private void LoadPlanetName()
         {

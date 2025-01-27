@@ -611,7 +611,7 @@ private string GetPlanetTypeBasedOnStar(string starType)
             return GetRandomPlanetType(new[] { "Desert World", "Icy", "Swamp World", "Mushroom World" });
 
         case "Yellow Dwarf":
-            return GetRandomPlanetType(new[] { "Desert World", "Oceanic", "Gas Giant (Habitable)", "Lemon World" });
+            return GetRandomPlanetType(new[] { "Desert World", "Oceanic", "Chess World", "Lemon World" });
 
         case "Blue Giant":
             return GetRandomPlanetType(new[] { "Gas Giant", "Crystal World", "Lava World", "Wasteland World" });
@@ -668,7 +668,7 @@ private string GetPlanetTypeBasedOnStar(string starType)
             return GetRandomPlanetType(new[] { "Oceanic", "Crystal World", "Gas Giant", "Lemon World" });
 
         case "Nebula Star":
-            return GetRandomPlanetType(new[] { "Gas Giant (Habitable)", "Swamp World", "Icy", "Mushroom World" });
+            return GetRandomPlanetType(new[] { "Chess World", "Swamp World", "Icy", "Mushroom World" });
 
         case "Graviton Star":
             return GetRandomPlanetType(new[] { "Lava World", "Crystal World", "Mechanical World", "Wasteland World" });
@@ -685,7 +685,7 @@ private string GetRandomPlanetType(string[] possibleTypes = null)
 {
     if (possibleTypes == null)
     {
-        possibleTypes = new[] { "Desert World", "Gas Giant", "Oceanic", "Icy", "Crystal World", "Swamp World", "Lava World", "Gas Giant (Habitable)", "Mechanical World", "Jungle World", "Corrupted World", "Lemon World", "Mushroom World", "Wasteland World" };
+        possibleTypes = new[] { "Desert World", "Gas Giant", "Oceanic", "Icy", "Crystal World", "Swamp World", "Lava World", "Chess World", "Mechanical World", "Jungle World", "Corrupted World", "Lemon World", "Mushroom World", "Wasteland World" };
     }
     int index = UnityEngine.Random.Range(0, possibleTypes.Length);
     return possibleTypes[index];

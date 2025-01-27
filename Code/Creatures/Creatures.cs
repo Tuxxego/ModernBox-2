@@ -375,9 +375,47 @@ namespace M2
             destroyerbot.path_slash_animation = "effects/slashes/slash_punch";
 
 
+            BuildingAsset Chess_tree = AssetManager.buildings.clone("Chess_tree", "tree");
+            Chess_tree.affected_by_drought = false;
+		    Chess_tree.burnable = false;
+		    Chess_tree.draw_light_area = false;
+		    Chess_tree.draw_light_size = 0.1f;
+            Chess_tree.limit_per_zone = 1;
+            Chess_tree.canBePlacedOnlyOn = List.Of<string>(new string[]{"Chess_low","Chess_high"});
+            Chess_tree.spread_ids = List.Of<string>(new string[]{"Chess_tree"});
+            Chess_tree.setShadow(0.5f, 0.03f, 0.12f);
+            AssetManager.buildings.addResource("wood", 6, false);
+            AssetManager.buildings.addResource("evil_beets", 5, false);
+            AssetManager.buildings.add(Chess_tree);
+            AssetManager.buildings.loadSprites(Chess_tree);
 
+            BuildingAsset Chess_tree_2 = AssetManager.buildings.clone("Chess_tree_2", "tree");
+            Chess_tree_2.affected_by_drought = false;
+		    Chess_tree_2.burnable = false;
+		    Chess_tree_2.draw_light_area = false;
+		    Chess_tree_2.draw_light_size = 0.1f;
+            Chess_tree_2.limit_per_zone = 1;
+            Chess_tree_2.canBePlacedOnlyOn = List.Of<string>(new string[]{"Chess_low","Chess_high"});
+            Chess_tree_2.spread_ids = List.Of<string>(new string[]{"Chess_tree_2"});
+            Chess_tree_2.setShadow(0.5f, 0.03f, 0.12f);
+            AssetManager.buildings.addResource("wood", 6, false);
+            AssetManager.buildings.addResource("evil_beets", 5, false);
+            AssetManager.buildings.add(Chess_tree_2);
+            AssetManager.buildings.loadSprites(Chess_tree_2);
 
-
+            BuildingAsset Chess_tree_3 = AssetManager.buildings.clone("Chess_tree_3", "tree");
+            Chess_tree_3.affected_by_drought = false;
+		    Chess_tree_3.burnable = false;
+		    Chess_tree_3.draw_light_area = false;
+		    Chess_tree_3.draw_light_size = 0.1f;
+            Chess_tree_3.limit_per_zone = 1;
+            Chess_tree_3.canBePlacedOnlyOn = List.Of<string>(new string[]{"Chess_low","Chess_high"});
+            Chess_tree_3.spread_ids = List.Of<string>(new string[]{"Chess_tree_3"});
+            Chess_tree_3.setShadow(0.5f, 0.03f, 0.12f);
+            AssetManager.buildings.addResource("wood", 6, false);
+            AssetManager.buildings.addResource("evil_beets", 5, false);
+            AssetManager.buildings.add(Chess_tree_3);
+            AssetManager.buildings.loadSprites(Chess_tree_3);
 
             BuildingAsset Glitch_tree = AssetManager.buildings.clone("Glitch_tree", "tree");
             Glitch_tree.affected_by_drought = false;
