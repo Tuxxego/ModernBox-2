@@ -387,7 +387,7 @@ private void GenerateStars()
         star.starType = GenerateStarType();
         star.planetCount = UnityEngine.Random.Range(1, 10);
 
-        spriteRenderer.color = GetStarColor(star.starType);
+      //  spriteRenderer.color = GetStarColor(star.starType);
 
         GeneratePlanetsForStar(star);
 
@@ -693,122 +693,115 @@ private string GetRandomPlanetType(string[] possibleTypes = null)
 
 private Sprite CreateStarSprite(Star star)
 {
-    bool isCorrupted = star.starType == "Corrupted Star";
-    int textureSize = isCorrupted ? 192 : 64; 
-    Texture2D texture = new Texture2D(textureSize, textureSize);
-    Color[] pixels = new Color[textureSize * textureSize];
+    string spritePath = GetStarSpritePath(star.starType); 
 
-    Color starColor = GetStarColor(star.starType);
+    Sprite sprite = Resources.Load<Sprite>(spritePath);
 
-    Vector2 center = new Vector2(textureSize / 2, textureSize / 2);
-    float radius = textureSize / 2f;
-    float shineRadius = radius * 0.6f; 
-    float streakLength = radius * 0.5f; 
-
-    for (int y = 0; y < textureSize; y++)
+    if (sprite == null)
     {
-        for (int x = 0; x < textureSize; x++)
-        {
-            Vector2 pixelPos = new Vector2(x, y);
-            float distance = Vector2.Distance(center, pixelPos);
-
-            float alpha = Mathf.Clamp01((radius - distance) / radius);
-
-            float shine = Mathf.Clamp01((shineRadius - distance) / shineRadius);
-
-            Vector2 direction = (pixelPos - center).normalized;
-            float streak = Mathf.Clamp01(Mathf.Abs(Vector2.Dot(direction, Vector2.right)) * streakLength / radius);
-
-            pixels[y * textureSize + x] = starColor * (alpha + shine * 0.5f + streak * 0.2f);
-        }
+        Debug.LogError($"Sprite not found for star type: {star.starType} at path: {spritePath}");
+        return null;
     }
 
-    texture.SetPixels(pixels);
-    texture.Apply();
+    Texture2D resizedTexture = ResizeTexture(sprite.texture, 64, 64);
+    Sprite resizedSprite = Sprite.Create(resizedTexture, new Rect(0, 0, 64, 64), new Vector2(0.5f, 0.5f));
 
-    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, textureSize, textureSize), new Vector2(0.5f, 0.5f));
+    return resizedSprite;
+}
 
+private Texture2D ResizeTexture(Texture2D originalTexture, int width, int height)
+{
+    RenderTexture rt = new RenderTexture(width, height, 24);
+    Graphics.Blit(originalTexture, rt);
 
-    return sprite;
+    Texture2D resizedTexture = new Texture2D(width, height);
+    RenderTexture.active = rt;
+    resizedTexture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+    resizedTexture.Apply();
+
+    RenderTexture.active = null;
+    rt.Release();
+
+    return resizedTexture;
 }
 
 
 
-private Color GetStarColor(string starType)
+private string GetStarSpritePath(string starType)
 {
     switch (starType)
     {
         case "Red Dwarf":
-            return Color.red;
+            return "Stars/RedDwarf";
 
         case "Yellow Dwarf":
-            return Color.yellow;
+            return "Stars/YellowDwarf";
 
         case "Blue Giant":
-            return Color.blue;
+            return "Stars/BlueGiant";
 
         case "White Dwarf":
-            return Color.white;
+            return "Stars/WhiteDwarf";
 
         case "Neutron Star":
-            return Color.cyan;
+            return "Stars/NeutronStar";
 
         case "Brown Dwarf":
-            return new Color(139f / 255f, 69f / 255f, 19f / 255f); 
+            return "Stars/BrownDwarf";
 
         case "Supergiant":
-            return new Color(255f / 255f, 165f / 255f, 0f / 255f); 
+            return "Stars/Supergiant";
 
         case "Pulsar":
-            return new Color(75f / 255f, 0f / 255f, 130f / 255f); 
+            return "Stars/Pulsar";
 
         case "White Supergiant":
-            return new Color(240f / 255f, 248f / 255f, 255f / 255f); 
+            return "Stars/WhiteSupergiant";
 
         case "Red Supergiant":
-            return new Color(255f / 255f, 99f / 255f, 71f / 255f); 
+            return "Stars/RedSupergiant";
 
         case "Black Hole":
-            return new Color(255f / 255f, 255f / 255f, 255f / 255f, 0.0f); 
+            return "Stars/BlackHole";
 
         case "Rainbow Star":
-            return Color.Lerp(Color.red, Color.blue, Mathf.PingPong(Time.time, 1));
+            return "Stars/RainbowStar";
 
         case "Void Star":
-            return Color.black;
+            return "Stars/VoidStar";
 
         case "Crystal Star":
-            return new Color(173f / 255f, 216f / 255f, 230f / 255f); 
+            return "Stars/CrystalStar";
 
         case "Quantum Star":
-            return new Color(127f / 255f, 255f / 255f, 212f / 255f); 
+            return "Stars/QuantumStar";
 
         case "Echo Star":
-            return new Color(147f / 255f, 112f / 255f, 219f / 255f); 
+            return "Stars/EchoStar";
 
         case "Chrono Star":
-            return new Color(218f / 255f, 112f / 255f, 214f / 255f); 
+            return "Stars/ChronoStar";
 
         case "Phantom Star":
-            return new Color(255f / 255f, 255f / 255f, 255f / 255f, 0.3f);
+            return "Stars/PhantomStar";
 
         case "Prism Star":
-            return Color.Lerp(Color.red, Color.blue, Mathf.PingPong(Time.time * 2, 1)); 
+            return "Stars/PrismStar";
 
         case "Nebula Star":
-            return new Color(238f / 255f, 130f / 255f, 238f / 255f); 
+            return "Stars/NebulaStar";
 
         case "Graviton Star":
-            return new Color(105f / 255f, 105f / 255f, 105f / 255f); 
+            return "Stars/GravitonStar";
 
         case "Aurora Star":
-            return new Color(72f / 255f, 61f / 255f, 139f / 255f); 
+            return "Stars/AuroraStar";
 
         case "Corrupted Star":
-            return new Color(218f / 255f, 112f / 255f, 214f / 255f); 
-			
+            return "Stars/CorruptedStar";
+
         default:
-            return Color.white;
+            return "Stars/Pulsar";
     }
 }
 
@@ -893,7 +886,7 @@ private void GenerateLoadedStars(string path)
             {
                 Debug.LogWarning("Failed to create or assign sprite.");
             }
-            spriteRenderer.color = GetStarColor(starData.starType);
+           // spriteRenderer.color = GetStarColor(starData.starType);
 
             starObject.transform.position = starData.transform.position;
 
