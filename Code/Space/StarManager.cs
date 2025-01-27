@@ -1208,62 +1208,66 @@ private void StarLoadingWindow(int windowID)
 
     GUIStyle titleStyle = new GUIStyle(GUI.skin.label)
     {
-        fontSize = 50, 
+        fontSize = 50,
         fontStyle = FontStyle.Bold,
         alignment = TextAnchor.MiddleCenter,
         wordWrap = true,
-        normal = { textColor = Color.cyan }
+        normal = { textColor = new Color(0.1f, 1f, 0.5f) }
     };
 
     GUIStyle titleStyle2 = new GUIStyle(GUI.skin.label)
     {
-        fontSize = 16, 
+        fontSize = 18,
         fontStyle = FontStyle.Bold,
         alignment = TextAnchor.MiddleCenter,
         wordWrap = true,
-        normal = { textColor = Color.cyan }
+        normal = { textColor = new Color(0.7f, 0.8f, 1f) }
     };
 
-    GUIStyle subtitleStyle2 = new GUIStyle(GUI.skin.label)
-    {
-        fontSize = 10, 
-        fontStyle = FontStyle.Italic,
-        alignment = TextAnchor.MiddleCenter,
-        wordWrap = true,
-        normal = { textColor = Color.yellow }
-    };
-	
     GUIStyle subtitleStyle = new GUIStyle(GUI.skin.label)
     {
-        fontSize = 36, 
+        fontSize = 24,
         fontStyle = FontStyle.Italic,
         alignment = TextAnchor.MiddleCenter,
         wordWrap = true,
-        normal = { textColor = Color.yellow }
+        normal = { textColor = new Color(1f, 0.6f, 0f) }
     };
 
     GUIStyle italicStyle = new GUIStyle(GUI.skin.label)
     {
-        fontSize = 20, 
+        fontSize = 18,
         fontStyle = FontStyle.Italic,
         alignment = TextAnchor.UpperCenter,
-        wordWrap = true
+        wordWrap = true,
+        normal = { textColor = new Color(0.9f, 0.9f, 0.9f) }
     };
+
+    GUIStyle factStyle = new GUIStyle(GUI.skin.label)
+    {
+        fontSize = 14,
+        fontStyle = FontStyle.Italic,
+        alignment = TextAnchor.MiddleCenter,
+        wordWrap = true,
+        normal = { textColor = new Color(1f, 0.4f, 0.8f) }
+    };
+
+    GUI.backgroundColor = new Color(0.05f, 0.05f, 0.1f);
+    GUI.skin.window.normal.background = CreateGradientTexture(700, 500, new Color(0.1f, 0.1f, 0.3f), new Color(0.3f, 0.3f, 0.5f));
 
     GUILayout.BeginVertical();
 
-    GUILayout.Space(10);
-    GUILayout.Label("ModernBox", titleStyle);  
-    GUILayout.Label("SPACE AGE", subtitleStyle);  
+    GUILayout.Space(20);
+    GUILayout.Label("⚡ SYSTEM ONLINE ⚡", titleStyle);
+    GUILayout.Label("SPACE AGE", subtitleStyle);
 
-    GUILayout.Space(30);  
+    GUILayout.Space(40);  
     GUILayout.Label(loadingMessage, italicStyle);  
 
     GUILayout.Space(15);
     GUILayout.Label(localizationManager.Localize("did_you_know"), italicStyle);
 
     GUILayout.BeginScrollView(Vector2.zero, GUILayout.Height(120));
-    GUILayout.Label($"*{randomFact}*", italicStyle);
+    GUILayout.Label($"*{randomFact}*", factStyle);
     GUILayout.EndScrollView();
 
     GUILayout.EndVertical();
@@ -1271,11 +1275,27 @@ private void StarLoadingWindow(int windowID)
     GUILayout.Space(10); 
     GUILayout.BeginVertical();
 
-    GUILayout.Label("GalaxyCrafter", titleStyle2); 
-    GUILayout.Label($"Custom Galaxies Loaded: {loadedGalaxyCount}", subtitleStyle2); 
+    GUILayout.Label("GALACTIC ENGINE", titleStyle2);
+    GUILayout.Label($"Custom Galaxies Created: {loadedGalaxyCount}", subtitleStyle);
 
     GUILayout.EndVertical();
 }
+
+private Texture2D CreateGradientTexture(int width, int height, Color startColor, Color endColor)
+{
+    Texture2D texture = new Texture2D(width, height);
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            Color lerpedColor = Color.Lerp(startColor, endColor, (float)y / height);
+            texture.SetPixel(x, y, lerpedColor);
+        }
+    }
+    texture.Apply();
+    return texture;
+}
+
 
 
 
