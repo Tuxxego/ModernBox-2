@@ -20,6 +20,35 @@ using static Config;
 using System.Reflection;
 using UnityEngine.Tilemaps;
 using System.IO;
+using NCMS;
+using Newtonsoft.Json;
+using M2;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using System.Reflection.Emit;
+using UnityEngine.Purchasing.MiniJSON;
+using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
+using UnityEngine.CrashReportHandler;
+using System.IO.Compression;
+using Beebyte.Obfuscator;
+using ai;
+using ai.behaviours;
+using EpPathFinding.cs;
+using life.taxi;
+using SleekRender;
+using tools;
+using tools.debug;
+using UnityEngine.EventSystems;
+using WorldBoxConsole;
+using UnityEngine.UI;
+using static TopTileLibrary;
+using pathfinding;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Assertions.Must;
+using Random=UnityEngine.Random;
  
 namespace M2
 {
@@ -73,48 +102,50 @@ namespace M2
          addTraitToLocalizedLibrary(Jet.id, "Fly through the sky...");
          PlayerConfig.unlockTrait("Jet");
 		 
-		 ActorTrait Vehicle= new ActorTrait();
-         Vehicle.id = "Vehicle";
-         Vehicle.path_icon = "ui/Icons/tabIconModernWarfare";
-         Vehicle.type = TraitType.Negative;
-         Vehicle.group_id = MBTraitGroup.ModernBox;
-         Vehicle.can_be_cured = false;
-         Vehicle.needs_to_be_explored = false;
-         Vehicle.can_be_given = false;
-         Vehicle.can_be_removed = false;
-         Vehicle.only_active_on_era_flag = false;
-         Vehicle.era_active_night = false;
-         Vehicle.era_active_moon = false;
-         Vehicle.birth = 0.0f;
-         Vehicle.inherit = 0.0f;
-         Vehicle.base_stats[S.fertility] = -100f;
-         Vehicle.base_stats[S.max_children] = 0f;
-         Vehicle.base_stats[S.max_age] = 0f;
-         Vehicle.base_stats[S.attack_speed] = 0;
-         Vehicle.base_stats[S.damage] = 0;
-         Vehicle.base_stats[S.speed] = 0f;
-         Vehicle.base_stats[S.health] = 0;
-         Vehicle.base_stats[S.accuracy] = 0f;
-         Vehicle.base_stats[S.range] = 0;
-         Vehicle.base_stats[S.armor] = 0;
-         Vehicle.base_stats[S.scale] = 0.0f;
-         Vehicle.base_stats[S.dodge] = 0f;
-         Vehicle.base_stats[S.targets] = 0f;
-         Vehicle.base_stats[S.critical_chance] = 0.0f;
-         Vehicle.base_stats[S.knockback] = 0f;
-         Vehicle.base_stats[S.knockback_reduction] = 0f;
-         Vehicle.base_stats[S.intelligence] = 0;
-         Vehicle.base_stats[S.warfare] = 0;
-         Vehicle.base_stats[S.diplomacy] = 0;
-         Vehicle.base_stats[S.stewardship] = 0;
-         Vehicle.base_stats[S.opinion] = 0f;
-         Vehicle.base_stats[S.loyalty_traits] = 0f;
-         Vehicle.base_stats[S.cities] = 0;
-         Vehicle.base_stats[S.zone_range] = 0;
-         AssetManager.traits.add(Vehicle);
-         addTraitToLocalizedLibrary(Vehicle.id, "A vehicle from ModernBox.");
-         PlayerConfig.unlockTrait("Vehicle");
-		 
+		 ActorTrait Unitpotential= new ActorTrait();
+         Unitpotential.id = "Unitpotential";
+         Unitpotential.path_icon = "ui/Icons/UnitpotentialIcon";
+         Unitpotential.action_death = (WorldAction)Delegate.Combine(Unitpotential.action_death, new WorldAction(scrapsEffect));
+         Unitpotential.action_special_effect = (WorldAction)Delegate.Combine(Unitpotential.action_special_effect, new WorldAction(UnitpotentialEffect));
+         Unitpotential.type = TraitType.Negative;
+         Unitpotential.group_id = MBTraitGroup.ModernBox;
+         Unitpotential.can_be_cured = false;
+         Unitpotential.needs_to_be_explored = false;
+         Unitpotential.can_be_given = false;
+         Unitpotential.can_be_removed = false;
+         Unitpotential.only_active_on_era_flag = false;
+         Unitpotential.era_active_night = false;
+         Unitpotential.era_active_moon = false;
+         Unitpotential.birth = 0.0f;
+         Unitpotential.inherit = 0.0f;
+         Unitpotential.base_stats[S.fertility] = -100f;
+         Unitpotential.base_stats[S.max_children] = 0f;
+         Unitpotential.base_stats[S.max_age] = 0f;
+         Unitpotential.base_stats[S.attack_speed] = 0;
+         Unitpotential.base_stats[S.damage] = 0;
+         Unitpotential.base_stats[S.speed] = 0f;
+         Unitpotential.base_stats[S.health] = 0;
+         Unitpotential.base_stats[S.accuracy] = 0f;
+         Unitpotential.base_stats[S.range] = 0;
+         Unitpotential.base_stats[S.armor] = 0;
+         Unitpotential.base_stats[S.scale] = 0.0f;
+         Unitpotential.base_stats[S.dodge] = 0f;
+         Unitpotential.base_stats[S.targets] = 0f;
+         Unitpotential.base_stats[S.critical_chance] = 0.0f;
+         Unitpotential.base_stats[S.knockback] = 0f;
+         Unitpotential.base_stats[S.knockback_reduction] = 0f;
+         Unitpotential.base_stats[S.intelligence] = 0;
+         Unitpotential.base_stats[S.warfare] = 0;
+         Unitpotential.base_stats[S.diplomacy] = 0;
+         Unitpotential.base_stats[S.stewardship] = 0;
+         Unitpotential.base_stats[S.opinion] = 0f;
+         Unitpotential.base_stats[S.loyalty_traits] = 0f;
+         Unitpotential.base_stats[S.cities] = 0;
+         Unitpotential.base_stats[S.zone_range] = 0;
+         AssetManager.traits.add(Unitpotential);
+         addTraitToLocalizedLibrary(Unitpotential.id, "Allows expanded unit roster for civs. Cool stuff");
+         PlayerConfig.unlockTrait("Unitpotential");
+
 		 ActorTrait MIRVBoat= new ActorTrait();
          MIRVBoat.id = "MIRVBoat";
          MIRVBoat.path_icon = "ui/Icons/Boat";
@@ -366,7 +397,331 @@ namespace M2
          AssetManager.traits.add(Zeppelin);
          addTraitToLocalizedLibrary(Zeppelin.id, "Big airship.");
          PlayerConfig.unlockTrait("Zeppelin");
+
         }
+
+
+
+public static bool UnitpotentialEffect(BaseSimObject pTarget, WorldTile pTile = null)
+{
+    Actor actor = pTarget?.a;
+    if (actor == null)
+        return false;
+
+   NomadHandlerEffect(pTarget, pTile);
+    HandleLandAirUnitTransformations(actor, pTile);
+    HandleOrcBoatTransformations(actor, pTile);
+
+    return true;
+}
+
+public static bool NomadHandlerEffect(BaseSimObject pTarget, WorldTile pTile = null)
+{
+    Actor actor = pTarget?.a;
+    if (actor == null || !actor.isAlive())
+        return false;
+    if (actor.asset.unit || actor.data.getAge() < 2)
+    {
+        return false;
+    }
+
+    if ((actor.kingdom?.asset.nomads == true) || actor.kingdom?.id == "ModernKingdom" || actor.kingdom?.id == "MissileLauncherFULLRANGETARGETTING" || actor.hasTrait("madness") || (actor.kingdom?.cities.Count == 0))
+    {
+        if (actor.asset.id == "orcraider")
+        {
+            Actor orc = World.world.units.createNewUnit("unit_orc", actor.currentTile);
+            if (orc != null)
+            {
+                EffectsLibrary.spawn("fx_spawn", orc.currentTile);
+            }
+
+            Actor wolf = World.world.units.createNewUnit("wolf", actor.currentTile);
+            if (wolf != null)
+            {
+                EffectsLibrary.spawn("fx_spawn", wolf.currentTile);
+            }
+
+            if (actor.hasTrait("madness"))
+            {
+                actor.removeTrait("madness");
+            }
+
+
+            ActionLibrary.removeUnit(actor);
+        }
+        else if (actor.asset.id == "armoredwolf")
+        {
+
+            Actor wolf = World.world.units.createNewUnit("wolf", actor.currentTile);
+            if (wolf != null)
+            {
+                EffectsLibrary.spawn("fx_spawn", wolf.currentTile);
+            }
+
+            if (actor.hasTrait("madness"))
+            {
+                actor.removeTrait("madness");
+            }
+
+            ActionLibrary.removeUnit(actor);
+        }
+        else
+        {
+
+            if (actor.hasTrait("madness"))
+            {
+                actor.removeTrait("madness");
+            }
+            actor.getHit(10000000f);
+        }
+        return true;
+    }
+
+
+    if (actor.kingdom?.id == "ModernKingdom" || actor.kingdom?.id == "MissileLauncherFULLRANGETARGETTING" ||
+        (actor.kingdom?.asset.nomads == true) || (actor.kingdom?.cities.Count == 0))
+    {
+
+        actor.getHit(10000000f);
+        return true;
+    }
+
+
+    if (actor.hasTrait("madness"))
+    {
+        actor.removeTrait("madness");
+        actor.getHit(10000000f);
+        return true;
+    }
+
+    return true;
+}
+
+
+
+private static void HandleLandAirUnitTransformations(Actor a, WorldTile pTile)
+{
+    if (a.asset.id == "Tank")
+    {
+        if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "AbramTank", pTile);
+        }
+    }
+
+    else if (a.asset.id == "MissileSystem")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "eliteMissileSystem", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Railgun")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "OmegaRailgun", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Humvee")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "wheeledtank", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Heli")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "HeliELite", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Gunship")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "eliteGunship", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Drone")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "TIEfighter", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Zeppelin")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "EliteZeppelin", pTile);
+        }
+    }
+
+    else if (a.asset.id == "MIRVBomber")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "EliteBomber", pTile);
+        }
+    }
+
+    else if (a.asset.id == "FighterJet")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "F55FighterJet", pTile);
+        }
+    }
+
+    else if (a.asset.id == "P9000")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "EliteP9000", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Terran")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "dreadnaught", pTile);
+        }
+    }
+
+    else if (a.asset.id == "Soldier")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "SpaceMarine", pTile);
+        }
+    }
+
+}
+
+
+
+
+private static void HandleOrcBoatTransformations(Actor a, WorldTile pTile)
+{
+
+    if (!a.hasTrait("boat"))
+    {
+        return;
+    }
+
+    if (a.kingdom == null || a.kingdom.asset.id != "orc")
+    {
+        return;
+    }
+
+    if (a.hasTrait("thorns"))
+    {
+        return;
+    }
+
+    float transformationChance = 0.5f;
+
+    if (Toolbox.randomChance(transformationChance))
+    {
+
+        Actor newActor = World.world.units.createNewUnit("orcwarturtle", pTile);
+        if (newActor != null)
+        {
+
+            newActor.race = a.race;
+            newActor.kingdom = a.kingdom;
+            newActor.joinCity(a.city);
+            EffectsLibrary.spawn("fx_spawn", newActor.currentTile);
+        }
+    }
+    else
+    {
+        a.addTrait("thorns");
+    }
+}
+
+
+
+
+private static void TransformUnit(Actor originalActor, string newActorId, WorldTile pTile)
+{
+    Actor newActor = World.world.units.createNewUnit(newActorId, pTile);
+    if (newActor == null)
+    {
+        return;
+    }
+    ActorTool.copyUnitToOtherUnit(originalActor, newActor);
+    if (originalActor.kingdom != null)
+    {
+        newActor.setKingdom(originalActor.kingdom);
+    }
+   newActor.joinCity(originalActor.city);
+    EffectsLibrary.spawn("fx_spawn", newActor.currentTile);
+    ActionLibrary.removeUnit(originalActor);
+}
+
+
+            public static bool scrapsEffect(BaseSimObject pSelf, WorldTile pTile = null)
+{
+    Actor selfActor = pSelf as Actor;
+    if (selfActor == null) return false;
+
+    WorldTile targetTile = selfActor.currentTile;
+    if (targetTile.building == null)
+    {
+        string buildingID = GetBuildingForActor(selfActor);
+        MapBox.instance.buildings.addBuilding(buildingID, targetTile, false, false, BuildPlacingType.New);
+    }
+
+    return true;
+}
+
+private static string GetBuildingForActor(Actor actor)
+{
+    string defaultBuilding = "scraps";
+
+    switch (actor.asset.id)
+    {
+        case "P9000":
+            return "P9000_scraps";
+        case "Terran":
+            return "Terran_scraps";
+        case "MissileSystem":
+            return "MissileSystem_scraps";
+        case "Railgun":
+            return "Railgun_scraps";
+        case "Humvee":
+            return "Humvee_scraps";
+        case "Tank":
+            return "Tank_scraps";
+        case "FighterJet":
+            return "FighterJet_scraps";
+        case "MIRVBomber":
+            return "MIRVBomber_scraps";
+        case "Zeppelin":
+            return "Zeppelin_scraps";
+        case "Drone":
+            return "Drone_scraps";
+        case "Gunship":
+            return "Gunship_scraps";
+        case "Heli":
+            return "Heli_scraps";
+        default:
+            return defaultBuilding;
+    }
+}
+
+
+
         public static void addTraitToLocalizedLibrary(string id, string description)
         {
         string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;

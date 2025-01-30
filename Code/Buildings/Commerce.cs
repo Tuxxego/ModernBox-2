@@ -182,6 +182,7 @@ class Commerce {
     loadSprites(TerranFactory);
 
     AddBuildingOrderKeysToCivRaces("order_TerranFactory", "TerranFactory");
+
 	
     BuildingAsset P9000Factory = AssetManager.buildings.clone("P9000Factory", "!city_building");
     AssetManager.buildings.add(P9000Factory);
@@ -265,8 +266,6 @@ class Commerce {
 
     AddBuildingOrderKeysToCivRaces("order_DroneFactory", "DroneFactory");
 
-    human.addBuilding("order_DroneFactory", 1, pPop : 50, pBuildings : 16);
-
     BuildingAsset AirshipFactory = AssetManager.buildings.clone("AirshipFactory", "!city_building");
     AssetManager.buildings.add(AirshipFactory);
     AirshipFactory.id = "AirshipFactory";
@@ -315,6 +314,7 @@ class Commerce {
     loadSprites(BoiFactory);
 
     AddBuildingOrderKeysToCivRaces("order_BoiFactory", "BoiFactory");
+
 
 
 

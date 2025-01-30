@@ -96,6 +96,16 @@ class Buttonz {
     ALIENPower.name = "spawn_ALIEN";
     ALIENPower.actor_asset_id = "Xiexel";
     ALIENPower.click_action = new PowerActionWithID(action_spawn_jet);
+
+    GodPower TroopPower = AssetManager.powers.clone("spawn_Troop", "_spawnActor");
+    TroopPower.name = "spawn_Troop";
+    TroopPower.actor_asset_id = "Soldier";
+    TroopPower.click_action = new PowerActionWithID(action_spawn_jet);
+
+ GodPower DronePower = AssetManager.powers.clone("spawn_Drone", "_spawnActor");
+    DronePower.name = "spawn_Drone";
+    DronePower.actor_asset_id = "Drone";
+    DronePower.click_action = new PowerActionWithID(action_spawn_jet);
 	
     GodPower F55Power = AssetManager.powers.clone("spawn_F55", "_spawnActor");
     F55Power.name = "spawn_F55";
@@ -738,6 +748,8 @@ class Buttonz {
     }
 
     PowerButtons.CreateButton("spawn_FighterJet", Resources.Load<Sprite>("ui/Icons/FighterJet"), "Spawn FighterJet", "Spawn a FighterJet.", new Vector2(900, 18), ButtonType.GodPower, tab.transform, null);
+PowerButtons.CreateButton("spawn_Drone", Resources.Load<Sprite>("ui/Icons/Drone"), "Spawn Drone", "Spawn a Drone.", new Vector2(406, 18), ButtonType.GodPower, tab.transform, null);
+PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldier"), "Spawn Soldier", "Spawn a Soldier.", new Vector2(406, -18), ButtonType.GodPower, tab.transform, null);
 
         System.Random random = new System.Random();
         

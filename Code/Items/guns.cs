@@ -143,7 +143,7 @@ namespace M2
                         "weapon_name_enemy_kingdom"
             });
             RocketLauncher.materials = List.Of<string>(new string[] { "iron" });
-            RocketLauncher.projectile = "fireball";
+            RocketLauncher.projectile = "jetrocketprojectile";
             RocketLauncher.base_stats[S.range] = 14f;
 			RocketLauncher.tech_needed = "Firearms";
             RocketLauncher.base_stats[S.accuracy] = 400;
@@ -165,6 +165,7 @@ namespace M2
 	      jetrocketprojectile.look_at_target = true;
           jetrocketprojectile.draw_light_area = true;
 	      jetrocketprojectile.draw_light_size = 1f;
+          jetrocketprojectile.endEffect = "fx_fireball_explosion";
           jetrocketprojectile.terraformOption = "nonannoyingbomb";
           jetrocketprojectile.terraformRange = 3;
 	      jetrocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
@@ -197,6 +198,7 @@ namespace M2
           helirocketprojectile.draw_light_area = true;
 	      helirocketprojectile.draw_light_size = 1f;
           helirocketprojectile.terraformOption = "nonannoyingbomb";
+         helirocketprojectile.endEffect = "fx_fireball_explosion";
           helirocketprojectile.terraformRange = 3;
 	      helirocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           helirocketprojectile.sound_impact = "event:/SFX/NATURE/EarthQuake";
@@ -210,11 +212,11 @@ namespace M2
             heliRocket.id = "heliRocket";
             heliRocket.projectile = "helirocketprojectile";
             heliRocket.materials = List.Of<string>(new string[] { "base" });
-        heliRocket.base_stats[S.projectiles] = 10f;
-        heliRocket.base_stats[S.attack_speed] = -101f;
+        heliRocket.base_stats[S.projectiles] = 2f;
+        heliRocket.base_stats[S.attack_speed] = 1000f;
 		heliRocket.base_stats[S.range] = 14f;
 		heliRocket.base_stats[S.targets] = 1f;
-		heliRocket.base_stats[S.damage] = 8f;
+		heliRocket.base_stats[S.damage] = 16f;
 		heliRocket.base_stats[S.damage_range] = 0.5f;
             heliRocket.base_stats[S.accuracy] = 400;
             heliRocket.base_stats[S.health] = 10;

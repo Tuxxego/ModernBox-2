@@ -89,8 +89,9 @@ namespace M2
 	      MIRVartillery.look_at_target = true;
           MIRVartillery.draw_light_area = true;
 	      MIRVartillery.draw_light_size = 1f;
+          MIRVartillery.endEffect = "fx_explosion_meteorite";
           MIRVartillery.terraformOption = "nonannoyingbomb";
-          MIRVartillery.terraformRange = 3;
+          MIRVartillery.terraformRange = 4;
 	      MIRVartillery.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           MIRVartillery.sound_impact = "event:/SFX/POWERS/Bomb";
           MIRVartillery.startScale = 0.2f;

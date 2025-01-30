@@ -154,6 +154,7 @@ namespace M2
           cybermissileprojectile.trailEffect_enabled = false;
 	      cybermissileprojectile.look_at_target = true;
           cybermissileprojectile.draw_light_area = true;
+           cybermissileprojectile.endEffect = "fx_boat_explosion";
 	      cybermissileprojectile.draw_light_size = 1f;
           cybermissileprojectile.terraformOption = "nonannoyingbomb";
           cybermissileprojectile.terraformRange = 1;
@@ -174,6 +175,7 @@ namespace M2
 	      artilleryshell.look_at_target = true;
           artilleryshell.draw_light_area = true;
 	      artilleryshell.draw_light_size = 1f;
+          artilleryshell.endEffect = "fx_boat_explosion";
           artilleryshell.terraformOption = "nonannoyingbomb";
           artilleryshell.terraformRange = 3;
 	      artilleryshell.sound_launch = "event:/SFX/POWERS/NapalmBomb";
@@ -193,6 +195,7 @@ namespace M2
 	      tankshell.look_at_target = true;
           tankshell.draw_light_area = true;
 	      tankshell.draw_light_size = 1f;
+          tankshell.endEffect = "fx_boat_explosion";
           tankshell.terraformOption = "nonannoyingbomb";
           tankshell.terraformRange = 3;
 	      tankshell.sound_launch = "event:/SFX/POWERS/NapalmBomb";
@@ -214,7 +217,7 @@ namespace M2
 	      crabartilleryshell.draw_light_size = 1f;
           crabartilleryshell.terraformOption = "crab_bomb";
           crabartilleryshell.terraformRange = 5;
-          crabartilleryshell.endEffect = "fx_explosion_huge";
+          crabartilleryshell.endEffect = "fx_explosion_meteorite";
 	      crabartilleryshell.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           crabartilleryshell.sound_impact = "event:/SFX/POWERS/Bomb";
           crabartilleryshell.startScale = 1f;
@@ -232,13 +235,14 @@ namespace M2
           bigbomb.trailEffect_enabled = false;
 	      bigbomb.look_at_target = true;
           bigbomb.draw_light_area = true;
+          bigbomb.endEffect = "fx_explosion_meteorite";
 	      bigbomb.draw_light_size = 1f;
           bigbomb.terraformOption = "nonannoyingbomb";
           bigbomb.terraformRange = 6;
 	      bigbomb.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           bigbomb.sound_impact = "event:/SFX/POWERS/Bomb";
-          bigbomb.startScale = 0.2f;
-          bigbomb.targetScale = 0.2f;
+          bigbomb.startScale = 0.1f;
+          bigbomb.targetScale = 0.1f;
           bigbomb.parabolic = true;
           bigbomb.speed = 20f;
           ProjectileAsset bombasticlolxd = bigbomb;
@@ -251,6 +255,7 @@ namespace M2
           seismicrod.trailEffect_enabled = false;
 	      seismicrod.look_at_target = true;
           seismicrod.draw_light_area = true;
+          seismicrod.endEffect = "fx_explosion_meteorite";
 	      seismicrod.draw_light_size = 1f;
           seismicrod.terraformOption = "nonannoyingbomb";
           seismicrod.terraformRange = 20;
