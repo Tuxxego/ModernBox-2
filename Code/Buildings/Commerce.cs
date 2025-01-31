@@ -55,7 +55,6 @@ class Commerce {
     BuildingAsset restaurant = AssetManager.buildings.clone("restaurant", "!city_building");
     AssetManager.buildings.add(restaurant);
     restaurant.id = "restaurant";
-
     restaurant.priority = 69999;
     restaurant.fundament = new BuildingFundament(2, 2, 2, 0);
     restaurant.cost = new ConstructionCost(pWood : 15, pStone : 25, pGold : 250);
@@ -76,7 +75,6 @@ class Commerce {
     BuildingAsset mall = AssetManager.buildings.clone("mall", "!city_building");
     AssetManager.buildings.add(mall);
     mall.id = "mall";
-
     mall.priority = 69999;
     mall.fundament = new BuildingFundament(2, 2, 2, 0);
     mall.cost = new ConstructionCost(pWood : 15, pStone : 25, pGold : 250);
@@ -99,7 +97,6 @@ class Commerce {
     BuildingAsset school = AssetManager.buildings.clone("school", "!city_building");
     AssetManager.buildings.add(school);
     school.id = "school";
-
     school.priority = 69999;
     school.fundament = new BuildingFundament(2, 2, 2, 0);
     school.cost = new ConstructionCost(pWood : 15, pStone : 25, pGold : 250);
@@ -120,7 +117,6 @@ class Commerce {
     BuildingAsset modernbuilding = AssetManager.buildings.clone("modernbuilding", "!city_building");
     AssetManager.buildings.add(modernbuilding);
     modernbuilding.id = "modernbuilding";
-
     modernbuilding.priority = 69999;
     modernbuilding.fundament = new BuildingFundament(2, 2, 2, 0);
     modernbuilding.cost = new ConstructionCost(0, 2, 1, 1);
@@ -136,7 +132,6 @@ class Commerce {
     BuildingAsset AirFactory = AssetManager.buildings.clone("AirFactory", "!city_building");
     AssetManager.buildings.add(AirFactory);
     AirFactory.id = "AirFactory";
-
     AirFactory.priority = 69999;
     AirFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     AirFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -147,14 +142,12 @@ class Commerce {
     AirFactory.base_stats[S.health] = 3000f;
     loadSprites(AirFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_AirFactory", "AirFactory");
 
 
 
     BuildingAsset TankFactory = AssetManager.buildings.clone("TankFactory", "!city_building");
     AssetManager.buildings.add(TankFactory);
     TankFactory.id = "TankFactory";
-
     TankFactory.priority = 69999;
     TankFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     TankFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -165,7 +158,7 @@ class Commerce {
     TankFactory.base_stats[S.health] = 3000f;
     loadSprites(TankFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_TankFactory", "TankFactory");
+
 
     BuildingAsset TerranFactory = AssetManager.buildings.clone("TerranFactory", "!city_building");
     AssetManager.buildings.add(TerranFactory);
@@ -181,13 +174,10 @@ class Commerce {
     TerranFactory.base_stats[S.health] = 3000f;
     loadSprites(TerranFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_TerranFactory", "TerranFactory");
-
 	
     BuildingAsset P9000Factory = AssetManager.buildings.clone("P9000Factory", "!city_building");
     AssetManager.buildings.add(P9000Factory);
     P9000Factory.id = "P9000Factory";
-
     P9000Factory.priority = 69999;
     P9000Factory.fundament = new BuildingFundament(2, 2, 2, 0);
     P9000Factory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -198,12 +188,11 @@ class Commerce {
     P9000Factory.base_stats[S.health] = 3000f;
     loadSprites(P9000Factory);
 
-    AddBuildingOrderKeysToCivRaces("order_P9000Factory", "P9000Factory");
+
 	
             BuildingAsset RailgunFactory = AssetManager.buildings.clone("RailgunFactory", "!city_building");
             AssetManager.buildings.add(RailgunFactory);
             RailgunFactory.id = "RailgunFactory";
-
             RailgunFactory.priority = 69999;
             RailgunFactory.fundament = new BuildingFundament(2, 2, 2, 0);
             RailgunFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -214,12 +203,11 @@ class Commerce {
             RailgunFactory.base_stats[S.health] = 3000f;
             loadSprites(RailgunFactory);
 
-            AddBuildingOrderKeysToCivRaces("order_RailgunFactory", "RailgunFactory");
+
 
             BuildingAsset HumveeFactory = AssetManager.buildings.clone("HumveeFactory", "!city_building");
     AssetManager.buildings.add(HumveeFactory);
     HumveeFactory.id = "HumveeFactory";
-
     HumveeFactory.priority = 69999;
     HumveeFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     HumveeFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -230,7 +218,8 @@ class Commerce {
     HumveeFactory.base_stats[S.health] = 3000f;
     loadSprites(HumveeFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_HumveeFactory", "HumveeFactory");
+
+
 
 
     BuildingAsset HelicopterFactory = AssetManager.buildings.clone("HelicopterFactory", "!city_building");
@@ -247,13 +236,13 @@ class Commerce {
     HelicopterFactory.base_stats[S.health] = 3000f;
     loadSprites(HelicopterFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_HelicopterFactory", "HelicopterFactory");
+
+
 
 
     BuildingAsset DroneFactory = AssetManager.buildings.clone("DroneFactory", "!city_building");
     AssetManager.buildings.add(DroneFactory);
     DroneFactory.id = "DroneFactory";
-
     DroneFactory.priority = 69999;
     DroneFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     DroneFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -264,12 +253,12 @@ class Commerce {
     DroneFactory.base_stats[S.health] = 3000f;
     loadSprites(DroneFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_DroneFactory", "DroneFactory");
+
+
 
     BuildingAsset AirshipFactory = AssetManager.buildings.clone("AirshipFactory", "!city_building");
     AssetManager.buildings.add(AirshipFactory);
     AirshipFactory.id = "AirshipFactory";
-
     AirshipFactory.priority = 69999;
     AirshipFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     AirshipFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -280,7 +269,8 @@ class Commerce {
     AirshipFactory.base_stats[S.health] = 3000f;
     loadSprites(AirshipFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_AirshipFactory", "AirshipFactory");
+
+
 
     BuildingAsset FighterJetFactory = AssetManager.buildings.clone("FighterJetFactory", "!city_building");
     AssetManager.buildings.add(FighterJetFactory);
@@ -296,7 +286,7 @@ class Commerce {
     FighterJetFactory.base_stats[S.health] = 3000f;
     loadSprites(FighterJetFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_FighterJetFactory", "FighterJetFactory");
+
 
 
     BuildingAsset BoiFactory = AssetManager.buildings.clone("BoiFactory", "!city_building");
@@ -312,8 +302,6 @@ class Commerce {
     BoiFactory.spawnUnits_asset = "MissileSystem";
     BoiFactory.base_stats[S.health] = 3000f;
     loadSprites(BoiFactory);
-
-    AddBuildingOrderKeysToCivRaces("order_BoiFactory", "BoiFactory");
 
 
 
@@ -332,7 +320,6 @@ class Commerce {
     GunshipFactory.base_stats[S.health] = 3000f;
     loadSprites(GunshipFactory);
 
-    AddBuildingOrderKeysToCivRaces("order_GunshipFactory", "GunshipFactory");
 
 
 
@@ -350,7 +337,6 @@ class Commerce {
     ModernBarracks.base_stats[S.health] = 3000f;
     loadSprites(ModernBarracks);
 
-    AddBuildingOrderKeysToCivRaces("order_ModernBarracks", "ModernBarracks");
 
 
 
@@ -664,9 +650,19 @@ class Commerce {
     }
   }
 
-  public static void turnOnDrones() { SetFactorySpawnUnits("DroneFactory", true); }
 
-  public static void turnOffDrones() { SetFactorySpawnUnits("DroneFactory", false); }
+  public static void turnOnDrones() { SetFactorySpawnUnits("DroneFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_DroneFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_DroneFactory", "DroneFactory"); }
+
+  public static void turnOffDrones()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_DroneFactory"); }
+
+
+
+
+
 
   public static void toggleAirFactory() {
     Main.modifyBoolOption("MIRVBomberOption", PowerButtons.GetToggleValue("AirFactory_toggle"));
@@ -677,9 +673,17 @@ class Commerce {
     }
   }
 
-  public static void turnOnAirFactory() { SetFactorySpawnUnits("AirFactory", true); }
 
-  public static void turnOffAirFactory() { SetFactorySpawnUnits("AirFactory", false); }
+  public static void turnOnAirFactory() { SetFactorySpawnUnits("AirFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_AirFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_AirFactory", "AirFactory"); }
+
+  public static void turnOffAirFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_AirFactory"); }
+
+
+
 
   public static void toggleTankFactory() {
     Main.modifyBoolOption("TankOption", PowerButtons.GetToggleValue("TankFactory_toggle"));
@@ -690,10 +694,17 @@ class Commerce {
     }
   }
 
-  public static void turnOnTankFactory() { SetFactorySpawnUnits("TankFactory", true); }
 
-  public static void turnOffTankFactory() { SetFactorySpawnUnits("TankFactory", false); }
+  public static void turnOnTankFactory() { SetFactorySpawnUnits("TankFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_TankFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_TankFactory", "TankFactory"); }
+
+  public static void turnOffTankFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_TankFactory"); }
+
   
+
     public static void toggleTerranFactory() {
     Main.modifyBoolOption("TerranOption", PowerButtons.GetToggleValue("TerranFactory_toggle"));
     if (PowerButtons.GetToggleValue("TerranFactory_toggle")) {
@@ -703,10 +714,17 @@ class Commerce {
     }
   }
 
-  public static void turnOnTerranFactory() { SetFactorySpawnUnits("TerranFactory", true); }
 
-  public static void turnOffTerranFactory() { SetFactorySpawnUnits("TerranFactory", false); }
+  public static void turnOnTerranFactory() { SetFactorySpawnUnits("TerranFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_TerranFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_TerranFactory", "TerranFactory"); }
+
+  public static void turnOffTerranFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_TerranFactory"); }
   
+
+
       public static void toggleP9000Factory() {
     Main.modifyBoolOption("P9000Option", PowerButtons.GetToggleValue("P9000Factory_toggle"));
     if (PowerButtons.GetToggleValue("P9000Factory_toggle")) {
@@ -716,10 +734,18 @@ class Commerce {
     }
   }
 
-  public static void turnOnP9000Factory() { SetFactorySpawnUnits("P9000Factory", true); }
 
-  public static void turnOffP9000Factory() { SetFactorySpawnUnits("P9000Factory", false); }
+  public static void turnOnP9000Factory() { SetFactorySpawnUnits("P9000Factory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_P9000Factory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_P9000Factory", "P9000Factory"); }
+
+  public static void turnOffP9000Factory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_P9000Factory"); }
+
   
+
+
   public static void toggleBarracks() {
     Main.modifyBoolOption("SoldierOption", PowerButtons.GetToggleValue("Soldier_toggle"));
     if (PowerButtons.GetToggleValue("Soldier_toggle")) {
@@ -729,9 +755,13 @@ class Commerce {
     }
   }
 
-  public static void turnOnSoldiers() { SetFactorySpawnUnits("ModernBarracks", true); }
+   public static void turnOnSoldiers() { SetFactorySpawnUnits("ModernBarracks", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_ModernBarracks", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_ModernBarracks", "ModernBarracks"); }
 
-  public static void turnOffSoldiers() { SetFactorySpawnUnits("ModernBarracks", false); }
+  public static void turnOffSoldiers()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_ModernBarracks"); }
 
 
         public static void toggleRailgunFactory()
@@ -747,9 +777,17 @@ class Commerce {
             }
         }
 
-        public static void turnOnRailgunFactory() { SetFactorySpawnUnits("RailgunFactory", true); }
 
-        public static void turnOffRailgunFactory() { SetFactorySpawnUnits("RailgunFactory", false); }
+  public static void turnOnRailgunFactory() { SetFactorySpawnUnits("RailgunFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_RailgunFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_RailgunFactory", "RailgunFactory"); }
+
+  public static void turnOffRailgunFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_RailgunFactory"); }
+
+
+
 
         public static void toggleHumveeFactory() {
     Main.modifyBoolOption("HumveeOption", PowerButtons.GetToggleValue("HumveeFactory_toggle"));
@@ -760,9 +798,16 @@ class Commerce {
     }
   }
 
-  public static void turnOnHumveeFactory() { SetFactorySpawnUnits("HumveeFactory", true); }
 
-  public static void turnOffHumveeFactory() { SetFactorySpawnUnits("HumveeFactory", false); }
+  public static void turnOnHumveeFactory() { SetFactorySpawnUnits("HumveeFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_HumveeFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_HumveeFactory", "HumveeFactory"); }
+
+  public static void turnOffHumveeFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_HumveeFactory"); }
+
+
 
   public static void toggleHelicopterFactory() {
     Main.modifyBoolOption("HeliOption", PowerButtons.GetToggleValue("HelicopterFactory_toggle"));
@@ -773,9 +818,15 @@ class Commerce {
     }
   }
 
-  public static void turnOnHelicopterFactory() { SetFactorySpawnUnits("HelicopterFactory", true); }
 
-  public static void turnOffHelicopterFactory() { SetFactorySpawnUnits("HelicopterFactory", false); }
+  public static void turnOnHelicopterFactory() { SetFactorySpawnUnits("HelicopterFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_HelicopterFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_HelicopterFactory", "HelicopterFactory"); }
+
+  public static void turnOffHelicopterFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_HelicopterFactory"); }
+
 
   public static void toggleFighterJetFactory() {
     Main.modifyBoolOption("FighterJetOption", PowerButtons.GetToggleValue("FighterJetFactory_toggle"));
@@ -786,9 +837,14 @@ class Commerce {
     }
   }
 
-  public static void turnOnFighterJetFactory() { SetFactorySpawnUnits("FighterJetFactory", true); }
+  public static void turnOnFighterJetFactory() { SetFactorySpawnUnits("FighterJetFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_FighterJetFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_FighterJetFactory", "FighterJetFactory"); }
 
-  public static void turnOffFighterJetFactory() { SetFactorySpawnUnits("FighterJetFactory", false); }
+  public static void turnOffFighterJetFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_FighterJetFactory"); }
+
 
   public static void toggleAirshipFactory() {
     Main.modifyBoolOption("AirshipOption", PowerButtons.GetToggleValue("AirshipFactory_toggle"));
@@ -799,9 +855,15 @@ class Commerce {
     }
   }
 
-  public static void turnOnAirshipFactory() { SetFactorySpawnUnits("AirshipFactory", true); }
 
-  public static void turnOffAirshipFactory() { SetFactorySpawnUnits("AirshipFactory", false); }
+  public static void turnOnAirshipFactory() { SetFactorySpawnUnits("AirshipFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_AirshipFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_AirshipFactory", "AirshipFactory"); }
+
+  public static void turnOffAirshipFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_AirshipFactory"); }
+
 
   public static void toggleBoiFactory() {
     Main.modifyBoolOption("BoiOption", PowerButtons.GetToggleValue("BoiFactory_toggle"));
@@ -811,10 +873,14 @@ class Commerce {
       turnOffBoiFactory();
     }
   }
+  public static void turnOnBoiFactory() { SetFactorySpawnUnits("BoiFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_BoiFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_BoiFactory", "BoiFactory"); }
 
-  public static void turnOnBoiFactory() { SetFactorySpawnUnits("BoiFactory", true); }
+  public static void turnOffBoiFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_BoiFactory"); }
 
-  public static void turnOffBoiFactory() { SetFactorySpawnUnits("BoiFactory", false); }
 
   public static void toggleGunshipFactory() {
     Main.modifyBoolOption("GunshipOption", PowerButtons.GetToggleValue("GunshipFactory_toggle"));
@@ -825,9 +891,16 @@ class Commerce {
     }
   }
 
-  public static void turnOnGunshipFactory() { SetFactorySpawnUnits("GunshipFactory", true); }
+   public static void turnOnGunshipFactory() { SetFactorySpawnUnits("GunshipFactory", true);
+      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+      human.addBuilding("order_GunshipFactory", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_GunshipFactory", "GunshipFactory"); }
 
-  public static void turnOffGunshipFactory() { SetFactorySpawnUnits("GunshipFactory", false); }
+  public static void turnOffGunshipFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
+			RemoveBuilding(human, "order_GunshipFactory"); }
+
+
+
 
 	private static void SetFactorySpawnUnits(string factoryID, bool spawn) {
 		BuildingAsset factory = AssetManager.buildings.get(factoryID);
@@ -835,14 +908,14 @@ class Commerce {
 			factory.spawnUnits = spawn;
 
     RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
-	
+
 			if (!spawn) {
 			//	RemoveBuildingOrderKeysToCivRaces($"order_{factoryID}", factoryID);
 				RemoveBuilding(human, factoryID);
 
 			}
-			else 
-			{ 
+			else
+			{
 				human.addBuilding($"order_{factoryID}", 1, pPop : 50, pBuildings : 16);
 			//	AddBuildingOrderKeysToCivRaces($"order_{factoryID}", factoryID);
 			}
