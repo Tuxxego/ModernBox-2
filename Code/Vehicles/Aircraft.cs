@@ -35,7 +35,7 @@ class Aircraft : MonoBehaviour {
     Heli.base_stats[S.accuracy] = 100f;
     Heli.base_stats[S.health] = 200f;
     Heli.base_stats[S.speed] = 200f;
-    Heli.base_stats[S.scale] = 0.1f;
+    Heli.base_stats[S.scale] = 0.05f;
     Heli.base_stats[S.damage] = 0f;
     Heli.base_stats[S.knockback_reduction] = 300f;
     Heli.drawBoatMark_big = true;
@@ -78,6 +78,8 @@ class Aircraft : MonoBehaviour {
     // Heli.actorSize = ActorSize.S17_Dragon;
     AssetManager.actor_library.add(Heli);
     AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+        AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.addColorSet("heliColor");
     Heli.color = Toolbox.makeColor("#33724D");
     Localization.addLocalization(Heli.nameLocale, Heli.nameLocale);
@@ -91,7 +93,7 @@ class Aircraft : MonoBehaviour {
   HeliELite.base_stats[S.accuracy] = 100f;
   HeliELite.base_stats[S.health] = 600f;
   HeliELite.base_stats[S.speed] = 200f;
-  HeliELite.base_stats[S.scale] = 0.1f;
+  HeliELite.base_stats[S.scale] = 0.05f;
   HeliELite.base_stats[S.damage] = 5f;
   HeliELite.base_stats[S.knockback_reduction] = 300f;
   HeliELite.drawBoatMark_big = true;
@@ -133,6 +135,8 @@ class Aircraft : MonoBehaviour {
     // HeliELite.actorSize = ActorSize.S17_Dragon;
     AssetManager.actor_library.add(HeliELite);
     AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.addColorSet("heliColor");
   HeliELite.color = Toolbox.makeColor("#33724D");
     Localization.addLocalization(HeliELite.nameLocale, HeliELite.nameLocale);
@@ -181,6 +185,8 @@ class Aircraft : MonoBehaviour {
     Gunship.icon = "iconGunship";
     // AssetManager.actor_library.CallMethod("addTrait", "Gunshipcopter");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", Gunship);
     Gunship.animation_idle = "walk_0,walk_1,walk_2,walk_3,walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3";
     Gunship.animation_walk = "walk_0,walk_1,walk_2,walk_3,walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3walk_0,walk_1,walk_2,walk_3";
@@ -244,6 +250,8 @@ class Aircraft : MonoBehaviour {
     //eliteGunship.actorSize = ActorSize.S17_Dragon;
     AssetManager.actor_library.add(eliteGunship);
     AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.addColorSet("heliColor");
    eliteGunship.color = Toolbox.makeColor("#33724D");
     Localization.addLocalization(eliteGunship.nameLocale,eliteGunship.nameLocale);
@@ -253,11 +261,11 @@ class Aircraft : MonoBehaviour {
     // Drone.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
     Drone.race = "human";
     Drone.kingdom = "ModernKingdom";
-    Drone.base_stats[S.attack_speed] = 100f;
+    Drone.base_stats[S.attack_speed] = 1000f;
     Drone.base_stats[S.accuracy] = 100f;
     Drone.base_stats[S.health] = 15f;
     Drone.base_stats[S.speed] = 30f;
-    Drone.base_stats[S.damage] = 93;
+    Drone.base_stats[S.damage] = 6;
     Drone.base_stats[S.knockback_reduction] = 300f;
     Drone.drawBoatMark_big = true;
     Drone.skipFightLogic = false;
@@ -298,6 +306,8 @@ class Aircraft : MonoBehaviour {
     AssetManager.actor_library.addColorSet("heliColor");
     Drone.color = Toolbox.makeColor("#33724D");
     AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     Localization.addLocalization(Drone.nameLocale, Drone.nameLocale);
 
      var TIEfighter = AssetManager.actor_library.clone("TIEfighter", "_mob");
@@ -305,11 +315,11 @@ class Aircraft : MonoBehaviour {
     // TIEfighter.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
     TIEfighter.race = "human";
     TIEfighter.kingdom = "ModernKingdom";
-    TIEfighter.base_stats[S.attack_speed] = 100f;
+    TIEfighter.base_stats[S.attack_speed] = 1000f;
     TIEfighter.base_stats[S.accuracy] = 100f;
     TIEfighter.base_stats[S.health] = 100f;
     TIEfighter.base_stats[S.speed] = 80f;
-    TIEfighter.base_stats[S.damage] = 0;
+    TIEfighter.base_stats[S.damage] = 10;
     TIEfighter.base_stats[S.knockback_reduction] = 300f;
     TIEfighter.drawBoatMark_big = true;
     TIEfighter.skipFightLogic = false;
@@ -340,6 +350,8 @@ class Aircraft : MonoBehaviour {
     TIEfighter.icon = "iconDrone";
     // AssetManager.actor_library.CallMethod("addTrait", "Dronecopter");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", TIEfighter);
     TIEfighter.animation_idle = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7";
     TIEfighter.animation_walk = "walk_0,walk_1,walk_2";
@@ -363,12 +375,12 @@ class Aircraft : MonoBehaviour {
     // Zeppelin.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
     Zeppelin.race = "human";
     Zeppelin.kingdom = "ModernKingdom";
-    Zeppelin.base_stats[S.attack_speed] = 100f;
+    Zeppelin.base_stats[S.attack_speed] = 0f;
     Zeppelin.base_stats[S.accuracy] = 100f;
     Zeppelin.base_stats[S.health] = 1000f;
     Zeppelin.base_stats[S.speed] = 50f;
-    Zeppelin.base_stats[S.scale] = 0.1f;
-    Zeppelin.base_stats[S.damage] = 93;
+    Zeppelin.base_stats[S.scale] = 0.2f;
+    Zeppelin.base_stats[S.damage] = 20;
     Zeppelin.base_stats[S.knockback_reduction] = 300f;
     Zeppelin.drawBoatMark_big = true;
     Zeppelin.skipFightLogic = false;
@@ -402,6 +414,8 @@ class Aircraft : MonoBehaviour {
     Zeppelin.icon = "iconZeppelin";
     AssetManager.actor_library.CallMethod("addTrait", "Zeppelin");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", Zeppelin);
     Zeppelin.animation_idle = "walk_0";
     Zeppelin.animation_walk = "walk_0,walk_1,walk_2";
@@ -419,12 +433,12 @@ class Aircraft : MonoBehaviour {
     // EliteZeppelin.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
     EliteZeppelin.race = "human";
     EliteZeppelin.kingdom = "ModernKingdom";
-    EliteZeppelin.base_stats[S.attack_speed] = 300f;
+    EliteZeppelin.base_stats[S.attack_speed] = 150f;
     EliteZeppelin.base_stats[S.accuracy] = 100f;
     EliteZeppelin.base_stats[S.health] = 3000f;
     EliteZeppelin.base_stats[S.speed] = 70f;
     EliteZeppelin.base_stats[S.scale] = 0.1f;
-    EliteZeppelin.base_stats[S.damage] = 93;
+    EliteZeppelin.base_stats[S.damage] = 40;
     EliteZeppelin.base_stats[S.knockback_reduction] = 300f;
     EliteZeppelin.drawBoatMark_big = true;
     EliteZeppelin.skipFightLogic = false;
@@ -458,6 +472,8 @@ class Aircraft : MonoBehaviour {
     EliteZeppelin.icon = "iconZeppelin";
     AssetManager.actor_library.CallMethod("addTrait", "Zeppelin");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", EliteZeppelin);
     EliteZeppelin.animation_idle = "idle_0,idle_1,idle_2,idle_3";
     EliteZeppelin.animation_walk = "walk_0,walk_1,walk_2,walk_3";
@@ -478,8 +494,8 @@ class Aircraft : MonoBehaviour {
     MIRVBomber.base_stats[S.accuracy] = 100f;
     MIRVBomber.base_stats[S.health] = 1000f;
     MIRVBomber.base_stats[S.speed] = 50f;
-    MIRVBomber.base_stats[S.scale] = 0.1f;
-    MIRVBomber.base_stats[S.damage] = 93f;
+    MIRVBomber.base_stats[S.scale] = 0.2f;
+    MIRVBomber.base_stats[S.damage] = 30f;
     MIRVBomber.base_stats[S.range] = 10f;
     MIRVBomber.base_stats[S.knockback_reduction] = 300f;
     MIRVBomber.drawBoatMark_big = true;
@@ -514,6 +530,8 @@ class Aircraft : MonoBehaviour {
     MIRVBomber.icon = "iconMIRVBomber";
     AssetManager.actor_library.CallMethod("addTrait", "Jet");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", MIRVBomber);
     MIRVBomber.animation_idle = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9,idle_10,idle_11,idle_12,idle_13,idle_14,idle_15,idle_16,idle_17,idle_18,idle_19";
     MIRVBomber.animation_walk = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9,idle_10,idle_11,idle_12,idle_13,idle_14,idle_15,idle_16,idle_17,idle_18,idle_19";
@@ -531,12 +549,12 @@ class Aircraft : MonoBehaviour {
     // EliteBomber.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
     EliteBomber.race = "human";
     EliteBomber.kingdom = "ModernKingdom";
-    EliteBomber.base_stats[S.attack_speed] = 100f;
+    EliteBomber.base_stats[S.attack_speed] = 0f;
     EliteBomber.base_stats[S.accuracy] = 100f;
     EliteBomber.base_stats[S.health] = 5000f;
     EliteBomber.base_stats[S.speed] = 50f;
-    EliteBomber.base_stats[S.scale] = 0.1f;
-    EliteBomber.base_stats[S.damage] = 300f;
+    EliteBomber.base_stats[S.scale] = 0.05f;
+    EliteBomber.base_stats[S.damage] = 50f;
     EliteBomber.base_stats[S.range] = 20f;
     EliteBomber.base_stats[S.knockback_reduction] = 300f;
     EliteBomber.drawBoatMark_big = true;
@@ -571,6 +589,8 @@ class Aircraft : MonoBehaviour {
     EliteBomber.icon = "iconMIRVBomber";
     AssetManager.actor_library.CallMethod("addTrait", "Jet");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", EliteBomber);
     EliteBomber.animation_idle = "idle_0,idle_1,idle_2,idle_3";
     EliteBomber.animation_walk = "walk_0,walk_1,walk_2,walk_3";
@@ -593,7 +613,7 @@ class Aircraft : MonoBehaviour {
     FighterJet.base_stats[S.speed] = 70f;
     FighterJet.base_stats[S.knockback_reduction] = 300f;
     FighterJet.base_stats[S.scale] = 0.2f;
-    FighterJet.base_stats[S.damage] = 0;
+    FighterJet.base_stats[S.damage] = 20;
     FighterJet.drawBoatMark_big = true;
     FighterJet.skipFightLogic = false;
     FighterJet.inspect_stats = true;
@@ -626,6 +646,8 @@ class Aircraft : MonoBehaviour {
     FighterJet.icon = "iconFighterJet";
     // AssetManager.actor_library.CallMethod("addTrait", "Jet");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+            AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", FighterJet);
     FighterJet.animation_idle = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9";
     FighterJet.animation_walk = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9";
@@ -650,7 +672,7 @@ class Aircraft : MonoBehaviour {
     F55FighterJet.base_stats[S.speed] = 70f;
     F55FighterJet.base_stats[S.knockback_reduction] = 300f;
     F55FighterJet.base_stats[S.scale] = 0.2f;
-    F55FighterJet.base_stats[S.damage] = 0;
+    F55FighterJet.base_stats[S.damage] = 20;
     F55FighterJet.drawBoatMark_big = true;
     F55FighterJet.skipFightLogic = false;
     F55FighterJet.inspect_stats = true;
@@ -683,6 +705,8 @@ class Aircraft : MonoBehaviour {
     F55FighterJet.icon = "iconFighterJet";
     // AssetManager.actor_library.CallMethod("addTrait", "Jet");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
+    AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+    AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
     AssetManager.actor_library.CallMethod("loadShadow", F55FighterJet);
     F55FighterJet.animation_idle = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9";
     F55FighterJet.animation_walk = "idle_0,idle_1,idle_2,idle_3,idle_4,idle_5,idle_6,idle_7,idle_8,idle_9";

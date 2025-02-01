@@ -43,12 +43,12 @@ namespace M2
                         "MIRV_Names",
             });
             BudgetMIRV.materials = List.Of<string>(new string[] { "iron" });
-            BudgetMIRV.projectile = "fireball";
+            BudgetMIRV.projectile = "MIRVartillery";
             BudgetMIRV.setCost(1, "Xenium", 50);
-            BudgetMIRV.base_stats[S.range] = 200f;
+            BudgetMIRV.base_stats[S.range] = 50f;
             BudgetMIRV.base_stats[S.accuracy] = 0;
             BudgetMIRV.base_stats[S.attack_speed] = 40f;
-            BudgetMIRV.base_stats[S.damage] = 993;
+            BudgetMIRV.base_stats[S.damage] = 25;
             BudgetMIRV.base_stats[S.health] = 10;
 			BudgetMIRV.tech_needed = "BudgetMIRV";
             BudgetMIRV.equipment_value = 1000;
@@ -66,12 +66,12 @@ namespace M2
                         "MIRV_Names",
             });
             DecentMIRV.materials = List.Of<string>(new string[] { "iron" });
-            DecentMIRV.projectile = "fireball";
+            DecentMIRV.projectile = "MIRVartillery";
             DecentMIRV.setCost(1, "Xenium", 50);
-            DecentMIRV.base_stats[S.range] = 500f;
+            DecentMIRV.base_stats[S.range] = 100f;
             DecentMIRV.base_stats[S.accuracy] = 0;
             DecentMIRV.base_stats[S.attack_speed] = 70f;
-            DecentMIRV.base_stats[S.damage] = 993;
+            DecentMIRV.base_stats[S.damage] = 40;
             DecentMIRV.base_stats[S.health] = 10;
 			DecentMIRV.tech_needed = "DecentMIRV";
             DecentMIRV.equipment_value = 1000;
@@ -92,8 +92,6 @@ namespace M2
           MIRVartillery.endEffect = "fx_explosion_meteorite";
           MIRVartillery.terraformOption = "nonannoyingbomb";
           MIRVartillery.terraformRange = 4;
-	      MIRVartillery.sound_launch = "event:/SFX/POWERS/NapalmBomb";
-          MIRVartillery.sound_impact = "event:/SFX/POWERS/Bomb";
           MIRVartillery.startScale = 0.2f;
           MIRVartillery.targetScale = 0.2f;
           MIRVartillery.parabolic = true;
@@ -111,10 +109,10 @@ namespace M2
             MIRV.materials = List.Of<string>(new string[] { "iron" });
             MIRV.projectile = "MIRVartillery";
             MIRV.setCost(1, "Xenium", 50);
-            MIRV.base_stats[S.range] = 50000f;
+            MIRV.base_stats[S.range] = 200f;
             MIRV.base_stats[S.accuracy] = 0;
             MIRV.base_stats[S.attack_speed] = 101f;
-            MIRV.base_stats[S.damage] = 993;
+            MIRV.base_stats[S.damage] = 60;
             MIRV.base_stats[S.health] = 10;
 			MIRV.tech_needed = "MIRV";
             MIRV.equipment_value = 1000;
@@ -124,6 +122,7 @@ namespace M2
             AssetManager.items.list.AddItem(MIRV);
             Localization.addLocalization("item_MIRV", "Long Range Ballistic MIRV");
             addMIRVSprite(MIRV.id, MIRV.materials[0]);
+
 			
 			ItemAsset MIRVBomb = AssetManager.items.clone("MIRVBomb", "bow");
             MIRVBomb.id = "MIRVBomb";
@@ -137,7 +136,7 @@ namespace M2
             MIRVBomb.base_stats[S.range] = 0f;
             MIRVBomb.base_stats[S.accuracy] = 0f;
             MIRVBomb.base_stats[S.attack_speed] = 101f;
-            MIRVBomb.base_stats[S.damage] = 993f;
+            MIRVBomb.base_stats[S.damage] = 100f;
             MIRVBomb.base_stats[S.health] = 10;
 			MIRVBomb.tech_needed = "MIRV";
             MIRVBomb.equipment_value = 1000;
@@ -157,12 +156,12 @@ namespace M2
                         "STRONGMIRV_Names",
             });
             STRONGMIRV.materials = List.Of<string>(new string[] { "iron" });
-            STRONGMIRV.projectile = "fireball";
+            STRONGMIRV.projectile = "MIRVartillery";
             STRONGMIRV.setCost(1, "Xenium", 50);
-            STRONGMIRV.base_stats[S.range] = 50000f;
+            STRONGMIRV.base_stats[S.range] = 150f;
             STRONGMIRV.base_stats[S.accuracy] = 0;
-            STRONGMIRV.base_stats[S.attack_speed] = 1001f;
-            STRONGMIRV.base_stats[S.damage] = 993;
+            STRONGMIRV.base_stats[S.attack_speed] = 10f;
+            STRONGMIRV.base_stats[S.damage] = 200;
             STRONGMIRV.base_stats[S.health] = 10;
 			STRONGMIRV.tech_needed = "STRONGMIRV";
             STRONGMIRV.equipment_value = 1000;

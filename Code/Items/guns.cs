@@ -168,7 +168,6 @@ namespace M2
           jetrocketprojectile.endEffect = "fx_fireball_explosion";
           jetrocketprojectile.terraformOption = "nonannoyingbomb";
           jetrocketprojectile.terraformRange = 3;
-	      jetrocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           jetrocketprojectile.sound_impact = "event:/SFX/NATURE/EarthQuake";
           jetrocketprojectile.startScale = 0.3f;
           jetrocketprojectile.targetScale = 0.3f;
@@ -200,7 +199,6 @@ namespace M2
           helirocketprojectile.terraformOption = "nonannoyingbomb";
          helirocketprojectile.endEffect = "fx_fireball_explosion";
           helirocketprojectile.terraformRange = 3;
-	      helirocketprojectile.sound_launch = "event:/SFX/POWERS/NapalmBomb";
           helirocketprojectile.sound_impact = "event:/SFX/NATURE/EarthQuake";
           helirocketprojectile.startScale = 0.1f;
           helirocketprojectile.targetScale = 0.1f;
@@ -298,7 +296,7 @@ namespace M2
             GunshipCannon.materials = List.Of<string>(new string[] { "iron" });
             GunshipCannon.projectile = "GunshipBullet";
 			GunshipCannon.tech_needed = "Firearms";			
-            GunshipCannon.base_stats[S.range] = 000f;
+            GunshipCannon.base_stats[S.range] = 14f;
             GunshipCannon.base_stats[S.accuracy] = 400;
             GunshipCannon.base_stats[S.attack_speed] = 200f;
             GunshipCannon.base_stats[S.damage] = 13;

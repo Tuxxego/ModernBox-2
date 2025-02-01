@@ -114,23 +114,70 @@ namespace M2
                     Debug.Log("Desert World biome selected.");
 				Config.current_map_template = "boring_plains";
 
-            BiomeAsset DesertPlanet = new BiomeAsset();
-            DesertPlanet.id = "biome_DesertPlanet";
-			      DesertPlanet.tile_low = "desert_low";
-			      DesertPlanet.tile_high = "desert_high";
-			      DesertPlanet.grow_strength = 10;
-			      DesertPlanet.spread_biome = true;
-				  DesertPlanet.addTree("Ruins1", 30);
-			      DesertPlanet.generator_pool_amount = 80;
-            DesertPlanet.grow_vegetation_auto = true;
-			      DesertPlanet.grow_type_selector_minerals = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomMineral);
-			      DesertPlanet.grow_type_selector_trees = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomTrees);
-			      DesertPlanet.grow_type_selector_plants = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomPlants);
-		        DesertPlanet.addUnit(Creatures.Terlanius, 1);
-		        DesertPlanet.addMineral(SB.mineral_stone, 5);
-		        DesertPlanet.addMineral(SB.mineral_metals, 3);
-            AssetManager.biome_library.add(DesertPlanet);
-            AssetManager.biome_library.addBiomeToPool(DesertPlanet);
+	BiomeAsset tartarus = new BiomeAsset();
+            tartarus.id = "biome_tartarus";
+			tartarus.tile_low = "tartarus_low";
+			tartarus.tile_high = "tartarus_high";
+			tartarus.force_unit_skin_set = "desert";
+			tartarus.grow_strength = 20;
+			tartarus.spread_biome = true;
+			tartarus.generator_pool_amount = 80;
+            tartarus.grow_vegetation_auto = true;
+			tartarus.grow_type_selector_minerals = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomMineral);
+			tartarus.grow_type_selector_trees = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomTrees);
+			tartarus.grow_type_selector_plants = new GrowTypeSelector(TileActionLibrary.getGrowTypeRandomPlants);
+			tartarus.addTree("tartarus_desert_bones_big", 1);
+			tartarus.addTree("tartarus_tar_bones_big", 1);
+			tartarus.addTree("tartarus_vent", 1);
+            tartarus.addPlant("tartarus_desert_bones", 2);
+            tartarus.addPlant("tartarus_tar_bones", 1);
+			tartarus.addPlant("tartarus_ruins", 1);
+            tartarus.addUnit("scandid", 4);
+            tartarus.addUnit("Duneworm", 1);
+			tartarus.addMineral(SB.mineral_bones, 20);
+			tartarus.addMineral(SB.mineral_stone, 20);
+			tartarus.addMineral(SB.mineral_metals, 5);
+            AssetManager.biome_library.add(tartarus);
+            AssetManager.biome_library.addBiomeToPool(tartarus);
+
+            TopTileType tartarus_low = AssetManager.topTiles.clone("tartarus_low", ST.infernal_low);
+            tartarus_low.color = Toolbox.makeColor("#272727", -1f);
+            tartarus_low.setBiome("biome_tartarus");
+			tartarus_low.rank_type = TileRank.Low;
+            tartarus_low.setDrawLayer(TileZIndexes.infernal_low, null);
+            tartarus_low.food_resource = SR.desert_berries;
+            tartarus_low.liquid = true;
+            tartarus_low.ground = false;
+            tartarus_low.ocean = true;
+		    tartarus_low.stepActionChance = 1f;
+            tartarus_low.hold_lava = false;
+            tartarus_low.can_be_frozen = true;
+            tartarus_low.burnable = false;
+            tartarus_low.walkMod = 1f;
+            tartarus_low.layerType = TileLayerType.Ground;
+			tartarus_low.biome_asset = tartarus;
+            AssetManager.topTiles.add(tartarus_low);
+            AssetManager.topTiles.loadSpritesForTile(tartarus_low);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("tartarus_low"));
+            MapBox.instance.tilemap.layers[tartarus_low.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+
+            TopTileType tartarus_high = AssetManager.topTiles.clone("tartarus_high", ST.infernal_high);
+            tartarus_high.color = Toolbox.makeColor("#d57d4f", -1f);
+            tartarus_high.setBiome("biome_tartarus");
+			tartarus_high.rank_type = TileRank.High;
+            tartarus_high.setDrawLayer(TileZIndexes.infernal_high);
+            tartarus_high.stepActionChance = 1f;
+            tartarus_high.food_resource = SR.desert_berries;
+            tartarus_high.liquid = false;
+            tartarus_high.hold_lava = false;
+            tartarus_high.can_be_frozen = true;
+            tartarus_high.burnable = false;
+            tartarus_high.layerType = TileLayerType.Ground;
+			tartarus_high.biome_asset = tartarus;
+            AssetManager.topTiles.add(tartarus_high);
+            AssetManager.topTiles.loadSpritesForTile(tartarus_high);
+            AssetManager.topTiles.add(AssetManager.topTiles.get("tartarus_high"));
+            MapBox.instance.tilemap.layers[tartarus_high.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
 
 			break;
 
@@ -683,7 +730,7 @@ break;
             }
             else
             {
-                newUnitID = "Terlanius"; // TEMPORARY AS A TEST
+                newUnitID = "glitchspectre";
             }
 
             Actor actor = World.world.units.createNewUnit(newUnitID, pTile);

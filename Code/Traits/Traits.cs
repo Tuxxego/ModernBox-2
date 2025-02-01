@@ -715,6 +715,34 @@ private static string GetBuildingForActor(Actor actor)
             return "Gunship_scraps";
         case "Heli":
             return "Heli_scraps";
+               case "Soldier":
+            return "Soldier_scraps";
+              case "AbramTank":
+            return "AbramTank_scraps";
+        case "dreadnaught":
+            return "dreadnaught_scraps";
+        case "EliteBomber":
+            return "EliteBomber_scraps";
+        case "eliteGunship":
+            return "eliteGunship_scraps";
+        case "EliteP9000":
+            return "EliteP9000_scraps";
+        case "EliteZeppelin":
+            return "EliteZeppelin_scraps";
+        case "eliteMissileSystem":
+            return "eliteMissileSystem_scraps";
+        case "F55FighterJet":
+            return "F55FighterJet_scraps";
+        case "HeliELite":
+            return "HeliELite_scraps";
+        case "OmegaRailgun":
+            return "OmegaRailgun_scraps";
+        case "SpaceMarine":
+            return "SpaceMarine_scraps";
+               case "TIEfighter":
+            return "TIEfighter_scraps";
+              case "wheeledtank":
+            return "wheeledtank_scraps";
         default:
             return defaultBuilding;
     }

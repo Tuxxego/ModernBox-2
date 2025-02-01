@@ -45,8 +45,8 @@ namespace M2
             P9000.base_stats[S.damage] = 100f;
             P9000.base_stats[S.scale] = 0.1f;
             P9000.base_stats[S.attack_speed] = 0;
-			       P9000.disablePunchAttackAnimation = true;
-			P9000.base_stats[S.range] = 150f;
+			P9000.disablePunchAttackAnimation = true;
+			P9000.base_stats[S.range] = 70f;
 			P9000.base_stats[S.knockback_reduction] = 300f;
             P9000.drawBoatMark_big = true;
             P9000.skipFightLogic = false;
@@ -79,6 +79,7 @@ namespace M2
             P9000.icon = "iconP9000";
 			AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
 			AssetManager.actor_library.CallMethod("addTrait", "P9000");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
 			AssetManager.actor_library.CallMethod("loadShadow", P9000);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             P9000.animation_walk = "walk_0,walk_1,walk_2,walk_3";
@@ -102,7 +103,7 @@ namespace M2
             EliteP9000.base_stats[S.scale] = 0.1f;
             EliteP9000.base_stats[S.attack_speed] = 0;
             EliteP9000.disablePunchAttackAnimation = true;
-			EliteP9000.base_stats[S.range] = 150f;
+			EliteP9000.base_stats[S.range] = 80f;
 			EliteP9000.base_stats[S.knockback_reduction] = 300f;
             EliteP9000.drawBoatMark_big = true;
             EliteP9000.skipFightLogic = false;
@@ -137,6 +138,7 @@ namespace M2
 			AssetManager.actor_library.CallMethod("addTrait", "P9000");
 			AssetManager.actor_library.CallMethod("loadShadow", EliteP9000);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
             EliteP9000.animation_walk = "walk_0,walk_1,walk_2,walk_3";
 			EliteP9000.animation_idle = "walk_0,walk_1,walk_2,walk_3";
             EliteP9000.animation_swim = "walk_0,walk_1,walk_2,walk_3";
@@ -154,10 +156,10 @@ namespace M2
             Terran.base_stats[S.health] = 200f;
             Terran.base_stats[S.speed] = 70f;
             Terran.base_stats[S.armor] = 15f;
-            Terran.base_stats[S.damage] = 40f;
+            Terran.base_stats[S.damage] = 10f;
             Terran.base_stats[S.scale] = 0.1f;
-            Terran.base_stats[S.attack_speed] = 35;
-			Terran.base_stats[S.range] = 150f;
+            Terran.base_stats[S.attack_speed] = 3005;
+			Terran.base_stats[S.range] = 30f;
 			Terran.base_stats[S.knockback_reduction] = 300f;
             Terran.drawBoatMark_big = true;
             Terran.skipFightLogic = false;
@@ -191,6 +193,7 @@ namespace M2
             Terran.icon = "iconTerran";
 			AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
 			AssetManager.actor_library.CallMethod("addTrait", "Terran");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
 			AssetManager.actor_library.CallMethod("loadShadow", Terran);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             Terran.animation_walk = "walk_0,walk_1,walk_2,walk_3,walk_4,walk_5";
@@ -210,10 +213,10 @@ namespace M2
             dreadnaught.base_stats[S.health] = 2000f;
             dreadnaught.base_stats[S.speed] = 30f;
             dreadnaught.base_stats[S.armor] = 55f;
-            dreadnaught.base_stats[S.damage] = 100f;
+            dreadnaught.base_stats[S.damage] = 20f;
             dreadnaught.base_stats[S.scale] = 0.1f;
-            dreadnaught.base_stats[S.attack_speed] = 35;
-			dreadnaught.base_stats[S.range] = 60f;
+            dreadnaught.base_stats[S.attack_speed] = 305;
+			dreadnaught.base_stats[S.range] = 20f;
 			dreadnaught.base_stats[S.knockback_reduction] = 300f;
             dreadnaught.drawBoatMark_big = true;
             dreadnaught.skipFightLogic = false;
@@ -247,6 +250,7 @@ namespace M2
             dreadnaught.icon = "iconTerran";
 			AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
 			AssetManager.actor_library.CallMethod("addTrait", "dreadnaught");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
 			AssetManager.actor_library.CallMethod("loadShadow", dreadnaught);
 			AssetManager.actor_library.CallMethod("addTrait", "immortal");
             dreadnaught.animation_walk = "walk_0,walk_1,walk_2,walk_3";
