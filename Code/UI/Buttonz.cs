@@ -38,6 +38,8 @@ class Buttonz {
                 internal static PowerButton ASS9;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
+					private static List<string> savedTechListREAL;
+
   public static void init() {
 
    // tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
@@ -989,15 +991,25 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 				CopyUnit(pActor);
             }
         }
-        public static void action_paste(WorldTile pTile = null, string pDropID = null)
-        {
+		public static void action_paste(WorldTile pTile = null, string pDropID = null)
+		{
+			List<string> keysToRemove = new List<string>();
+
 			foreach (var unitDataEntry in unitClipboardDict)
 			{
 				UnitData unitData = unitDataEntry.Value;
+				savedTechListREAL = unitData.savedTechList;
 				PasteUnit(pTile, unitData);
-				unitClipboardDict.Remove(unitDataEntry.Key); 
-			}           
-        }		
+
+				keysToRemove.Add(unitDataEntry.Key);
+			}
+
+			foreach (var key in keysToRemove)
+			{
+				unitClipboardDict.Remove(key);
+			}
+		}
+
 
   public static bool action_spawn_jet(WorldTile pTile, string pPowerID) {
     if (pTile.zone.city == null) {
@@ -1237,7 +1249,10 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                 }
                 newSavedUnit.statsID = targetActor.asset.id;
                 newSavedUnit.equipment = targetActor.equipment;
-
+                newSavedUnit.kingdom = targetActor.kingdom;
+				Culture matchedCulture = World.world.cultures.get(targetActor.kingdom.data.cultureID);
+				newSavedUnit.culture = matchedCulture;
+				Debug.Log(newSavedUnit.culture);
                 ActorData data0 = new ActorData
                 {
                     traits = data.traits,
@@ -1269,7 +1284,23 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                 newSavedUnit.customData = targetActor.data;
                 newSavedUnit.data = data0;
                 newSavedUnit.dictInt = unitClipboardDictNum;
-                unitClipboardDict.Add(unitClipboardDictNum.ToString(), newSavedUnit);
+				
+
+				if (matchedCulture != null)
+				{
+					newSavedUnit.savedTechList = matchedCulture.data.list_tech_ids;
+				}
+				else
+				{
+					newSavedUnit.savedTechList = new List<string>(); 
+					Debug.LogWarning($"Culture '{data.culture}' not found in the scene.");
+				}
+									                        savedTechListREAL = newSavedUnit.savedTechList;
+
+				
+				Debug.Log("Saved Tech List: " + string.Join(", ", newSavedUnit.savedTechList));
+				Debug.Log("list should have showed above this!!!!");
+				unitClipboardDict.Add(unitClipboardDictNum.ToString(), newSavedUnit);
                 newSavedUnit.oldPos = targetActor.currentTile.pos;
                 if(actorPositionsOnMap.ContainsKey(targetActor.currentTile.pos) == false)
                 {
@@ -1304,6 +1335,12 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                     {
                         pastedUnit.equipment = unitData.equipment;
                     }
+				Debug.Log("REAL Tech List: " + string.Join(", ", savedTechListREAL));
+
+					if (unitData.kingdom != null)
+                    {
+                        pastedUnit.kingdom = unitData.kingdom;
+                    }
                     if (unitData.data != null)
                     {
 
@@ -1333,21 +1370,112 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                         pastedUnit.data.culture = unitData.data.culture;
                         pastedUnit.data.inventory = unitData.data.inventory;
                         pastedUnit.data.items = unitData.data.items;
-                        pastedUnit.data.clan = unitData.data.clan;
-                        if (string.IsNullOrEmpty(unitData.data.clan) == false)
-                        {
-                            Clan clan = MapBox.instance.clans.get(unitData.data.clan);
-                            if (clan != null)
-                            {
-                                clan.addUnit(pastedUnit);
-                            }
-                            else
-                            {
-                                Clan recreatedClan = MapBox.instance.clans.newClan(pastedUnit);
-                                recreatedClan.data.name = unitData.data.clan;
-                                recreatedClan.addUnit(pastedUnit);
-                            }
-                        }
+                        // pastedUnit.data.clan = unitData.data.clan;
+                        // if (string.IsNullOrEmpty(unitData.data.clan) == false)
+                        // {
+                            // Clan clan = MapBox.instance.clans.get(unitData.data.clan);
+                            // if (clan != null)
+                            // {
+                                // clan.addUnit(pastedUnit);
+                            // }
+                            // else
+                            // {
+                                // Clan recreatedClan = MapBox.instance.clans.newClan(pastedUnit);
+                                // recreatedClan.data.name = unitData.data.clan;
+                                // recreatedClan.addUnit(pastedUnit);
+                            // }
+                        // }
+						            TileZone zone = targetTile.zone;
+
+							Culture Culture = MapBox.instance.cultures.get(unitData.data.culture);
+			Kingdom kingdom = pastedUnit.kingdom;
+			if (kingdom != null && kingdom.isNomads())
+			{
+				kingdom = null;
+			}
+			City city = World.world.cities.buildNewCity(zone, pastedUnit.race);
+			if (city == null)
+			{
+			}
+			city.newCityEvent();
+		//	city.race = actor.race;
+		//	City city2 = actor.city;
+		//	if (city2 != null)
+		//	{
+		//		city2.kingdom.newCityBuiltEvent(city);
+		//	}
+			pastedUnit.becomeCitizen(city);
+			WorldLog.logNewCity(city);
+
+			
+							List<string> techsToNotAdd = new List<string>();
+
+
+			if (Culture != null)
+			{
+				Debug.Log($"[PasteUnit] Culture '{Culture.data.name}' found. Checking tech list...");
+
+				List<string> techsToAdd = new List<string>();
+
+				foreach (string techId in unitData.savedTechList)
+				{
+					if (!Culture.data.list_tech_ids.Contains(techId))
+					{
+						Debug.Log($"[PasteUnit] Tech '{techId}' is missing in culture '{Culture.data.name}'. Adding...");
+						techsToAdd.Add(techId); 
+						techsToNotAdd.Add(techId); 
+					}
+					else
+					{
+						Debug.Log($"[PasteUnit] Tech '{techId}' already exists in culture '{Culture.data.name}'.");
+					}
+				}
+
+				foreach (string techId in techsToAdd)
+				{
+					Culture.addFinishedTech(techId);
+					Debug.Log($"[PasteUnit] Added tech '{techId}' to culture '{Culture.data.name}'.");
+				}
+			}
+			else
+			{
+				Debug.LogWarning($"[PasteUnit] Culture '{pastedUnit.data.culture}' not found. Creating new culture...");
+
+				Culture ballsculture = MapBox.instance.cultures.newCulture(pastedUnit.race, city);
+				city.setCulture(ballsculture);
+				ballsculture.data.name = pastedUnit.data.culture;
+
+				Debug.Log($"[PasteUnit] Created new culture '{ballsculture.data.name}' for city '{city.data.name}'.");
+
+				if (savedTechListREAL.Count == 0)
+				{
+					Debug.LogWarning("[PasteUnit] No techs to add.");
+				}
+
+				List<string> techsToAdd = new List<string>();
+
+				foreach (string techId in savedTechListREAL)
+				{
+					if (!techsToNotAdd.Contains(techId))
+					{
+						Debug.Log($"[PasteUnit] Tech '{techId}' is missing in culture '{ballsculture.data.name}'. Adding...");
+						techsToAdd.Add(techId); 
+						techsToNotAdd.Add(techId); 
+					}
+					else
+					{
+						Debug.Log($"[PasteUnit] Tech '{techId}' already exists in culture '{ballsculture.data.name}'.");
+					}
+				}
+
+				foreach (string techId in techsToAdd)
+				{
+					ballsculture.addFinishedTech(techId);
+					Debug.Log($"[PasteUnit] Added tech '{techId}' to new culture '{ballsculture.data.name}'.");
+				}
+			}
+
+
 
                         if(pastedUnit.base_data != null)
                         {
@@ -1386,6 +1514,8 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 
         public class UnitData {
             public string statsID = "";
+            public Kingdom kingdom;
+            public Culture culture;
             public List<string> traits = new List<string>();
             public ActorEquipment equipment;
             public ActorData data;
@@ -1393,6 +1523,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
             public int dictInt;
             public bool isForResize;
             public Vector2Int oldPos;
+			public List<string> savedTechList;
         }
 }
 
