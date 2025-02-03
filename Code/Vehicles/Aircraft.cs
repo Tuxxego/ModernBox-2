@@ -297,9 +297,9 @@ class Aircraft : MonoBehaviour {
     // AssetManager.actor_library.CallMethod("addTrait", "Dronecopter");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
     AssetManager.actor_library.CallMethod("loadShadow", Drone);
-    Drone.animation_idle = "walk_0,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2";
-    Drone.animation_walk = "walk_0,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2";
-    Drone.animation_swim = "walk_1,walk_2";
+    Drone.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+    Drone.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+    Drone.animation_swim = "walk_0,walk_1,walk_2,walk_3";
     Drone.texture_path = "Drone";
     // Drone.actorSize = ActorSize.S17_Dragon;
     AssetManager.actor_library.add(Drone);

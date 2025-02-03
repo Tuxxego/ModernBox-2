@@ -40,6 +40,7 @@ Programmers
 Tuxxego
 dankmrgreen6444
 thebluenightyes
+MORFOS
 
 <color='" + gold + @"'>Artists:</color>
 arielp2
@@ -47,9 +48,12 @@ immortalglitch5500
 thedesertroad
 luck (some of the guns)
 alexnitaly (a lot of the nuclear missile code is from gunsmith book)
-greencalor/ full auto sherman (tank sprite)
+greencalor/ full auto sherman (lots of vehicles and buildings)
 MORFOS
-Gecko/Allen
+Nico_the_Nine (lots of vehicles)
+Gecko/Allen (lots of vehicles and Half Life aliens)
+PlayerCro7 (biomes, plants and some animals)
+
 <color='" + gold + @"'>DISCORD SERVER:</color>
 Admins:
 slowatplaye

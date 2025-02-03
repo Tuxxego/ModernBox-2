@@ -41,347 +41,6 @@ namespace M2
 
         private static void loadAssets()
         {
-			
-
-
-
-         EffectAsset evilspawn = new EffectAsset
-            {
-                id = "evilspawn",
-                use_basic_prefab = true,
-                sprite_path = "effects/fx_teleport_red_t",
-                draw_light_area = true,
-                show_on_mini_map = false,
-                limit = 80,
-                sorting_layer_id = "EffectsTop"
-            };
-            evilspawn.spawn_action = (effect, tile, param1, param2, floatParam) =>
-            {
-                if (effect != null)
-                {
-                    SpriteRenderer renderer = effect.GetComponent<SpriteRenderer>();
-                    if (renderer != null)
-                    {
-                        renderer.sortingLayerName = evilspawn.sorting_layer_id;
-                    }
-                }
-                return effect;
-            };
-            AssetManager.effects_library.add(evilspawn);
-
-
-
-            EffectAsset Shermanboom = new EffectAsset();
-		    Shermanboom.id = "Shermanboom";
-		    Shermanboom.use_basic_prefab = true;
-		    Shermanboom.sorting_layer_id = "EffectsTop";
-		    Shermanboom.sprite_path = $"effects/Shermanboom";
-            Shermanboom.show_on_mini_map = true;
-		    Shermanboom.draw_light_area = true;
-		    Shermanboom.draw_light_size = 1f;
-		    Shermanboom.limit = 80;
-		    AssetManager.effects_library.add(Shermanboom);
-
-     TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
-          nonannoyingbomb.id = "nonannoyingbomb";
-		nonannoyingbomb.shake = false;
-		nonannoyingbomb.explode_tile = true;
-		nonannoyingbomb.damageBuildings = true;
-		nonannoyingbomb.damage = 0;
-		nonannoyingbomb.setFire = true;
-          AssetManager.terraform.add(nonannoyingbomb);
-
-            EffectAsset frosttrail = new EffectAsset();
-		    frosttrail.id = "frosttrail";
-		    frosttrail.use_basic_prefab = true;
-		    frosttrail.sorting_layer_id = "EffectsTop";
-		    frosttrail.sprite_path = $"effects/frosttrail";
-		    frosttrail.draw_light_area = true;
-		    frosttrail.show_on_mini_map = true;
-		    frosttrail.limit = 80;
-		    AssetManager.effects_library.add(frosttrail);
-
-              EffectAsset frostspell = new EffectAsset();
-		    frostspell.id = "frostspell";
-		    frostspell.use_basic_prefab = true;
-		    frostspell.sorting_layer_id = "EffectsTop";
-		    frostspell.sprite_path = $"effects/frostspell";
-            frostspell.draw_light_area = true;
-            frostspell.draw_light_size = 0.2f;
-		    frostspell.limit = 80;
-		    AssetManager.effects_library.add(frostspell);
-
-              EffectAsset icespikes = new EffectAsset();
-		    icespikes.id = "icespikes";
-		    icespikes.use_basic_prefab = true;
-		    icespikes.sorting_layer_id = "EffectsTop";
-		    icespikes.sprite_path = $"effects/fx_basic/icespikes";
-		    icespikes.draw_light_area = true;
-		    icespikes.draw_light_size = 1f;
-		    icespikes.limit = 80;
-		    AssetManager.effects_library.add(icespikes);
-
-                ProjectileAsset frostbolt = new ProjectileAsset();
-          frostbolt.id = "frostbolt";
-          frostbolt.texture = "frostbolt";
-          frostbolt.trailEffect_enabled = true;
-          frostbolt.trailEffect_id = "frosttrail";
-          frostbolt.trailEffect_scale = 0.1f;
-          frostbolt.trailEffect_timer = 0.1f;
-	      frostbolt.look_at_target = true;
-	      frostbolt.endEffect = "icespikes";
-	      frostbolt.terraformRange = 2;
-          frostbolt.draw_light_area = true;
-	      frostbolt.draw_light_size = 0.1f;
-	      frostbolt.sound_launch = "event:/SFX/WEAPONS/WeaponRedOrbStart";
-	      frostbolt.sound_impact = "event:/SFX/WEAPONS/WeaponRedOrbLand";
-          frostbolt.startScale = 0.075f;
-          frostbolt.targetScale = 0.2f;
-          frostbolt.parabolic = true;
-          frostbolt.speed = 15f;
-          AssetManager.projectiles.add(frostbolt);
-
-
-          ProjectileAsset bigsnowball = new ProjectileAsset();
-          bigsnowball.id = "bigsnowball";
-          bigsnowball.texture = "bigsnowball";
-          bigsnowball.trailEffect_enabled = false;
-	      bigsnowball.look_at_target = true;
-          bigsnowball.draw_light_area = false;
-	      bigsnowball.draw_light_size = 0.1f;
-          bigsnowball.hitFreeze = true;
-          bigsnowball.sound_impact = "event:/SFX/WEAPONS/WeaponSnowballLand";
-          bigsnowball.startScale = 0.075f;
-          bigsnowball.targetScale = 0.4f;
-          bigsnowball.parabolic = true;
-          bigsnowball.rotate = true;
-          bigsnowball.speed = 4f;
-          AssetManager.projectiles.add(bigsnowball);
-
-             ProjectileAsset cybermissileprojectile = new ProjectileAsset();
-          cybermissileprojectile.id = "cybermissileprojectile";
-          cybermissileprojectile.texture = "cybermissileprojectile";
-          cybermissileprojectile.trailEffect_enabled = false;
-	      cybermissileprojectile.look_at_target = true;
-          cybermissileprojectile.draw_light_area = true;
-           cybermissileprojectile.endEffect = "fx_boat_explosion";
-	      cybermissileprojectile.draw_light_size = 1f;
-          cybermissileprojectile.terraformOption = "nonannoyingbomb";
-          cybermissileprojectile.terraformRange = 1;
-          cybermissileprojectile.sound_impact = "event:/SFX/POWERS/Bomb";
-          cybermissileprojectile.startScale = 0.2f;
-          cybermissileprojectile.targetScale = 0.2f;
-          cybermissileprojectile.parabolic = true;
-          cybermissileprojectile.speed = 30f;
-          ProjectileAsset cybermissileprojectileeffect = cybermissileprojectile;
-          cybermissileprojectileeffect.world_actions = (AttackAction)Delegate.Combine(cybermissileprojectileeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(cybermissileprojectile);
-
-          ProjectileAsset artilleryshell = new ProjectileAsset();
-          artilleryshell.id = "artilleryshell";
-          artilleryshell.texture = "artilleryshell";
-          artilleryshell.trailEffect_enabled = false;
-	      artilleryshell.look_at_target = true;
-          artilleryshell.draw_light_area = true;
-	      artilleryshell.draw_light_size = 1f;
-          artilleryshell.endEffect = "fx_boat_explosion";
-          artilleryshell.terraformOption = "nonannoyingbomb";
-          artilleryshell.terraformRange = 3;
-          artilleryshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          artilleryshell.startScale = 0.2f;
-          artilleryshell.targetScale = 0.2f;
-          artilleryshell.parabolic = true;
-          artilleryshell.speed = 19f;
-          ProjectileAsset shellboomboomeffect = artilleryshell;
-          shellboomboomeffect.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(artilleryshell);
-
-           ProjectileAsset tankshell = new ProjectileAsset();
-          tankshell.id = "tankshell";
-          tankshell.texture = "artilleryshell";
-          tankshell.trailEffect_enabled = false;
-	      tankshell.look_at_target = true;
-          tankshell.draw_light_area = true;
-	      tankshell.draw_light_size = 1f;
-          tankshell.endEffect = "fx_boat_explosion";
-          tankshell.terraformOption = "nonannoyingbomb";
-          tankshell.terraformRange = 3;
-          tankshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          tankshell.startScale = 0.2f;
-          tankshell.targetScale = 0.2f;
-          tankshell.parabolic = false;
-          tankshell.speed = 45f;
-          ProjectileAsset shellboomboomeffect1 = tankshell;
-          shellboomboomeffect1.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect1.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(tankshell);
-
-        ProjectileAsset crabartilleryshell = new ProjectileAsset();
-          crabartilleryshell.id = "crabartilleryshell";
-          crabartilleryshell.texture = "artilleryshell";
-          crabartilleryshell.trailEffect_enabled = false;
-	      crabartilleryshell.look_at_target = true;
-          crabartilleryshell.draw_light_area = true;
-	      crabartilleryshell.draw_light_size = 1f;
-          crabartilleryshell.terraformOption = "crab_bomb";
-          crabartilleryshell.terraformRange = 5;
-          crabartilleryshell.endEffect = "fx_explosion_meteorite";
-          crabartilleryshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          crabartilleryshell.startScale = 1f;
-          crabartilleryshell.targetScale = 1f;
-          crabartilleryshell.parabolic = true;
-          crabartilleryshell.speed = 20f;
-          ProjectileAsset shellboomboomeffecto = crabartilleryshell;
-          shellboomboomeffecto.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffecto.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(crabartilleryshell);
-
-
-             ProjectileAsset bigbomb = new ProjectileAsset();
-          bigbomb.id = "bigbomb";
-          bigbomb.texture = "bigbomb";
-	      bigbomb.look_at_target = true;
-          bigbomb.draw_light_area = true;
-          bigbomb.endEffect = "Shermanboom";
-	      bigbomb.draw_light_size = 1f;
-          bigbomb.terraformOption = "nonannoyingbomb";
-          bigbomb.terraformRange = 3;
-          bigbomb.sound_impact = "event:/SFX/POWERS/Bomb";
-          bigbomb.startScale = 0.2f;
-          bigbomb.targetScale = 0.2f;
-          bigbomb.parabolic = true;
-          bigbomb.speed = 20f;
-          ProjectileAsset bombasticlolxd = bigbomb;
-          bombasticlolxd.world_actions = (AttackAction)Delegate.Combine(bombasticlolxd.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(bigbomb);
-
-          ProjectileAsset seismicrod = new ProjectileAsset();
-          seismicrod.id = "seismicrod";
-          seismicrod.texture = "seismicrod";
-          seismicrod.trailEffect_enabled = false;
-	      seismicrod.look_at_target = true;
-          seismicrod.draw_light_area = true;
-          seismicrod.endEffect = "fx_explosion_meteorite";
-	      seismicrod.draw_light_size = 1f;
-          seismicrod.terraformOption = "nonannoyingbomb";
-          seismicrod.terraformRange = 20;
-	      seismicrod.sound_launch = "event:/SFX/POWERS/NapalmBomb";
-          seismicrod.sound_impact = "event:/SFX/NATURE/EarthQuake";
-          seismicrod.startScale = 0.3f;
-          seismicrod.targetScale = 0.3f;
-          seismicrod.parabolic = false;
-          seismicrod.speed = 10f;
-           ProjectileAsset bombasticlolxd1 = seismicrod;
-          bombasticlolxd1.world_actions = (AttackAction)Delegate.Combine(bombasticlolxd1.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(seismicrod);
-
-
-             ItemAsset icebolt = AssetManager.items.clone("icebolt", "_range");
-            icebolt.id = "icebolt";
-            icebolt.projectile = "frostbolt";
-            icebolt.materials = List.Of<string>(new string[] { "base" });
-            icebolt.base_stats[S.targets] = 1;
-            icebolt.base_stats[S.range] = 10f;
-            icebolt.base_stats[S.projectiles] = 1;
-            icebolt.base_stats[S.critical_chance] = 0.3f;
-		    icebolt.base_stats[S.critical_damage_multiplier] = 0.4f;
-            icebolt.item_modifiers = List.Of<string>("ice");
-            icebolt.path_slash_animation = "effects/slashes/slash_punch";
-
-            ItemAsset snowthrow = AssetManager.items.clone("snowthrow", "_range");
-            snowthrow.id = "snowthrow";
-            snowthrow.projectile = "bigsnowball";
-            snowthrow.materials = List.Of<string>(new string[] { "base" });
-            snowthrow.base_stats[S.targets] = 10;
-            snowthrow.base_stats[S.range] = 16f;
-            snowthrow.base_stats[S.projectiles] = 1;
-            snowthrow.base_stats[S.critical_chance] = 0.3f;
-		    snowthrow.base_stats[S.critical_damage_multiplier] = 0.8f;
-            snowthrow.item_modifiers = List.Of<string>("ice");
-            snowthrow.path_slash_animation = "effects/slashes/slash_punch";
-
-  ItemAsset singleshot = AssetManager.items.clone("singleshot", "_range");
-            singleshot.id = "singleshot";
-            singleshot.projectile = "shotgun_bullet";
-            singleshot.materials = List.Of<string>(new string[] { "base" });
-        singleshot.base_stats[S.projectiles] = 1f;
-		singleshot.base_stats[S.attack_speed] = 50f;
-		singleshot.base_stats[S.range] = 6f;
-		singleshot.base_stats[S.targets] = 1f;
-		singleshot.base_stats[S.damage] = 10f;
-		singleshot.base_stats[S.damage_range] = 0.5f;
-            singleshot.path_slash_animation = "effects/slashes/slash_punch";
-
-             ItemAsset machinegunery = AssetManager.items.clone("machinegunery", "_range");
-            machinegunery.id = "machinegunery";
-            machinegunery.projectile = "shotgun_bullet";
-            machinegunery.materials = List.Of<string>(new string[] { "base" });
-        machinegunery.base_stats[S.projectiles] = 1f;
-		machinegunery.base_stats[S.attack_speed] = 10000f;
-		machinegunery.base_stats[S.range] = 12f;
-		machinegunery.base_stats[S.targets] = 1f;
-		machinegunery.base_stats[S.damage] = 3f;
-		machinegunery.base_stats[S.damage_range] = 0.1f;
-            machinegunery.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset artillerystriker = AssetManager.items.clone("artillerystriker", "_range");
-            artillerystriker.id = "artillerystriker";
-            artillerystriker.projectile = "artilleryshell";
-            artillerystriker.materials = List.Of<string>(new string[] { "base" });
-        artillerystriker.base_stats[S.projectiles] = 1f;
-		artillerystriker.base_stats[S.attack_speed] = 0.1f;
-		artillerystriker.base_stats[S.range] = 30f;
-		artillerystriker.base_stats[S.targets] = 1f;
-		artillerystriker.base_stats[S.damage] = 60f;
-		artillerystriker.base_stats[S.damage_range] = 0.7f;
-            artillerystriker.path_slash_animation = "effects/slashes/slash_punch";
-
-
-            ItemAsset tankshellattack = AssetManager.items.clone("tankshellattack", "_range");
-            tankshellattack.id = "tankshellattack";
-            tankshellattack.projectile = "tankshell";
-            tankshellattack.materials = List.Of<string>(new string[] { "base" });
-        tankshellattack.base_stats[S.projectiles] = 1f;
-		tankshellattack.base_stats[S.attack_speed] = 0.1f;
-		tankshellattack.base_stats[S.range] = 30f;
-		tankshellattack.base_stats[S.targets] = 3f;
-		tankshellattack.base_stats[S.damage] = 60f;
-		tankshellattack.base_stats[S.damage_range] = 0.7f;
-            tankshellattack.path_slash_animation = "effects/slashes/slash_punch";
-
-                 ItemAsset crabartillery = AssetManager.items.clone("crabartillery", "_range");
-            crabartillery.id = "crabartillery";
-            crabartillery.projectile = "crabartilleryshell";
-            crabartillery.materials = List.Of<string>(new string[] { "base" });
-        crabartillery.base_stats[S.projectiles] = 4f;
-		crabartillery.base_stats[S.attack_speed] = 0.1f;
-		crabartillery.base_stats[S.range] = 30f;
-		crabartillery.base_stats[S.targets] = 1f;
-		crabartillery.base_stats[S.damage] = 100f;
-		crabartillery.base_stats[S.damage_range] = 0.7f;
-            crabartillery.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset bomberino = AssetManager.items.clone("bomberino", "_range");
-            bomberino.id = "bomberino";
-            bomberino.projectile = "bigbomb";
-            bomberino.materials = List.Of<string>(new string[] { "base" });
-        bomberino.base_stats[S.projectiles] = 1f;
-		bomberino.base_stats[S.attack_speed] = 0.01f;
-		bomberino.base_stats[S.range] = 3f;
-		bomberino.base_stats[S.targets] = 7f;
-		bomberino.base_stats[S.damage] = 30f;
-		bomberino.base_stats[S.damage_range] = 0.5f;
-            bomberino.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset destroyerbot = AssetManager.items.clone("destroyerbot", "_range");
-            destroyerbot.id = "destroyerbot";
-            destroyerbot.projectile = "seismicrod";
-            destroyerbot.materials = List.Of<string>(new string[] { "base" });
-        destroyerbot.base_stats[S.projectiles] = 1f;
-		destroyerbot.base_stats[S.attack_speed] = 0.1f;
-		destroyerbot.base_stats[S.range] = 10f;
-		destroyerbot.base_stats[S.targets] = 10f;
-		destroyerbot.base_stats[S.damage] = 20f;
-		destroyerbot.base_stats[S.damage_range] = 0.5f;
-            destroyerbot.path_slash_animation = "effects/slashes/slash_punch";
 
 
             BuildingAsset Chess_tree = AssetManager.buildings.clone("Chess_tree", "tree");
@@ -691,6 +350,28 @@ namespace M2
             AssetManager.buildings.add(walkercorpse);
             AssetManager.buildings.loadSprites(walkercorpse);
 
+            BuildingAsset colonyship = AssetManager.buildings.clone("colonyship", "!building");
+            colonyship.affected_by_drought = false;
+		    colonyship.burnable = false;
+            colonyship.base_stats[S.health] = 1000f;
+		    colonyship.fundament = new BuildingFundament(1, 0, 1, 0);
+		    colonyship.race = "nature";
+            colonyship.kingdom = "nature";
+            colonyship.checkForCloseBuilding = false;
+		    colonyship.canBeLivingHouse = false;
+            colonyship.canBePlacedOnLiquid = true;
+            colonyship.ignoreBuildings = true;
+            colonyship.canBeHarvested = true;
+            colonyship.setShadow(0.5f, 0.03f, 0.12f);
+            colonyship.sound_idle = "event:/SFX/BUILDINGS_IDLE/IdleBeehive";
+            colonyship.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    colonyship.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.add(colonyship);
+            AssetManager.buildings.addResource("wood", 200, false);
+            AssetManager.buildings.addResource("stone", 200, false);
+            AssetManager.buildings.addResource("common_metals", 200, false);
+            AssetManager.buildings.loadSprites(colonyship);
+
                          TopTileType cybertilelow = AssetManager.topTiles.get("cybertile_low");
             AssetManager.topTiles.add(cybertilelow);
             AssetManager.topTiles.loadSpritesForTile(cybertilelow);
@@ -865,7 +546,7 @@ var icewalker = AssetManager.actor_library.get("walker");
             id = "CyberDisaster",
             rate = 1,
             chance = 0.2f,
-            min_world_population = 500,
+            min_world_population = 1000,
             min_world_cities = 4,
             world_log = "worldlog_disaster_alien_invasion",
             world_log_icon = "SolarPoweredCyberBody",
