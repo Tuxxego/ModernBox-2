@@ -1114,9 +1114,9 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
         endScreenManager.AddComponent<UniverseDestructionManager>();
 		
   }
-  
+
   public static void action_ProtonClick(WorldTile pTile, string pPowerID) {
-    EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 16.3f, 28.9f);
+    EffectsLibrary.spawnAtTileRandomScale("fx_dankymatter_effect", pTile, 0.5f, 0.5f);
     MapAction.damageWorld(pTile, 786, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
     // return true;
@@ -1234,7 +1234,9 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
     return gameObject.GetComponent<PowersTab>();
   }
-  			       public static Dictionary<string, UnitData> unitClipboardDict = new Dictionary<string, UnitData>(); 
+
+
+  			      public static Dictionary<string, UnitData> unitClipboardDict = new Dictionary<string, UnitData>();
         public static List<string> addedTraits = new List<string>(); 
 
 		public static void CopyUnit(Actor targetActor, bool isForResize = false)
@@ -1310,6 +1312,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                 unitClipboardDictNum++;
                 selectedUnitToPaste = newSavedUnit;
                 Debug.Log("Copied " + targetActor.data.name);
+                EffectsLibrary.spawnAt("evilspawn", targetActor.currentTile.posV3, 0.1f);
             }
 
         }
@@ -1385,7 +1388,19 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
                                 // recreatedClan.addUnit(pastedUnit);
                             // }
                         // }
-						            TileZone zone = targetTile.zone;
+
+      WorldTile tTile2 = pastedUnit.currentTile;
+    if (tTile2.building == null )
+    {
+        MapBox.instance.buildings.addBuilding("colonyship", tTile2, false, false, BuildPlacingType.New);
+    }
+    else
+    {
+      MapBox.instance.buildings.addBuilding("colonyship", tTile2, false, false, BuildPlacingType.New);
+    }
+
+
+	TileZone zone = targetTile.zone;
 
 							Culture Culture = MapBox.instance.cultures.get(unitData.data.culture);
 			Kingdom kingdom = pastedUnit.kingdom;
@@ -1500,6 +1515,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 
                     pastedUnit.restoreHealth(10 ^ 9); 
                     if (unitData.data != null) Debug.Log("Pasted " + unitData.data.name);
+                        EffectsLibrary.spawnAt("evilspawn", pastedUnit.currentTile.posV3, 0.1f);
                     return pastedUnit;
                 }
             }

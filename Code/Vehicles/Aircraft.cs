@@ -161,6 +161,7 @@ class Aircraft : MonoBehaviour {
     Gunship.drawBoatMark = true;
     Gunship.flying = true;
     Gunship.can_edit_traits = true;
+    Gunship.deathAnimationAngle = false;
     // Gunship.tech = "Gunshipcopters";
     Gunship.canReceiveTraits = true;
     Gunship.very_high_flyer = true;
@@ -279,6 +280,7 @@ class Aircraft : MonoBehaviour {
     Drone.canReceiveTraits = true;
     Drone.very_high_flyer = true;
     Drone.defaultAttack = "Mp5";
+           Drone.canFlip = false;
     Drone.isBoat = false;
     // Drone.moveFromBlock = false;
     Drone.inspect_children = false;
@@ -297,9 +299,9 @@ class Aircraft : MonoBehaviour {
     // AssetManager.actor_library.CallMethod("addTrait", "Dronecopter");
     AssetManager.actor_library.CallMethod("addTrait", "immortal");
     AssetManager.actor_library.CallMethod("loadShadow", Drone);
-    Drone.animation_idle = "walk_0,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2";
-    Drone.animation_walk = "walk_0,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2,walk_1,walk_2";
-    Drone.animation_swim = "walk_1,walk_2";
+    Drone.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+    Drone.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+    Drone.animation_swim = "walk_0,walk_1,walk_2,walk_3";
     Drone.texture_path = "Drone";
     // Drone.actorSize = ActorSize.S17_Dragon;
     AssetManager.actor_library.add(Drone);
@@ -342,6 +344,7 @@ class Aircraft : MonoBehaviour {
     TIEfighter.hideOnMinimap = false;
     TIEfighter.use_items = false;
     TIEfighter.oceanCreature = true;
+       TIEfighter.canFlip = true;
     TIEfighter.take_items = false;
     TIEfighter.nameLocale = "TIEfighter";
     TIEfighter.nameTemplate = "Jet_Names";
@@ -514,6 +517,7 @@ class Aircraft : MonoBehaviour {
     MIRVBomber.defaultAttack = "MIRVBomb";
     MIRVBomber.isBoat = false;
     MIRVBomber.dieOnBlocks = false;
+        MIRVBomber.canFlip = false;
     MIRVBomber.ignoreBlocks = true;
     MIRVBomber.moveFromBlock = false;
     MIRVBomber.inspect_children = false;
@@ -627,6 +631,7 @@ class Aircraft : MonoBehaviour {
     FighterJet.canReceiveTraits = true;
     FighterJet.very_high_flyer = true;
     FighterJet.defaultAttack = "JetRocket";
+          FighterJet.canFlip = false;
     FighterJet.isBoat = false;
     FighterJet.dieOnBlocks = false;
     FighterJet.ignoreBlocks = true;
@@ -673,6 +678,7 @@ class Aircraft : MonoBehaviour {
     F55FighterJet.base_stats[S.knockback_reduction] = 300f;
     F55FighterJet.base_stats[S.scale] = 0.2f;
     F55FighterJet.base_stats[S.damage] = 20;
+         F55FighterJet.canFlip = false;
     F55FighterJet.drawBoatMark_big = true;
     F55FighterJet.skipFightLogic = false;
     F55FighterJet.inspect_stats = true;

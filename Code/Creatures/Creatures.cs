@@ -41,347 +41,6 @@ namespace M2
 
         private static void loadAssets()
         {
-			
-
-
-
-         EffectAsset evilspawn = new EffectAsset
-            {
-                id = "evilspawn",
-                use_basic_prefab = true,
-                sprite_path = "effects/fx_teleport_red_t",
-                draw_light_area = true,
-                show_on_mini_map = false,
-                limit = 80,
-                sorting_layer_id = "EffectsTop"
-            };
-            evilspawn.spawn_action = (effect, tile, param1, param2, floatParam) =>
-            {
-                if (effect != null)
-                {
-                    SpriteRenderer renderer = effect.GetComponent<SpriteRenderer>();
-                    if (renderer != null)
-                    {
-                        renderer.sortingLayerName = evilspawn.sorting_layer_id;
-                    }
-                }
-                return effect;
-            };
-            AssetManager.effects_library.add(evilspawn);
-
-
-
-            EffectAsset Shermanboom = new EffectAsset();
-		    Shermanboom.id = "Shermanboom";
-		    Shermanboom.use_basic_prefab = true;
-		    Shermanboom.sorting_layer_id = "EffectsTop";
-		    Shermanboom.sprite_path = $"effects/Shermanboom";
-            Shermanboom.show_on_mini_map = true;
-		    Shermanboom.draw_light_area = true;
-		    Shermanboom.draw_light_size = 1f;
-		    Shermanboom.limit = 80;
-		    AssetManager.effects_library.add(Shermanboom);
-
-     TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
-          nonannoyingbomb.id = "nonannoyingbomb";
-		nonannoyingbomb.shake = false;
-		nonannoyingbomb.explode_tile = true;
-		nonannoyingbomb.damageBuildings = true;
-		nonannoyingbomb.damage = 0;
-		nonannoyingbomb.setFire = true;
-          AssetManager.terraform.add(nonannoyingbomb);
-
-            EffectAsset frosttrail = new EffectAsset();
-		    frosttrail.id = "frosttrail";
-		    frosttrail.use_basic_prefab = true;
-		    frosttrail.sorting_layer_id = "EffectsTop";
-		    frosttrail.sprite_path = $"effects/frosttrail";
-		    frosttrail.draw_light_area = true;
-		    frosttrail.show_on_mini_map = true;
-		    frosttrail.limit = 80;
-		    AssetManager.effects_library.add(frosttrail);
-
-              EffectAsset frostspell = new EffectAsset();
-		    frostspell.id = "frostspell";
-		    frostspell.use_basic_prefab = true;
-		    frostspell.sorting_layer_id = "EffectsTop";
-		    frostspell.sprite_path = $"effects/frostspell";
-            frostspell.draw_light_area = true;
-            frostspell.draw_light_size = 0.2f;
-		    frostspell.limit = 80;
-		    AssetManager.effects_library.add(frostspell);
-
-              EffectAsset icespikes = new EffectAsset();
-		    icespikes.id = "icespikes";
-		    icespikes.use_basic_prefab = true;
-		    icespikes.sorting_layer_id = "EffectsTop";
-		    icespikes.sprite_path = $"effects/fx_basic/icespikes";
-		    icespikes.draw_light_area = true;
-		    icespikes.draw_light_size = 1f;
-		    icespikes.limit = 80;
-		    AssetManager.effects_library.add(icespikes);
-
-                ProjectileAsset frostbolt = new ProjectileAsset();
-          frostbolt.id = "frostbolt";
-          frostbolt.texture = "frostbolt";
-          frostbolt.trailEffect_enabled = true;
-          frostbolt.trailEffect_id = "frosttrail";
-          frostbolt.trailEffect_scale = 0.1f;
-          frostbolt.trailEffect_timer = 0.1f;
-	      frostbolt.look_at_target = true;
-	      frostbolt.endEffect = "icespikes";
-	      frostbolt.terraformRange = 2;
-          frostbolt.draw_light_area = true;
-	      frostbolt.draw_light_size = 0.1f;
-	      frostbolt.sound_launch = "event:/SFX/WEAPONS/WeaponRedOrbStart";
-	      frostbolt.sound_impact = "event:/SFX/WEAPONS/WeaponRedOrbLand";
-          frostbolt.startScale = 0.075f;
-          frostbolt.targetScale = 0.2f;
-          frostbolt.parabolic = true;
-          frostbolt.speed = 15f;
-          AssetManager.projectiles.add(frostbolt);
-
-
-          ProjectileAsset bigsnowball = new ProjectileAsset();
-          bigsnowball.id = "bigsnowball";
-          bigsnowball.texture = "bigsnowball";
-          bigsnowball.trailEffect_enabled = false;
-	      bigsnowball.look_at_target = true;
-          bigsnowball.draw_light_area = false;
-	      bigsnowball.draw_light_size = 0.1f;
-          bigsnowball.hitFreeze = true;
-          bigsnowball.sound_impact = "event:/SFX/WEAPONS/WeaponSnowballLand";
-          bigsnowball.startScale = 0.075f;
-          bigsnowball.targetScale = 0.4f;
-          bigsnowball.parabolic = true;
-          bigsnowball.rotate = true;
-          bigsnowball.speed = 4f;
-          AssetManager.projectiles.add(bigsnowball);
-
-             ProjectileAsset cybermissileprojectile = new ProjectileAsset();
-          cybermissileprojectile.id = "cybermissileprojectile";
-          cybermissileprojectile.texture = "cybermissileprojectile";
-          cybermissileprojectile.trailEffect_enabled = false;
-	      cybermissileprojectile.look_at_target = true;
-          cybermissileprojectile.draw_light_area = true;
-           cybermissileprojectile.endEffect = "fx_boat_explosion";
-	      cybermissileprojectile.draw_light_size = 1f;
-          cybermissileprojectile.terraformOption = "nonannoyingbomb";
-          cybermissileprojectile.terraformRange = 1;
-          cybermissileprojectile.sound_impact = "event:/SFX/POWERS/Bomb";
-          cybermissileprojectile.startScale = 0.2f;
-          cybermissileprojectile.targetScale = 0.2f;
-          cybermissileprojectile.parabolic = true;
-          cybermissileprojectile.speed = 30f;
-          ProjectileAsset cybermissileprojectileeffect = cybermissileprojectile;
-          cybermissileprojectileeffect.world_actions = (AttackAction)Delegate.Combine(cybermissileprojectileeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(cybermissileprojectile);
-
-          ProjectileAsset artilleryshell = new ProjectileAsset();
-          artilleryshell.id = "artilleryshell";
-          artilleryshell.texture = "artilleryshell";
-          artilleryshell.trailEffect_enabled = false;
-	      artilleryshell.look_at_target = true;
-          artilleryshell.draw_light_area = true;
-	      artilleryshell.draw_light_size = 1f;
-          artilleryshell.endEffect = "fx_boat_explosion";
-          artilleryshell.terraformOption = "nonannoyingbomb";
-          artilleryshell.terraformRange = 3;
-          artilleryshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          artilleryshell.startScale = 0.2f;
-          artilleryshell.targetScale = 0.2f;
-          artilleryshell.parabolic = true;
-          artilleryshell.speed = 19f;
-          ProjectileAsset shellboomboomeffect = artilleryshell;
-          shellboomboomeffect.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(artilleryshell);
-
-           ProjectileAsset tankshell = new ProjectileAsset();
-          tankshell.id = "tankshell";
-          tankshell.texture = "artilleryshell";
-          tankshell.trailEffect_enabled = false;
-	      tankshell.look_at_target = true;
-          tankshell.draw_light_area = true;
-	      tankshell.draw_light_size = 1f;
-          tankshell.endEffect = "fx_boat_explosion";
-          tankshell.terraformOption = "nonannoyingbomb";
-          tankshell.terraformRange = 3;
-          tankshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          tankshell.startScale = 0.2f;
-          tankshell.targetScale = 0.2f;
-          tankshell.parabolic = false;
-          tankshell.speed = 45f;
-          ProjectileAsset shellboomboomeffect1 = tankshell;
-          shellboomboomeffect1.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect1.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(tankshell);
-
-        ProjectileAsset crabartilleryshell = new ProjectileAsset();
-          crabartilleryshell.id = "crabartilleryshell";
-          crabartilleryshell.texture = "artilleryshell";
-          crabartilleryshell.trailEffect_enabled = false;
-	      crabartilleryshell.look_at_target = true;
-          crabartilleryshell.draw_light_area = true;
-	      crabartilleryshell.draw_light_size = 1f;
-          crabartilleryshell.terraformOption = "crab_bomb";
-          crabartilleryshell.terraformRange = 5;
-          crabartilleryshell.endEffect = "fx_explosion_meteorite";
-          crabartilleryshell.sound_impact = "event:/SFX/POWERS/Bomb";
-          crabartilleryshell.startScale = 1f;
-          crabartilleryshell.targetScale = 1f;
-          crabartilleryshell.parabolic = true;
-          crabartilleryshell.speed = 20f;
-          ProjectileAsset shellboomboomeffecto = crabartilleryshell;
-          shellboomboomeffecto.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffecto.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(crabartilleryshell);
-
-
-             ProjectileAsset bigbomb = new ProjectileAsset();
-          bigbomb.id = "bigbomb";
-          bigbomb.texture = "bigbomb";
-	      bigbomb.look_at_target = true;
-          bigbomb.draw_light_area = true;
-          bigbomb.endEffect = "Shermanboom";
-	      bigbomb.draw_light_size = 1f;
-          bigbomb.terraformOption = "nonannoyingbomb";
-          bigbomb.terraformRange = 3;
-          bigbomb.sound_impact = "event:/SFX/POWERS/Bomb";
-          bigbomb.startScale = 0.2f;
-          bigbomb.targetScale = 0.2f;
-          bigbomb.parabolic = true;
-          bigbomb.speed = 20f;
-          ProjectileAsset bombasticlolxd = bigbomb;
-          bombasticlolxd.world_actions = (AttackAction)Delegate.Combine(bombasticlolxd.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(bigbomb);
-
-          ProjectileAsset seismicrod = new ProjectileAsset();
-          seismicrod.id = "seismicrod";
-          seismicrod.texture = "seismicrod";
-          seismicrod.trailEffect_enabled = false;
-	      seismicrod.look_at_target = true;
-          seismicrod.draw_light_area = true;
-          seismicrod.endEffect = "fx_explosion_meteorite";
-	      seismicrod.draw_light_size = 1f;
-          seismicrod.terraformOption = "nonannoyingbomb";
-          seismicrod.terraformRange = 20;
-	      seismicrod.sound_launch = "event:/SFX/POWERS/NapalmBomb";
-          seismicrod.sound_impact = "event:/SFX/NATURE/EarthQuake";
-          seismicrod.startScale = 0.3f;
-          seismicrod.targetScale = 0.3f;
-          seismicrod.parabolic = false;
-          seismicrod.speed = 10f;
-           ProjectileAsset bombasticlolxd1 = seismicrod;
-          bombasticlolxd1.world_actions = (AttackAction)Delegate.Combine(bombasticlolxd1.world_actions, new AttackAction(ActionLibrary.burnTile));
-          AssetManager.projectiles.add(seismicrod);
-
-
-             ItemAsset icebolt = AssetManager.items.clone("icebolt", "_range");
-            icebolt.id = "icebolt";
-            icebolt.projectile = "frostbolt";
-            icebolt.materials = List.Of<string>(new string[] { "base" });
-            icebolt.base_stats[S.targets] = 1;
-            icebolt.base_stats[S.range] = 10f;
-            icebolt.base_stats[S.projectiles] = 1;
-            icebolt.base_stats[S.critical_chance] = 0.3f;
-		    icebolt.base_stats[S.critical_damage_multiplier] = 0.4f;
-            icebolt.item_modifiers = List.Of<string>("ice");
-            icebolt.path_slash_animation = "effects/slashes/slash_punch";
-
-            ItemAsset snowthrow = AssetManager.items.clone("snowthrow", "_range");
-            snowthrow.id = "snowthrow";
-            snowthrow.projectile = "bigsnowball";
-            snowthrow.materials = List.Of<string>(new string[] { "base" });
-            snowthrow.base_stats[S.targets] = 10;
-            snowthrow.base_stats[S.range] = 16f;
-            snowthrow.base_stats[S.projectiles] = 1;
-            snowthrow.base_stats[S.critical_chance] = 0.3f;
-		    snowthrow.base_stats[S.critical_damage_multiplier] = 0.8f;
-            snowthrow.item_modifiers = List.Of<string>("ice");
-            snowthrow.path_slash_animation = "effects/slashes/slash_punch";
-
-  ItemAsset singleshot = AssetManager.items.clone("singleshot", "_range");
-            singleshot.id = "singleshot";
-            singleshot.projectile = "shotgun_bullet";
-            singleshot.materials = List.Of<string>(new string[] { "base" });
-        singleshot.base_stats[S.projectiles] = 1f;
-		singleshot.base_stats[S.attack_speed] = 50f;
-		singleshot.base_stats[S.range] = 6f;
-		singleshot.base_stats[S.targets] = 1f;
-		singleshot.base_stats[S.damage] = 10f;
-		singleshot.base_stats[S.damage_range] = 0.5f;
-            singleshot.path_slash_animation = "effects/slashes/slash_punch";
-
-             ItemAsset machinegunery = AssetManager.items.clone("machinegunery", "_range");
-            machinegunery.id = "machinegunery";
-            machinegunery.projectile = "shotgun_bullet";
-            machinegunery.materials = List.Of<string>(new string[] { "base" });
-        machinegunery.base_stats[S.projectiles] = 1f;
-		machinegunery.base_stats[S.attack_speed] = 10000f;
-		machinegunery.base_stats[S.range] = 12f;
-		machinegunery.base_stats[S.targets] = 1f;
-		machinegunery.base_stats[S.damage] = 3f;
-		machinegunery.base_stats[S.damage_range] = 0.1f;
-            machinegunery.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset artillerystriker = AssetManager.items.clone("artillerystriker", "_range");
-            artillerystriker.id = "artillerystriker";
-            artillerystriker.projectile = "artilleryshell";
-            artillerystriker.materials = List.Of<string>(new string[] { "base" });
-        artillerystriker.base_stats[S.projectiles] = 1f;
-		artillerystriker.base_stats[S.attack_speed] = 0.1f;
-		artillerystriker.base_stats[S.range] = 30f;
-		artillerystriker.base_stats[S.targets] = 1f;
-		artillerystriker.base_stats[S.damage] = 60f;
-		artillerystriker.base_stats[S.damage_range] = 0.7f;
-            artillerystriker.path_slash_animation = "effects/slashes/slash_punch";
-
-
-            ItemAsset tankshellattack = AssetManager.items.clone("tankshellattack", "_range");
-            tankshellattack.id = "tankshellattack";
-            tankshellattack.projectile = "tankshell";
-            tankshellattack.materials = List.Of<string>(new string[] { "base" });
-        tankshellattack.base_stats[S.projectiles] = 1f;
-		tankshellattack.base_stats[S.attack_speed] = 0.1f;
-		tankshellattack.base_stats[S.range] = 30f;
-		tankshellattack.base_stats[S.targets] = 3f;
-		tankshellattack.base_stats[S.damage] = 60f;
-		tankshellattack.base_stats[S.damage_range] = 0.7f;
-            tankshellattack.path_slash_animation = "effects/slashes/slash_punch";
-
-                 ItemAsset crabartillery = AssetManager.items.clone("crabartillery", "_range");
-            crabartillery.id = "crabartillery";
-            crabartillery.projectile = "crabartilleryshell";
-            crabartillery.materials = List.Of<string>(new string[] { "base" });
-        crabartillery.base_stats[S.projectiles] = 4f;
-		crabartillery.base_stats[S.attack_speed] = 0.1f;
-		crabartillery.base_stats[S.range] = 30f;
-		crabartillery.base_stats[S.targets] = 1f;
-		crabartillery.base_stats[S.damage] = 100f;
-		crabartillery.base_stats[S.damage_range] = 0.7f;
-            crabartillery.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset bomberino = AssetManager.items.clone("bomberino", "_range");
-            bomberino.id = "bomberino";
-            bomberino.projectile = "bigbomb";
-            bomberino.materials = List.Of<string>(new string[] { "base" });
-        bomberino.base_stats[S.projectiles] = 1f;
-		bomberino.base_stats[S.attack_speed] = 0.01f;
-		bomberino.base_stats[S.range] = 3f;
-		bomberino.base_stats[S.targets] = 7f;
-		bomberino.base_stats[S.damage] = 30f;
-		bomberino.base_stats[S.damage_range] = 0.5f;
-            bomberino.path_slash_animation = "effects/slashes/slash_punch";
-
-      ItemAsset destroyerbot = AssetManager.items.clone("destroyerbot", "_range");
-            destroyerbot.id = "destroyerbot";
-            destroyerbot.projectile = "seismicrod";
-            destroyerbot.materials = List.Of<string>(new string[] { "base" });
-        destroyerbot.base_stats[S.projectiles] = 1f;
-		destroyerbot.base_stats[S.attack_speed] = 0.1f;
-		destroyerbot.base_stats[S.range] = 10f;
-		destroyerbot.base_stats[S.targets] = 10f;
-		destroyerbot.base_stats[S.damage] = 20f;
-		destroyerbot.base_stats[S.damage_range] = 0.5f;
-            destroyerbot.path_slash_animation = "effects/slashes/slash_punch";
 
 
             BuildingAsset Chess_tree = AssetManager.buildings.clone("Chess_tree", "tree");
@@ -691,6 +350,28 @@ namespace M2
             AssetManager.buildings.add(walkercorpse);
             AssetManager.buildings.loadSprites(walkercorpse);
 
+            BuildingAsset colonyship = AssetManager.buildings.clone("colonyship", "!building");
+            colonyship.affected_by_drought = false;
+		    colonyship.burnable = false;
+            colonyship.base_stats[S.health] = 1000f;
+		    colonyship.fundament = new BuildingFundament(1, 0, 1, 0);
+		    colonyship.race = "nature";
+            colonyship.kingdom = "nature";
+            colonyship.checkForCloseBuilding = false;
+		    colonyship.canBeLivingHouse = false;
+            colonyship.canBePlacedOnLiquid = true;
+            colonyship.ignoreBuildings = true;
+            colonyship.canBeHarvested = true;
+            colonyship.setShadow(0.5f, 0.03f, 0.12f);
+            colonyship.sound_idle = "event:/SFX/BUILDINGS_IDLE/IdleBeehive";
+            colonyship.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    colonyship.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.add(colonyship);
+            AssetManager.buildings.addResource("wood", 200, false);
+            AssetManager.buildings.addResource("stone", 200, false);
+            AssetManager.buildings.addResource("common_metals", 200, false);
+            AssetManager.buildings.loadSprites(colonyship);
+
                          TopTileType cybertilelow = AssetManager.topTiles.get("cybertile_low");
             AssetManager.topTiles.add(cybertilelow);
             AssetManager.topTiles.loadSpritesForTile(cybertilelow);
@@ -865,7 +546,7 @@ var icewalker = AssetManager.actor_library.get("walker");
             id = "CyberDisaster",
             rate = 1,
             chance = 0.2f,
-            min_world_population = 500,
+            min_world_population = 1000,
             min_world_cities = 4,
             world_log = "worldlog_disaster_alien_invasion",
             world_log_icon = "SolarPoweredCyberBody",
@@ -1432,6 +1113,8 @@ var icewalker = AssetManager.actor_library.get("walker");
             AssetManager.traits.add(Walker_Titan);
 			addTraitToLocalizedLibrary(Walker_Titan.id, "Great Embassador of the Ice Walker kind");
             PlayerConfig.unlockTrait("Walker_Titan");
+
+
 
                    ActorTrait IceTowerSpawner = new ActorTrait();
 			IceTowerSpawner.id = "IceTowerSpawner";
@@ -2198,7 +1881,1599 @@ var icewalker = AssetManager.actor_library.get("walker");
             AssetManager.topTiles.loadSpritesForTile(Space_high);
 
 
+  BuildingAsset pileofcorpses = AssetManager.buildings.clone("pileofcorpses", "!building");
+            pileofcorpses.affected_by_drought = true;
+		    pileofcorpses.burnable = true;
+            pileofcorpses.base_stats[S.health] = 1000f;
+		    pileofcorpses.fundament = new BuildingFundament(1, 0, 1, 0);
+            pileofcorpses.spawnUnits = true;
+		    pileofcorpses.spawnUnits_asset = "zombie";
+            pileofcorpses.has_ruins_graphics = false;
+		    pileofcorpses.race = "undead";
+            pileofcorpses.kingdom = "undead";
+            pileofcorpses.checkForCloseBuilding = false;
+		    pileofcorpses.canBeLivingHouse = false;
+            pileofcorpses.canBePlacedOnLiquid = false;
+            pileofcorpses.ignoreBuildings = true;
+            pileofcorpses.canBeHarvested = false;
+            pileofcorpses.setShadow(0.5f, 0.03f, 0.12f);
+            pileofcorpses.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    pileofcorpses.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.add(pileofcorpses);
+            AssetManager.buildings.loadSprites(pileofcorpses);
+
+             ActorTrait zombie_spawner = new ActorTrait();
+            zombie_spawner.id = "zombie_spawner";
+            zombie_spawner.action_death = (WorldAction)Delegate.Combine(zombie_spawner.action_death, new WorldAction(pileofcorpsesEffect));
+             zombie_spawner.action_special_effect = (WorldAction)Delegate.Combine(zombie_spawner.action_special_effect, new WorldAction(activeCorpseSpawnerEffect));
+            zombie_spawner.path_icon = "ui/Icons/iconInfected";
+            AssetManager.traits.add(zombie_spawner);
+			addTraitToLocalizedLibrary(zombie_spawner.id, "[REDACTED]");
+            PlayerConfig.unlockTrait("zombie_spawner");
+
+
+        AssetManager.job_actor.add(new ActorJob{id = "ZombieWorse"});
+		 AssetManager.job_actor.t.addTask("follow_same_race");
+		 AssetManager.job_actor.t.addTask("swim_to_island");
+		 AssetManager.job_actor.t.addTask("random_move");
+         AssetManager.job_actor.t.addTask("wait10");
+
+           var zombie = AssetManager.actor_library.get("zombie");
+zombie.take_items = true;
+        zombie.use_items = true;
+          zombie.base_stats[S.health] = 200;
+       zombie.base_stats[S.damage] = 30;
+       zombie.job = "ZombieWorse";
+
+            var zombiespeed = AssetManager.actor_library.clone("zombiespeed", "zombie");
+		zombiespeed.nameLocale = "Zombie";
+		zombiespeed.race = SK.undead;
+		zombiespeed.kingdom = SK.undead;
+		zombiespeed.texture_path = "zombiespeed";
+        zombiespeed.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiespeed.animation_idle = "walk_0";
+        zombiespeed.color = Toolbox.makeColor("#24803E");
+        zombiespeed.base_stats[S.max_age] = 130;
+       zombiespeed.base_stats[S.health] = 200;
+       zombiespeed.base_stats[S.damage] = 30;
+       zombiespeed.base_stats[S.armor] = 0f;
+       zombiespeed.base_stats[S.speed] = 100f;
+       	zombiespeed.base_stats[S.attack_speed] = 310f;
+       zombiespeed.base_stats[S.area_of_effect] = 1;
+       zombiespeed.base_stats[S.knockback] = 1;
+       zombiespeed.base_stats[S.knockback_reduction] = 1f;
+       zombiespeed.actorSize = ActorSize.S13_Human;
+       zombiespeed.canBeKilledByDivineLight = true;
+        zombiespeed.take_items = true;
+        zombiespeed.use_items = true;
+        zombiespeed.body_separate_part_head = false;
+        zombiespeed.take_items_ignore_range_weapons = false;
+		zombiespeed.defaultWeapons.Clear();
+		zombiespeed.defaultWeaponsMaterial.Clear();
+        zombiespeed.canAttackBuildings = true;
+        zombiespeed.canAttackBrains = true;
+        zombiespeed.diet_meat = false;
+        zombiespeed.oceanCreature = false;
+        zombiespeed.landCreature = true;
+        zombiespeed.canTurnIntoMush = false;
+        zombiespeed.canTurnIntoZombie = false;
+        zombiespeed.needFood = false;
+        zombiespeed.zombieID = "";
+        zombiespeed.job = "ZombieWorse";
+        zombiespeed.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiespeed.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiespeed.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiespeed.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiespeed.fmod_theme = "Units_Zombie";
+        zombiespeed.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiespeed);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiespeed);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "fast");
+        Localization.addLocalization(zombiespeed.nameLocale,zombiespeed.nameLocale);
+
+
+var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
+		zombiespikes.nameLocale = "Zombie";
+		zombiespikes.race = SK.undead;
+		zombiespikes.kingdom = SK.undead;
+		zombiespikes.texture_path = "zombiespikes";
+        zombiespikes.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiespikes.animation_idle = "walk_0";
+        zombiespikes.color = Toolbox.makeColor("#24803E");
+        zombiespikes.base_stats[S.max_age] = 130;
+       zombiespikes.base_stats[S.health] = 350;
+       zombiespikes.base_stats[S.damage] = 50;
+       zombiespikes.base_stats[S.armor] = 15f;
+       zombiespikes.base_stats[S.speed] = 50f;
+       	zombiespikes.base_stats[S.attack_speed] = 110f;
+       zombiespikes.base_stats[S.area_of_effect] = 1;
+       zombiespikes.base_stats[S.knockback] = 0;
+       zombiespikes.base_stats[S.knockback_reduction] = 1f;
+       zombiespikes.actorSize = ActorSize.S13_Human;
+       zombiespikes.canBeKilledByDivineLight = true;
+        zombiespikes.take_items = true;
+        zombiespikes.use_items = true;
+        zombiespikes.body_separate_part_head = false;
+        zombiespikes.take_items_ignore_range_weapons = false;
+		zombiespikes.defaultWeapons.Clear();
+		zombiespikes.defaultWeaponsMaterial.Clear();
+        zombiespikes.canAttackBuildings = true;
+        zombiespikes.canAttackBrains = true;
+        zombiespikes.diet_meat = false;
+        zombiespikes.oceanCreature = false;
+        zombiespikes.landCreature = true;
+        zombiespikes.canTurnIntoMush = false;
+        zombiespikes.canTurnIntoZombie = false;
+        zombiespikes.needFood = false;
+        zombiespikes.zombieID = "";
+        zombiespikes.job = "ZombieWorse";
+        zombiespikes.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiespikes.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiespikes.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiespikes.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiespikes.fmod_theme = "Units_Zombie";
+        zombiespikes.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiespikes);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiespikes);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "thorns");
+        Localization.addLocalization(zombiespikes.nameLocale,zombiespikes.nameLocale);
+
+        var zombiepoison = AssetManager.actor_library.clone("zombiepoison", "zombie");
+		zombiepoison.nameLocale = "Zombie";
+		zombiepoison.race = SK.undead;
+		zombiepoison.kingdom = SK.undead;
+		zombiepoison.texture_path = "zombiepoison";
+        zombiepoison.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiepoison.animation_idle = "walk_0";
+        zombiepoison.color = Toolbox.makeColor("#24803E");
+        zombiepoison.base_stats[S.max_age] = 130;
+       zombiepoison.base_stats[S.health] = 350;
+       zombiepoison.base_stats[S.damage] = 54;
+       zombiepoison.base_stats[S.armor] = 0f;
+       zombiepoison.base_stats[S.speed] = 50f;
+       	zombiepoison.base_stats[S.attack_speed] = 510f;
+       zombiepoison.base_stats[S.area_of_effect] = 1;
+       zombiepoison.base_stats[S.knockback] = 0;
+       zombiepoison.base_stats[S.knockback_reduction] = 1f;
+       zombiepoison.actorSize = ActorSize.S13_Human;
+       zombiepoison.canBeKilledByDivineLight = true;
+        zombiepoison.take_items = true;
+        zombiepoison.use_items = true;
+        zombiepoison.body_separate_part_head = false;
+        zombiepoison.take_items_ignore_range_weapons = false;
+		zombiepoison.defaultWeapons.Clear();
+		zombiepoison.defaultWeaponsMaterial.Clear();
+        zombiepoison.canAttackBuildings = true;
+        zombiepoison.canAttackBrains = true;
+        zombiepoison.diet_meat = false;
+        zombiepoison.oceanCreature = false;
+        zombiepoison.landCreature = true;
+        zombiepoison.canTurnIntoMush = false;
+        zombiepoison.canTurnIntoZombie = false;
+        zombiepoison.needFood = false;
+        zombiepoison.zombieID = "";
+        zombiepoison.job = "ZombieWorse";
+        zombiepoison.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiepoison.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiepoison.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiepoison.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiepoison.fmod_theme = "Units_Zombie";
+        zombiepoison.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiepoison);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiepoison);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "venomous");
+        AssetManager.actor_library.CallMethod("addTrait", "poisonous");
+        AssetManager.actor_library.CallMethod("addTrait", "poison_immune");
+        Localization.addLocalization(zombiepoison.nameLocale,zombiepoison.nameLocale);
+
+        var zombieacid = AssetManager.actor_library.clone("zombieacid", "zombie");
+		zombieacid.nameLocale = "Zombie";
+		zombieacid.race = SK.undead;
+		zombieacid.kingdom = SK.undead;
+		zombieacid.texture_path = "zombieacid";
+        zombieacid.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieacid.animation_idle = "walk_0";
+        zombieacid.color = Toolbox.makeColor("#24803E");
+        zombieacid.base_stats[S.max_age] = 130;
+       zombieacid.base_stats[S.health] = 350;
+       zombieacid.base_stats[S.damage] = 64;
+       zombieacid.base_stats[S.armor] = 0f;
+       zombieacid.base_stats[S.speed] = 60f;
+       	zombieacid.base_stats[S.attack_speed] = 210f;
+       zombieacid.base_stats[S.area_of_effect] = 1;
+       zombieacid.base_stats[S.knockback] = 1;
+       zombieacid.base_stats[S.knockback_reduction] = 1f;
+       zombieacid.actorSize = ActorSize.S16_Buffalo;
+       zombieacid.canBeKilledByDivineLight = true;
+        zombieacid.take_items = true;
+        zombieacid.use_items = true;
+        zombieacid.body_separate_part_head = false;
+        zombieacid.take_items_ignore_range_weapons = false;
+		zombieacid.defaultWeapons.Clear();
+		zombieacid.defaultWeaponsMaterial.Clear();
+        zombieacid.canAttackBuildings = true;
+        zombieacid.canAttackBrains = true;
+        zombieacid.diet_meat = false;
+        zombieacid.oceanCreature = false;
+        zombieacid.landCreature = true;
+        zombieacid.canTurnIntoMush = false;
+        zombieacid.canTurnIntoZombie = false;
+        zombieacid.needFood = false;
+        zombieacid.zombieID = "";
+        zombieacid.job = "ZombieWorse";
+        zombieacid.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieacid.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieacid.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieacid.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieacid.fmod_theme = "Units_Zombie";
+        zombieacid.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieacid);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieacid);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_touch");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_blood");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_proof");
+        Localization.addLocalization(zombieacid.nameLocale,zombieacid.nameLocale);
+
+        var zombietentacle = AssetManager.actor_library.clone("zombietentacle", "zombie");
+		zombietentacle.nameLocale = "Zombie";
+		zombietentacle.race = SK.undead;
+		zombietentacle.kingdom = SK.undead;
+		zombietentacle.texture_path = "zombietentacle";
+        zombietentacle.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombietentacle.animation_idle = "walk_0";
+        zombietentacle.color = Toolbox.makeColor("#24803E");
+        zombietentacle.base_stats[S.max_age] = 130;
+       zombietentacle.base_stats[S.health] = 400;
+       zombietentacle.base_stats[S.damage] = 33;
+       zombietentacle.base_stats[S.armor] = 0f;
+      zombietentacle.base_stats[S.dodge] = 6f;
+       zombietentacle.base_stats[S.speed] = 70f;
+       	zombietentacle.base_stats[S.attack_speed] = 2110f;
+       zombietentacle.base_stats[S.area_of_effect] = 1;
+       zombietentacle.base_stats[S.knockback] = 1;
+       zombietentacle.base_stats[S.knockback_reduction] = 1f;
+       zombietentacle.actorSize = ActorSize.S13_Human;
+       zombietentacle.canBeKilledByDivineLight = true;
+        zombietentacle.take_items = true;
+        zombietentacle.use_items = true;
+        zombietentacle.body_separate_part_head = false;
+        zombietentacle.take_items_ignore_range_weapons = false;
+		zombietentacle.defaultWeapons.Clear();
+		zombietentacle.defaultWeaponsMaterial.Clear();
+        zombietentacle.canAttackBuildings = true;
+        zombietentacle.canAttackBrains = true;
+        zombietentacle.diet_meat = false;
+        zombietentacle.oceanCreature = false;
+        zombietentacle.landCreature = true;
+        zombietentacle.canTurnIntoMush = false;
+        zombietentacle.canTurnIntoZombie = false;
+        zombietentacle.needFood = false;
+        zombietentacle.zombieID = "";
+        zombietentacle.job = "ZombieWorse";
+        zombietentacle.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombietentacle.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombietentacle.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombietentacle.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombietentacle.fmod_theme = "Units_Zombie";
+        zombietentacle.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombietentacle);
+        AssetManager.actor_library.CallMethod("loadShadow",zombietentacle);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "agile");
+        Localization.addLocalization(zombietentacle.nameLocale,zombietentacle.nameLocale);
+
+        var zombiestalker = AssetManager.actor_library.clone("zombiestalker", "zombie");
+		zombiestalker.nameLocale = "Zombie";
+		zombiestalker.race = SK.undead;
+		zombiestalker.kingdom = SK.undead;
+		zombiestalker.texture_path = "zombiestalker";
+        zombiestalker.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiestalker.animation_idle = "walk_0";
+        zombiestalker.color = Toolbox.makeColor("#24803E");
+        zombiestalker.base_stats[S.max_age] = 130;
+       zombiestalker.base_stats[S.health] = 1050;
+       zombiestalker.base_stats[S.damage] = 104;
+       zombiestalker.base_stats[S.armor] = 10f;
+       zombiestalker.base_stats[S.speed] = 60f;
+       	zombiestalker.base_stats[S.attack_speed] = 210f;
+       zombiestalker.base_stats[S.area_of_effect] = 1;
+       zombiestalker.base_stats[S.knockback] = 2;
+       zombiestalker.base_stats[S.knockback_reduction] = 3f;
+       zombiestalker.actorSize = ActorSize.S13_Human;
+       zombiestalker.canBeKilledByDivineLight = true;
+        zombiestalker.take_items = true;
+        zombiestalker.use_items = true;
+        zombiestalker.body_separate_part_head = false;
+        zombiestalker.take_items_ignore_range_weapons = false;
+		zombiestalker.defaultWeapons.Clear();
+		zombiestalker.defaultWeaponsMaterial.Clear();
+        zombiestalker.canAttackBuildings = true;
+        zombiestalker.canAttackBrains = true;
+        zombiestalker.diet_meat = false;
+        zombiestalker.oceanCreature = false;
+        zombiestalker.landCreature = true;
+        zombiestalker.canTurnIntoMush = false;
+        zombiestalker.canTurnIntoZombie = false;
+        zombiestalker.needFood = false;
+        zombiestalker.zombieID = "";
+        zombiestalker.job = "ZombieWorse";
+        zombiestalker.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiestalker.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiestalker.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiestalker.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiestalker.fmod_theme = "Units_Zombie";
+        zombiestalker.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiestalker);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiestalker);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "giant");
+                AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombiestalker.nameLocale,zombiestalker.nameLocale);
+
+        	var zombiemother = AssetManager.actor_library.clone("zombiemother", "zombie");
+		zombiemother.nameLocale = "Zombie";
+		zombiemother.race = SK.undead;
+		zombiemother.kingdom = SK.undead;
+		zombiemother.texture_path = "zombiemother";
+        zombiemother.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiemother.animation_idle = "walk_0";
+        zombiemother.color = Toolbox.makeColor("#24803E");
+        zombiemother.base_stats[S.max_age] = 130;
+       zombiemother.base_stats[S.health] = 2000;
+       zombiemother.base_stats[S.damage] = 204;
+       zombiemother.base_stats[S.armor] = 0f;
+       zombiemother.base_stats[S.speed] = 30f;
+       	zombiemother.base_stats[S.attack_speed] = 150f;
+       zombiemother.base_stats[S.area_of_effect] = 1;
+       zombiemother.base_stats[S.knockback] = 8;
+       zombiemother.base_stats[S.knockback_reduction] = 10f;
+       zombiemother.actorSize = ActorSize.S17_Dragon;
+       zombiemother.canBeKilledByDivineLight = true;
+        zombiemother.take_items = true;
+        zombiemother.use_items = true;
+        zombiemother.body_separate_part_head = false;
+        zombiemother.take_items_ignore_range_weapons = false;
+		zombiemother.defaultWeapons.Clear();
+		zombiemother.defaultWeaponsMaterial.Clear();
+        zombiemother.canAttackBuildings = true;
+        zombiemother.canAttackBrains = true;
+        zombiemother.diet_meat = false;
+        zombiemother.oceanCreature = false;
+        zombiemother.landCreature = true;
+        zombiemother.canTurnIntoMush = false;
+        zombiemother.canTurnIntoZombie = false;
+        zombiemother.needFood = false;
+        zombiemother.zombieID = "";
+        zombiemother.job = "ZombieWorse";
+        zombiemother.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiemother.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiemother.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiemother.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiemother.fmod_theme = "Units_Zombie";
+        zombiemother.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiemother);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiemother);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "fat");
+        AssetManager.actor_library.CallMethod("addTrait", "giant");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_blood");
+        AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombiemother.nameLocale,zombiemother.nameLocale);
+
+
+
+var zombiefiremaniac = AssetManager.actor_library.clone("zombiefiremaniac", "zombie");
+		zombiefiremaniac.nameLocale = "Zombie";
+		zombiefiremaniac.race = SK.undead;
+		zombiefiremaniac.kingdom = SK.undead;
+		zombiefiremaniac.texture_path = "zombiefiremaniac";
+        zombiefiremaniac.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiefiremaniac.animation_idle = "walk_0";
+        zombiefiremaniac.color = Toolbox.makeColor("#24803E");
+        zombiefiremaniac.base_stats[S.max_age] = 130;
+       zombiefiremaniac.base_stats[S.health] = 450;
+       zombiefiremaniac.base_stats[S.damage] = 70;
+       zombiefiremaniac.base_stats[S.armor] = 0f;
+       zombiefiremaniac.base_stats[S.speed] = 70f;
+       	zombiefiremaniac.base_stats[S.attack_speed] = 110f;
+       zombiefiremaniac.base_stats[S.area_of_effect] = 1;
+       zombiefiremaniac.base_stats[S.knockback] = 1;
+       zombiefiremaniac.base_stats[S.knockback_reduction] = 1f;
+       zombiefiremaniac.defaultAttack = "fire_hands";
+       zombiefiremaniac.actorSize = ActorSize.S13_Human;
+       zombiefiremaniac.canBeKilledByDivineLight = true;
+        zombiefiremaniac.take_items = true;
+        zombiefiremaniac.use_items = true;
+        zombiefiremaniac.body_separate_part_head = false;
+        zombiefiremaniac.take_items_ignore_range_weapons = false;
+		zombiefiremaniac.defaultWeapons.Clear();
+		zombiefiremaniac.defaultWeaponsMaterial.Clear();
+        zombiefiremaniac.canAttackBuildings = true;
+        zombiefiremaniac.canAttackBrains = true;
+        zombiefiremaniac.diet_meat = false;
+        zombiefiremaniac.oceanCreature = false;
+        zombiefiremaniac.landCreature = true;
+        zombiefiremaniac.canTurnIntoMush = false;
+        zombiefiremaniac.canTurnIntoZombie = false;
+        zombiefiremaniac.needFood = false;
+        zombiefiremaniac.zombieID = "";
+        zombiefiremaniac.job = "ZombieWorse";
+        zombiefiremaniac.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiefiremaniac.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiefiremaniac.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiefiremaniac.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiefiremaniac.fmod_theme = "Units_Zombie";
+        zombiefiremaniac.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiefiremaniac);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiefiremaniac);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+        AssetManager.actor_library.CallMethod("addTrait", "pyromaniac");
+        Localization.addLocalization(zombiefiremaniac.nameLocale,zombiefiremaniac.nameLocale);
+
+
+var zombiehulk = AssetManager.actor_library.clone("zombiehulk", "zombie");
+		zombiehulk.nameLocale = "Zombie";
+		zombiehulk.race = SK.undead;
+		zombiehulk.kingdom = SK.undead;
+		zombiehulk.texture_path = "zombiehulk";
+        zombiehulk.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiehulk.animation_idle = "walk_0";
+        zombiehulk.defaultAttack = "base";
+        zombiehulk.color = Toolbox.makeColor("#24803E");
+        zombiehulk.base_stats[S.max_age] = 130;
+       zombiehulk.base_stats[S.health] = 1000;
+       zombiehulk.base_stats[S.damage] = 240;
+       zombiehulk.base_stats[S.armor] = 20f;
+       zombiehulk.base_stats[S.speed] = 40f;
+       	zombiehulk.base_stats[S.attack_speed] = 300f;
+       zombiehulk.base_stats[S.area_of_effect] = 1;
+       zombiehulk.base_stats[S.knockback] = 3;
+       zombiehulk.base_stats[S.knockback_reduction] = 5f;
+       zombiehulk.actorSize = ActorSize.S13_Human;
+       zombiehulk.canBeKilledByDivineLight = true;
+        zombiehulk.take_items = true;
+        zombiehulk.use_items = true;
+        zombiehulk.body_separate_part_head = false;
+        zombiehulk.take_items_ignore_range_weapons = false;
+		zombiehulk.defaultWeapons.Clear();
+		zombiehulk.defaultWeaponsMaterial.Clear();
+        zombiehulk.canAttackBuildings = true;
+        zombiehulk.canAttackBrains = true;
+        zombiehulk.diet_meat = false;
+        zombiehulk.oceanCreature = false;
+        zombiehulk.landCreature = true;
+        zombiehulk.canTurnIntoMush = false;
+        zombiehulk.canTurnIntoZombie = false;
+        zombiehulk.needFood = false;
+        zombiehulk.zombieID = "";
+        zombiehulk.job = "ZombieWorse";
+        zombiehulk.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiehulk.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiehulk.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiehulk.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiehulk.fmod_theme = "Units_Zombie";
+        zombiehulk.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiehulk);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiehulk);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "giant");
+        AssetManager.actor_library.CallMethod("addTrait", "fat");
+                AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombiehulk.nameLocale,zombiehulk.nameLocale);
+
+
+var zombieabomination = AssetManager.actor_library.clone("zombieabomination", "zombie");
+		zombieabomination.nameLocale = "Zombie";
+		zombieabomination.race = SK.undead;
+		zombieabomination.kingdom = SK.undead;
+		zombieabomination.texture_path = "zombieabomination";
+        zombieabomination.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieabomination.animation_idle = "walk_0";
+        zombieabomination.defaultAttack = "jaws";
+        zombieabomination.color = Toolbox.makeColor("#24803E");
+        zombieabomination.base_stats[S.max_age] = 130;
+       zombieabomination.base_stats[S.health] = 1300;
+       zombieabomination.base_stats[S.damage] = 240;
+       zombieabomination.base_stats[S.armor] = 30f;
+       zombieabomination.base_stats[S.speed] = 40f;
+       	zombieabomination.base_stats[S.attack_speed] = 300f;
+       zombieabomination.base_stats[S.area_of_effect] = 1;
+       zombieabomination.base_stats[S.knockback] = 3;
+       zombieabomination.base_stats[S.knockback_reduction] = 5f;
+       zombieabomination.actorSize = ActorSize.S13_Human;
+       zombieabomination.canBeKilledByDivineLight = true;
+        zombieabomination.take_items = true;
+        zombieabomination.use_items = true;
+        zombieabomination.body_separate_part_head = false;
+        zombieabomination.take_items_ignore_range_weapons = false;
+		zombieabomination.defaultWeapons.Clear();
+		zombieabomination.defaultWeaponsMaterial.Clear();
+        zombieabomination.canAttackBuildings = true;
+        zombieabomination.canAttackBrains = true;
+        zombieabomination.diet_meat = false;
+        zombieabomination.oceanCreature = false;
+        zombieabomination.landCreature = true;
+        zombieabomination.canTurnIntoMush = false;
+        zombieabomination.canTurnIntoZombie = false;
+        zombieabomination.needFood = false;
+        zombieabomination.zombieID = "";
+        zombieabomination.job = "ZombieWorse";
+        zombieabomination.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieabomination.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieabomination.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieabomination.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieabomination.fmod_theme = "Units_Zombie";
+        zombieabomination.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieabomination);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieabomination);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "giant");
+        AssetManager.actor_library.CallMethod("addTrait", "fat");
+        AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombieabomination.nameLocale,zombieabomination.nameLocale);
+
+
+var zombieclawed = AssetManager.actor_library.clone("zombieclawed", "zombie");
+		zombieclawed.nameLocale = "Zombie";
+		zombieclawed.race = SK.undead;
+		zombieclawed.kingdom = SK.undead;
+		zombieclawed.texture_path = "zombieclawed";
+        zombieclawed.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieclawed.animation_idle = "walk_0";
+        zombieclawed.defaultAttack = "claws";
+        zombieclawed.color = Toolbox.makeColor("#24803E");
+        zombieclawed.base_stats[S.max_age] = 130;
+       zombieclawed.base_stats[S.health] = 1300;
+       zombieclawed.base_stats[S.damage] = 240;
+       zombieclawed.base_stats[S.armor] = 35f;
+       zombieclawed.base_stats[S.speed] = 40f;
+       	zombieclawed.base_stats[S.attack_speed] = 300f;
+       zombieclawed.base_stats[S.area_of_effect] = 1;
+       zombieclawed.base_stats[S.knockback] = 6;
+       zombieclawed.base_stats[S.knockback_reduction] = 5f;
+       zombieclawed.actorSize = ActorSize.S13_Human;
+       zombieclawed.canBeKilledByDivineLight = true;
+        zombieclawed.take_items = true;
+        zombieclawed.use_items = true;
+        zombieclawed.body_separate_part_head = false;
+        zombieclawed.take_items_ignore_range_weapons = false;
+		zombieclawed.defaultWeapons.Clear();
+		zombieclawed.defaultWeaponsMaterial.Clear();
+        zombieclawed.canAttackBuildings = true;
+        zombieclawed.canAttackBrains = true;
+        zombieclawed.diet_meat = false;
+        zombieclawed.oceanCreature = false;
+        zombieclawed.landCreature = true;
+        zombieclawed.canTurnIntoMush = false;
+        zombieclawed.canTurnIntoZombie = false;
+        zombieclawed.needFood = false;
+        zombieclawed.zombieID = "";
+        zombieclawed.job = "ZombieWorse";
+        zombieclawed.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieclawed.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieclawed.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieclawed.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieclawed.fmod_theme = "Units_Zombie";
+        zombieclawed.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieclawed);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieclawed);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "giant");
+        AssetManager.actor_library.CallMethod("addTrait", "strong");
+                AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombieclawed.nameLocale,zombieclawed.nameLocale);
+
+
+var zombieballoon = AssetManager.actor_library.clone("zombieballoon", "zombie");
+		zombieballoon.nameLocale = "Zombie";
+		zombieballoon.race = SK.undead;
+		zombieballoon.kingdom = SK.undead;
+		zombieballoon.texture_path = "zombieballoon";
+        zombieballoon.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieballoon.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+        zombieballoon.defaultAttack = "base";
+        zombieballoon.color = Toolbox.makeColor("#24803E");
+        zombieballoon.base_stats[S.max_age] = 130;
+       zombieballoon.base_stats[S.health] = 100;
+       zombieballoon.base_stats[S.damage] = 10;
+       zombieballoon.base_stats[S.armor] = 0f;
+       zombieballoon.base_stats[S.speed] = 40f;
+       	zombieballoon.base_stats[S.attack_speed] = 300f;
+       zombieballoon.base_stats[S.area_of_effect] = 1;
+       zombieballoon.base_stats[S.knockback] = 6;
+       zombieballoon.base_stats[S.knockback_reduction] = 5f;
+       zombieballoon.actorSize = ActorSize.S17_Dragon;
+       zombieballoon.canBeKilledByDivineLight = true;
+        zombieballoon.take_items = false;
+        zombieballoon.use_items = false;
+        zombieballoon.body_separate_part_head = false;
+        zombieballoon.take_items_ignore_range_weapons = false;
+		zombieballoon.defaultWeapons.Clear();
+		zombieballoon.defaultWeaponsMaterial.Clear();
+        zombieballoon.canAttackBuildings = true;
+        zombieballoon.canAttackBrains = true;
+        zombieballoon.diet_meat = false;
+        zombieballoon.oceanCreature = false;
+        zombieballoon.landCreature = true;
+        zombieballoon.canTurnIntoMush = false;
+        zombieballoon.canTurnIntoZombie = false;
+        zombieballoon.needFood = false;
+        zombieballoon.zombieID = "";
+        zombieballoon.job = "ZombieWorse";
+        zombieballoon.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieballoon.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieballoon.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieballoon.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieballoon.fmod_theme = "Units_Zombie";
+        zombieballoon.sound_hit = "event:/SFX/HIT/HitFlesh";
+        zombieballoon.flying = true;
+        zombieballoon.canFlip = false;
+        zombieballoon.very_high_flyer = true;
+        AssetManager.actor_library.add(zombieballoon);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieballoon);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        AssetManager.actor_library.CallMethod("addTrait", "peaceful");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_blood");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_touch");
+                AssetManager.actor_library.CallMethod("addTrait", "zombie_spawner");
+        Localization.addLocalization(zombieballoon.nameLocale,zombieballoon.nameLocale);
+
+
+           var snowman = AssetManager.actor_library.get("snowman");
+snowman.zombieID = "zombieacidman";
+snowman.canTurnIntoZombie = true;
+
+var zombieacidman = AssetManager.actor_library.clone("zombieacidman", "zombie");
+		zombieacidman.nameLocale = "Zombie";
+		zombieacidman.race = SK.undead;
+		zombieacidman.kingdom = SK.undead;
+		zombieacidman.texture_path = "zombieacidman";
+        zombieacidman.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieacidman.animation_idle = "walk_0";
+        zombieacidman.defaultAttack = "base";
+        zombieacidman.color = Toolbox.makeColor("#24803E");
+        zombieacidman.base_stats[S.max_age] = 130;
+       zombieacidman.base_stats[S.health] = 300;
+       zombieacidman.base_stats[S.damage] = 204;
+       zombieacidman.base_stats[S.armor] = 0f;
+       zombieacidman.base_stats[S.speed] = 40f;
+       	zombieacidman.base_stats[S.attack_speed] = 70f;
+       zombieacidman.base_stats[S.area_of_effect] = 1;
+       zombieacidman.base_stats[S.knockback] = 1;
+       zombieacidman.base_stats[S.knockback_reduction] = 1f;
+       zombieacidman.actorSize = ActorSize.S13_Human;
+       zombieacidman.canBeKilledByDivineLight = true;
+        zombieacidman.take_items = false;
+        zombieacidman.use_items = false;
+        zombieacidman.body_separate_part_head = false;
+        zombieacidman.take_items_ignore_range_weapons = false;
+		zombieacidman.defaultWeapons.Clear();
+		zombieacidman.defaultWeaponsMaterial.Clear();
+        zombieacidman.canAttackBuildings = true;
+        zombieacidman.canAttackBrains = true;
+        zombieacidman.diet_meat = false;
+        zombieacidman.oceanCreature = false;
+        zombieacidman.landCreature = true;
+        zombieacidman.canTurnIntoMush = false;
+        zombieacidman.canTurnIntoZombie = false;
+        zombieacidman.needFood = false;
+        zombieacidman.zombieID = "";
+        zombieacidman.job = "ZombieWorse";
+        zombieacidman.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieacidman.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieacidman.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieacidman.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieacidman.fmod_theme = "Units_Zombie";
+        zombieacidman.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieacidman);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieacidman);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+         AssetManager.actor_library.CallMethod("addTrait", "acid_blood");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_proof");
+        AssetManager.actor_library.CallMethod("addTrait", "acid_touch");
+        Localization.addLocalization(zombieacidman.nameLocale,zombieacidman.nameLocale);
+
+var demon = AssetManager.actor_library.get("demon");
+demon.zombieID = "zombiedemon";
+
+
+var zombiedemon = AssetManager.actor_library.clone("zombiedemon", "zombie");
+		zombiedemon.nameLocale = "Zombie";
+		zombiedemon.race = SK.undead;
+		zombiedemon.kingdom = SK.undead;
+		zombiedemon.texture_path = "zombiedemon";
+        zombiedemon.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiedemon.animation_idle = "walk_0";
+        zombiedemon.defaultAttack = "base";
+        zombiedemon.color = Toolbox.makeColor("#24803E");
+        zombiedemon.base_stats[S.max_age] = 130;
+       zombiedemon.base_stats[S.health] = 717;
+       zombiedemon.base_stats[S.damage] = 10;
+       zombiedemon.base_stats[S.armor] = 0f;
+       zombiedemon.base_stats[S.speed] = 50f;
+       	zombiedemon.base_stats[S.attack_speed] = 110f;
+       zombiedemon.base_stats[S.area_of_effect] = 1;
+       zombiedemon.base_stats[S.knockback] = 1;
+       zombiedemon.base_stats[S.knockback_reduction] = 1f;
+       zombiedemon.actorSize = ActorSize.S13_Human;
+       zombiedemon.canBeKilledByDivineLight = true;
+        zombiedemon.take_items = true;
+        zombiedemon.use_items = true;
+        zombiedemon.body_separate_part_head = false;
+        zombiedemon.take_items_ignore_range_weapons = false;
+		zombiedemon.defaultWeapons.Clear();
+		zombiedemon.defaultWeaponsMaterial.Clear();
+        zombiedemon.canAttackBuildings = true;
+        zombiedemon.canAttackBrains = true;
+        zombiedemon.diet_meat = false;
+        zombiedemon.oceanCreature = false;
+        zombiedemon.landCreature = true;
+        zombiedemon.canTurnIntoMush = false;
+        zombiedemon.canTurnIntoZombie = false;
+        zombiedemon.needFood = false;
+        zombiedemon.zombieID = "";
+        zombiedemon.job = "ZombieWorse";
+        zombiedemon.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiedemon.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiedemon.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiedemon.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiedemon.fmod_theme = "Units_Zombie";
+        zombiedemon.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiedemon);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiedemon);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombiedemon.nameLocale,zombiedemon.nameLocale);
+
+        var plagueDoctor = AssetManager.actor_library.get("plagueDoctor");
+plagueDoctor.zombieID = "zombiedoctor";
+
+
+var zombiedoctor = AssetManager.actor_library.clone("zombiedoctor", "zombie");
+		zombiedoctor.nameLocale = "Zombie";
+		zombiedoctor.race = SK.undead;
+		zombiedoctor.kingdom = SK.undead;
+		zombiedoctor.texture_path = "zombiedoctor";
+        zombiedoctor.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiedoctor.animation_idle = "walk_0";
+        zombiedoctor.defaultAttack = "base";
+        zombiedoctor.color = Toolbox.makeColor("#24803E");
+        zombiedoctor.base_stats[S.max_age] = 130;
+       zombiedoctor.base_stats[S.health] = 600;
+       zombiedoctor.base_stats[S.damage] = 1;
+       zombiedoctor.base_stats[S.armor] = 0f;
+       zombiedoctor.base_stats[S.speed] = 40f;
+       zombiedoctor.base_stats[S.targets] = 1f;
+       	zombiedoctor.base_stats[S.attack_speed] = 110f;
+       zombiedoctor.base_stats[S.area_of_effect] = 1;
+       zombiedoctor.base_stats[S.knockback] = 1;
+       zombiedoctor.base_stats[S.knockback_reduction] = 1f;
+       zombiedoctor.actorSize = ActorSize.S13_Human;
+       zombiedoctor.canBeKilledByDivineLight = true;
+        zombiedoctor.take_items = true;
+        zombiedoctor.use_items = true;
+        zombiedoctor.body_separate_part_head = false;
+        zombiedoctor.take_items_ignore_range_weapons = false;
+		zombiedoctor.defaultWeapons.Clear();
+		zombiedoctor.defaultWeaponsMaterial.Clear();
+        zombiedoctor.canAttackBuildings = true;
+        zombiedoctor.canAttackBrains = true;
+        zombiedoctor.diet_meat = false;
+        zombiedoctor.oceanCreature = false;
+        zombiedoctor.landCreature = true;
+        zombiedoctor.canTurnIntoMush = false;
+        zombiedoctor.canTurnIntoZombie = false;
+        zombiedoctor.needFood = false;
+        zombiedoctor.zombieID = "";
+         ActorAsset actorAssetdoctorhelp = zombiedemon;
+		actorAssetdoctorhelp.action_death = (WorldAction)Delegate.Combine(actorAssetdoctorhelp.action_death, new WorldAction(ActionLibrary.mageSlayer));
+        zombiedemon.attack_spells = List.Of<string>("bloodRain");
+        zombiedoctor.job = "ZombieWorse";
+        zombiedoctor.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiedoctor.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiedoctor.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiedoctor.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiedoctor.fmod_theme = "Units_Zombie";
+        zombiedoctor.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiedoctor);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiedoctor);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombiedoctor.nameLocale,zombiedoctor.nameLocale);
+
+        var druid = AssetManager.actor_library.get("druid");
+druid.zombieID = "zombiedruid";
+
+
+var zombiedruid = AssetManager.actor_library.clone("zombiedruid", "zombie");
+		zombiedruid.nameLocale = "Zombie";
+		zombiedruid.race = SK.undead;
+		zombiedruid.kingdom = SK.undead;
+		zombiedruid.texture_path = "zombiedruid";
+        zombiedruid.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiedruid.animation_idle = "idle_0";
+        zombiedruid.defaultAttack = "base";
+        zombiedruid.color = Toolbox.makeColor("#24803E");
+        zombiedruid.base_stats[S.max_age] = 130;
+       zombiedruid.base_stats[S.health] = 600;
+       zombiedruid.base_stats[S.damage] = 1;
+       zombiedruid.base_stats[S.armor] = 0f;
+       zombiedruid.base_stats[S.speed] = 50f;
+       	zombiedruid.base_stats[S.attack_speed] = 110f;
+       zombiedruid.base_stats[S.area_of_effect] = 1;
+       zombiedruid.base_stats[S.knockback] = 1;
+       zombiedruid.base_stats[S.knockback_reduction] = 1f;
+       zombiedruid.actorSize = ActorSize.S13_Human;
+       zombiedruid.canBeKilledByDivineLight = true;
+        zombiedruid.take_items = true;
+        zombiedruid.use_items = true;
+        zombiedruid.body_separate_part_head = false;
+        zombiedruid.take_items_ignore_range_weapons = false;
+		zombiedruid.defaultWeapons.Clear();
+		zombiedruid.defaultWeaponsMaterial.Clear();
+        zombiedruid.canAttackBuildings = true;
+        zombiedruid.canAttackBrains = true;
+        zombiedruid.diet_meat = false;
+        zombiedruid.oceanCreature = false;
+        zombiedruid.landCreature = true;
+        zombiedruid.canTurnIntoMush = false;
+        zombiedruid.canTurnIntoZombie = false;
+        zombiedruid.needFood = false;
+        zombiedruid.zombieID = "";
+        zombiedruid.job = "ZombieWorse";
+			zombiedruid.fmod_spawn = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalSpawn";
+			zombiedruid.fmod_attack = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalAttack";
+			zombiedruid.fmod_idle = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalIdle";
+			zombiedruid.fmod_death = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalDeath";
+        zombiedruid.fmod_theme = "Units_Zombie";
+        zombiedruid.attack_spells = List.Of<string>("bloodRain");
+        zombiedruid.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombiedruid);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiedruid);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombiedruid.nameLocale,zombiedruid.nameLocale);
+
+
+
+        var evilMage = AssetManager.actor_library.get("evilMage");
+evilMage.zombieID = "zombieevilhorseman";
+
+
+var zombieevilhorseman = AssetManager.actor_library.clone("zombieevilhorseman", "zombie");
+		zombieevilhorseman.nameLocale = "Zombie";
+		zombieevilhorseman.race = SK.undead;
+		zombieevilhorseman.kingdom = SK.undead;
+		zombieevilhorseman.texture_path = "zombieevilhorseman";
+        zombieevilhorseman.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieevilhorseman.animation_idle = "walk_0";
+        zombieevilhorseman.defaultAttack = "base";
+        zombieevilhorseman.color = Toolbox.makeColor("#24803E");
+        zombieevilhorseman.base_stats[S.max_age] = 130;
+       zombieevilhorseman.base_stats[S.health] = 600;
+       zombieevilhorseman.base_stats[S.damage] = 1;
+       zombieevilhorseman.base_stats[S.armor] = 0f;
+       zombieevilhorseman.base_stats[S.speed] = 80f;
+       	zombieevilhorseman.base_stats[S.attack_speed] = 110f;
+       zombieevilhorseman.base_stats[S.area_of_effect] = 1;
+       zombieevilhorseman.base_stats[S.knockback] = 1;
+      zombieevilhorseman.base_stats[S.targets] = 1f;
+       zombieevilhorseman.base_stats[S.knockback_reduction] = 1f;
+       zombieevilhorseman.actorSize = ActorSize.S13_Human;
+       zombieevilhorseman.canBeKilledByDivineLight = true;
+        zombieevilhorseman.take_items = true;
+        zombieevilhorseman.use_items = true;
+        zombieevilhorseman.body_separate_part_head = false;
+        zombieevilhorseman.take_items_ignore_range_weapons = false;
+		zombieevilhorseman.defaultWeapons.Clear();
+		zombieevilhorseman.defaultWeaponsMaterial.Clear();
+        zombieevilhorseman.canAttackBuildings = true;
+        zombieevilhorseman.canAttackBrains = true;
+        zombieevilhorseman.diet_meat = false;
+        zombieevilhorseman.oceanCreature = false;
+        zombieevilhorseman.landCreature = true;
+        zombieevilhorseman.canTurnIntoMush = false;
+        zombieevilhorseman.canTurnIntoZombie = false;
+        zombieevilhorseman.needFood = false;
+        zombieevilhorseman.zombieID = "";
+        zombieevilhorseman.job = "ZombieWorse";
+        	zombieevilhorseman.effect_teleport = "fx_teleport_red";
+		zombieevilhorseman.effect_cast_top = "fx_cast_top_red";
+		zombieevilhorseman.effect_cast_ground = "fx_cast_ground_red";
+        zombieevilhorseman.attack_spells = List.Of<string>("teleportRandom", "lightning", "tornado", "bloodRain", "bloodRain", "fire");
+        zombieevilhorseman.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieevilhorseman.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieevilhorseman.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieevilhorseman.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombieevilhorseman.fmod_theme = "Units_Zombie";
+        zombieevilhorseman.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieevilhorseman);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieevilhorseman);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombieevilhorseman.nameLocale,zombieevilhorseman.nameLocale);
+
+
+
+        var whiteMage = AssetManager.actor_library.get("whiteMage");
+whiteMage.zombieID = "zombieicelich";
+
+        var walker = AssetManager.actor_library.get("walker");
+walker.zombieID = "zombieicelich";
+
+
+var zombieicelich = AssetManager.actor_library.clone("zombieicelich", "zombie");
+		zombieicelich.nameLocale = "Zombie";
+		zombieicelich.race = SK.undead;
+		zombieicelich.kingdom = SK.undead;
+		zombieicelich.texture_path = "zombieicelich";
+        zombieicelich.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombieicelich.animation_idle = "walk_0";
+        zombieicelich.defaultAttack = "icebolt";
+        zombieicelich.color = Toolbox.makeColor("#24803E");
+        zombieicelich.base_stats[S.max_age] = 130;
+       zombieicelich.base_stats[S.health] = 400;
+       zombieicelich.base_stats[S.damage] = 1;
+       zombieicelich.base_stats[S.armor] = 0f;
+       zombieicelich.base_stats[S.speed] = 40f;
+       	zombieicelich.base_stats[S.attack_speed] = 110f;
+       zombieicelich.base_stats[S.area_of_effect] = 1;
+       zombieicelich.base_stats[S.knockback] = 1;
+      zombieicelich.base_stats[S.targets] = 1f;
+       zombieicelich.base_stats[S.knockback_reduction] = 1f;
+       zombieicelich.actorSize = ActorSize.S13_Human;
+       zombieicelich.canBeKilledByDivineLight = true;
+        zombieicelich.take_items = true;
+        zombieicelich.use_items = true;
+        zombieicelich.body_separate_part_head = false;
+        zombieicelich.take_items_ignore_range_weapons = false;
+		zombieicelich.defaultWeapons.Clear();
+		zombieicelich.defaultWeaponsMaterial.Clear();
+        zombieicelich.canAttackBuildings = true;
+        zombieicelich.canAttackBrains = true;
+        zombieicelich.diet_meat = false;
+        zombieicelich.oceanCreature = false;
+        zombieicelich.landCreature = true;
+        zombieicelich.canTurnIntoMush = false;
+        zombieicelich.canTurnIntoZombie = false;
+        zombieicelich.needFood = false;
+        zombieicelich.zombieID = "";
+        zombieicelich.job = "ZombieWorse";
+	zombieicelich.effect_teleport = "fx_teleport_blue";
+		zombieicelich.effect_cast_top = "fx_cast_top_blue";
+		zombieicelich.effect_cast_ground = "fx_cast_ground_blue";
+        		zombieicelich.attack_spells = List.Of<string>("teleportRandom", "bloodRain", "shield");
+        zombieicelich.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombieicelich.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombieicelich.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombieicelich.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        		zombieicelich.disableJumpAnimation = true;
+        zombieicelich.fmod_theme = "Units_Zombie";
+        zombieicelich.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombieicelich);
+        AssetManager.actor_library.CallMethod("loadShadow",zombieicelich);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombieicelich.nameLocale,zombieicelich.nameLocale);
+
+                var fairy = AssetManager.actor_library.get("fairy");
+fairy.zombieID = "zombiefairy";
+fairy.canTurnIntoZombie = true;
+
+        var zombiefairy = AssetManager.actor_library.clone("zombiefairy", "zombie");
+		zombiefairy.nameLocale = "Zombie";
+		zombiefairy.race = SK.undead;
+		zombiefairy.kingdom = SK.undead;
+		zombiefairy.texture_path = "zombiefairy";
+        zombiefairy.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombiefairy.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+        zombiefairy.defaultAttack = "base";
+        zombiefairy.color = Toolbox.makeColor("#24803E");
+        zombiefairy.base_stats[S.max_age] = 130;
+       zombiefairy.base_stats[S.health] = 150;
+       zombiefairy.base_stats[S.damage] = 24;
+       zombiefairy.base_stats[S.armor] = 0f;
+       zombiefairy.base_stats[S.speed] = 50f;
+       	zombiefairy.base_stats[S.attack_speed] = 110f;
+       zombiefairy.base_stats[S.area_of_effect] = 1;
+       zombiefairy.base_stats[S.knockback] = 1;
+       zombiefairy.base_stats[S.knockback_reduction] = 1f;
+       zombiefairy.actorSize = ActorSize.S13_Human;
+       zombiefairy.canBeKilledByDivineLight = true;
+        zombiefairy.take_items = true;
+        zombiefairy.use_items = true;
+        zombiefairy.body_separate_part_head = false;
+        zombiefairy.take_items_ignore_range_weapons = false;
+		zombiefairy.defaultWeapons.Clear();
+		zombiefairy.defaultWeaponsMaterial.Clear();
+        zombiefairy.canAttackBuildings = true;
+        zombiefairy.canAttackBrains = true;
+        zombiefairy.diet_meat = false;
+        zombiefairy.oceanCreature = false;
+        zombiefairy.landCreature = true;
+        zombiefairy.canTurnIntoMush = false;
+        zombiefairy.canTurnIntoZombie = false;
+        zombiefairy.needFood = false;
+        zombiefairy.zombieID = "";
+        zombiefairy.job = "ZombieWorse";
+        zombiefairy.fmod_spawn = "event:/SFX/UNITS/Zombie/ZombieSpawn";
+        zombiefairy.fmod_attack = "event:/SFX/UNITS/Zombie/ZombieAttack";
+        zombiefairy.fmod_idle = "event:/SFX/UNITS/Zombie/ZombieIdle";
+        zombiefairy.fmod_death = "event:/SFX/UNITS/Zombie/ZombieDeath";
+        zombiefairy.fmod_theme = "Units_Zombie";
+        zombiefairy.sound_hit = "event:/SFX/HIT/HitFlesh";
+        		zombiefairy.hovering = true;
+        		zombiefairy.disableJumpAnimation = true;
+        		zombiefairy.moveFromBlock = true;
+		zombiefairy.dieOnBlocks = false;
+        AssetManager.actor_library.add(zombiefairy);
+        AssetManager.actor_library.CallMethod("loadShadow",zombiefairy);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "stupid");
+        Localization.addLocalization(zombiefairy.nameLocale,zombiefairy.nameLocale);
+
+        var fly = AssetManager.actor_library.get("fly");
+fly.zombieID = "zombietarantula";
+fly.canTurnIntoZombie = true;
+
+        var butterfly = AssetManager.actor_library.get("butterfly");
+butterfly.zombieID = "zombietarantula";
+butterfly.canTurnIntoZombie = true;
+
+        var grasshopper = AssetManager.actor_library.get("grasshopper");
+grasshopper.zombieID = "zombietarantula";
+grasshopper.canTurnIntoZombie = true;
+
+        var beetle = AssetManager.actor_library.get("beetle");
+beetle.zombieID = "zombietarantula";
+beetle.canTurnIntoZombie = true;
+
+var zombietarantula = AssetManager.actor_library.clone("zombietarantula", "zombie");
+		zombietarantula.nameLocale = "Zombie";
+		zombietarantula.race = SK.undead;
+		zombietarantula.kingdom = SK.undead;
+		zombietarantula.texture_path = "zombietarantula";
+        zombietarantula.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+        zombietarantula.animation_idle = "walk_0";
+        zombietarantula.defaultAttack = "base";
+        zombietarantula.color = Toolbox.makeColor("#24803E");
+        zombietarantula.base_stats[S.max_age] = 130;
+       zombietarantula.base_stats[S.health] = 150;
+       zombietarantula.base_stats[S.damage] = 24;
+       zombietarantula.base_stats[S.armor] = 0f;
+       zombietarantula.base_stats[S.speed] = 40f;
+       	zombietarantula.base_stats[S.attack_speed] = 110f;
+       zombietarantula.base_stats[S.area_of_effect] = 1;
+       zombietarantula.base_stats[S.knockback] = 1;
+       zombietarantula.base_stats[S.knockback_reduction] = 1f;
+       zombietarantula.actorSize = ActorSize.S13_Human;
+       zombietarantula.canBeKilledByDivineLight = true;
+        zombietarantula.take_items = false;
+        zombietarantula.use_items = false;
+        zombietarantula.body_separate_part_head = false;
+        zombietarantula.take_items_ignore_range_weapons = false;
+		zombietarantula.defaultWeapons.Clear();
+		zombietarantula.defaultWeaponsMaterial.Clear();
+        zombietarantula.canAttackBuildings = true;
+        zombietarantula.canAttackBrains = true;
+        zombietarantula.diet_meat = false;
+        zombietarantula.oceanCreature = false;
+        zombietarantula.landCreature = true;
+        zombietarantula.canTurnIntoMush = false;
+        zombietarantula.canTurnIntoZombie = false;
+        zombietarantula.needFood = false;
+        zombietarantula.zombieID = "";
+        zombietarantula.job = "ZombieWorse";
+			zombietarantula.fmod_spawn = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalSpawn";
+			zombietarantula.fmod_attack = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalAttack";
+			zombietarantula.fmod_idle = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalIdle";
+			zombietarantula.fmod_death = "event:/SFX/UNITS/ZombieAnimal/ZombieAnimalDeath";
+        zombietarantula.fmod_theme = "Units_Zombie";
+        zombietarantula.sound_hit = "event:/SFX/HIT/HitFlesh";
+        AssetManager.actor_library.add(zombietarantula);
+        AssetManager.actor_library.CallMethod("loadShadow",zombietarantula);
+        AssetManager.actor_library.CallMethod("addTrait", "zombie");
+        AssetManager.actor_library.CallMethod("addTrait", "immortal");
+        AssetManager.actor_library.CallMethod("addTrait", "small");
+        AssetManager.actor_library.CallMethod("addTrait", "venomous");
+        Localization.addLocalization(zombietarantula.nameLocale,zombietarantula.nameLocale);
+
+           var zombietrait = AssetManager.traits.get("zombie");
+        zombietrait.action_special_effect = (WorldAction)Delegate.Combine(zombietrait.action_special_effect, new WorldAction(M2zombieEffect));
+
+        			ActorTrait NightInfusedZombie = new ActorTrait();
+			NightInfusedZombie.id = "NightInfusedZombie";
+			NightInfusedZombie.path_icon = "ui/Icons/NightInfusedZombie";
+			NightInfusedZombie.group_id = TraitGroup.body;
+			NightInfusedZombie.inherit = 0f;
+            NightInfusedZombie.can_be_given = false;
+            NightInfusedZombie.base_stats[S.speed] = 40f;
+            NightInfusedZombie.base_stats[S.attack_speed] = 50f;
+         AssetManager.traits.add(NightInfusedZombie);
+            addTraitToLocalizedLibrary(NightInfusedZombie.id, "The darkness powers up the disease");
+            PlayerConfig.unlockTrait("NightInfusedZombie");
+
+            ActorTrait ChaosZombie = new ActorTrait();
+			ChaosZombie.id = "ChaosZombie";
+			ChaosZombie.path_icon = "ui/Icons/ChaosZombie";
+			ChaosZombie.group_id = TraitGroup.body;
+			ChaosZombie.inherit = 0f;
+            ChaosZombie.can_be_given = false;
+            ChaosZombie.action_attack_target = ActionLibrary.restoreHealthOnHit;
+            ChaosZombie.base_stats[S.speed] = 20f;
+            ChaosZombie.base_stats[S.scale] = 0.05f;
+		    ChaosZombie.base_stats[S.mod_health] = 0.3f;
+            ChaosZombie.base_stats[S.attack_speed] = 30f;
+         AssetManager.traits.add(ChaosZombie);
+            addTraitToLocalizedLibrary(ChaosZombie.id, "The chaos energy powers up the disease");
+            PlayerConfig.unlockTrait("ChaosZombie");
+
+			ActorTrait FrostedZombie = new ActorTrait();
+			FrostedZombie.id = "FrostedZombie";
+			FrostedZombie.path_icon = "ui/Icons/FrostedZombie";
+			FrostedZombie.group_id = TraitGroup.body;
+			FrostedZombie.inherit = 0f;
+			FrostedZombie.can_be_given = false;
+			FrostedZombie.base_stats[S.speed] = -30f;
+            FrostedZombie.base_stats[S.attack_speed] = -50f;
+            FrostedZombie.action_special_effect = (WorldAction)Delegate.Combine(FrostedZombie.action_special_effect, new WorldAction(constantFrozenEffect));
+            AssetManager.traits.add(FrostedZombie);
+            addTraitToLocalizedLibrary(FrostedZombie.id, "Letting Go");
+            PlayerConfig.unlockTrait("FrostedZombie");
+
+			ActorTrait ScorchedZombie = new ActorTrait();
+			ScorchedZombie.id = "ScorchedZombie";
+			ScorchedZombie.path_icon = "ui/Icons/ScorchedZombie";
+			ScorchedZombie.group_id = TraitGroup.body;
+			ScorchedZombie.inherit = 0f;
+			ScorchedZombie.can_be_given = false;
+			ScorchedZombie.base_stats[S.speed] = -100f;
+			ScorchedZombie.base_stats[S.range] = -20f;
+		     ScorchedZombie.base_stats[S.accuracy] = -100f;
+            ScorchedZombie.action_special_effect = (WorldAction)Delegate.Combine(ScorchedZombie.action_special_effect, new WorldAction(randomWaitEffect));
+            AssetManager.traits.add(ScorchedZombie);
+            addTraitToLocalizedLibrary(ScorchedZombie.id, "The Sun is weakening the rotting body of the zombie");
+            PlayerConfig.unlockTrait("ScorchedZombie");
+
 		}
+
+
+
+
+
+
+public static bool pileofcorpsesEffect(BaseSimObject pSelf, WorldTile pTile = null)
+{
+    Actor selfActor = pSelf as Actor;
+
+    if (selfActor == null)
+        return false;
+
+    WorldTile targetTile = selfActor.currentTile;
+    if (targetTile.building == null)
+    {
+        MapBox.instance.buildings.addBuilding("pileofcorpses", targetTile, false, false, BuildPlacingType.New);
+    }
+
+    return true;
+}
+
+
+
+
+public static bool activeCorpseSpawnerEffect(BaseSimObject pTarget, WorldTile pTile = null)
+{
+
+    if (pTarget == null || pTile == null) return false;
+
+    Actor actor = pTarget.a;
+    if (actor == null) return false;
+
+
+    bool shouldSpawn = false;
+    actor.data.get("exhaustedSpawner", out bool exhaustedSpawner);
+
+
+    List<string> buildingIds = new List<string> { "pileofcorpses", "pileofcorpses" };
+    int perChunkLimit = 3;
+
+
+    MapChunk currentChunk = pTile.chunk;
+    if (currentChunk == null) return false;
+
+
+    int buildingCountInChunk = CountBuildingsInChunk(currentChunk, buildingIds);
+    if (buildingCountInChunk >= perChunkLimit)
+    {
+
+        return false;
+    }
+
+
+    if (IsLiquidTile(pTile))
+    {
+        return false;
+    }
+
+
+    if (!exhaustedSpawner)
+    {
+        shouldSpawn = true;
+    }
+
+    if (shouldSpawn)
+    {
+        WorldTile targetTile = actor.currentTile;
+        if (targetTile != null && targetTile.building == null)
+        {
+
+            List<string> buildingsToSpawn = new List<string>();
+
+
+            if (Toolbox.randomChance(0.4f)) buildingsToSpawn.Add("pileofcorpses");
+            if (Toolbox.randomChance(0.6f)) buildingsToSpawn.Add("pileofcorpses");
+
+
+            foreach (string buildingToSpawn in buildingsToSpawn)
+            {
+                Building spawnedBuilding = MapBox.instance.buildings.addBuilding(buildingToSpawn, targetTile, false, false, BuildPlacingType.New);
+                if (spawnedBuilding != null)
+                {
+
+                    actor.data.set("exhaustedSpawner", true);
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+
+
+		  public static bool randomWaitEffect(BaseSimObject pTarget, WorldTile pTile = null)
+{
+    if (pTarget == null || !pTarget.isActor())
+        return false;
+
+    Actor actor = pTarget.a;
+
+
+    if (Toolbox.randomChance(0.2f))
+    {
+        actor.makeWait(10f);
+    }
+
+    return true;
+}
+
+	public static bool constantFrozenEffect(BaseSimObject pTarget, WorldTile pTile = null)
+{
+    if (!pTarget.isActor())
+        return false;
+
+    Actor actor = pTarget.a;
+
+    if (!actor.hasStatus("frozen"))
+    {
+        if (!actor.currentTile.Type.lava && !actor.currentTile.isOnFire())
+        {
+            actor.addStatusEffect("frozen");
+        }
+    }
+
+    return true;
+}
+
+
+         public static bool M2zombieEffect(BaseSimObject pTarget, WorldTile pTile = null)
+	{
+          if (pTarget == null || !pTarget.isActor())
+        return false;
+
+    Actor actor = pTarget.a;
+
+		pTarget.a.spawnParticle(Toolbox.color_infected);
+		if (Toolbox.randomChance(0.25f))
+		{
+			pTarget.a.startShake(0.2f, 0.05f, pHorizontal: true, pVertical: false);
+		}
+
+    if (World.world_era.overlay_sun)
+    {
+        if (!actor.hasTrait("ScorchedZombie"))
+        {
+            actor.addTrait("ScorchedZombie");
+        }
+    }
+    else
+    {
+        actor.removeTrait("ScorchedZombie");
+    }
+
+    if (World.world_era.overlay_winter)
+    {
+        if (!actor.hasTrait("FrostedZombie"))
+        {
+            actor.addTrait("FrostedZombie");
+        }
+    }
+    else
+    {
+        actor.removeTrait("FrostedZombie");
+    }
+
+    if (World.world_era.overlay_chaos)
+    {
+        if (!actor.hasTrait("ChaosZombie"))
+        {
+            actor.addTrait("ChaosZombie");
+        }
+    }
+    else
+    {
+        actor.removeTrait("ChaosZombie");
+    }
+
+    if (World.world_era.overlay_night || World.world_era.overlay_moon)
+    {
+        if (!actor.hasTrait("NightInfusedZombie"))
+        {
+            actor.addTrait("NightInfusedZombie");
+        }
+    }
+    else
+    {
+        actor.removeTrait("NightInfusedZombie");
+    }
+
+    float age = actor.getAge();
+    int kills = actor.data.kills;
+    if (CheckZombieTransform(actor, age, kills, pTile))
+    {
+        return true;
+    }
+
+		return false;
+	}
+ //  updateLayer(World.world_era.overlay_chaos, "chaos", pElapsed);
+	//	updateLayer(World.world_era.overlay_moon, "moon", pElapsed);
+	//	updateLayer(World.world_era.overlay_magic, "magic", pElapsed);
+	//	updateLayer(World.world_era.overlay_sun, "sun", pElapsed);
+	//	updateLayer(World.world_era.overlay_rain_darkness, "rain_darkness", pElapsed);
+	//	updateLayer(World.world_era.overlay_winter, "winter", pElapsed);
+	//	updateLayer(World.world_era.overlay_ash, "ash", pElapsed);
+	//	updateLayer(World.world_era.overlay_night, "night", pElapsed);
+	//	updateLayer(World.world_era.overlay_rain, "rain", pElapsed);
+
+
+//zombiespeed, zombiespikes, zombiepoison, zombieacid, zombietentacle, zombiestalker, zombiemother, zombiefiremaniac, zombiehulk, zombieabomination, zombieclawed, zombieballoon
+
+private static bool CheckZombieTransform(Actor actor, float age, int kills, WorldTile pTile)
+{
+    switch (actor.asset.id)
+    {
+        case "zombie":
+            if (actor.hasTrait("veteran"))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (Toolbox.randomChance(0.01f))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("fat"))
+            {
+        string[] transformationOptions = { "zombieballoon" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+           else if (actor.hasTrait("giant"))
+            {
+        string[] transformationOptions = { "zombiestalker" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("strong"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+             else if (actor.hasTrait("bloodlust"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            break;
+
+              case "zombie_orc":
+            if (actor.hasTrait("veteran"))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (Toolbox.randomChance(0.01f))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("fat"))
+            {
+        string[] transformationOptions = { "zombieballoon" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+           else if (actor.hasTrait("giant"))
+            {
+        string[] transformationOptions = { "zombiestalker" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("strong"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+             else if (actor.hasTrait("bloodlust"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            break;
+
+              case "zombie_elf":
+            if (actor.hasTrait("veteran"))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (Toolbox.randomChance(0.01f))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("fat"))
+            {
+        string[] transformationOptions = { "zombieballoon" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+           else if (actor.hasTrait("giant"))
+            {
+        string[] transformationOptions = { "zombiestalker" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("strong"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+             else if (actor.hasTrait("bloodlust"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            break;
+
+              case "zombie_dwarf":
+            if (actor.hasTrait("veteran"))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (Toolbox.randomChance(0.01f))
+            {
+        string[] transformationOptions = { "zombiespeed", "zombieacid", "zombiestalker", "zombietentacle", "zombiefiremaniac", "zombieballoon" , "zombiespikes", "zombiepoison", "zombiemother", "zombieabomination", "zombieclawed", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("fat"))
+            {
+        string[] transformationOptions = { "zombieballoon" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+           else if (actor.hasTrait("giant"))
+            {
+        string[] transformationOptions = { "zombiestalker" , "zombiemother", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            else if (actor.hasTrait("strong"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle", "zombieabomination", "zombiehulk" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+             else if (actor.hasTrait("bloodlust"))
+            {
+        string[] transformationOptions = { "zombieclawed" , "zombietentacle" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+            }
+            break;
+
+    }
+
+    return false;
+}
+
 
    public static bool spawnGlitchCreature(BaseSimObject pTarget, WorldTile pTile = null)
         {
@@ -2235,6 +3510,8 @@ var icewalker = AssetManager.actor_library.get("walker");
 
             return true;
         }
+
+
 
    public static void simpleUnitAssetSpawnUsingIslands(DisasterAsset pAsset)
 {
@@ -2277,42 +3554,7 @@ var icewalker = AssetManager.actor_library.get("walker");
 	}
 
 
-public static bool randomWaitEffect(BaseSimObject pTarget, WorldTile pTile = null)
-{
-    if (pTarget == null || !pTarget.isActor())
-        return false;
 
-    Actor actor = pTarget.a;
-
-
-    if (Toolbox.randomChance(0.2f))
-    {
-
-        actor.makeWait(10f);
-    }
-
-    return true;
-}
-
-	public static bool constantFrozenEffect(BaseSimObject pTarget, WorldTile pTile = null)
-{
-    if (!pTarget.isActor())
-        return false;
-
-    Actor actor = pTarget.a;
-
-
-    if (!actor.hasStatus("frozen"))
-    {
-
-        if (!actor.currentTile.Type.lava && !actor.currentTile.isOnFire())
-        {
-            actor.addStatusEffect("frozen");
-        }
-    }
-
-    return true;
-}
 
  //  updateLayer(World.world_era.overlay_chaos, "chaos", pElapsed);
 	//	updateLayer(World.world_era.overlay_moon, "moon", pElapsed);
@@ -2687,13 +3929,9 @@ private static void TransformActor(Actor originalActor, string newActorId, World
     {
         return;
     }
-
     Actor newActor = World.world.units.createNewUnit(newActorId, pTile);
     newActor.removeTrait("Mimicry");
     ActorTool.copyUnitToOtherUnit(originalActor, newActor);
-    newActor.data.skin = originalActor.data.skin;
-    newActor.data.skin_set = originalActor.data.skin_set;
-
     EffectsLibrary.spawn("fx_spawn", newActor.currentTile);
     ActionLibrary.removeUnit(originalActor);
 }

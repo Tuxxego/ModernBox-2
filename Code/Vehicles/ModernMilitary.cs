@@ -39,7 +39,36 @@ namespace M2
         private static void loadAssets()
         {
 			
-			var Soldier = AssetManager.actor_library.clone("Soldier","_mob");
+
+	ColorSetAsset eva01 = new ColorSetAsset();
+    eva01.id = "eva01";
+    eva01.shades_from = "#8620ca";
+    eva01.shades_to = "#8620ca";
+    eva01.is_default = true;
+    AssetManager.skin_color_set_library.add(eva01);
+
+	ColorSetAsset eva02 = new ColorSetAsset();
+    eva02.id = "eva02";
+    eva02.shades_from = "#f2321b";
+    eva02.shades_to = "#f2321b";
+    eva02.is_default = true;
+    AssetManager.skin_color_set_library.add(eva02);
+
+	ColorSetAsset eva00 = new ColorSetAsset();
+    eva00.id = "eva00";
+    eva00.shades_from = "#f8e348";
+    eva00.shades_to = "#f8e348";
+    eva00.is_default = true;
+    AssetManager.skin_color_set_library.add(eva00);
+
+	ColorSetAsset eva03 = new ColorSetAsset();
+    eva03.id = "eva03";
+    eva03.shades_from = "#413b69";
+    eva03.shades_to = "#413b69";
+    eva03.is_default = true;
+    AssetManager.skin_color_set_library.add(eva03);
+
+		var Soldier = AssetManager.actor_library.clone("Soldier","_mob");
 			//ActorAsset heli = new ActorAsset();
            // Soldier.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
 			Soldier.race = "human";
@@ -100,6 +129,63 @@ namespace M2
 			Soldier.color = Toolbox.makeColor("#33724D");
             AssetManager.actor_library.add(Soldier);
 			Localization.addLocalization(Soldier.nameLocale, Soldier.nameLocale);
+
+var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
+			//ActorAsset heli = new ActorAsset();
+           // EVA01.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
+			EVA01.race = "human";
+			EVA01.kingdom = "ModernKingdom";
+            EVA01.base_stats[S.health] = 100000f;
+            EVA01.base_stats[S.speed] = 70f;
+            EVA01.base_stats[S.armor] = 50f;
+            EVA01.base_stats[S.damage] = 1000f;
+            EVA01.base_stats[S.scale] = 0.2f;
+            EVA01.base_stats[S.attack_speed] = 200;
+			EVA01.base_stats[S.range] = 25f;
+            EVA01.drawBoatMark_big = true;
+            EVA01.skipFightLogic = false;
+            EVA01.inspect_stats = true;
+			EVA01.landCreature = true;
+			EVA01.inspect_home = true;
+			EVA01.hideOnMinimap = false;
+            EVA01.drawBoatMark = true;
+			EVA01.can_edit_traits = true;
+			EVA01.canReceiveTraits = true;
+			EVA01.flying = false;
+			//EVA01.tech = "EVA01s";
+			EVA01.very_high_flyer = false;
+            EVA01.isBoat = false;
+			EVA01.dieOnBlocks = false;
+			EVA01.ignoreBlocks = false;
+			EVA01.moveFromBlock = true;
+			EVA01.procreate = false;
+		    EVA01.inspect_children = false;
+            EVA01.inspect_experience = true;
+			EVA01.canBeCitizen = true;
+            EVA01.inspect_kills = true;
+            EVA01.use_items = true;
+			EVA01.oceanCreature = false;
+            EVA01.take_items = true;
+            EVA01.nameLocale = "EVA01";
+            EVA01.nameTemplate = "Modern_Names";
+			EVA01.shadow = false;
+			EVA01.job = "attacker";
+            EVA01.icon = "iconEVA01";
+			//AssetManager.actor_library.CallMethod("addTrait", "EVA01");
+			AssetManager.actor_library.CallMethod("loadShadow", EVA01);
+            EVA01.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+			EVA01.animation_idle = "walk_0";
+			EVA01.body_separate_part_head = true;
+            EVA01.texture_path = "EVA01";
+            EVA01.texture_heads = "EVA01head";
+   AssetManager.actor_library.addColorSet("eva00");
+      AssetManager.actor_library.addColorSet("eva01");
+	     AssetManager.actor_library.addColorSet("eva02");
+		    AssetManager.actor_library.addColorSet("eva03");
+			AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+			EVA01.color = Toolbox.makeColor("#33724D");
+            AssetManager.actor_library.add(EVA01);
+			Localization.addLocalization(EVA01.nameLocale, EVA01.nameLocale);
 
 						var SpaceMarine = AssetManager.actor_library.clone("SpaceMarine","_mob");
 			//ActorAsset heli = new ActorAsset();
