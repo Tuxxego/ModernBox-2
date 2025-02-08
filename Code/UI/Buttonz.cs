@@ -27,15 +27,16 @@ using Assets.SimpleZip;
 namespace M2 {
 class Buttonz {
 	
-		internal static PowerButton ASS;
-		internal static PowerButton ASS2;
-		internal static PowerButton ASS3;
-		internal static PowerButton ASS4;
-                internal static PowerButton ASS5;
-                internal static PowerButton ASS6;
-   	        internal static PowerButton ASS7;
-                internal static PowerButton ASS8;
-                internal static PowerButton ASS9;
+		internal static PowerButton BOMB;
+		internal static PowerButton BOMB2;
+		internal static PowerButton BOMB3;
+		internal static PowerButton BOMB4;
+                internal static PowerButton BOMB5;
+                internal static PowerButton BOMB6;
+   	        internal static PowerButton BOMB7;
+                internal static PowerButton BOMB8;
+                internal static PowerButton BOMB9;
+                internal static PowerButton BOMB10;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
 					private static List<string> savedTechListREAL;
@@ -273,6 +274,15 @@ class Buttonz {
     FuryOfTuxiaFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
     FuryOfTuxiaFuncDrop.action_landed = new DropsAction(action_FuryClick);
     AssetManager.drops.add(FuryOfTuxiaFuncDrop);
+
+    DropAsset SpreaderFuncDrop = new DropAsset();
+    SpreaderFuncDrop.id = "spreader";
+    SpreaderFuncDrop.path_texture = "drops/drop_czarbomba";
+    SpreaderFuncDrop.random_frame = false;
+    SpreaderFuncDrop.default_scale = 0.2f;
+    SpreaderFuncDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    SpreaderFuncDrop.action_landed = new DropsAction(action_SpreaderClick);
+    AssetManager.drops.add(SpreaderFuncDrop);
 	
     GodPower FuryOfTuxiaFuncPower = new GodPower();
     FuryOfTuxiaFuncPower.id = "FuryOfTuxiaButtonLOSER";
@@ -287,7 +297,19 @@ class Buttonz {
     FuryOfTuxiaFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(FuryOfTuxiaFuncPower);
    
-
+    GodPower SpreaderFuncPower = new GodPower();
+    SpreaderFuncPower.id = "SpreaderButtonLOSER";
+    SpreaderFuncPower.name = "SpreaderButtonLOSER";
+    SpreaderFuncPower.holdAction = true;
+    SpreaderFuncPower.fallingChance = 0.01f;
+    SpreaderFuncPower.showToolSizes = true;
+    SpreaderFuncPower.unselectWhenWindow = false;
+    SpreaderFuncPower.ignore_cursor_icon = true;
+    SpreaderFuncPower.dropID = "spreader";
+    SpreaderFuncPower.click_power_action = new PowerAction(Stuff_Drop);
+    SpreaderFuncPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(SpreaderFuncPower);
+	
     DropAsset ClusterNukeFuncDrop = new DropAsset();
     ClusterNukeFuncDrop.id = "cluster";
     ClusterNukeFuncDrop.path_texture = "drops/drop_czarbomba";
@@ -655,23 +677,25 @@ class Buttonz {
 	
 					// LOSER BUTTONS 
 
-          ASS = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 	
-	  ASS2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  BOMB2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
-	  ASS3 = PowerButtons.CreateButton("FuryOfTuxiaButtonLOSER", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury Of Tuxia", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  BOMB3 = PowerButtons.CreateButton("FuryOfTuxiaButtonLOSER", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury Of Tuxia", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
-	  ASS4 = PowerButtons.CreateButton("ClusterNukeButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  BOMB4 = PowerButtons.CreateButton("ClusterNukeButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 	  
-	  ASS5 = PowerButtons.CreateButton("EXbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+	  BOMB5 = PowerButtons.CreateButton("EXbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 
-          ASS6 = PowerButtons.CreateButton("NSAbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Not So Atomic Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB6 = PowerButtons.CreateButton("NSAbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Not So Atomic Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
           
-          ASS7 = PowerButtons.CreateButton("ClusterStrikebuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Cluster Strike", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB7 = PowerButtons.CreateButton("ClusterStrikebuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Cluster Strike", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 
-          ASS8 = PowerButtons.CreateButton("ProtonbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Proton Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB8 = PowerButtons.CreateButton("ProtonbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Proton Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 		  
-          ASS9 = PowerButtons.CreateButton("DeleterButtonLOSER", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "TUDDS", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB9 = PowerButtons.CreateButton("DeleterButtonLOSER", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "TUDDS", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+		  
+          BOMB10 = PowerButtons.CreateButton("SpreaderButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Spreader Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
@@ -1201,11 +1225,53 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 			// return true;
 		  }
 	public static void action_EXClick(WorldTile pTile, string pPowerID) {
-			EffectsLibrary.spawnAtTileRandomScale("fx_fireball_explosion", pTile, 5.3f, 7.9f);
-			MapAction.damageWorld(pTile, 30, TerraformLibrary.bomb, null);
-			World.world.startShake(0.3f, 0.01f, 2f, true, true);
-			// return true;
-		  }
+   // World.world.StartCoroutine(SpreaderBombCoroutine(pTile));
+	}
+
+	public static void action_SpreaderClick(WorldTile pTile, string pPowerID) {
+    World.world.StartCoroutine(SpreaderBombCoroutine(pTile));
+}
+
+private static IEnumerator SpreaderBombCoroutine(WorldTile pTile) {
+    int spreadIterations = 4;
+    int spreadDistance = 15;
+    float delayBetweenWaves = 1f;
+    float[] angles = { -35, 35, -145, 145 };
+
+    List<WorldTile> explosionPoints = new List<WorldTile> { pTile };
+
+    for (int i = 0; i < spreadIterations; i++) {
+        List<WorldTile> newExplosionPoints = new List<WorldTile>();
+
+        foreach (var tile in explosionPoints) {
+            foreach (float angle in angles) {
+                WorldTile newTile = GetTileAtAngle(tile, angle, spreadDistance);
+                if (newTile != null) {
+                    TriggerExplosion(newTile);
+                    newExplosionPoints.Add(newTile);
+                }
+            }
+        }
+
+        explosionPoints = newExplosionPoints;
+        spreadDistance += 15;
+        yield return new WaitForSeconds(delayBetweenWaves);
+    }
+}
+
+private static void TriggerExplosion(WorldTile tile) {
+    EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", tile, 0.4f, 0.6f);
+    MapAction.damageWorld(tile, 25, TerraformLibrary.czarBomba, null);
+    World.world.startShake(0.4f, 0.01f, 2f, true, true);
+}
+
+private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float distance) {
+    int targetX = origin.x + Mathf.RoundToInt(distance * Mathf.Cos(angle * Mathf.Deg2Rad));
+    int targetY = origin.y + Mathf.RoundToInt(distance * Mathf.Sin(angle * Mathf.Deg2Rad));
+
+    return World.world.GetTile(targetX, targetY);
+}
+
       public static void action_NSAClick(WorldTile pTile, string pPowerID) {
 			EffectsLibrary.spawnAtTileRandomScale("fx_fireball_explosion", pTile, 5.3f, 7.9f);
 			MapAction.damageWorld(pTile, 30, TerraformLibrary.bomb, null);

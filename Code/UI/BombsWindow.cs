@@ -26,16 +26,17 @@ namespace M2
         private static ScrollWindow window;
         private static GameObject content;
 		
-		private static PowerButton AHHHH;
-		private static PowerButton AHHHH2;
-		private static PowerButton AHHHH3;
-		private static PowerButton AHHHH4;
-		private static PowerButton AHHHH5;
-		private static PowerButton AHHHH6;
-		private static PowerButton AHHHH7;
-		private static PowerButton AHHHH8;
-		private static PowerButton AHHHH9;
-		private static PowerButton ASS2;
+		private static PowerButton BOMBButton;
+		private static PowerButton BOMBButton2;
+		private static PowerButton BOMBButton3;
+		private static PowerButton BOMBButton4;
+		private static PowerButton BOMBButton5;
+		private static PowerButton BOMBButton6;
+		private static PowerButton BOMBButton7;
+		private static PowerButton BOMBButton8;
+		private static PowerButton BOMBButton9;
+		private static PowerButton BOMBButton10;
+		private static PowerButton BOMB2;
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;
 		private static GodPower FuryOfTuxiaFuncPower;
@@ -46,6 +47,7 @@ namespace M2
 		private static GodPower ClusterStrikePower;
 		private static GodPower ProtonPower;
 		private static GodPower DeleterFuncPower;
+		private static GodPower SpreaderFuncPower;
 		
 	  private static PowersTab getPowersTab(string id) {
 		GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
@@ -88,15 +90,16 @@ namespace M2
 					  window.GetComponent<RectTransform>().sizeDelta = new Vector2(0, nameText.preferredHeight + 50);
 					  name.transform.localPosition = new Vector2(name.transform.localPosition.x, ((nameText.preferredHeight / 2) + 30) * -1);
 		  
-			   AHHHH = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
-			    AHHHH2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
-			    AHHHH3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
-			    AHHHH4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
-				//AHHHH5 = PowerButtons.CreateButton("EXbutton", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Nuke", "If you see this then you are a dev or you are snooping around my bomb code. -Dank", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, EXFunc);	//this is the experimental button for nukes
-                AHHHH6 = PowerButtons.CreateButton("NSAbutton", Resources.Load<Sprite>("ui/Icons/NotSoAtomic"), "the Not so atomic Bomb", "The bomb that wanted to become atomic but failed the test in 12th grade to become atomic", new Vector2(204, MoveDown), ButtonType.Click, content.transform, NSAFunc);	
-                AHHHH7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
-                AHHHH8 = PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "The Proton Bomb", "The bomb to be forgoten no longer", new Vector2(96, MoveDown*2), ButtonType.Click, content.transform, ProtonFunc);	
-                AHHHH9 = PowerButtons.CreateButton("DeleterButton", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "The Unholy Universal Destruction System", "Destroys the entire universe (literally it deletes EVERYTHING, watch out with this bad boy.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
+			   BOMBButton = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
+			    BOMBButton2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
+			    BOMBButton3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
+			    BOMBButton4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/MOAB"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
+				BOMBButton5 = PowerButtons.CreateButton("EXbutton", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Nuke", "If you see this then you are a dev or you are snooping around my bomb code. -Dank", new Vector2(132, MoveDown*3), ButtonType.Click, content.transform, EXFunc);	//this is the experimental button for nukes
+                BOMBButton6 = PowerButtons.CreateButton("NSAbutton", Resources.Load<Sprite>("ui/Icons/NotSoAtomic"), "the Not so atomic Bomb", "The bomb that wanted to become atomic but failed the test in 12th grade to become atomic", new Vector2(204, MoveDown), ButtonType.Click, content.transform, NSAFunc);	
+                BOMBButton7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
+                BOMBButton8 = PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "The Proton Bomb", "The bomb to be forgoten no longer", new Vector2(96, MoveDown*2), ButtonType.Click, content.transform, ProtonFunc);	
+                BOMBButton9 = PowerButtons.CreateButton("DeleterButton", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "The Unholy Universal Destruction System", "Destroys the entire universe (literally it deletes EVERYTHING, watch out with this bad boy.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);
+				BOMBButton10 = PowerButtons.CreateButton("SpreaderButton", Resources.Load<Sprite>("ui/Icons/MOAB"), "The Spreader Bomb", "Quickly spreads to engulf your whole world in fire.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, SpreaderFunc);	
 
         }
 		private static void AtomicGrenadeFunc()
@@ -107,11 +110,11 @@ namespace M2
 				
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH, AtomicGrenadePower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton, AtomicGrenadePower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS2);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
 		}
 		private static void FuryOfTuxiaFunc()
 		{
@@ -121,11 +124,11 @@ namespace M2
 
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH2, FuryOfTuxiaFuncPower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton2, FuryOfTuxiaFuncPower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS3);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
 		}
 		
 		private static void DeleterFunc()
@@ -136,11 +139,26 @@ namespace M2
 
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH9, DeleterFuncPower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton9, DeleterFuncPower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS9);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB9);
+		}
+
+		private static void SpreaderFunc()
+		{
+			
+			window.clickHide();
+			
+
+			
+
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton10, SpreaderFuncPower);
+
+
+	//		PowerTracker.setPower((GodPower), null);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB10);
 		}
 		
 		private static void ZeusRageFunc()
@@ -151,11 +169,11 @@ namespace M2
 				
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH3, ZeusRagePower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton3, ZeusRagePower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB);
 		}
 		
 		private static void ClusterNukeFunc()
@@ -166,11 +184,11 @@ namespace M2
 				
 			
 
-			PowerButtonSelector.instance.setSelectedPower(AHHHH4, ClusterNukePower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton4, ClusterNukePower);
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS4);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB4);
 		}
 	    private static void EXFunc()
 		{
@@ -180,11 +198,11 @@ namespace M2
 				
 			
             
-			PowerButtonSelector.instance.setSelectedPower(AHHHH5, EXPower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton5, EXPower);
 			
 			//		PowerTracker.setPower((GodPower), null);
 			
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS5);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB5);
 		}
 		private static void NSAFunc()
 		{
@@ -194,11 +212,11 @@ namespace M2
 				
 			
             
-			PowerButtonSelector.instance.setSelectedPower(AHHHH6, NSAPower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton6, NSAPower);
 			
 			//		PowerTracker.setPower((GodPower), null);
 			
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS6);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB6);
 		}
         private static void ClusterStrikeFunc()
 		{
@@ -208,11 +226,11 @@ namespace M2
 				
 			
             
-			PowerButtonSelector.instance.setSelectedPower(AHHHH7, ClusterStrikePower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton7, ClusterStrikePower);
 			
 			//		PowerTracker.setPower((GodPower), null);
 			
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS7);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB7);
 		} 
 		private static void ProtonFunc()
 		{
@@ -222,11 +240,11 @@ namespace M2
 				
 			
             
-			PowerButtonSelector.instance.setSelectedPower(AHHHH8, ProtonPower);
+			PowerButtonSelector.instance.setSelectedPower(BOMBButton8, ProtonPower);
 			
 			//		PowerTracker.setPower((GodPower), null);
 			
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.ASS8);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB8);
 		}
   }
 }
