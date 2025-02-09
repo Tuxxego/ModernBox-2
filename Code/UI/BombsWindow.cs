@@ -36,7 +36,7 @@ namespace M2
 		private static PowerButton BOMBButton8;
 		private static PowerButton BOMBButton9;
 		private static PowerButton BOMBButton10;
-	    private static PowerButton BOMBButton11;
+	        private static PowerButton BOMBButton11;
 		private static PowerButton BOMBButton12;
 		private static PowerButton BOMBButton13;
 		private static PowerButton BOMBButton14;
@@ -111,7 +111,7 @@ namespace M2
                                 BOMBButton11 = PowerButtons.CreateButton("Colorbutton", Resources.Load<Sprite>("ui/Icons/ColorGrenade"), "Color Bomb", "Its a bomb with a colorfull effect", new Vector2(168, MoveDown*2), ButtonType.Click, content.transform, ColorFunc);	
 				BOMBButton12 = PowerButtons.CreateButton("Dankbutton", Resources.Load<Sprite>("ui/Icons/Danky"), "Danky Bomb", "There's really no hard limit to how long these achievement names can be and to be quite honest I'm rather curious to see how far we can go. Adolphus W. Green (1844 to 1917) started as the Principal of the Groton School in 1864. By 1865, he became second assistant librarian at the New York Mercantile Library; from 1867 to 1869, he was promoted to full librarian. From 1869 to 1873, he worked for Evarts, Southmayd & Choate, a law firm co-founded by William M. Evarts, Charles Ferdinand Southmayd and Joseph Hodges Choate. He was admitted to the New York State Bar Association in 1873. Anyway, how's your day been?", new Vector2(204, MoveDown*2), ButtonType.Click, content.transform, DankFunc);	
 				BOMBButton13 = PowerButtons.CreateButton("Bloodbutton", Resources.Load<Sprite>("ui/Icons/BloodLightning"), "Blood Lightning", "Forgive me for i have gone mad -Zeus", new Vector2(60, MoveDown*3), ButtonType.Click, content.transform, BloodFunc);	
-				BOMBButton14 = PowerButtons.CreateButton("NoDmbbutton", Resources.Load<Sprite>("ui/Icons/BlueOne"), "The BLue One", "idk wtf this does", new Vector2(96, MoveDown*3), ButtonType.Click, content.transform, NoDmgFunc);	
+				BOMBButton14 = PowerButtons.CreateButton("NoDmbbutton", Resources.Load<Sprite>("ui/Icons/BlueOne"), "No Damage", "Its a bomb that looks cool and thats it. have Fun :)", new Vector2(96, MoveDown*3), ButtonType.Click, content.transform, NoDmgFunc);	
 
         }
 		private static void AtomicGrenadeFunc()
@@ -126,7 +126,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB1);
 		}
 		private static void FuryOfTuxiaFunc()
 		{
@@ -140,7 +140,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
 		}
 		
 		
@@ -157,7 +157,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
 		}
 		
 		private static void ClusterNukeFunc()
