@@ -487,7 +487,7 @@ class Buttonz {
             Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.AssimilatusIcon.png"),
             "Cyber Boss",
             "Do not spawn in a 69km radius from the closest city, DO NOT, THIS IS NOT REVERSE PSYCHOLOGY, I SWEAR, DO NOT :3",
-            new Vector2(370, 18),
+            new Vector2(1260+36, 18),
             ButtonType.GodPower,
             tab.transform,
             null
@@ -509,7 +509,7 @@ class Buttonz {
             Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.Walker_TitanIcon.png"),
             "Ice Walker Boss",
             "He came to worldbox to get away from Shinji, he do not trust what Shinji would do to him if he falls into a coma",
-            new Vector2(370, -18),
+            new Vector2(1260+36, -18),
             ButtonType.GodPower,
             tab.transform,
             null
@@ -928,8 +928,8 @@ AssetManager.effects_library.add(DankEffect);
     }
 
     PowerButtons.CreateButton("spawn_FighterJet", Resources.Load<Sprite>("ui/Icons/FighterJet"), "Spawn FighterJet", "Spawn a FighterJet.", new Vector2(900, 18), ButtonType.GodPower, tab.transform, null);
-PowerButtons.CreateButton("spawn_Drone", Resources.Load<Sprite>("ui/Icons/Drone"), "Spawn Drone", "Spawn a Drone.", new Vector2(406, 18), ButtonType.GodPower, tab.transform, null);
-PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldier"), "Spawn Soldier", "Spawn a Soldier.", new Vector2(406, -18), ButtonType.GodPower, tab.transform, null);
+PowerButtons.CreateButton("spawn_Drone", Resources.Load<Sprite>("ui/Icons/Drone"), "Spawn Drone", "Spawn a Drone.", new Vector2(1260+36+36, 18), ButtonType.GodPower, tab.transform, null);
+PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldier"), "Spawn Soldier", "Spawn a Soldier.", new Vector2(1260+36+36, -18), ButtonType.GodPower, tab.transform, null);
 
         System.Random random = new System.Random();
         
