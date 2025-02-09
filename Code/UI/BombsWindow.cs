@@ -254,6 +254,7 @@ namespace M2
 
 	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB10);
+		}
 	    private static void ColorFunc()
 		{
 			
