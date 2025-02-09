@@ -36,7 +36,7 @@ namespace M2
 		private static PowerButton BOMBButton8;
 		private static PowerButton BOMBButton9;
 		private static PowerButton BOMBButton10;
-	    private static PowerButton BOMBButton11;
+	        private static PowerButton BOMBButton11;
 		private static PowerButton BOMBButton12;
 		private static PowerButton BOMBButton13;
 		private static PowerButton BOMBButton14;
@@ -98,20 +98,19 @@ namespace M2
 					  window.GetComponent<RectTransform>().sizeDelta = new Vector2(0, nameText.preferredHeight + 50);
 					  name.transform.localPosition = new Vector2(name.transform.localPosition.x, ((nameText.preferredHeight / 2) + 30) * -1);
 		  
-			        BOMBButton = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
-			        BOMBButton2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
-			        BOMBButton3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
-			        BOMBButton4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/ClusterNuke"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
-				//BOMBButton5 = PowerButtons.CreateButton("EXbutton", Resources.Load<Sprite>("ui/Icons/wat"), "Experimental Nuke", "If you see this then you are a dev or you are snooping around my bomb code. -Dank", new Vector2(204, MoveDown*3), ButtonType.Click, content.transform, EXFunc);	//this is the experimental button for nukes
+								BOMBButton = PowerButtons.CreateButton("AtomicGrenadebutton", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "A warcrime in the palm of your hand.", new Vector2(60, MoveDown), ButtonType.Click, content.transform, AtomicGrenadeFunc);
+								BOMBButton2 = PowerButtons.CreateButton("FuryOfTuxia", Resources.Load<Sprite>("ui/Icons/FuryOfTuxia"), "Fury of Tuxia", "Dank told me to stop making nukes, I instead decided to create this monstrosity (if your computer survives this, you're cool!)", new Vector2(96, MoveDown), ButtonType.Click, content.transform, FuryOfTuxiaFunc);			
+								BOMBButton3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
+								BOMBButton4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/ClusterNuke"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
                                 BOMBButton6 = PowerButtons.CreateButton("NSAbutton", Resources.Load<Sprite>("ui/Icons/NotSoAtomic"), "the Not so atomic Bomb", "The bomb that wanted to become atomic but failed the test in 12th grade to become atomic", new Vector2(204, MoveDown), ButtonType.Click, content.transform, NSAFunc);	
                                 BOMBButton7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
                                 BOMBButton8 = PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "The Proton Bomb", "The bomb to be forgoten no longer", new Vector2(96, MoveDown*2), ButtonType.Click, content.transform, ProtonFunc);	
                                 BOMBButton9 = PowerButtons.CreateButton("DeleterButton", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "The Unholy Universal Destruction System", "Destroys the entire universe (literally it deletes EVERYTHING, watch out with this bad boy.", new Vector2(132, MoveDown*3), ButtonType.Click, content.transform, DeleterFunc);
 								BOMBButton10 = PowerButtons.CreateButton("SpreaderButton", Resources.Load<Sprite>("ui/Icons/MOAB"), "The Spreader Bomb", "Quickly spreads to engulf your whole world in fire.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, SpreaderFunc);	
-                                BOMBButton11 = PowerButtons.CreateButton("Colorbutton", Resources.Load<Sprite>("ui/Icons/ColorGrenade"), "Color Bomb", "Its a bomb with a colorfull effect", new Vector2(168, MoveDown*2), ButtonType.Click, content.transform, ColorFunc);	
+												BOMBButton11 = PowerButtons.CreateButton("Colorbutton", Resources.Load<Sprite>("ui/Icons/ColorGrenade"), "Color Bomb", "Its a bomb with a colorfull effect", new Vector2(168, MoveDown*2), ButtonType.Click, content.transform, ColorFunc);	
 								BOMBButton12 = PowerButtons.CreateButton("Dankbutton", Resources.Load<Sprite>("ui/Icons/Danky"), "Danky Bomb", "There's really no hard limit to how long these achievement names can be and to be quite honest I'm rather curious to see how far we can go. Adolphus W. Green (1844 to 1917) started as the Principal of the Groton School in 1864. By 1865, he became second assistant librarian at the New York Mercantile Library; from 1867 to 1869, he was promoted to full librarian. From 1869 to 1873, he worked for Evarts, Southmayd & Choate, a law firm co-founded by William M. Evarts, Charles Ferdinand Southmayd and Joseph Hodges Choate. He was admitted to the New York State Bar Association in 1873. Anyway, how's your day been?", new Vector2(204, MoveDown*2), ButtonType.Click, content.transform, DankFunc);	
 								BOMBButton13 = PowerButtons.CreateButton("Bloodbutton", Resources.Load<Sprite>("ui/Icons/BloodLightning"), "Blood Lightning", "Forgive me for i have gone mad -Zeus", new Vector2(60, MoveDown*3), ButtonType.Click, content.transform, BloodFunc);	
-								BOMBButton14 = PowerButtons.CreateButton("NoDmbbutton", Resources.Load<Sprite>("ui/Icons/BlueOne"), "The BLue One", "idk wtf this does", new Vector2(96, MoveDown*3), ButtonType.Click, content.transform, NoDmgFunc);	
+								BOMBButton14 = PowerButtons.CreateButton("NoDmbbutton", Resources.Load<Sprite>("ui/Icons/BlueOne"), "No Damage", "Its a bomb that looks cool and thats it. have Fun :)", new Vector2(96, MoveDown*3), ButtonType.Click, content.transform, NoDmgFunc);	
 
         }
 		private static void AtomicGrenadeFunc()
@@ -126,7 +125,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB1);
 		}
 		private static void FuryOfTuxiaFunc()
 		{
@@ -140,7 +139,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
 		}
 		
 		
@@ -157,7 +156,7 @@ namespace M2
 
 
 	//		PowerTracker.setPower((GodPower), null);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
 		}
 		
 		private static void ClusterNukeFunc()
