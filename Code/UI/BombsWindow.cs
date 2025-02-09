@@ -124,7 +124,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton, AtomicGrenadePower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB1);
 		}
 		private static void FuryOfTuxiaFunc()
@@ -138,7 +137,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton2, FuryOfTuxiaFuncPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB2);
 		}
 		
@@ -155,7 +153,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton3, ZeusRagePower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
 		}
 		
@@ -170,7 +167,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton4, ClusterNukePower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB4);
 		}
 	    private static void EXFunc()
@@ -182,9 +178,7 @@ namespace M2
 			
             
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton5, EXPower);
-			
-			//		PowerTracker.setPower((GodPower), null);
-			
+						
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB5);
 		}
 		private static void NSAFunc()
@@ -197,7 +191,6 @@ namespace M2
             
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton6, NSAPower);
 			
-			//		PowerTracker.setPower((GodPower), null);
 			
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB6);
 		}
@@ -211,7 +204,6 @@ namespace M2
             
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton7, ClusterStrikePower);
 			
-			//		PowerTracker.setPower((GodPower), null);
 			
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB7);
 		} 
@@ -225,7 +217,6 @@ namespace M2
             
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton8, ProtonPower);
 			
-			//		PowerTracker.setPower((GodPower), null);
 			
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB8);
 		}
@@ -240,7 +231,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton9, DeleterFuncPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB9);
 		}
 
@@ -255,7 +245,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton10, SpreaderFuncPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB10);
 		}
 	    private static void ColorFunc()
@@ -269,7 +258,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton11, ColorGrenadePower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB11);
 		}
 
@@ -284,7 +272,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton12, DankiMatterPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB12);
 		}
 
@@ -299,7 +286,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton13, BloodLightningPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB13);
 		}
 
@@ -314,7 +300,6 @@ namespace M2
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton14, NoDmgPower);
 
 
-	//		PowerTracker.setPower((GodPower), null);
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB14);
 		}
   }
