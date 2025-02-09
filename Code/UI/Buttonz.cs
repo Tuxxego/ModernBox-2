@@ -37,6 +37,11 @@ class Buttonz {
                 internal static PowerButton BOMB8;
                 internal static PowerButton BOMB9;
                 internal static PowerButton BOMB10;
+	        internal static PowerButton BOMB11;
+                internal static PowerButton BOMB12;
+                internal static PowerButton BOMB13;
+                internal static PowerButton BOMB14;
+
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
 					private static List<string> savedTechListREAL;
@@ -371,6 +376,42 @@ class Buttonz {
     RandomDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
     RandomDrop.action_landed = new DropsAction(action_RandomClick);
     AssetManager.drops.add(RandomDrop);
+	 
+    DropAsset DankiMatterDrop = new DropAsset();
+    DankiMatterDrop.id = "Danky";
+    DankiMatterDrop.path_texture = "drops/drop_czarbomba";
+    DankiMatterDrop.random_frame = false;
+    DankiMatterDrop.default_scale = 0.2f;
+    DankiMatterDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    DankiMatterDrop.action_landed = new DropsAction(action_DankiClick);
+    AssetManager.drops.add(DankiMatterDrop);
+
+    DropAsset ColorGrenadeDrop = new DropAsset();
+    ColorGrenadeDrop.id = "colors";
+    ColorGrenadeDrop.path_texture = "drops/drop_czarbomba";
+    ColorGrenadeDrop.random_frame = false;
+    ColorGrenadeDrop.default_scale = 0.2f;
+    ColorGrenadeDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    ColorGrenadeDrop.action_landed = new DropsAction(action_ColorClick);
+    AssetManager.drops.add(ColorGrenadeDrop);
+    
+    DropAsset BloodLightningDrop = new DropAsset();
+    BloodLightningDrop.id = "blood";
+    BloodLightningDrop.path_texture = "drops/drop_czarbomba";
+    BloodLightningDrop.random_frame = false;
+    BloodLightningDrop.default_scale = 0.2f;
+    BloodLightningDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    BloodLightningDrop.action_landed = new DropsAction(action_BloodLightningClick);
+    AssetManager.drops.add(BloodLightningDrop);
+
+    DropAsset NoDmgDrop = new DropAsset();
+    NoDmgDrop.id = "nodmg";
+    NoDmgDrop.path_texture = "drops/drop_czarbomba";
+    NoDmgDrop.random_frame = false;
+    NoDmgDrop.default_scale = 0.2f;
+    NoDmgDrop.fallingHeight = (Vector3) new Vector2(60f, 70f);
+    NoDmgDrop.action_landed = new DropsAction(action_NoDmgClick);
+    AssetManager.drops.add(NoDmgDrop);
 
     // GodPower WorkerPower = new GodPower();
     // WorkerPower.id = "WorkerPowerbutton";
@@ -660,6 +701,58 @@ class Buttonz {
     RandomPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(RandomPower);
 
+    odPower ColorGrenadePower = new GodPower();
+    ColorGrenadePower.id = "ColorGrenadebuttonLOSER";
+    ColorGrenadePower.name = "ColorGrenadebuttonLOSER";
+    ColorGrenadePower.fallingChance = 0.01f;
+    ColorGrenadePower.holdAction = true;
+    ColorGrenadePower.showToolSizes = true;
+    ColorGrenadePower.unselectWhenWindow = false;
+    ColorGrenadePower.ignore_cursor_icon = true;
+    ColorGrenadePower.dropID = "colors";
+    ColorGrenadePower.click_power_action = new PowerAction(Stuff_Drop);
+    ColorGrenadePower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(ColorGrenadePower);
+
+    GodPower DankiMatterPower = new GodPower();
+    DankiMatterPower.id = "DankiMatterbuttonLOSER";
+    DankiMatterPower.name = "DankiMatterbuttonLOSER";
+    DankiMatterPower.fallingChance = 0.01f;
+    DankiMatterPower.holdAction = true;
+    DankiMatterPower.showToolSizes = true;
+    DankiMatterPower.unselectWhenWindow = false;
+    DankiMatterPower.ignore_cursor_icon = true;
+    DankiMatterPower.dropID = "Danky";
+    DankiMatterPower.click_power_action = new PowerAction(Stuff_Drop);
+    DankiMatterPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(DankiMatterPower);
+    
+    GodPower BloodLightningPower = new GodPower();
+    BloodLightningPower.id = "BloodLightningbuttonLOSER";
+    BloodLightningPower.name = "BloodLightningbuttonLOSER";
+    BloodLightningPower.fallingChance = 0.01f;
+    BloodLightningPower.holdAction = true;
+    BloodLightningPower.showToolSizes = true;
+    BloodLightningPower.unselectWhenWindow = false;
+    BloodLightningPower.ignore_cursor_icon = true;
+    BloodLightningPower.dropID = "blood";
+    BloodLightningPower.click_power_action = new PowerAction(Stuff_Drop);
+    BloodLightningPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(BloodLightningPower);
+
+    GodPower NoDmgPower = new GodPower();
+    NoDmgPower.id = "NoDmgbuttonLOSER";
+    NoDmgPower.name = "NoDmgbuttonLOSER";
+    NoDmgPower.fallingChance = 0.01f;
+    NoDmgPower.holdAction = true;
+    NoDmgPower.showToolSizes = true;
+    NoDmgPower.unselectWhenWindow = false;
+    NoDmgPower.ignore_cursor_icon = true;
+    NoDmgPower.dropID = "nodmg";
+    NoDmgPower.click_power_action = new PowerAction(Stuff_Drop);
+    NoDmgPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
+    AssetManager.powers.add(NoDmgPower);
+
     PowerButtons.CreateButton("MOABbutton", Resources.Load<Sprite>("ui/Icons/MOAB"), "Super-Nuke", "Also known as the 'Lag Bomb'.", new Vector2(576, 18),
                               // new Vector2(72, 18),
                               NCMS.Utils.ButtonType.GodPower, tab.transform, null);
@@ -696,7 +789,68 @@ class Buttonz {
           BOMB9 = PowerButtons.CreateButton("DeleterButtonLOSER", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "TUDDS", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 		  
           BOMB10 = PowerButtons.CreateButton("SpreaderButtonLOSER", Resources.Load<Sprite>("ui/Icons/MOAB"), "Spreader Bomb", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
-					
+
+	  BOMB11 = PowerButtons.CreateButton("ColorGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "Color grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+          BOMB12 = PowerButtons.CreateButton("DankiMatterbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "DankiMatter", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+          BOMB13 = PowerButtons.CreateButton("BloodLightningbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "BloodLightning", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+          BOMB14 = PowerButtons.CreateButton("NoDmgbuttonLOSER", Resources.Load<Sprite>("ui/Icons/wat"), "NoDmg", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+
+EffectAsset ColorNade = new EffectAsset();
+ColorNade.id = "fx_color_grenade";
+ColorNade.use_basic_prefab = true;
+ColorNade.sorting_layer_id = "EffectsTop";
+ColorNade.sprite_path = "Effects/Colornade";
+ColorNade.show_on_mini_map = true;
+ColorNade.draw_light_area = true;
+ColorNade.draw_light_size = 2f;
+ColorNade.draw_light_area_offset_y = 5f;
+ColorNade.limit = 100;
+ColorNade.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionLightningStrike";
+AssetManager.effects_library.add(ColorNade);
+
+EffectAsset BloodLightning = new EffectAsset();
+BloodLightning.id = "fx_blood_lightning";
+BloodLightning.use_basic_prefab = true;
+BloodLightning.sorting_layer_id = "EffectsTop";
+BloodLightning.sprite_path = "Effects/BloodLightning";
+BloodLightning.show_on_mini_map = true;
+BloodLightning.draw_light_area = true;
+BloodLightning.draw_light_size = 2f;
+BloodLightning.draw_light_area_offset_y = 5f;
+BloodLightning.limit = 100;
+BloodLightning.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionLightningStrike";
+AssetManager.effects_library.add(BloodLightning);
+
+EffectAsset NoNuke = new EffectAsset();
+NoNuke.id = "fx_explosion_blue";
+NoNuke.use_basic_prefab = true;
+NoNuke.sorting_layer_id = "EffectsTop";
+NoNuke.sprite_path = "Effects/NoNuke";
+NoNuke.show_on_mini_map = true;
+NoNuke.draw_light_area = true;
+NoNuke.draw_light_size = 2f;
+NoNuke.draw_light_area_offset_y = 5f;
+NoNuke.limit = 100;
+NoNuke.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionLightningStrike";
+AssetManager.effects_library.add(NoNuke);
+
+EffectAsset DankEffect = new EffectAsset();
+DankEffect.id = "fx_explosion_dank";
+DankEffect.use_basic_prefab = true;
+DankEffect.sorting_layer_id = "EffectsTop";
+DankEffect.sprite_path = "Effects/DankEffect";
+DankEffect.show_on_mini_map = true;
+DankEffect.draw_light_area = true;
+DankEffect.draw_light_size = 2f;
+DankEffect.draw_light_area_offset_y = 5f;
+DankEffect.limit = 100;
+DankEffect.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionLightningStrike";
+AssetManager.effects_library.add(DankEffect);
+
+	  
     PowerButtons.CreateButton("Cyberware_toggle", Resources.Load<Sprite>("ui/Icons/Cyberware"), "Cyberware", "(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)", new Vector2(1224, 18), ButtonType.Toggle, tab.transform, cyberware.toggleCyberware);
     if (Main.savedSettings.boolOptions["CyberwareOption"]) {
       PowerButtons.ToggleButton("Cyberware_toggle");
@@ -1278,6 +1432,35 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
 			// return true;
 		  }
+
+	public static void action_ColorClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_color_grenade", pTile, 5.3f, 7.9f);
+			MapAction.damageWorld(pTile, 100, TerraformLibrary.bomb, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+
+      public static void action_DankiClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_dank", pTile, 4.3f, 4.9f);
+			MapAction.damageWorld(pTile, 50, TerraformLibrary.czarBomba, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+
+      public static void action_BloodLightningClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_blood_lightning", pTile, 5.3f, 5.9f);
+			MapAction.damageWorld(pTile, 100, TerraformLibrary.bomb, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+
+      public static void action_NoDmgClick(WorldTile pTile, string pPowerID) {
+			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_blue", pTile, 3.3f, 3.9f);
+			MapAction.damageWorld(pTile, 30, TerraformLibrary.nothing, null);
+			World.world.startShake(0.3f, 0.01f, 2f, true, true);
+			// return true;
+		  }
+	
   public static void action_RandomClick(WorldTile pTile, string pPowerID) {
     List<int> damageWorldNumbers = new List<int>{50, 120, 100, 100, 400, 5, 786};
     List<float> scaleNumbersMin = new List<float>{0.2f, 0.4f, 0.8f, 1.2f, 4.3f, 0.4f, 16.3f};
