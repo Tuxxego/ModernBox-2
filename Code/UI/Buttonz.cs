@@ -701,7 +701,7 @@ class Buttonz {
     RandomPower.click_power_brush_action = new PowerAction((WorldTile pTile, GodPower pPower) => { return (bool) AssetManager.powers.CallMethod("loopWithCurrentBrushPower", pTile, pPower); });
     AssetManager.powers.add(RandomPower);
 
-    odPower ColorGrenadePower = new GodPower();
+    GodPower ColorGrenadePower = new GodPower();
     ColorGrenadePower.id = "ColorGrenadebuttonLOSER";
     ColorGrenadePower.name = "ColorGrenadebuttonLOSER";
     ColorGrenadePower.fallingChance = 0.01f;

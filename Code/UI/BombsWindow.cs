@@ -139,7 +139,7 @@ namespace M2
 			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
 		}
 		
-		}
+		
 		
 		private static void ZeusRageFunc()
 		{
