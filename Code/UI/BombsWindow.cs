@@ -36,7 +36,7 @@ namespace M2
 		private static PowerButton BOMBButton8;
 		private static PowerButton BOMBButton9;
 		private static PowerButton BOMBButton10;
-	        private static PowerButton BOMBButton11;
+	    private static PowerButton BOMBButton11;
 		private static PowerButton BOMBButton12;
 		private static PowerButton BOMBButton13;
 		private static PowerButton BOMBButton14;
