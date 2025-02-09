@@ -52,6 +52,10 @@ namespace M2
 		private static GodPower ProtonPower;
 		private static GodPower DeleterFuncPower;
 		private static GodPower SpreaderFuncPower;
+		private static GodPower ColorGrenadePower;
+		private static GodPower DankiMatterPower;
+		private static GodPower BloodLightningPower;
+		private static GodPower NoDmgPower;
 		
 	  private static PowersTab getPowersTab(string id) {
 		GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
