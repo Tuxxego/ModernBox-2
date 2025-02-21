@@ -27,7 +27,7 @@ using Assets.SimpleZip;
 namespace M2 {
 class Buttonz {
 	
-		internal static PowerButton BOMB;
+		internal static PowerButton BOMB1;
 		internal static PowerButton BOMB2;
 		internal static PowerButton BOMB3;
 		internal static PowerButton BOMB4;
@@ -770,7 +770,7 @@ class Buttonz {
 	
 					// LOSER BUTTONS 
 
-          BOMB = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
+          BOMB1 = PowerButtons.CreateButton("ZeusRagebuttonLOSER", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 	
 	  BOMB2 = PowerButtons.CreateButton("AtomicGrenadebuttonLOSER", Resources.Load<Sprite>("ui/Icons/AtomicGrenade"), "Atomic Grenade", "THIS IS A LOSER BUTTON NO DESCRIPTION IS NEEDED!!!", new Vector2(-1000, 0), NCMS.Utils.ButtonType.GodPower, tab.transform, null);
 					
