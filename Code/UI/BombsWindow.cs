@@ -115,7 +115,7 @@ namespace M2
 				
 			
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton, AtomicGrenadePower);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB1);
 		}
 		private static void FuryOfTuxiaFunc()
 		{

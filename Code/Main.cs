@@ -41,6 +41,7 @@ namespace M2
  public PlanetGenerator PlanetGenerator = new PlanetGenerator();
  // public DeveloperConsole DeveloperConsole = new DeveloperConsole();
  public PlanetManager PlanetManager = new PlanetManager();
+ public AchievementManager AchievementManager = new AchievementManager();
  public LocalizationManager LocalizationManager = new LocalizationManager ();
  private AudioSource audioSource;
  public DeveloperMode DeveloperMode = new DeveloperMode();
@@ -93,6 +94,8 @@ public void Awake()
             Debug.LogWarning("No GameObject with WorldBoxConsole script found in the scene.");
         }
 		
+		  AchievementManager = gameObject.AddComponent<AchievementManager>();
+
 LoadReplacement();
 
  Debug.Log("[M2] Loading SaveSystemWindow...");
@@ -137,6 +140,9 @@ LoadReplacement();
    Debug.Log("[M2] Loading BombsWindow...");
  BombsWindow.init();
  Debug.Log("[M2] BombsWindow loaded!");
+ Debug.Log("[M2] Loading AchievementsWindow...");
+ AchievementsWindow.init();
+ Debug.Log("[M2] AchievementsWindow loaded!");
  Debug.Log("[M2] Initializing Buttonz...");
  Buttonz.init();
  Debug.Log("[M2] Buttonz loaded!");
@@ -233,6 +239,9 @@ LoadReplacement();
  Debug.Log("[M2] Showing SaveSystemWindow...");
  Windows.ShowWindow("SaveSystemWindow");
  }
+ 
+ AchievementManager.Instance.UnlockAchievement("played_m2");
+
 }
 
 // from ancient warfare mod

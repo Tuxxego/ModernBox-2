@@ -31,21 +31,32 @@ class Buttonz {
 		internal static PowerButton BOMB2;
 		internal static PowerButton BOMB3;
 		internal static PowerButton BOMB4;
-                internal static PowerButton BOMB5;
-                internal static PowerButton BOMB6;
-   	        internal static PowerButton BOMB7;
-                internal static PowerButton BOMB8;
-                internal static PowerButton BOMB9;
-                internal static PowerButton BOMB10;
-	        internal static PowerButton BOMB11;
-                internal static PowerButton BOMB12;
-                internal static PowerButton BOMB13;
-                internal static PowerButton BOMB14;
+        internal static PowerButton BOMB5;
+        internal static PowerButton BOMB6;
+   	    internal static PowerButton BOMB7;
+        internal static PowerButton BOMB8;
+        internal static PowerButton BOMB9;
+        internal static PowerButton BOMB10;
+	    internal static PowerButton BOMB11;
+        internal static PowerButton BOMB12;
+        internal static PowerButton BOMB13;
+        internal static PowerButton BOMB14;
 
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
-					private static List<string> savedTechListREAL;
+		private static List<string> savedTechListREAL;
 
+		private static readonly HashSet<string> bombIds = new HashSet<string>
+		{
+			"Bomb1", "Bomb2", "Bomb3", "Bomb4", "Bomb5", 
+			"Bomb6", "Bomb7", "Bomb8", "Bomb9", "Bomb10",
+			"Bomb11", "Bomb12", "Bomb13", "Bomb14", "Bomb15",
+			"Bomb16", "Bomb17", "Bomb18", "Bomb19"
+		};
+
+
+		private const string PlayerPrefsKey = "UnlockedBombs";
+	
   public static void init() {
 
    // tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
@@ -1036,8 +1047,8 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 	    PowerButtons.CreateButton("galaxy", Resources.Load<Sprite>("ui/icons/Galaxy"), "Star Map", "View a map of everything.", new Vector2(72, 18), ButtonType.Click, tab.transform,
 	openStarMap
 	);
-		    PowerButtons.CreateButton("what", Resources.Load<Sprite>("ui/icons/wat"), "Coming soon", "COMING SOON", new Vector2(72, -18), ButtonType.Click, tab.transform,
-	null
+		    PowerButtons.CreateButton("achievements", Resources.Load<Sprite>("ui/icons/trophy"), "Achievements", "COMING SOON", new Vector2(72, -18), ButtonType.Click, tab.transform,
+	OpenAchievements
 	);
 	
 	    DropAsset copyer = new DropAsset();
@@ -1110,6 +1121,11 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     Windows.ShowWindow("DiscordWindow");
 
     Application.OpenURL(discordServerLink);
+	AchievementManager.Instance.UnlockAchievement("discord");
+  }
+  private static void OpenAchievements() {
+
+    Windows.ShowWindow("AchievementsWindow");
   }
 
   private static void OpenInfoWindow() { Windows.ShowWindow("GuideWindow"); }
@@ -1210,7 +1226,37 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     return true;
   }
 
+    public static void ProgressToThatOneAchievement(string id)
+    {
+        if (!bombIds.Contains(id)) return;
 
+        List<string> unlockedBombs = LoadUnlockedBombs();
+
+        if (!unlockedBombs.Contains(id))
+        {
+            unlockedBombs.Add(id);
+            SaveUnlockedBombs(unlockedBombs);
+
+            if (unlockedBombs.Count == bombIds.Count)
+            {
+                AchievementManager.Instance.UnlockAchievement("bomb_overload");
+            }
+        }
+    }
+
+    private static List<string> LoadUnlockedBombs()
+    {
+        string savedData = PlayerPrefs.GetString(PlayerPrefsKey, "");
+        return new List<string>(savedData.Split(','));
+    }
+
+    private static void SaveUnlockedBombs(List<string> unlockedBombs)
+    {
+        string saveData = string.Join(",", unlockedBombs);
+        PlayerPrefs.SetString(PlayerPrefsKey, saveData);
+        PlayerPrefs.Save();
+    }
+	
   public static Actor spawnUnit(WorldTile pTile, string pPowerID) {
     GodPower godPower = AssetManager.powers.get(pPowerID);
     MusicBox.playSound("event:/SFX/UNIQUE/SpawnWhoosh", (float) pTile.pos.x, (float) pTile.pos.y, false, false);
@@ -1235,6 +1281,8 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 0.4f, 0.6f);
     MapAction.damageWorld(pTile, 50, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	AchievementManager.Instance.UnlockAchievement("moab_drop");
+	ProgressToThatOneAchievement("Bomb1");
     // return true;
   }
 
@@ -1242,6 +1290,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 0.2f, 0.3f);
     MapAction.damageWorld(pTile, 120, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb2");
     // return true;
   }
 
@@ -1249,6 +1298,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 0.8f, 0.9f);
     MapAction.damageWorld(pTile, 100, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb3");
     // return true;
   }
 
@@ -1256,6 +1306,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 1.2f, 1.6f);
     MapAction.damageWorld(pTile, 100, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb4");
     // return true;
   }
 
@@ -1263,6 +1314,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_lightning_big", pTile, 4.3f, 7.9f);
     MapAction.damageWorld(pTile, 600, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb5");
     // return true;
   }
 
@@ -1270,6 +1322,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 4.3f, 7.9f);
     MapAction.damageWorld(pTile, 400, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb6");
     // return true;
   }
 
@@ -1277,10 +1330,14 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 0.4f, 0.6f);
     MapAction.damageWorld(pTile, 5, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb7");
     // return true;
   }
 
   public static void action_DeleterClick(WorldTile pTile, string pPowerID) {
+	ProgressToThatOneAchievement("Bomb7");
+	AchievementManager.Instance.UnlockAchievement("deleted");
+
 	SpaceManager.DeleteBomb();
 	
         foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
@@ -1297,6 +1354,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_dankymatter_effect", pTile, 0.5f, 0.5f);
     MapAction.damageWorld(pTile, 786, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb8");
     // return true;
   }
   
@@ -1304,10 +1362,12 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 32.3f, 56.9f);
     MapAction.damageWorld(pTile, 1486, TerraformLibrary.czarBomba, null);
     World.world.startShake(0.3f, 0.01f, 2f, true, true);
+	ProgressToThatOneAchievement("Bomb9");
     // return true;
   }
   
 	public static void action_ClusterClick(WorldTile pTile, string pPowerID) {
+		ProgressToThatOneAchievement("Bomb10");
 		World.world.StartCoroutine(ClusterNukeCoroutine(pTile));
 	}
 
@@ -1330,6 +1390,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 		}
 	}
 	public static void action_ClusterStrikeClick(WorldTile pTile, string pPowerID) {
+		ProgressToThatOneAchievement("Bomb11");
 		World.world.StartCoroutine(ClusterStrikeCoroutine(pTile));
 	}
 
@@ -1360,13 +1421,15 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 
         public static void action_EraserClick(WorldTile pTile, string pPowerID)
         {
+			ProgressToThatOneAchievement("Bomb12");
             EffectsLibrary.spawnAtTileRandomScale("fx_antimatter_effect", pTile, 5.3f, 9.9f);
             MapAction.damageWorld(pTile, 1000, TerraformLibrary.destroy_no_flash, null);
             World.world.startShake(0.3f, 0.01f, 2f, true, true);
             // return true;
         }
 		
-				  public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
+			public static void action_AtomicGClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb13");
 			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_small", pTile, 4.3f, 7.9f);
 			MapAction.damageWorld(pTile, 130, TerraformLibrary.czarBomba, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1383,6 +1446,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 	}
 
 	public static void action_SpreaderClick(WorldTile pTile, string pPowerID) {
+	ProgressToThatOneAchievement("Bomb14");
     World.world.StartCoroutine(SpreaderBombCoroutine(pTile));
 }
 
@@ -1427,6 +1491,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 }
 
       public static void action_NSAClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb15");
 			EffectsLibrary.spawnAtTileRandomScale("fx_fireball_explosion", pTile, 5.3f, 7.9f);
 			MapAction.damageWorld(pTile, 30, TerraformLibrary.bomb, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1434,6 +1499,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 		  }
 
 	public static void action_ColorClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb16");
 			EffectsLibrary.spawnAtTileRandomScale("fx_color_grenade", pTile, 5.3f, 7.9f);
 			MapAction.damageWorld(pTile, 100, TerraformLibrary.bomb, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1441,6 +1507,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 		  }
 
       public static void action_DankiClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb17");
 			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_dank", pTile, 4.3f, 4.9f);
 			MapAction.damageWorld(pTile, 50, TerraformLibrary.czarBomba, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1448,6 +1515,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 		  }
 
       public static void action_BloodLightningClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb18");
 			EffectsLibrary.spawnAtTileRandomScale("fx_blood_lightning", pTile, 5.3f, 5.9f);
 			MapAction.damageWorld(pTile, 100, TerraformLibrary.bomb, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1455,6 +1523,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 		  }
 
       public static void action_NoDmgClick(WorldTile pTile, string pPowerID) {
+			ProgressToThatOneAchievement("Bomb19");
 			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_blue", pTile, 3.3f, 3.9f);
 			MapAction.damageWorld(pTile, 30, TerraformLibrary.nothing, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
@@ -1462,6 +1531,7 @@ private static WorldTile GetTileAtAngle(WorldTile origin, float angle, float dis
 		  }
 	
   public static void action_RandomClick(WorldTile pTile, string pPowerID) {
+	ProgressToThatOneAchievement("Bomb19");
     List<int> damageWorldNumbers = new List<int>{50, 120, 100, 100, 400, 5, 786};
     List<float> scaleNumbersMin = new List<float>{0.2f, 0.4f, 0.8f, 1.2f, 4.3f, 0.4f, 16.3f};
     List<float> scaleNumbersMax = new List<float>{0.3f, 0.6f, 0.9f, 1.6f, 7.9f, 0.6f, 28.9f};
