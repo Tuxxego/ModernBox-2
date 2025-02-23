@@ -62,6 +62,8 @@ namespace M2
 					  window.GetComponent<RectTransform>().sizeDelta = new Vector2(0, nameText.preferredHeight + 50);
 					  name.transform.localPosition = new Vector2(name.transform.localPosition.x, ((nameText.preferredHeight / 2) + 30) * -1);
 					  
+					  PowerButton ResetButtonM2 = PowerButtons.CreateButton("ResetButtonM2", Resources.Load<Sprite>("ui/Icons/Reset"), "Reset Progress", "Delete all achievement Data.", new Vector2(132, MoveDown*4), ButtonType.Click, content.transform, AchievementManager.Instance.ResetAchievements);	
+								
 						List<Achievement> achievements = AchievementManager.Instance.GetAllAchievements();
 						int count = 0;
 						int xOffset = 0;
@@ -81,11 +83,27 @@ namespace M2
 							xOffset += 36;
 							if (count % 5 == 0)
 							{
+								yOffset -= 36;
 								xOffset = 0;
-								yOffset -= MoveDown * 2;
 							}
 						}
 
         }
+		
+		public static bool EditButton(string buttonID, string newLocalName, string newLocalDescription)
+		{
+			if (PowerButtons.CustomButtons.TryGetValue(buttonID, out PowerButton targetButton))
+			{
+				Localization.AddOrSet(buttonID, newLocalName);
+				Localization.AddOrSet(buttonID + " Description", newLocalDescription);
+
+				return true;
+			}
+
+			Debug.LogError($"PowerButton with name '{buttonID}' not found.");
+			return false;
+		}
+
+
   }
 }

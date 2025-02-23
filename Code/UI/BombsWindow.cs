@@ -98,7 +98,7 @@ namespace M2
 								BOMBButton3 = PowerButtons.CreateButton("ZeusRagebutton", Resources.Load<Sprite>("ui/Icons/ZeusRage"), "Zeus's Rage", "Tremble in fear Kratos.", new Vector2(132, MoveDown), ButtonType.Click, content.transform, ZeusRageFunc);				
 								BOMBButton4 = PowerButtons.CreateButton("ClusterNuke", Resources.Load<Sprite>("ui/Icons/ClusterNuke"), "Cluster Nuke", "EXACTLY what the title says.", new Vector2(168, MoveDown), ButtonType.Click, content.transform, ClusterNukeFunc);	
                                 BOMBButton6 = PowerButtons.CreateButton("NSAbutton", Resources.Load<Sprite>("ui/Icons/NotSoAtomic"), "the Not so atomic Bomb", "The bomb that wanted to become atomic but failed the test in 12th grade to become atomic", new Vector2(204, MoveDown), ButtonType.Click, content.transform, NSAFunc);	
-                                BOMBButton7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, DeleterFunc);	
+                                BOMBButton7 = PowerButtons.CreateButton("ClusterStrikebutton", Resources.Load<Sprite>("ui/Icons/ClusterStrike"), "The Cluster Strike", "Damn is it Stormy bro, or am i just trippin?", new Vector2(60, MoveDown*2), ButtonType.Click, content.transform, ClusterStrikeFunc);	
                                 BOMBButton8 = PowerButtons.CreateButton("Protonbutton", Resources.Load<Sprite>("ui/Icons/Proton"), "The Proton Bomb", "The bomb to be forgoten no longer", new Vector2(96, MoveDown*2), ButtonType.Click, content.transform, ProtonFunc);	
                                 BOMBButton9 = PowerButtons.CreateButton("DeleterButton", Resources.Load<Sprite>("ui/Icons/UniversalDestroyer"), "The Unholy Universal Destruction System", "Destroys the entire universe (literally it deletes EVERYTHING, watch out with this bad boy.", new Vector2(132, MoveDown*3), ButtonType.Click, content.transform, DeleterFunc);
 								BOMBButton10 = PowerButtons.CreateButton("SpreaderButton", Resources.Load<Sprite>("ui/Icons/MOAB"), "The Spreader Bomb", "Quickly spreads to engulf your whole world in fire.", new Vector2(132, MoveDown*2), ButtonType.Click, content.transform, SpreaderFunc);	
@@ -137,7 +137,7 @@ namespace M2
 				
 			
 			PowerButtonSelector.instance.setSelectedPower(BOMBButton3, ZeusRagePower);
-			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB3);
+			PowerButtonSelector.instance.clickPowerButton(Buttonz.BOMB1);
 		}
 		
 		private static void ClusterNukeFunc()

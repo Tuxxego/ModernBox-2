@@ -41,6 +41,7 @@ class Buttonz {
         internal static PowerButton BOMB12;
         internal static PowerButton BOMB13;
         internal static PowerButton BOMB14;
+        public static TerraformOptions DankSplosion;
 
 		private static GodPower AtomicGrenadePower;
 		private static DropAsset AtomicGrenadeDrop;		
@@ -480,6 +481,13 @@ class Buttonz {
       PowerButtons.ToggleButton("MIRV_toggle");
       MIRV.toggleMIRVS();
     }
+	
+	            DankSplosion = new TerraformOptions();
+            DankSplosion.id = "DankSplosion";
+            DankSplosion.destroyBuildings = true;
+            DankSplosion.removeBurned = true;
+            DankSplosion.removeTopTile = true;
+            AssetManager.terraform.add(DankSplosion);
 
 
         var Cyberkaboom = new GodPower();
@@ -1421,9 +1429,10 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
 
         public static void action_EraserClick(WorldTile pTile, string pPowerID)
         {
+			AchievementManager.Instance.UnlockAchievement("danksshittybomb");
 			ProgressToThatOneAchievement("Bomb12");
             EffectsLibrary.spawnAtTileRandomScale("fx_antimatter_effect", pTile, 5.3f, 9.9f);
-            MapAction.damageWorld(pTile, 1000, TerraformLibrary.destroy_no_flash, null);
+            MapAction.damageWorld(pTile, 100, DankSplosion, null);
             World.world.startShake(0.3f, 0.01f, 2f, true, true);
             // return true;
         }

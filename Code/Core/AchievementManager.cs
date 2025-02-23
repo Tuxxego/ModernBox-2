@@ -32,7 +32,9 @@ namespace M2
             AddAchievement("moab_drop", "Not so super", "Yeah at one point this was the biggest bomb...", "ui/Icons/MOAB");
             AddAchievement("discord", "Tuxean", "You joined Tuxia! (Or you faked)", "ui/Icons/DiscordServer");
             AddAchievement("bomb_overload", "BOMBS OVERLOAD!!!", "Drop every bomb at least once.", "ui/Icons/Overload");
-            AddAchievement("deleted", "Nothing left...", "Bro deleted the whole universe ☠️.", "ui/Icons/Deleter");
+            AddAchievement("deleted", "Nothing left...", "Bro deleted the whole universe ☠️.", "ui/Icons/UniversalDestroyer");
+            AddAchievement("danksshittybomb", "Erased", "Drop the Eraser Bomb.", "ui/Icons/Eraser");
+            AddAchievement("planetlander", "Multi Planetary", "Visit another planet.", "ui/Icons/Planet");
         }
 
         private void AddAchievement(string id, string name, string description, string spritePath)
@@ -42,6 +44,22 @@ namespace M2
                 achievements.Add(id, new Achievement(id, name, description, spritePath));
             }
         }
+
+		public void ResetAchievements()
+		{
+			foreach (var achievement in achievements.Values)
+			{
+				PlayerPrefs.SetInt(achievement.ID, 0);
+			}
+			PlayerPrefs.Save();
+
+			foreach (var achievement in achievements.Values)
+			{
+				AchievementsWindow.EditButton(achievement.ID, "???", "???");
+			}
+			
+			Debug.Log("All achievements have been reset.");
+		}
 
         public void UnlockAchievement(string id)
         {
@@ -53,6 +71,7 @@ namespace M2
                 notifications.Add(new AchievementNotification(unlockedAchievement));
                 showNotification = true;
                 notificationTimer = 0f;
+				AchievementsWindow.EditButton(id, unlockedAchievement.Name, unlockedAchievement.Description);
             }
         }
 
@@ -94,6 +113,13 @@ namespace M2
 				normal = { textColor = Color.yellow }
 			};
 
+			GUIStyle nameStyle = new GUIStyle(GUI.skin.label)
+			{
+				fontSize = 16,
+				alignment = TextAnchor.UpperLeft,
+				fontStyle = FontStyle.Bold,
+				normal = { textColor = Color.white }
+			};
 			GUIStyle textStyle = new GUIStyle(GUI.skin.label)
 			{
 				fontSize = 14,
@@ -102,21 +128,26 @@ namespace M2
 			};
 
 			AchievementNotification currentNotification = notifications[0];
-			Texture2D icon = Resources.Load<Texture2D>(currentNotification.Achievement.SpritePath + ".png");
+			Sprite iconSprite = Resources.Load<Sprite>(currentNotification.Achievement.SpritePath);
+			Texture2D iconTexture = null;
 
-			if (icon == null)
+			if (iconSprite != null)
+			{
+				iconTexture = SpriteToTexture2D(iconSprite);
+			}
+			else
 			{
 				Debug.LogError("Achievement image not found: " + currentNotification.Achievement.SpritePath);
 			}
 
 			GUI.Label(new Rect(startX, startY + 5, bannerWidth, 25), "NEW M2 ACHIEVEMENT UNLOCKED", titleStyle);
 
-			if (icon != null)
+			if (iconTexture != null)
 			{
-				GUI.DrawTexture(new Rect(startX + 10, startY + 35, 50, 50), icon);
+				GUI.DrawTexture(new Rect(startX + 10, startY + 35, 50, 50), iconTexture);
 			}
 
-			GUI.Label(new Rect(startX + 70, startY + 35, 300, 30), currentNotification.Achievement.Name, textStyle);
+			GUI.Label(new Rect(startX + 70, startY + 35, 300, 30), currentNotification.Achievement.Name, nameStyle);
 			GUI.Label(new Rect(startX + 70, startY + 60, 300, 30), currentNotification.Achievement.Description, textStyle);
 
 			notificationTimer += Time.deltaTime;
@@ -129,6 +160,22 @@ namespace M2
 					showNotification = false;
 				}
 			}
+		}
+
+		private Texture2D SpriteToTexture2D(Sprite sprite)
+		{
+			if (sprite == null) return null;
+
+			Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+			Color[] pixels = sprite.texture.GetPixels(
+				(int)sprite.rect.x,
+				(int)sprite.rect.y,
+				(int)sprite.rect.width,
+				(int)sprite.rect.height
+			);
+			texture.SetPixels(pixels);
+			texture.Apply();
+			return texture;
 		}
 	}
 

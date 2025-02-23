@@ -801,7 +801,7 @@ private string GetStarSpritePath(string starType)
             return "Stars/CorruptedStar";
 
         default:
-            return "Stars/Pulsar";
+            return "Stars/YellowDwarf";
     }
 }
 
