@@ -1017,7 +1017,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     }
 
     PowerButtons.CreateButton("discord_server", Resources.Load<Sprite>("ui/Icons/DiscordServer"), "Discord Server", "Click this to join the ModernBox Discord server!", new Vector2(180, -18), ButtonType.Click, tab.transform, OpenDiscordServerLink);
-    PowerButtons.CreateButton("about", Resources.Load<Sprite>("ui/icons/Guide"), "Guide", "Read the guide on how ModernBox works.", new Vector2(180, 18), ButtonType.Click, tab.transform, OpenInfoWindow);
+    PowerButtons.CreateButton("about", Resources.Load<Sprite>("ui/icons/Guide"), "Guide", "Read the guide on how ModernBox works.", new Vector2(180, 18), ButtonType.Click, tab.transform, OpenM2InfoWindow);
     PowerButtons.CreateButton("Soldier_toggle", Resources.Load<Sprite>("actors/Soldier/walk_0"), "Modern Militaries", "(GREEN MEANS ON, GREY IS OFF) Toggles if modern soldiers can be enlisted.", new Vector2(1152, 18), ButtonType.Toggle, tab.transform, Commerce.toggleBarracks);
 
     if (Main.savedSettings.boolOptions["SoldierOption"]) {
@@ -1052,7 +1052,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
       Name.toggleNames();
     }
 	
-	    PowerButtons.CreateButton("galaxy", Resources.Load<Sprite>("ui/icons/Galaxy"), "Star Map", "View a map of everything.", new Vector2(72, 18), ButtonType.Click, tab.transform,
+	    PowerButtons.CreateButton("galaxy", Resources.Load<Sprite>("ui/icons/Galaxy"), "SPACE", "Download custom galaxies + enter the starmap.", new Vector2(72, 18), ButtonType.Click, tab.transform,
 	openStarMap
 	);
 		    PowerButtons.CreateButton("achievements", Resources.Load<Sprite>("ui/icons/trophy"), "Achievements", "COMING SOON", new Vector2(72, -18), ButtonType.Click, tab.transform,
@@ -1136,7 +1136,7 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
     Windows.ShowWindow("AchievementsWindow");
   }
 
-  private static void OpenInfoWindow() { Windows.ShowWindow("GuideWindow"); }
+  private static void OpenM2InfoWindow() { Windows.ShowWindow("GuideWindow"); }
   private static void OpenAHHWindow() { Windows.ShowWindow("AHHWindow"); }
   
   private static void BombsMenu() { Windows.ShowWindow("EXTRA BOMBS"); }
@@ -1165,8 +1165,8 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
   
     private static void openStarMap() {
 
-		SpaceManager.EnableSpace();
-         Debug.Log("SpaceBox: openStarMap has been called but the star map ain't actually fucking showing up. (ofc it isn't)");
+    Windows.ShowWindow("SpaceWindow");
+
 
   }
   

@@ -20,11 +20,11 @@ using System.Reflection;
 
 namespace M2
 {
-    class InfoWindow
+    class M2InfoWindow
     {
         public static void init()
         {
-          var window = Windows.CreateNewWindow("InfoWindow", "ModernBox");
+          var window = Windows.CreateNewWindow("M2InfoWindow", "ModernBox");
           var scrollView = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View");
           scrollView.gameObject.SetActive(true);
           var viewport = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/{window.name}/Background/Scroll View/Viewport");
