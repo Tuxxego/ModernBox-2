@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -51,8 +51,8 @@ namespace M2
           Sandevistan.base_stats[S.max_children] = 0f;
           Sandevistan.base_stats[S.max_age] = 10f;
           Sandevistan.base_stats[S.attack_speed] = 20;
-          Sandevistan.base_stats[S.damage] = 20;
-          Sandevistan.base_stats[S.speed] = 500f;
+          Sandevistan.base_stats[S.damage] = 2;
+          Sandevistan.base_stats[S.speed] = 5f;
           Sandevistan.base_stats[S.health] = 0;
           Sandevistan.base_stats[S.accuracy] = 0f;
           Sandevistan.base_stats[S.range] = 1;
@@ -71,32 +71,34 @@ namespace M2
           Sandevistan.base_stats[S.loyalty_traits] = 0f;
           Sandevistan.base_stats[S.cities] = 0;
           Sandevistan.base_stats[S.zone_range] = 0;
-          Sandevistan.equipmentType = EquipmentType.Ring;
-          Sandevistan.name_templates = List.Of<string>(new string[]{ "ring_name" });
-          Sandevistan.materials = List.Of<string>(new string[]{ "steel" });
+          Sandevistan.equipmentType = EquipmentType.Amulet;
+          Sandevistan.name_class = "item_class_accessory";
+          Sandevistan.name_templates = List.Of<string>(new string[]{"ring_name"});
+          Sandevistan.materials = List.Of<string>(new string[]{"copper"});
           Sandevistan.tech_needed = "Cyberware";
-          Sandevistan.equipment_value = 1500;
+          Sandevistan.equipment_value = 300;
           AssetManager.items.list.AddItem(Sandevistan);
           Localization.addLocalization("item_Sandevistan", "Military Grade Sandevistan");
 		  
           ItemAsset TurboBooster = AssetManager.items.clone("TurboBooster", "_accessory");
           TurboBooster.id = "TurboBooster";
+          TurboBooster.name_class = "item_class_accessory";
           TurboBooster.base_stats[S.fertility] = -0.1f;
           TurboBooster.base_stats[S.max_children] = 0f;
           TurboBooster.base_stats[S.max_age] = 10f;
           TurboBooster.base_stats[S.attack_speed] = 20;
           TurboBooster.base_stats[S.damage] = 20;
           TurboBooster.base_stats[S.speed] = 0f;
-          TurboBooster.base_stats[S.health] = 1000;
+          TurboBooster.base_stats[S.health] = 10;
           TurboBooster.base_stats[S.accuracy] = 0f;
           TurboBooster.base_stats[S.range] = 1;
-          TurboBooster.base_stats[S.armor] = 100;
+          TurboBooster.base_stats[S.armor] = 6;
           TurboBooster.base_stats[S.scale] = 0.0f;
           TurboBooster.base_stats[S.dodge] = 0f;
           TurboBooster.base_stats[S.targets] = 2f;
           TurboBooster.base_stats[S.critical_chance] = 0.15f;
           TurboBooster.base_stats[S.knockback] = 0f;
-          TurboBooster.base_stats[S.knockback_reduction] = 200f;
+          TurboBooster.base_stats[S.knockback_reduction] = 2f;
           TurboBooster.base_stats[S.intelligence] = 7;
           TurboBooster.base_stats[S.warfare] = 4;
           TurboBooster.base_stats[S.diplomacy] = 0;
@@ -105,16 +107,17 @@ namespace M2
           TurboBooster.base_stats[S.loyalty_traits] = 0f;
           TurboBooster.base_stats[S.cities] = 0;
           TurboBooster.base_stats[S.zone_range] = 0;
-          TurboBooster.equipmentType = EquipmentType.Ring;
-          TurboBooster.name_templates = List.Of<string>(new string[]{ "ring_name" });
-          TurboBooster.materials = List.Of<string>(new string[]{ "steel" });
+          TurboBooster.equipmentType = EquipmentType.Amulet;
+          TurboBooster.name_templates = List.Of<string>(new string[]{"ring_name"});
+          TurboBooster.materials = List.Of<string>(new string[]{"copper"});
           TurboBooster.tech_needed = "Cyberware";
-          TurboBooster.equipment_value = 1500;
+          TurboBooster.equipment_value = 300;
           AssetManager.items.list.AddItem(TurboBooster);
           Localization.addLocalization("item_TurboBooster", "Military Grade TurboBooster"); 
  
 
 		}
+		/*
 		public static void toggleCyberware()
         {
             Main.modifyBoolOption("CyberwareOption", PowerButtons.GetToggleValue("Cyberware_toggle"));
@@ -171,6 +174,7 @@ namespace M2
                 elf.preferred_weapons.Remove("TurboBooster");
 
             }
+            */
             static void addcyberSprite(string id, string material)
             {
               var dictItems = Reflection.GetField(typeof(ActorAnimationLoader), null, "dictItems") as Dictionary<string, Sprite>;

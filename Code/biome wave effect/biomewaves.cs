@@ -38,11 +38,8 @@ AssetManager.effects_library.add(fogjungle);
 
         public static BaseEffect spawnSimpleTile(BaseEffect pEffect, WorldTile pTile, string pParam1 = null, string pParam2 = null, float pFloatParam1 = 0f)
         {
-            // Spawning the effect on the tile
             pEffect.spawnOnTile(pTile);
-
-            // Adjust the scale of the effect (e.g., making it smaller)
-            pEffect.transform.localScale = new Vector3(0.5f / 2, 0.5f / 2, 0.5f / 2); // Adjust values to scale down the effect
+            pEffect.transform.localScale = new Vector3(0.5f / 2, 0.5f / 2, 0.5f / 2);
 
             return pEffect;
         }

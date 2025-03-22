@@ -167,8 +167,6 @@ public class StarManager : MonoBehaviour
 
 	public void LoadGalaxies()
 	{
-		string galaxiesFolder = Path.Combine(Application.dataPath, "../galaxies/");
-		
 		if (!Directory.Exists(galaxiesFolder))
 		{
 			Directory.CreateDirectory(galaxiesFolder);
@@ -190,8 +188,6 @@ public class StarManager : MonoBehaviour
 			return;
 		}
 
-		Dictionary<string, bool> galaxyStates = LoadGalaxiesState();
-
 		foreach (string filePath in galaxyFiles)
 		{
 			try
@@ -199,34 +195,27 @@ public class StarManager : MonoBehaviour
 				string json = File.ReadAllText(filePath);
 				GalaxyData galaxy = JsonUtility.FromJson<GalaxyData>(json);
 
-				if (galaxyStates.ContainsKey(galaxy.name) && galaxyStates[galaxy.name])
+				predefinedGalaxies = AddToArray(predefinedGalaxies, galaxy.name);
+				CustomGalaxyDescriptions[galaxy.name] = galaxy.description;
+				galaxyRequirements[galaxy.name] = galaxy.requirement;
+				galaxyStarCounts[galaxy.name] = galaxy.starCount;
+				galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
+				galaxyStarWeights[galaxy.name] = galaxy.starWeights;
+				
+				if (galaxy.nebulaColor1 != null && galaxy.nebulaColor2 != null)
 				{
-					predefinedGalaxies = AddToArray(predefinedGalaxies, galaxy.name);
-					CustomGalaxyDescriptions[galaxy.name] = galaxy.description;
-					galaxyRequirements[galaxy.name] = galaxy.requirement;
-					galaxyStarCounts[galaxy.name] = galaxy.starCount;
-					galaxyDangerRatings[galaxy.name] = galaxy.dangerRating;
-					galaxyStarWeights[galaxy.name] = galaxy.starWeights;
-
-					if (galaxy.nebulaColor1 != null && galaxy.nebulaColor2 != null)
-					{
-						Color nebula1 = new Color(galaxy.nebulaColor1[0], galaxy.nebulaColor1[1], galaxy.nebulaColor1[2], galaxy.nebulaColor1[3]);
-						Color nebula2 = new Color(galaxy.nebulaColor2[0], galaxy.nebulaColor2[1], galaxy.nebulaColor2[2], galaxy.nebulaColor2[3]);
-						CustomGalaxyNebulas[galaxy.name] = (nebula1, nebula2);
-					}
-
-					if (galaxy.GlassStructure)
-					{
-						GlassGalaxies[galaxy.name] = true;
-					}
-
-					loadedGalaxyCount++;
-					Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
+					Color nebula1 = new Color(galaxy.nebulaColor1[0], galaxy.nebulaColor1[1], galaxy.nebulaColor1[2], galaxy.nebulaColor1[3]);
+					Color nebula2 = new Color(galaxy.nebulaColor2[0], galaxy.nebulaColor2[1], galaxy.nebulaColor2[2], galaxy.nebulaColor2[3]);
+					CustomGalaxyNebulas[galaxy.name] = (nebula1, nebula2);
 				}
-				else
+				
+				if (galaxy.GlassStructure)
 				{
-					Debug.Log($"Galaxy '{galaxy.name}' is disabled and will not be loaded.");
+					GlassGalaxies[galaxy.name] = true;
 				}
+
+				loadedGalaxyCount++;
+				Debug.Log($"Galaxy '{galaxy.name}' loaded successfully.");
 			}
 			catch (System.Exception ex)
 			{
@@ -235,59 +224,6 @@ public class StarManager : MonoBehaviour
 		}
 	}
 
-        private static void SaveGalaxiesState(Dictionary<string, bool> galaxyStates)
-        {
-            string path = Path.Combine(Application.dataPath, "Galaxies.json");
-            string json = JsonConvert.SerializeObject(galaxyStates, Formatting.Indented);
-            File.WriteAllText(path, json);
-        }
-
-		private static Dictionary<string, bool> LoadGalaxiesState()
-		{
-			string path = Path.Combine(Application.dataPath, "Galaxies.json");
-			if (File.Exists(path))
-			{
-				string json = File.ReadAllText(path);
-				return JsonConvert.DeserializeObject<Dictionary<string, bool>>(json);
-			}
-			else
-			{
-				List<GalaxyData> galaxies = LoadGalaxiesFromThatFuckingFile();
-				Dictionary<string, bool> galaxyStates = new Dictionary<string, bool>();
-				foreach (var galaxy in galaxies)
-				{
-					galaxyStates[galaxy.name] = true;
-				}
-				SaveGalaxiesState(galaxyStates);
-				return galaxyStates;
-			}
-		}
-
-        private static List<GalaxyData> LoadGalaxiesFromThatFuckingFile()
-        {
-            string galaxiesDirectory = Path.Combine(Application.dataPath, "../galaxies/");
-            List<GalaxyData> galaxies = new List<GalaxyData>();
-
-            if (Directory.Exists(galaxiesDirectory))
-            {
-                string[] galaxyFiles = Directory.GetFiles(galaxiesDirectory, "*.gal");
-                foreach (var file in galaxyFiles)
-                {
-                    try
-                    {
-                        string json = File.ReadAllText(file);
-                        GalaxyData galaxy = JsonConvert.DeserializeObject<GalaxyData>(json);
-                        galaxies.Add(galaxy);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogError($"Error loading galaxy file {file}: {ex.Message}");
-                    }
-                }
-            }
-
-            return galaxies;
-        }
 
 
     private string[] AddToArray(string[] array, string newItem)
@@ -865,7 +801,7 @@ private string GetStarSpritePath(string starType)
             return "Stars/CorruptedStar";
 
         default:
-            return "Stars/YellowDwarf";
+            return "Stars/Pulsar";
     }
 }
 
@@ -1023,15 +959,15 @@ private void OnGUI()
 
 	if (selectedStar != null)
 	{
-		Rect starM2InfoWindowRect = new Rect(10, 10, 350, 450); 
-		GUI.Window(0, starM2InfoWindowRect, StarM2InfoWindow, 
+		Rect starInfoWindowRect = new Rect(10, 10, 350, 450); 
+		GUI.Window(0, starInfoWindowRect, StarInfoWindow, 
 			new GUIContent(localizationManager.Localize("star_information"), "Details about the selected star"));
 	}
 	
     if (showPlanetWindow && selectedStar != null)
     {
-        Rect planetM2InfoWindowRect = new Rect(360, 10, 300, 400);
-        GUI.Window(1, planetM2InfoWindowRect, PlanetM2InfoWindow, localizationManager.Localize("planet_information"));
+        Rect planetInfoWindowRect = new Rect(360, 10, 300, 400);
+        GUI.Window(1, planetInfoWindowRect, PlanetInfoWindow, localizationManager.Localize("planet_information"));
     }
 
     if (showParametersWindow)
@@ -1067,7 +1003,7 @@ if (showGalaxySelectionWindow)
 
     GUI.Window(6, galaxyWindowRect, GalaxySelectionWindow, new GUIContent(localizationManager.Localize("select_galaxy"), "Browse galaxies"));
     GUI.Window(7, descriptionWindowRect, GalaxyDescriptionWindow, new GUIContent(localizationManager.Localize("galaxy_description"), "Galaxy details"));
-    GUI.Window(8, infoWindowRect, GalaxyM2InfoWindow, new GUIContent(localizationManager.Localize("galaxy_info"), "Galaxy stats"));
+    GUI.Window(8, infoWindowRect, GalaxyInfoWindow, new GUIContent(localizationManager.Localize("galaxy_info"), "Galaxy stats"));
 
     Rect closeButtonRect = new Rect(galaxyWindowRect.x + (galaxyWindowRect.width / 2) - 50, galaxyWindowRect.y + galaxyWindowRect.height + 15, 100, 35);
 
@@ -1636,7 +1572,6 @@ private void BottomBar()
     {
         Debug.LogWarning("PlanetCount.txt not found, initializing planetsVisited to 0.");
         planetsVisited = 0;
-        File.WriteAllText(planetCountFilePath, planetsVisited.ToString());
     }
 
 
@@ -1708,7 +1643,7 @@ private void BottomBar()
     float centerX = Screen.width / 2f;
     float barY = Screen.height - 60 + 15f; 
 
-    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.2.0.0", fancyTextStyle);
+    GUI.Label(new Rect(centerX - textWidth / 2, barY, textWidth, textHeight), "ModernBox 2.1.0.1", fancyTextStyle);
     GUI.Label(new Rect(centerX - textWidth / 2, barY + 20f, textWidth, textHeight), "BY TUXXEGO", smallerTextStyle);
 
 }
@@ -1882,7 +1817,7 @@ private void GalaxyDescriptionWindow(int windowID)
 }
 
 
-private void GalaxyM2InfoWindow(int windowID)
+private void GalaxyInfoWindow(int windowID)
 {
     GUIStyle infoStyle = new GUIStyle(GUI.skin.label)
     {
@@ -1924,7 +1859,7 @@ private void GalaxyM2InfoWindow(int windowID)
 
 
 
-private void StarM2InfoWindow(int windowID)
+private void StarInfoWindow(int windowID)
 {
     if (selectedStar == null) return;
 
@@ -2063,7 +1998,7 @@ private void LoadJourneyTracker()
 
 
 
-private void PlanetM2InfoWindow(int windowID)
+private void PlanetInfoWindow(int windowID)
 {
     PlanetInfo planetInfo = selectedStar.planetInfo[selectedStar.selectedPlanet];
 

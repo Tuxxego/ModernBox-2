@@ -143,7 +143,6 @@ namespace M2
 
 		public void ShowTouchdownGUI(string planetType)
 		{
-			AchievementManager.Instance.UnlockAchievement("planetlander");
 			currentWindowTitle = "Landing Sequence Complete";
 			currentWindowDescription = $"Mission Success: Your vessel has safely touched down on a {planetType}.";
 			showTouchdownWindow = true;

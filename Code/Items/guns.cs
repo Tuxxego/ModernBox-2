@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -22,7 +22,6 @@ namespace M2
         {
 
             makecraftable();
-            
 
              TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
           nonannoyingbomb.id = "nonannoyingbomb";
@@ -30,8 +29,58 @@ namespace M2
 		nonannoyingbomb.explode_tile = true;
 		nonannoyingbomb.damageBuildings = true;
 		nonannoyingbomb.damage = 0;
+        nonannoyingbomb.explode_strength = 2;
+		nonannoyingbomb.applies_to_high_flyers = false;
 		nonannoyingbomb.setFire = true;
+        nonannoyingbomb.removeRuins = false;
           AssetManager.terraform.add(nonannoyingbomb);
+
+        TerraformOptions nonannoyingbullet = AssetManager.terraform.clone("nonannoyingbullet", "grenade");
+          nonannoyingbullet.id = "nonannoyingbullet";
+		nonannoyingbullet.shake = false;
+		nonannoyingbullet.explode_tile = false;
+		nonannoyingbullet.damageBuildings = true;
+		nonannoyingbullet.damage = 0;
+        nonannoyingbullet.explode_strength = 0;
+		nonannoyingbullet.applies_to_high_flyers = false;
+		nonannoyingbullet.setFire = false;
+        nonannoyingbullet.removeRuins = false;
+          AssetManager.terraform.add(nonannoyingbullet);
+
+            TerraformOptions antiairbomb = AssetManager.terraform.clone("antiairbomb", "grenade");
+          antiairbomb.id = "antiairbomb";
+		antiairbomb.shake = false;
+		antiairbomb.explode_tile = true;
+		antiairbomb.damageBuildings = true;
+		antiairbomb.damage = 0;
+        antiairbomb.explode_strength = 2;
+		antiairbomb.applies_to_high_flyers = true;
+		antiairbomb.setFire = false;
+        antiairbomb.removeRuins = false;
+          AssetManager.terraform.add(antiairbomb);
+
+             TerraformOptions deathexplosion = AssetManager.terraform.clone("deathexplosion", "grenade");
+          deathexplosion.id = "deathexplosion";
+		deathexplosion.shake = false;
+		deathexplosion.explode_tile = true;
+		deathexplosion.damageBuildings = true;
+		deathexplosion.damage = 0;
+        deathexplosion.explode_strength = 1;
+		deathexplosion.applies_to_high_flyers = false;
+		deathexplosion.setFire = false;
+          AssetManager.terraform.add(deathexplosion);
+
+EffectAsset groundshake = new EffectAsset();
+groundshake.id = "groundshake";
+groundshake.use_basic_prefab = true;
+groundshake.sorting_layer_id = "EffectsTop";
+groundshake.sprite_path = "effects/groundshake";
+groundshake.show_on_mini_map = true;
+groundshake.draw_light_area = true;
+groundshake.draw_light_size = 2f;
+groundshake.draw_light_area_offset_y = 5f;
+groundshake.limit = 100;
+AssetManager.effects_library.add(groundshake);
 
           EffectAsset DankyMatter = new EffectAsset();
 DankyMatter.id = "fx_dankymatter_effect";
@@ -43,7 +92,6 @@ DankyMatter.draw_light_area = true;
 DankyMatter.draw_light_size = 2f;
 DankyMatter.draw_light_area_offset_y = 5f;
 DankyMatter.limit = 100;
-DankyMatter.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionAntimatterBomb";
 AssetManager.effects_library.add(DankyMatter);
 
             EffectAsset Shermanboom = new EffectAsset();
@@ -99,8 +147,6 @@ AssetManager.effects_library.add(DankyMatter);
 	      frostbolt.terraformRange = 2;
           frostbolt.draw_light_area = true;
 	      frostbolt.draw_light_size = 0.1f;
-	      frostbolt.sound_launch = "event:/SFX/WEAPONS/WeaponRedOrbStart";
-	      frostbolt.sound_impact = "event:/SFX/WEAPONS/WeaponRedOrbLand";
           frostbolt.startScale = 0.075f;
           frostbolt.targetScale = 0.2f;
           frostbolt.parabolic = true;
@@ -116,7 +162,6 @@ AssetManager.effects_library.add(DankyMatter);
           bigsnowball.draw_light_area = false;
 	      bigsnowball.draw_light_size = 0.1f;
           bigsnowball.hitFreeze = true;
-          bigsnowball.sound_impact = "event:/SFX/WEAPONS/WeaponSnowballLand";
           bigsnowball.startScale = 0.075f;
           bigsnowball.targetScale = 0.4f;
           bigsnowball.parabolic = true;
@@ -132,7 +177,7 @@ AssetManager.effects_library.add(DankyMatter);
           cybermissileprojectile.draw_light_area = true;
            cybermissileprojectile.endEffect = "fx_boat_explosion";
 	      cybermissileprojectile.draw_light_size = 1f;
-          cybermissileprojectile.terraformOption = "nonannoyingbomb";
+          cybermissileprojectile.terraformOption = "antiairbomb";
           cybermissileprojectile.terraformRange = 1;
           cybermissileprojectile.startScale = 0.2f;
           cybermissileprojectile.targetScale = 0.2f;
@@ -149,7 +194,7 @@ AssetManager.effects_library.add(DankyMatter);
 	      artilleryshell.look_at_target = true;
           artilleryshell.draw_light_area = true;
 	      artilleryshell.draw_light_size = 1f;
-          artilleryshell.endEffect = "fx_boat_explosion";
+          artilleryshell.endEffect = "fx_explosion_middle";
           artilleryshell.terraformOption = "nonannoyingbomb";
           artilleryshell.terraformRange = 3;
           artilleryshell.startScale = 0.2f;
@@ -159,6 +204,24 @@ AssetManager.effects_library.add(DankyMatter);
           ProjectileAsset shellboomboomeffect = artilleryshell;
           shellboomboomeffect.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
           AssetManager.projectiles.add(artilleryshell);
+
+         ProjectileAsset cannonballprojectile = new ProjectileAsset();
+          cannonballprojectile.id = "cannonballprojectile";
+          cannonballprojectile.texture = "cannonballprojectile";
+          cannonballprojectile.trailEffect_enabled = false;
+	      cannonballprojectile.look_at_target = true;
+          cannonballprojectile.draw_light_area = true;
+	      cannonballprojectile.draw_light_size = 1f;
+          cannonballprojectile.endEffect = "groundshake";
+          cannonballprojectile.terraformOption = "nonannoyingbomb";
+          cannonballprojectile.terraformRange = 3;
+          cannonballprojectile.startScale = 0.2f;
+          cannonballprojectile.targetScale = 0.2f;
+          cannonballprojectile.parabolic = true;
+          cannonballprojectile.speed = 10f;
+          ProjectileAsset cannonballprojectile1 = cannonballprojectile;
+          cannonballprojectile1.world_actions = (AttackAction)Delegate.Combine(cannonballprojectile1.world_actions, new AttackAction(ActionLibrary.burnTile));
+          AssetManager.projectiles.add(cannonballprojectile);
 
            ProjectileAsset tankshell = new ProjectileAsset();
           tankshell.id = "tankshell";
@@ -178,16 +241,35 @@ AssetManager.effects_library.add(DankyMatter);
           shellboomboomeffect1.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect1.world_actions, new AttackAction(ActionLibrary.burnTile));
           AssetManager.projectiles.add(tankshell);
 
+        ProjectileAsset bigbullet = new ProjectileAsset();
+          bigbullet.id = "bigbullet";
+          bigbullet.texture = "shotgun_bullet";
+          bigbullet.trailEffect_enabled = false;
+	      bigbullet.look_at_target = true;
+          bigbullet.draw_light_area = true;
+          bigbullet.looped = false;
+	      bigbullet.draw_light_size = 1f;
+          bigbullet.animation_speed = 0.1f;
+          bigbullet.terraformOption = "nonannoyingbullet";
+          bigbullet.sound_launch = "event:/SFX/WEAPONS/WeaponShotgunStart";
+          bigbullet.sound_impact = "event:/SFX/WEAPONS/WeaponShotgunLand";
+          bigbullet.terraformRange = 1;
+          bigbullet.startScale = 0.1f;
+          bigbullet.targetScale = 0.1f;
+          bigbullet.parabolic = false;
+          bigbullet.speed = 45f;
+          AssetManager.projectiles.add(bigbullet);
+
         ProjectileAsset crabartilleryshell = new ProjectileAsset();
           crabartilleryshell.id = "crabartilleryshell";
-          crabartilleryshell.texture = "artilleryshell";
+          crabartilleryshell.texture = "shotgun_bullet";
           crabartilleryshell.trailEffect_enabled = false;
 	      crabartilleryshell.look_at_target = true;
           crabartilleryshell.draw_light_area = true;
 	      crabartilleryshell.draw_light_size = 1f;
           crabartilleryshell.terraformOption = "crab_bomb";
           crabartilleryshell.terraformRange = 5;
-          crabartilleryshell.endEffect = "fx_explosion_meteorite";
+          crabartilleryshell.endEffect = "fx_explosion_middle";
           crabartilleryshell.startScale = 1f;
           crabartilleryshell.targetScale = 1f;
           crabartilleryshell.parabolic = true;
@@ -197,12 +279,16 @@ AssetManager.effects_library.add(DankyMatter);
           AssetManager.projectiles.add(crabartilleryshell);
 
 
+
              ProjectileAsset bigbomb = new ProjectileAsset();
           bigbomb.id = "bigbomb";
           bigbomb.texture = "bigbomb";
 	      bigbomb.look_at_target = true;
           bigbomb.draw_light_area = true;
           bigbomb.endEffect = "Shermanboom";
+          bigbomb.trailEffect_id = "smoketrail";
+          bigbomb.trailEffect_scale = 0.1f;
+          bigbomb.trailEffect_timer = 0.1f;
 	      bigbomb.draw_light_size = 1f;
           bigbomb.terraformOption = "nonannoyingbomb";
           bigbomb.terraformRange = 3;
@@ -218,11 +304,14 @@ AssetManager.effects_library.add(DankyMatter);
           seismicrod.id = "seismicrod";
           seismicrod.texture = "seismicrod";
           seismicrod.trailEffect_enabled = false;
+           seismicrod.trailEffect_id = "smoketrail";
+          seismicrod.trailEffect_scale = 0.1f;
+          seismicrod.trailEffect_timer = 0.1f;
 	      seismicrod.look_at_target = true;
           seismicrod.draw_light_area = true;
-          seismicrod.endEffect = "fx_explosion_meteorite";
+          seismicrod.endEffect = "fx_explosion_middle";
 	      seismicrod.draw_light_size = 1f;
-          seismicrod.terraformOption = "nonannoyingbomb";
+          seismicrod.terraformOption = "antiairbomb";
           seismicrod.terraformRange = 20;
           seismicrod.startScale = 0.3f;
           seismicrod.targetScale = 0.3f;
@@ -232,13 +321,21 @@ AssetManager.effects_library.add(DankyMatter);
           bombasticlolxd1.world_actions = (AttackAction)Delegate.Combine(bombasticlolxd1.world_actions, new AttackAction(ActionLibrary.burnTile));
           AssetManager.projectiles.add(seismicrod);
 
+                ItemAsset incendiarybombing = AssetManager.items.clone("incendiarybombing", "_range");
+            incendiarybombing.id = "incendiarybombing";
+            incendiarybombing.projectile = "torch";
+            incendiarybombing.materials = List.Of<string>(new string[] { "base" });
+            incendiarybombing.base_stats[S.targets] = 2;
+            incendiarybombing.base_stats[S.range] = 0f;
+            incendiarybombing.base_stats[S.projectiles] = 1;
+            incendiarybombing.path_slash_animation = "effects/fire_charger";
 
              ItemAsset icebolt = AssetManager.items.clone("icebolt", "_range");
             icebolt.id = "icebolt";
             icebolt.projectile = "frostbolt";
             icebolt.materials = List.Of<string>(new string[] { "base" });
             icebolt.base_stats[S.targets] = 1;
-            icebolt.base_stats[S.range] = 10f;
+            icebolt.base_stats[S.range] = 0f;
             icebolt.base_stats[S.projectiles] = 1;
             icebolt.base_stats[S.critical_chance] = 0.3f;
 		    icebolt.base_stats[S.critical_damage_multiplier] = 0.4f;
@@ -250,7 +347,7 @@ AssetManager.effects_library.add(DankyMatter);
             snowthrow.projectile = "bigsnowball";
             snowthrow.materials = List.Of<string>(new string[] { "base" });
             snowthrow.base_stats[S.targets] = 10;
-            snowthrow.base_stats[S.range] = 16f;
+            snowthrow.base_stats[S.range] = 0f;
             snowthrow.base_stats[S.projectiles] = 1;
             snowthrow.base_stats[S.critical_chance] = 0.3f;
 		    snowthrow.base_stats[S.critical_damage_multiplier] = 0.8f;
@@ -263,7 +360,7 @@ AssetManager.effects_library.add(DankyMatter);
             singleshot.materials = List.Of<string>(new string[] { "base" });
         singleshot.base_stats[S.projectiles] = 1f;
 		singleshot.base_stats[S.attack_speed] = 50f;
-		singleshot.base_stats[S.range] = 6f;
+		singleshot.base_stats[S.range] = 0f;
 		singleshot.base_stats[S.targets] = 1f;
 		singleshot.base_stats[S.damage] = 10f;
 		singleshot.base_stats[S.damage_range] = 0.5f;
@@ -275,7 +372,7 @@ AssetManager.effects_library.add(DankyMatter);
             machinegunery.materials = List.Of<string>(new string[] { "base" });
         machinegunery.base_stats[S.projectiles] = 1f;
 		machinegunery.base_stats[S.attack_speed] = 10000f;
-		machinegunery.base_stats[S.range] = 12f;
+		machinegunery.base_stats[S.range] = 0f;
 		machinegunery.base_stats[S.targets] = 1f;
 		machinegunery.base_stats[S.damage] = 3f;
 		machinegunery.base_stats[S.damage_range] = 0.1f;
@@ -287,12 +384,73 @@ AssetManager.effects_library.add(DankyMatter);
             artillerystriker.materials = List.Of<string>(new string[] { "base" });
         artillerystriker.base_stats[S.projectiles] = 1f;
 		artillerystriker.base_stats[S.attack_speed] = 0.1f;
-		artillerystriker.base_stats[S.range] = 30f;
+		artillerystriker.base_stats[S.range] = 0f;
 		artillerystriker.base_stats[S.targets] = 1f;
 		artillerystriker.base_stats[S.damage] = 60f;
 		artillerystriker.base_stats[S.damage_range] = 0.7f;
             artillerystriker.path_slash_animation = "effects/slashes/slash_punch";
 
+            ItemAsset missilelauncherlong = AssetManager.items.clone("missilelauncherlong", "_range");
+            missilelauncherlong.id = "missilelauncherlong";
+            missilelauncherlong.projectile = "MIRVartillery";
+            missilelauncherlong.materials = List.Of<string>(new string[] { "base" });
+        missilelauncherlong.base_stats[S.projectiles] = 1f;
+		missilelauncherlong.base_stats[S.attack_speed] = 0.1f;
+		missilelauncherlong.base_stats[S.range] = 0f;
+		missilelauncherlong.base_stats[S.targets] = 1f;
+		missilelauncherlong.base_stats[S.damage] = 0f;
+		missilelauncherlong.base_stats[S.damage_range] = 0.7f;
+            missilelauncherlong.path_slash_animation = "effects/slashes/slash_punch";
+
+            ItemAsset missilelaunchershort = AssetManager.items.clone("missilelaunchershort", "_range");
+            missilelaunchershort.id = "missilelaunchershort";
+            missilelaunchershort.projectile = "RPGload";
+            missilelaunchershort.materials = List.Of<string>(new string[] { "base" });
+        missilelaunchershort.base_stats[S.projectiles] = 1f;
+		missilelaunchershort.base_stats[S.attack_speed] = 0.1f;
+		missilelaunchershort.base_stats[S.range] = 0f;
+		missilelaunchershort.base_stats[S.targets] = 1f;
+		missilelaunchershort.base_stats[S.damage] = 60f;
+		missilelaunchershort.base_stats[S.damage_range] = 0.7f;
+            missilelaunchershort.path_slash_animation = "effects/slashes/slash_punch";
+
+
+
+                  ItemAsset arrowstriker = AssetManager.items.clone("arrowstriker", "_range");
+            arrowstriker.id = "arrowstriker";
+            arrowstriker.projectile = "arrow";
+            arrowstriker.materials = List.Of<string>(new string[] { "base" });
+        arrowstriker.base_stats[S.projectiles] = 1f;
+		arrowstriker.base_stats[S.attack_speed] = 0.1f;
+		arrowstriker.base_stats[S.range] = 0f;
+		arrowstriker.base_stats[S.targets] = 1f;
+		arrowstriker.base_stats[S.damage] = 0f;
+		arrowstriker.base_stats[S.damage_range] = 0.7f;
+            arrowstriker.path_slash_animation = "effects/slashes/slash_punch";
+
+            ItemAsset cannonstriker = AssetManager.items.clone("cannonstriker", "_range");
+            cannonstriker.id = "cannonstriker";
+            cannonstriker.projectile = "cannonballprojectile";
+            cannonstriker.materials = List.Of<string>(new string[] { "base" });
+        cannonstriker.base_stats[S.projectiles] = 1f;
+		cannonstriker.base_stats[S.attack_speed] = 0.1f;
+		cannonstriker.base_stats[S.range] = 0f;
+		cannonstriker.base_stats[S.targets] = 4f;
+		cannonstriker.base_stats[S.damage] = 0f;
+		cannonstriker.base_stats[S.damage_range] = 0.7f;
+            cannonstriker.path_slash_animation = "effects/slashes/slash_punch";
+
+            ItemAsset bigbulletattack = AssetManager.items.clone("bigbulletattack", "_range");
+            bigbulletattack.id = "bigbulletattack";
+            bigbulletattack.projectile = "bigbullet";
+            bigbulletattack.materials = List.Of<string>(new string[] { "base" });
+        bigbulletattack.base_stats[S.projectiles] = 1f;
+		bigbulletattack.base_stats[S.attack_speed] = 0.1f;
+		bigbulletattack.base_stats[S.range] = 0f;
+		bigbulletattack.base_stats[S.targets] = 3f;
+		bigbulletattack.base_stats[S.damage] = 30f;
+		bigbulletattack.base_stats[S.damage_range] = 0.7f;
+            bigbulletattack.path_slash_animation = "effects/slashes/slash_punch";
 
             ItemAsset tankshellattack = AssetManager.items.clone("tankshellattack", "_range");
             tankshellattack.id = "tankshellattack";
@@ -300,7 +458,7 @@ AssetManager.effects_library.add(DankyMatter);
             tankshellattack.materials = List.Of<string>(new string[] { "base" });
         tankshellattack.base_stats[S.projectiles] = 1f;
 		tankshellattack.base_stats[S.attack_speed] = 0.1f;
-		tankshellattack.base_stats[S.range] = 30f;
+		tankshellattack.base_stats[S.range] = 0f;
 		tankshellattack.base_stats[S.targets] = 3f;
 		tankshellattack.base_stats[S.damage] = 60f;
 		tankshellattack.base_stats[S.damage_range] = 0.7f;
@@ -312,7 +470,7 @@ AssetManager.effects_library.add(DankyMatter);
             crabartillery.materials = List.Of<string>(new string[] { "base" });
         crabartillery.base_stats[S.projectiles] = 4f;
 		crabartillery.base_stats[S.attack_speed] = 0.1f;
-		crabartillery.base_stats[S.range] = 30f;
+		crabartillery.base_stats[S.range] = 0f;
 		crabartillery.base_stats[S.targets] = 1f;
 		crabartillery.base_stats[S.damage] = 100f;
 		crabartillery.base_stats[S.damage_range] = 0.7f;
@@ -324,7 +482,7 @@ AssetManager.effects_library.add(DankyMatter);
             bomberino.materials = List.Of<string>(new string[] { "base" });
         bomberino.base_stats[S.projectiles] = 1f;
 		bomberino.base_stats[S.attack_speed] = 0.01f;
-		bomberino.base_stats[S.range] = 3f;
+		bomberino.base_stats[S.range] = 0f;
 		bomberino.base_stats[S.targets] = 7f;
 		bomberino.base_stats[S.damage] = 30f;
 		bomberino.base_stats[S.damage_range] = 0.5f;
@@ -336,132 +494,28 @@ AssetManager.effects_library.add(DankyMatter);
             destroyerbot.materials = List.Of<string>(new string[] { "base" });
         destroyerbot.base_stats[S.projectiles] = 1f;
 		destroyerbot.base_stats[S.attack_speed] = 0.1f;
-		destroyerbot.base_stats[S.range] = 10f;
+		destroyerbot.base_stats[S.range] = 0f;
 		destroyerbot.base_stats[S.targets] = 10f;
 		destroyerbot.base_stats[S.damage] = 20f;
 		destroyerbot.base_stats[S.damage_range] = 0.5f;
             destroyerbot.path_slash_animation = "effects/slashes/slash_punch";
 			
-			//if(Main.settings.Mp5){			            
-			ItemAsset Mp5 = AssetManager.items.clone("Mp5", "_range");
-            Mp5.id = "Mp5";
-            Mp5.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            Mp5.materials = List.Of<string>(new string[] { "iron" });
-            Mp5.projectile = "shotgun_bullet";
-			Mp5.tech_needed = "Firearms";			
-            Mp5.base_stats[S.range] = 14f;
-            Mp5.base_stats[S.accuracy] = 5;
-            Mp5.base_stats[S.attack_speed] = 9000f;
-            Mp5.base_stats[S.damage] = 3;
-            Mp5.base_stats[S.health] = 10;
-            Mp5.equipment_value = 500;
-            Mp5.path_slash_animation = "effects/slashes/slash_punch";
-            Mp5.quality = ItemQuality.Legendary;
-            Mp5.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(Mp5);
-            Localization.addLocalization("item_Mp5", "Mp5"); 
-            addgunSprite(Mp5.id, Mp5.materials[0]);
-			//}
-			//if(Main.settings.NorincoCQ){			            
+       ProjectileAsset RPGload = new ProjectileAsset();
+          RPGload.id = "RPGload";
+          RPGload.texture = "RPG";
+          RPGload.trailEffect_enabled = false;
+	      RPGload.look_at_target = true;
+          RPGload.draw_light_area = true;
+	      RPGload.draw_light_size = 1f;
+          RPGload.endEffect = "fx_fireball_explosion";
+          RPGload.terraformOption = "nonannoyingbomb";
+          RPGload.terraformRange = 3;
+          RPGload.startScale = 0.3f;
+          RPGload.targetScale = 0.3f;
+          RPGload.parabolic = false;
+          RPGload.speed = 40f;
+          AssetManager.projectiles.add(RPGload);
 
-			
-			//if(Main.settings.Sniper){			            
-			ItemAsset Sniper = AssetManager.items.clone("Sniper", "_range");
-            Sniper.id = "Sniper";
-            Sniper.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            Sniper.materials = List.Of<string>(new string[] { "iron" });
-            Sniper.projectile = "shotgun_bullet";
-			Sniper.tech_needed = "Firearms";
-            Sniper.base_stats[S.range] = 20f;
-            Sniper.base_stats[S.accuracy] = 5;
-            Sniper.base_stats[S.attack_speed] = 12f;
-            Sniper.base_stats[S.damage] = 193;
-            Sniper.base_stats[S.health] = 10;
-            Sniper.equipment_value = 500;
-            Sniper.path_slash_animation = "effects/slashes/slash_punch";
-            Sniper.quality = ItemQuality.Legendary;
-            Sniper.equipmentType = EquipmentType.Weapon;
-            AssetManager.items.list.AddItem(Sniper);
-            Localization.addLocalization("item_Sniper", "Sniper");
-            addgunSprite(Sniper.id, Sniper.materials[0]);
-			//}
-			
-			//if(Main.settings.mm9){			            
-			ItemAsset mm9 = AssetManager.items.clone("mm9", "_range");
-            mm9.id = "mm9";
-            mm9.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            mm9.materials = List.Of<string>(new string[] { "iron" });
-            mm9.projectile = "shotgun_bullet";
-			mm9.tech_needed = "Firearms";
-            mm9.base_stats[S.range] = 6f;
-            mm9.base_stats[S.accuracy] = 400;
-            mm9.base_stats[S.attack_speed] = 70;
-            mm9.base_stats[S.damage] = 3;
-            mm9.base_stats[S.health] = 10;
-            mm9.equipment_value = 500;
-            mm9.path_slash_animation = "effects/slashes/slash_punch";
-            mm9.quality = ItemQuality.Legendary;
-            mm9.equipmentType = EquipmentType.Weapon;
-            AssetManager.items.list.AddItem(mm9);
-            Localization.addLocalization("item_mm9", "9mm");
-            addgunSprite(mm9.id, mm9.materials[0]);
-			//}
-			////if(Main.settings.RocketLauncher){			            
-			ItemAsset RocketLauncher = AssetManager.items.clone("RocketLauncher", "_range");
-            RocketLauncher.id = "RocketLauncher";
-            RocketLauncher.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            RocketLauncher.materials = List.Of<string>(new string[] { "iron" });
-            RocketLauncher.projectile = "jetrocketprojectile";
-            RocketLauncher.base_stats[S.range] = 14f;
-			RocketLauncher.tech_needed = "Firearms";
-            RocketLauncher.base_stats[S.accuracy] = 400;
-            RocketLauncher.base_stats[S.attack_speed] = -101f;
-            RocketLauncher.base_stats[S.damage] = 100;
-            RocketLauncher.base_stats[S.health] = 10;
-            RocketLauncher.equipment_value = 1000;
-            RocketLauncher.path_slash_animation = "effects/slashes/slash_punch";
-            RocketLauncher.quality = ItemQuality.Legendary;
-            RocketLauncher.equipmentType = EquipmentType.Weapon;
-            AssetManager.items.list.AddItem(RocketLauncher);
-            Localization.addLocalization("item_RocketLauncher", "Rocket Propelled Grenade (RPG)");
-            addgunSprite(RocketLauncher.id, RocketLauncher.materials[0]);
 
           ProjectileAsset jetrocketprojectile = new ProjectileAsset();
           jetrocketprojectile.id = "jetrocketprojectile";
@@ -470,8 +524,11 @@ AssetManager.effects_library.add(DankyMatter);
 	      jetrocketprojectile.look_at_target = true;
           jetrocketprojectile.draw_light_area = true;
 	      jetrocketprojectile.draw_light_size = 1f;
+          jetrocketprojectile.trailEffect_id = "smoketrail";
+          jetrocketprojectile.trailEffect_scale = 0.1f;
+          jetrocketprojectile.trailEffect_timer = 0.1f;
           jetrocketprojectile.endEffect = "fx_fireball_explosion";
-          jetrocketprojectile.terraformOption = "nonannoyingbomb";
+          jetrocketprojectile.terraformOption = "antiairbomb";
           jetrocketprojectile.terraformRange = 3;
           jetrocketprojectile.startScale = 0.3f;
           jetrocketprojectile.targetScale = 0.3f;
@@ -485,12 +542,11 @@ AssetManager.effects_library.add(DankyMatter);
             JetRocket.materials = List.Of<string>(new string[] { "base" });
         JetRocket.base_stats[S.projectiles] = 2f;
         JetRocket.base_stats[S.attack_speed] = -101f;
-		JetRocket.base_stats[S.range] = 14f;
+		JetRocket.base_stats[S.range] = 0f;
 		JetRocket.base_stats[S.targets] = 2f;
 		JetRocket.base_stats[S.damage] = 60f;
 		JetRocket.base_stats[S.damage_range] = 0.5f;
             JetRocket.base_stats[S.accuracy] = 400;
-            JetRocket.base_stats[S.health] = 10;
             JetRocket.path_slash_animation = "effects/slashes/slash_punch";
 
  ProjectileAsset helirocketprojectile = new ProjectileAsset();
@@ -500,7 +556,10 @@ AssetManager.effects_library.add(DankyMatter);
 	      helirocketprojectile.look_at_target = true;
           helirocketprojectile.draw_light_area = true;
 	      helirocketprojectile.draw_light_size = 1f;
-          helirocketprojectile.terraformOption = "nonannoyingbomb";
+          helirocketprojectile.trailEffect_id = "smoketrail";
+          helirocketprojectile.trailEffect_scale = 0.1f;
+          helirocketprojectile.trailEffect_timer = 0.1f;
+          helirocketprojectile.terraformOption = "antiairbomb";
          helirocketprojectile.endEffect = "fx_fireball_explosion";
           helirocketprojectile.terraformRange = 3;
           helirocketprojectile.startScale = 0.1f;
@@ -515,391 +574,28 @@ AssetManager.effects_library.add(DankyMatter);
             heliRocket.materials = List.Of<string>(new string[] { "base" });
         heliRocket.base_stats[S.projectiles] = 2f;
         heliRocket.base_stats[S.attack_speed] = 1000f;
-		heliRocket.base_stats[S.range] = 14f;
+		heliRocket.base_stats[S.range] = 0f;
 		heliRocket.base_stats[S.targets] = 1f;
 		heliRocket.base_stats[S.damage] = 16f;
 		heliRocket.base_stats[S.damage_range] = 0.5f;
             heliRocket.base_stats[S.accuracy] = 400;
-            heliRocket.base_stats[S.health] = 10;
             heliRocket.path_slash_animation = "effects/slashes/slash_punch";
 			
-			//}
-	
 
-			
-			ItemAsset Uzi = AssetManager.items.clone("Uzi", "_range");
-            Uzi.id = "Uzi";
-            Uzi.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            Uzi.materials = List.Of<string>(new string[] { "iron" });
-            Uzi.projectile = "shotgun_bullet";
-            Uzi.base_stats[S.range] = 6f;
-            Uzi.base_stats[S.accuracy] = 400;
-            Uzi.base_stats[S.attack_speed] = 70;
-            Uzi.base_stats[S.damage] = 3;
-            Uzi.base_stats[S.health] = 10;
-			Uzi.tech_needed = "Firearms";
-            Uzi.equipment_value = 500;
-            Uzi.path_slash_animation = "effects/slashes/slash_punch";
-            Uzi.quality = ItemQuality.Legendary;
-            Uzi.equipmentType = EquipmentType.Weapon;
-            AssetManager.items.list.AddItem(Uzi);
-            Localization.addLocalization("item_Uzi", "Uzi");
-            addgunSprite(Uzi.id, Uzi.materials[0]);
-			
-			ItemAsset Minigun = AssetManager.items.clone("Minigun", "_range");
-            Minigun.id = "Minigun";
-            Minigun.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            Minigun.materials = List.Of<string>(new string[] { "iron" });
-            Minigun.projectile = "shotgun_bullet";
-			Minigun.tech_needed = "Firearms";			
-            Minigun.base_stats[S.range] = 14f;
-            Minigun.base_stats[S.accuracy] = 3;
-            Minigun.base_stats[S.attack_speed] = 200f;
-            Minigun.base_stats[S.damage] = 13;
-            Minigun.base_stats[S.health] = 10;
-            Minigun.equipment_value = 500;
-            Minigun.path_slash_animation = "effects/slashes/slash_punch";
-            Minigun.quality = ItemQuality.Legendary;
-            Minigun.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(Minigun);
-            Localization.addLocalization("item_Minigun", "Minigun"); 
-            addgunSprite(Minigun.id, Minigun.materials[0]);
-			
 			ItemAsset GunshipCannon = AssetManager.items.clone("GunshipCannon", "_range");
             GunshipCannon.id = "GunshipCannon";
-            GunshipCannon.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            GunshipCannon.materials = List.Of<string>(new string[] { "iron" });
-            GunshipCannon.projectile = "GunshipBullet";
-			GunshipCannon.tech_needed = "Firearms";			
-            GunshipCannon.base_stats[S.range] = 14f;
+            GunshipCannon.projectile = "shotgun_bullet";
+            GunshipCannon.base_stats[S.range] = 0f;
             GunshipCannon.base_stats[S.accuracy] = 400;
             GunshipCannon.base_stats[S.attack_speed] = 200f;
             GunshipCannon.base_stats[S.damage] = 13;
-            GunshipCannon.base_stats[S.health] = 10;
-            GunshipCannon.equipment_value = 500;
+            GunshipCannon.equipment_value = 300;
             GunshipCannon.path_slash_animation = "effects/slashes/slash_punch";
-            GunshipCannon.quality = ItemQuality.Legendary;
-            GunshipCannon.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(GunshipCannon);
-            Localization.addLocalization("item_GunshipCannon", "GunshipCannon"); 
-            addgunSprite(GunshipCannon.id, GunshipCannon.materials[0]);
-			
-			ItemAsset AK47 = AssetManager.items.clone("AK47", "_range");
-            AK47.id = "AK47";
-            AK47.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            AK47.materials = List.Of<string>(new string[] { "iron" });
-            AK47.projectile = "shotgun_bullet";
-			AK47.tech_needed = "Firearms";			
-            AK47.base_stats[S.range] = 14f;
-            AK47.base_stats[S.accuracy] = 3;
-            AK47.base_stats[S.attack_speed] = 170f;
-            AK47.base_stats[S.damage] = 13;
-            AK47.base_stats[S.health] = 10;
-            AK47.equipment_value = 500;
-            AK47.path_slash_animation = "effects/slashes/slash_punch";
-            AK47.quality = ItemQuality.Legendary;
-            AK47.equipmentType = EquipmentType.Weapon;
-			AssetManager.items.list.AddItem(AK47);
-			Localization.addLocalization("item_AK47", "AK47");
-			addgunSprite(AK47.id, AK47.materials[0]);
-			
-			
-			ItemAsset AK103 = AssetManager.items.clone("AK103", "_range");
-            AK103.id = "AK103";
-            AK103.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            AK103.materials = List.Of<string>(new string[] { "iron" });
-            AK103.projectile = "shotgun_bullet";
-			AK103.tech_needed = "Firearms";			
-            AK103.base_stats[S.range] = 14f;
-            AK103.base_stats[S.accuracy] = 400;
-            AK103.base_stats[S.attack_speed] = 170f;
-            AK103.base_stats[S.damage] = 13;
-            AK103.base_stats[S.health] = 10;
-            AK103.equipment_value = 500;
-            AK103.path_slash_animation = "effects/slashes/slash_punch";
-            AK103.quality = ItemQuality.Legendary;
-            AK103.equipmentType = EquipmentType.Weapon;
-			AssetManager.items.list.AddItem(AK103);
-			Localization.addLocalization("item_AK103", "AK-103");
-			addgunSprite(AK103.id, AK103.materials[0]);
-			
-
-
-			
-          ItemAsset XM8 = AssetManager.items.clone("XM8", "_range");
-          XM8.id = "XM8";
-          XM8.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
-          XM8.materials = List.Of<string>(new string[]{"iron"});
-          XM8.projectile = "shotgun_bullet";
-          XM8.base_stats[S.fertility] = 0.0f;
-          XM8.base_stats[S.max_children] = 0f;
-          XM8.base_stats[S.max_age] = 0f;
-          XM8.base_stats[S.attack_speed] = 1800;
-          XM8.base_stats[S.damage] = 13;
-          XM8.base_stats[S.speed] = 0f;
-          XM8.base_stats[S.health] = 0;
-          XM8.base_stats[S.accuracy] = 400f;
-          XM8.base_stats[S.range] = 14;
-          XM8.base_stats[S.armor] = 0;
-		  XM8.tech_needed = "Firearms";		
-          XM8.base_stats[S.scale] = 0.0f;
-          XM8.base_stats[S.dodge] = 0f;
-          XM8.base_stats[S.targets] = 0f;
-          XM8.base_stats[S.critical_chance] = 0.0f;
-          XM8.base_stats[S.knockback] = 0f;
-          XM8.base_stats[S.knockback_reduction] = 0f;
-          XM8.base_stats[S.intelligence] = 0;
-          XM8.base_stats[S.warfare] = 0;
-          XM8.base_stats[S.diplomacy] = 0;
-          XM8.base_stats[S.stewardship] = 0;
-          XM8.base_stats[S.opinion] = 0f;
-          XM8.base_stats[S.loyalty_traits] = 0f;
-          XM8.base_stats[S.cities] = 0;
-          XM8.base_stats[S.zone_range] = 0;
-          XM8.equipment_value = 500;
-          XM8.path_slash_animation = "effects/slashes/slash_punch";
-          XM8.equipmentType = EquipmentType.Weapon;
-          XM8.name_class = "item_class_weapon";
-          AssetManager.items.list.AddItem(XM8);
-          Localization.addLocalization("item_XM8", "XM8");
-          addgunSprite(XM8.id, XM8.materials[0]);
-		  
-			ItemAsset SGT44 = AssetManager.items.clone("SGT44", "_range");
-            SGT44.id = "SGT44";
-            SGT44.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            SGT44.materials = List.Of<string>(new string[] { "iron" });
-            SGT44.projectile = "shotgun_bullet";
-			SGT44.path_icon = "ui/Icons/items/icon_SGT44_Gun";
-			SGT44.tech_needed = "Firearms";			
-            SGT44.base_stats[S.range] = 14f;
-            SGT44.base_stats[S.accuracy] = 400;
-            SGT44.base_stats[S.attack_speed] = 70f;
-            SGT44.base_stats[S.damage] = 11;
-            SGT44.base_stats[S.health] = 10;
-            SGT44.equipment_value = 500;
-            SGT44.path_slash_animation = "effects/slashes/slash_punch";
-            SGT44.quality = ItemQuality.Legendary;
-            SGT44.equipmentType = EquipmentType.Weapon;
-			
-					
-
-            AssetManager.items.list.AddItem(SGT44);
-            Localization.addLocalization("item_SGT44", "SGT44"); 
-            addgunSprite(SGT44.id, SGT44.materials[0]);
-			
-			ItemAsset ThompsonM1A1 = AssetManager.items.clone("ThompsonM1A1", "_range");
-            ThompsonM1A1.id = "ThompsonM1A1";
-            ThompsonM1A1.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            ThompsonM1A1.materials = List.Of<string>(new string[] { "iron" });
-            ThompsonM1A1.projectile = "shotgun_bullet";
-			ThompsonM1A1.tech_needed = "Firearms";			
-            ThompsonM1A1.base_stats[S.range] = 14f;
-            ThompsonM1A1.base_stats[S.accuracy] = 400;
-            ThompsonM1A1.base_stats[S.attack_speed] = 170f;
-            ThompsonM1A1.base_stats[S.damage] = 13;
-            ThompsonM1A1.base_stats[S.health] = 10;
-            ThompsonM1A1.equipment_value = 500;
-            ThompsonM1A1.path_slash_animation = "effects/slashes/slash_punch";
-            ThompsonM1A1.quality = ItemQuality.Legendary;
-            ThompsonM1A1.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(ThompsonM1A1);
-            Localization.addLocalization("item_ThompsonM1A1", "ThompsonM1A1"); 
-            addgunSprite(ThompsonM1A1.id, ThompsonM1A1.materials[0]);
-			
-			ItemAsset M4A1 = AssetManager.items.clone("M4A1", "_range");
-			M4A1.id = "M4A1";
-			M4A1.name_templates = Toolbox.splitStringIntoList(new string[]
-			{
-				"sword_name#30",
-				"sword_name_king#3",
-				"weapon_name_city",
-				"weapon_name_kingdom",
-				"weapon_name_culture",
-				"weapon_name_enemy_king",
-				"weapon_name_enemy_kingdom"
-			});
-			M4A1.materials = List.Of<string>(new string[] { "iron" });
-			M4A1.projectile = "shotgun_bullet";
-			M4A1.tech_needed = "Firearms";
-			M4A1.base_stats[S.range] = 14f;
-			M4A1.base_stats[S.accuracy] = 400;
-			M4A1.base_stats[S.attack_speed] = 170f;
-			M4A1.base_stats[S.damage] = 15;
-			M4A1.base_stats[S.health] = 10;
-			M4A1.equipment_value = 500;
-			M4A1.path_slash_animation = "effects/slashes/slash_punch";
-			M4A1.quality = ItemQuality.Legendary;
-			M4A1.equipmentType = EquipmentType.Weapon;
-
-			AssetManager.items.list.AddItem(M4A1);
-			Localization.addLocalization("item_M4A1", "M4A1");
-			addgunSprite(M4A1.id, M4A1.materials[0]);
-			
-		  ItemAsset FAMAS = AssetManager.items.clone("FAMAS", "_range");
-          FAMAS.id = "FAMAS";
-          FAMAS.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
-          FAMAS.materials = List.Of<string>(new string[]{"iron"});
-          FAMAS.projectile = "shotgun_bullet";
-          FAMAS.base_stats[S.fertility] = 0.0f;
-          FAMAS.base_stats[S.max_children] = 0f;
-          FAMAS.base_stats[S.max_age] = 0f;
-          FAMAS.base_stats[S.attack_speed] = 180;
-          FAMAS.base_stats[S.damage] = 13;
-          FAMAS.base_stats[S.speed] = 0f;
-          FAMAS.base_stats[S.health] = 0;
-          FAMAS.base_stats[S.accuracy] = 400f;
-          FAMAS.base_stats[S.range] = 14;
-          FAMAS.base_stats[S.armor] = 0;
-		  FAMAS.tech_needed = "Firearms";		
-          FAMAS.base_stats[S.scale] = 0.0f;
-          FAMAS.base_stats[S.dodge] = 0f;
-          FAMAS.base_stats[S.targets] = 0f;
-          FAMAS.base_stats[S.critical_chance] = 0.0f;
-          FAMAS.base_stats[S.knockback] = 0f;
-          FAMAS.base_stats[S.knockback_reduction] = 0f;
-          FAMAS.base_stats[S.intelligence] = 0;
-          FAMAS.base_stats[S.warfare] = 0;
-          FAMAS.base_stats[S.diplomacy] = 0;
-          FAMAS.base_stats[S.stewardship] = 0;
-          FAMAS.base_stats[S.opinion] = 0f;
-          FAMAS.base_stats[S.loyalty_traits] = 0f;
-          FAMAS.base_stats[S.cities] = 0;
-          FAMAS.base_stats[S.zone_range] = 0;
-          FAMAS.equipment_value = 500;
-          FAMAS.path_slash_animation = "effects/slashes/slash_punch";
-          FAMAS.equipmentType = EquipmentType.Weapon;
-          FAMAS.name_class = "item_class_weapon";
-          AssetManager.items.list.AddItem(FAMAS);
-          Localization.addLocalization("item_FAMAS", "FAMAS");
-          addgunSprite(FAMAS.id, FAMAS.materials[0]);
-		  
-		  	ItemAsset malorian = AssetManager.items.clone("malorian", "_range");
-            malorian.id = "malorian";
-            malorian.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            malorian.materials = List.Of<string>(new string[] { "iron" });
-            malorian.projectile = "shotgun_bullet";
-			malorian.tech_needed = "Firearms";
-            malorian.base_stats[S.range] = 6f;
-            malorian.base_stats[S.accuracy] = 400;
-            malorian.base_stats[S.attack_speed] = 70;
-            malorian.base_stats[S.damage] = 3;
-            malorian.base_stats[S.health] = 10;
-            malorian.equipment_value = 500;
-            malorian.path_slash_animation = "effects/slashes/slash_punch";
-            malorian.quality = ItemQuality.Legendary;
-            malorian.equipmentType = EquipmentType.Weapon;
-            AssetManager.items.list.AddItem(malorian);
-            Localization.addLocalization("item_malorian", "Malorian Arms 3516");
-            addgunSprite(malorian.id, malorian.materials[0]);
-			
-
-
 		  
 		  ItemAsset PipeRifle = AssetManager.items.clone("PipeRifle", "_range");
           PipeRifle.id = "PipeRifle";
-          PipeRifle.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
+         PipeRifle.name_class = "item_class_weapon";
+          PipeRifle.name_templates = Toolbox.splitStringIntoList("bow_name#30");
           PipeRifle.materials = List.Of<string>(new string[]{"iron"});
           PipeRifle.projectile = "shotgun_bullet";
           PipeRifle.base_stats[S.fertility] = 0.0f;
@@ -928,7 +624,7 @@ AssetManager.effects_library.add(DankyMatter);
           PipeRifle.base_stats[S.zone_range] = 0;
           PipeRifle.equipment_value = 100;
           PipeRifle.path_slash_animation = "effects/slashes/slash_punch";
-          PipeRifle.tech_needed = "LowFirearms";
+          PipeRifle.tech_needed = "Renaissance";
           PipeRifle.equipmentType = EquipmentType.Weapon;
           PipeRifle.name_class = "item_class_weapon";
           AssetManager.items.list.AddItem(PipeRifle);
@@ -937,16 +633,8 @@ AssetManager.effects_library.add(DankyMatter);
 		  
 		  ItemAsset PipePistol = AssetManager.items.clone("PipePistol", "_range");
           PipePistol.id = "PipePistol";
-          PipePistol.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
+              PipePistol.name_class = "item_class_weapon";
+          PipePistol.name_templates = Toolbox.splitStringIntoList("bow_name#30");
           PipePistol.materials = List.Of<string>(new string[]{"iron"});
           PipePistol.projectile = "shotgun_bullet";
           PipePistol.base_stats[S.fertility] = 0.0f;
@@ -975,7 +663,7 @@ AssetManager.effects_library.add(DankyMatter);
           PipePistol.base_stats[S.zone_range] = 0;
           PipePistol.equipment_value = 100;
           PipePistol.path_slash_animation = "effects/slashes/slash_punch";
-          PipePistol.tech_needed = "LowFirearms";
+          PipePistol.tech_needed = "Renaissance";
           PipePistol.equipmentType = EquipmentType.Weapon;
           PipePistol.name_class = "item_class_weapon";
           AssetManager.items.list.AddItem(PipePistol);
@@ -984,16 +672,8 @@ AssetManager.effects_library.add(DankyMatter);
 		  
 		  ItemAsset PipeShotgun = AssetManager.items.clone("PipeShotgun", "_range");
           PipeShotgun.id = "PipeShotgun";
-          PipeShotgun.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
+         PipeShotgun.name_class = "item_class_weapon";
+          PipeShotgun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
           PipeShotgun.materials = List.Of<string>(new string[]{"iron"});
           PipeShotgun.projectile = "shotgun_bullet";
           PipeShotgun.base_stats[S.fertility] = 0.0f;
@@ -1022,41 +702,174 @@ AssetManager.effects_library.add(DankyMatter);
           PipeShotgun.base_stats[S.zone_range] = 0;
           PipeShotgun.equipment_value = 100;
           PipeShotgun.path_slash_animation = "effects/slashes/slash_punch";
-          PipeShotgun.tech_needed = "LowFirearms";
+          PipeShotgun.tech_needed = "Renaissance";
           PipeShotgun.equipmentType = EquipmentType.Weapon;
           PipeShotgun.name_class = "item_class_weapon";
           AssetManager.items.list.AddItem(PipeShotgun);
           Localization.addLocalization("item_PipeShotgun", "Pipe Shotgun");
           addgunSprite(PipeShotgun.id, PipeShotgun.materials[0]);
-		  
-		  ItemAsset Musket = AssetManager.items.clone("Musket", "_range");
+
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////RENAISSANCE/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+                ///////////HUMAN///////////
+            ItemAsset shieldedsword = AssetManager.items.clone("shieldedsword", "_melee");
+			shieldedsword.id = "shieldedsword";
+            shieldedsword.name_class = "item_class_weapon";
+            shieldedsword.name_templates = Toolbox.splitStringIntoList("sword_name#30");
+			shieldedsword.materials = List.Of<string>(new string[]{"copper"});
+			shieldedsword.tech_needed = "Renaissance";
+	     	shieldedsword.base_stats[S.damage] = 5f;
+		    shieldedsword.base_stats[S.attack_speed] = 20f;
+            shieldedsword.base_stats[S.damage_range] = 0.9f;
+			shieldedsword.base_stats[S.health] = 20;
+            shieldedsword.base_stats[S.armor] = 10;
+			shieldedsword.equipment_value = 50;
+			shieldedsword.path_slash_animation = "effects/slashes/slash_sword";
+			shieldedsword.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(shieldedsword);
+			Localization.addLocalization("item_shieldedsword", "shielded sword");
+			addgunSprite(shieldedsword.id, shieldedsword.materials[0]);
+
+            AddPreferredWeaponToCivRaces("shieldedsword", 5);
+
+             ///////////ORC///////////
+              ItemAsset shieldedaxe = AssetManager.items.clone("shieldedaxe", "_melee");
+			shieldedaxe.id = "shieldedaxe";
+            shieldedaxe.name_class = "item_class_weapon";
+            shieldedaxe.name_templates = Toolbox.splitStringIntoList("axe_name#30");
+			shieldedaxe.materials = List.Of<string>(new string[]{"copper"});
+			shieldedaxe.tech_needed = "Renaissance";
+	     	shieldedaxe.base_stats[S.damage] = 5f;
+	    	shieldedaxe.base_stats[S.attack_speed] = 20f;
+		    shieldedaxe.base_stats[S.damage_range] = 0.7f;
+			shieldedaxe.base_stats[S.health] = 20;
+            shieldedaxe.base_stats[S.armor] = 10;
+			shieldedaxe.equipment_value = 50;
+			shieldedaxe.path_slash_animation = "effects/slashes/slash_axe";
+			shieldedaxe.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(shieldedaxe);
+			Localization.addLocalization("item_shieldedaxe", "shielded axe");
+			addgunSprite(shieldedaxe.id, shieldedaxe.materials[0]);
+
+          AddPreferredWeaponToCivRaces("shieldedaxe", 5);
+
+             ///////////DWARF///////////
+              ItemAsset shieldedhammer = AssetManager.items.clone("shieldedhammer", "_melee");
+			shieldedhammer.id = "shieldedhammer";
+            shieldedhammer.name_class = "item_class_weapon";
+            shieldedhammer.name_templates = Toolbox.splitStringIntoList("hammer_name#30");
+			shieldedhammer.materials = List.Of<string>(new string[]{"copper"});
+			shieldedhammer.tech_needed = "Renaissance";
+	     	shieldedhammer.base_stats[S.damage] = 5f;
+		    shieldedhammer.base_stats[S.attack_speed] = -10f;
+		    shieldedhammer.base_stats[S.targets] = 4f;
+		    shieldedhammer.base_stats[S.damage_range] = 0.2f;
+			shieldedhammer.base_stats[S.health] = 20;
+            shieldedhammer.base_stats[S.armor] = 10;
+			shieldedhammer.equipment_value = 50;
+			shieldedhammer.path_slash_animation = "effects/slashes/slash_hammer";
+			shieldedhammer.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(shieldedhammer);
+			Localization.addLocalization("item_shieldedhammer", "shielded hammer");
+			addgunSprite(shieldedhammer.id, shieldedhammer.materials[0]);
+
+                AddPreferredWeaponToCivRaces("shieldedhammer", 5);
+
+             ///////////ELF///////////
+            ItemAsset shieldedspear = AssetManager.items.clone("shieldedspear", "_melee");
+			shieldedspear.id = "shieldedspear";
+            shieldedspear.name_class = "item_class_weapon";
+            shieldedspear.name_templates = Toolbox.splitStringIntoList("spear_name#30");
+			shieldedspear.materials = List.Of<string>(new string[]{"copper"});
+			shieldedspear.tech_needed = "Renaissance";
+	     	shieldedspear.base_stats[S.damage] = 5f;
+		    shieldedspear.base_stats[S.range] = 2f;
+            shieldedspear.base_stats[S.attack_speed] = 15f;
+		    shieldedspear.base_stats[S.damage_range] = 0.8f;
+			shieldedspear.base_stats[S.health] = 20;
+            shieldedspear.base_stats[S.armor] = 10;
+			shieldedspear.equipment_value = 50;
+			shieldedspear.path_slash_animation = "effects/slashes/slash_spear";
+			shieldedspear.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(shieldedspear);
+			Localization.addLocalization("item_shieldedspear", "shielded spear");
+			addgunSprite(shieldedspear.id, shieldedspear.materials[0]);
+
+           AddPreferredWeaponToCivRaces("shieldedspear", 5);
+
+          ItemAsset piratpistol = AssetManager.items.clone("piratpistol", "_range");
+          piratpistol.id = "piratpistol";
+          piratpistol.name_class = "item_class_weapon";
+          piratpistol.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          piratpistol.materials = List.Of<string>(new string[]{"iron"});
+          piratpistol.projectile = "shotgun_bullet";
+          piratpistol.base_stats[S.fertility] = 0.0f;
+          piratpistol.base_stats[S.max_children] = 0f;
+          piratpistol.base_stats[S.max_age] = 0f;
+          piratpistol.base_stats[S.attack_speed] = -100;
+          piratpistol.base_stats[S.damage] = 30;
+          piratpistol.base_stats[S.speed] = 0f;
+          piratpistol.base_stats[S.health] = 0;
+          piratpistol.base_stats[S.accuracy] = -20f;
+          piratpistol.base_stats[S.range] = 10;
+          piratpistol.base_stats[S.armor] = 0;
+          piratpistol.base_stats[S.scale] = 0.0f;
+          piratpistol.base_stats[S.dodge] = 0f;
+          piratpistol.base_stats[S.targets] = 0f;
+          piratpistol.base_stats[S.critical_chance] = 0.2f;
+          piratpistol.base_stats[S.critical_damage_multiplier] = 0.5f;
+          piratpistol.base_stats[S.knockback] = 0f;
+          piratpistol.base_stats[S.knockback_reduction] = 0f;
+          piratpistol.base_stats[S.intelligence] = 0;
+          piratpistol.base_stats[S.warfare] = 0;
+          piratpistol.base_stats[S.diplomacy] = 0;
+          piratpistol.base_stats[S.stewardship] = 0;
+          piratpistol.base_stats[S.opinion] = 0f;
+          piratpistol.base_stats[S.loyalty_traits] = 0f;
+          piratpistol.base_stats[S.cities] = 0;
+          piratpistol.base_stats[S.zone_range] = 0;
+          piratpistol.equipment_value = 45;
+          piratpistol.path_slash_animation = "effects/slashes/slash_punch";
+          piratpistol.tech_needed = "Renaissance";
+          piratpistol.equipmentType = EquipmentType.Weapon;
+          piratpistol.name_class = "item_class_weapon";
+
+          AssetManager.items.list.AddItem(piratpistol);
+          Localization.addLocalization("item_piratpistol", "piratpistol");
+          addgunSprite(piratpistol.id, piratpistol.materials[0]);
+
+          AddPreferredWeaponToCivRaces("piratpistol", 5);
+
+          ItemAsset Musket = AssetManager.items.clone("Musket", "_range");
           Musket.id = "Musket";
-          Musket.name_templates = Toolbox.splitStringIntoList(new string[]
-          {
-          "bow_name#30",
-          "sword_name_king#3",
-          "weapon_name_city",
-          "weapon_name_kingdom",
-          "weapon_name_culture",
-          "weapon_name_enemy_king",
-          "weapon_name_enemy_kingdom"
-          });
-          Musket.materials = List.Of<string>(new string[]{"iron"});
+          Musket.name_class = "item_class_weapon";
+          Musket.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          Musket.materials = List.Of<string>(new string[]{"steel"});
           Musket.projectile = "shotgun_bullet";
           Musket.base_stats[S.fertility] = 0.0f;
           Musket.base_stats[S.max_children] = 0f;
           Musket.base_stats[S.max_age] = 0f;
-          Musket.base_stats[S.attack_speed] = 20;
-          Musket.base_stats[S.damage] = 130;
+          Musket.base_stats[S.attack_speed] = -200;
+          Musket.base_stats[S.damage] = 40;
           Musket.base_stats[S.speed] = 0f;
           Musket.base_stats[S.health] = 0;
-          Musket.base_stats[S.accuracy] = 70f;
-          Musket.base_stats[S.range] = 0;
+          Musket.base_stats[S.accuracy] = -20f;
+          Musket.base_stats[S.range] = 20;
           Musket.base_stats[S.armor] = 0;
           Musket.base_stats[S.scale] = 0.0f;
           Musket.base_stats[S.dodge] = 0f;
           Musket.base_stats[S.targets] = 0f;
-          Musket.base_stats[S.critical_chance] = 0.0f;
+          Musket.base_stats[S.critical_chance] = 0.2f;
+          Musket.base_stats[S.critical_damage_multiplier] = 0.5f;
           Musket.base_stats[S.knockback] = 0f;
           Musket.base_stats[S.knockback_reduction] = 0f;
           Musket.base_stats[S.intelligence] = 0;
@@ -1067,158 +880,294 @@ AssetManager.effects_library.add(DankyMatter);
           Musket.base_stats[S.loyalty_traits] = 0f;
           Musket.base_stats[S.cities] = 0;
           Musket.base_stats[S.zone_range] = 0;
-          Musket.equipment_value = 100;
+          Musket.equipment_value = 70;
           Musket.path_slash_animation = "effects/slashes/slash_punch";
-          Musket.tech_needed = "LowFirearms";
+          Musket.tech_needed = "Renaissance_knowledge";
           Musket.equipmentType = EquipmentType.Weapon;
           Musket.name_class = "item_class_weapon";
+
           AssetManager.items.list.AddItem(Musket);
           Localization.addLocalization("item_Musket", "Musket");
           addgunSprite(Musket.id, Musket.materials[0]);
-		  
-		  	ItemAsset MP7 = AssetManager.items.clone("MP7", "_range");
-            MP7.id = "MP7";
-            MP7.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            MP7.materials = List.Of<string>(new string[] { "iron" });
-            MP7.projectile = "shotgun_bullet";
-			MP7.tech_needed = "Firearms";			
-            MP7.base_stats[S.range] = 0f;
-            MP7.base_stats[S.accuracy] = 5;
-            MP7.base_stats[S.attack_speed] = 12f;
-            MP7.base_stats[S.damage] = 60;
-            MP7.base_stats[S.health] = 10;
-            MP7.equipment_value = 500;
-            MP7.path_slash_animation = "effects/slashes/slash_punch";
-            MP7.quality = ItemQuality.Legendary;
-            MP7.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(MP7);
-            Localization.addLocalization("item_MP7", "MP7"); 
-            addgunSprite(MP7.id, MP7.materials[0]);
-			
-			ItemAsset HK416 = AssetManager.items.clone("HK416", "_range");
-            HK416.id = "HK416";
-            HK416.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            HK416.materials = List.Of<string>(new string[] { "iron" });
-            HK416.projectile = "shotgun_bullet";
-			HK416.tech_needed = "Firearms";			
-            HK416.base_stats[S.range] = 0f;
-            HK416.base_stats[S.accuracy] = 5;
-            HK416.base_stats[S.attack_speed] = 12f;
-            HK416.base_stats[S.damage] = 60;
-            HK416.base_stats[S.health] = 10;
-            HK416.equipment_value = 500;
-            HK416.path_slash_animation = "effects/slashes/slash_punch";
-            HK416.quality = ItemQuality.Legendary;
-            HK416.equipmentType = EquipmentType.Weapon;
-			
-			AssetManager.items.list.AddItem(HK416);
-            Localization.addLocalization("item_HK416", "HK416"); 
-            addgunSprite(HK416.id, HK416.materials[0]);
+
+          AddPreferredWeaponToCivRaces("Musket", 5);
 
 
-			ItemAsset M16 = AssetManager.items.clone("M16", "_range");
-            M16.id = "M16";
-            M16.name_templates = Toolbox.splitStringIntoList(new string[]
-            {
-                        "sword_name#30",
-                        "sword_name_king#3",
-                        "weapon_name_city",
-                        "weapon_name_kingdom",
-                        "weapon_name_culture",
-                        "weapon_name_enemy_king",
-                        "weapon_name_enemy_kingdom"
-            });
-            M16.materials = List.Of<string>(new string[] { "iron" });
-            M16.projectile = "shotgun_bullet";
-			M16.tech_needed = "Firearms";			
-            M16.base_stats[S.range] = 0f;
-            M16.base_stats[S.accuracy] = 5;
-            M16.base_stats[S.attack_speed] = 12f;
-            M16.base_stats[S.damage] = 60;
-            M16.base_stats[S.health] = 10;
-            M16.equipment_value = 500;
-            M16.path_slash_animation = "effects/slashes/slash_punch";
-            M16.quality = ItemQuality.Legendary;
-            M16.equipmentType = EquipmentType.Weapon;
-			
-            AssetManager.items.list.AddItem(M16);
-            Localization.addLocalization("item_M16", "M16"); 
-            addgunSprite(M16.id, M16.materials[0]);
+                ///////////ARMOR///////////
+           ItemAsset pristinearmor = AssetManager.items.clone("pristinearmor", "_equipment");
+          pristinearmor.id = "pristinearmor";
+          pristinearmor.name_class = "item_class_armor";
+          pristinearmor.name_templates = Toolbox.splitStringIntoList("armor_name");
+          pristinearmor.materials = List.Of<string>(new string[]{"steel", "mythril", "adamantine"});
+          pristinearmor.base_stats[S.knockback_reduction] = 1f;
+          pristinearmor.base_stats[S.armor] = 5f;
+          pristinearmor.base_stats[S.speed] = -5f;
+          pristinearmor.equipment_value = 70;
+          pristinearmor.tech_needed = "Renaissance";
+          pristinearmor.equipmentType = EquipmentType.Armor;
+          pristinearmor.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(pristinearmor);
+          Localization.addLocalization("item_pristinearmor", "pristine armor");
+
+          ItemAsset pristineboots = AssetManager.items.clone("pristineboots", "_equipment");
+          pristineboots.id = "pristineboots";
+          pristineboots.name_class = "item_class_armor";
+          pristineboots.name_templates = Toolbox.splitStringIntoList("boots_name");
+          pristineboots.materials = List.Of<string>(new string[]{"steel", "mythril", "adamantine"});
+          pristineboots.base_stats[S.knockback_reduction] = 1f;
+          pristineboots.base_stats[S.armor] = 5f;
+          pristineboots.base_stats[S.speed] = -5f;
+          pristineboots.equipment_value = 70;
+          pristineboots.tech_needed = "Renaissance";
+          pristineboots.equipmentType = EquipmentType.Boots;
+          pristineboots.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(pristineboots);
+          Localization.addLocalization("item_pristineboots", "pristine boots");
+
+          ItemAsset pristinehelmet = AssetManager.items.clone("pristinehelmet", "_equipment");
+          pristinehelmet.id = "pristinehelmet";
+          pristinehelmet.name_class = "item_class_armor";
+          pristinehelmet.name_templates = Toolbox.splitStringIntoList("helmet_name");
+          pristinehelmet.materials = List.Of<string>(new string[]{"steel", "mythril", "adamantine"});
+          pristinehelmet.base_stats[S.knockback_reduction] = 1f;
+          pristinehelmet.base_stats[S.armor] = 5f;
+          pristinehelmet.base_stats[S.speed] = -5f;
+          pristinehelmet.equipment_value = 70;
+          pristinehelmet.tech_needed = "Renaissance";
+          pristinehelmet.equipmentType = EquipmentType.Helmet;
+          pristinehelmet.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(pristinehelmet);
+          Localization.addLocalization("item_pristinehelmet", "pristine helmet");
 
 
 
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////INDUSTRIAL/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
-			// Add new gun 1
-			ItemAsset DesertEagle = AssetManager.items.clone("DesertEagle", "_range");
-			DesertEagle.id = "DesertEagle";
-			DesertEagle.name_templates = Toolbox.splitStringIntoList(new string[]
-			{
-				"sword_name#30",
-				"sword_name_king#3",
-				"weapon_name_city",
-				"weapon_name_kingdom",
-				"weapon_name_culture",
-				"weapon_name_enemy_king",
-				"weapon_name_enemy_kingdom"
-			});
-			DesertEagle.materials = List.Of<string>(new string[] { "iron" });
-			DesertEagle.projectile = "shotgun_bullet";
-			DesertEagle.tech_needed = "Firearms";
-			DesertEagle.base_stats[S.range] = 20f;
-			DesertEagle.base_stats[S.accuracy] = 90;
-			DesertEagle.base_stats[S.attack_speed] = 1f;
-			DesertEagle.base_stats[S.damage] = 40;
-			DesertEagle.base_stats[S.health] = 10;
-			DesertEagle.equipment_value = 500;
-			DesertEagle.path_slash_animation = "effects/slashes/slash_punch";
-			DesertEagle.quality = ItemQuality.Legendary;
-			DesertEagle.equipmentType = EquipmentType.Weapon;
+                ///////////ARMOR///////////
+           ItemAsset wwarmor = AssetManager.items.clone("wwarmor", "_equipment");
+          wwarmor.id = "wwarmor";
+          wwarmor.name_class = "item_class_armor";
+          wwarmor.name_templates = Toolbox.splitStringIntoList("armor_name");
+          wwarmor.materials = List.Of<string>(new string[]{"copper"});
+          wwarmor.base_stats[S.armor] = 0f;
+          wwarmor.base_stats[S.speed] = 10f;
+          wwarmor.base_stats[S.dodge] = 15f;
+          wwarmor.base_stats[S.attack_speed] = 50;
+          wwarmor.equipment_value = 200;
+          wwarmor.tech_needed = "Firearms";
+          wwarmor.equipmentType = EquipmentType.Armor;
+          wwarmor.name_class = "item_class_armor";
 
-			AssetManager.items.list.AddItem(DesertEagle);
-			Localization.addLocalization("item_DesertEagle", "Desert Eagle");
-			addgunSprite(DesertEagle.id, DesertEagle.materials[0]);
+          AssetManager.items.list.AddItem(wwarmor);
+          Localization.addLocalization("item_wwarmor", "ww armor");
 
-			// Add new gun 2
+          ItemAsset wwboots = AssetManager.items.clone("wwboots", "_equipment");
+          wwboots.id = "wwboots";
+          wwboots.name_class = "item_class_armor";
+          wwboots.name_templates = Toolbox.splitStringIntoList("boots_name");
+          wwboots.materials = List.Of<string>(new string[]{"copper"});
+          wwboots.base_stats[S.armor] = 0f;
+          wwboots.base_stats[S.speed] = 10f;
+          wwboots.base_stats[S.dodge] = 15f;
+          wwboots.base_stats[S.attack_speed] = 50;
+          wwboots.equipment_value = 200;
+          wwboots.tech_needed = "Firearms";
+          wwboots.equipmentType = EquipmentType.Boots;
+          wwboots.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(wwboots);
+          Localization.addLocalization("item_wwboots", "ww boots");
+
+          ItemAsset wwhelmet = AssetManager.items.clone("wwhelmet", "_equipment");
+          wwhelmet.id = "wwhelmet";
+          wwhelmet.name_class = "item_class_armor";
+          wwhelmet.name_templates = Toolbox.splitStringIntoList("helmet_name");
+          wwhelmet.materials = List.Of<string>(new string[]{"copper"});
+          wwhelmet.base_stats[S.armor] = 0f;
+          wwhelmet.base_stats[S.speed] = 10f;
+          wwhelmet.base_stats[S.dodge] = 15f;
+          wwhelmet.base_stats[S.attack_speed] = 50;
+          wwhelmet.equipment_value = 200;
+          wwhelmet.tech_needed = "Firearms";
+          wwhelmet.equipmentType = EquipmentType.Helmet;
+          wwhelmet.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(wwhelmet);
+          Localization.addLocalization("item_wwhelmet", "ww helmet");
+
+
+
+
+          ItemAsset m1garand = AssetManager.items.clone("m1garand", "_range");
+          m1garand.id = "m1garand";
+          m1garand.name_class = "item_class_weapon";
+          m1garand.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          m1garand.materials = List.Of<string>(new string[]{"copper"});
+          m1garand.projectile = "shotgun_bullet";
+          m1garand.base_stats[S.fertility] = 0.0f;
+          m1garand.base_stats[S.max_children] = 0f;
+          m1garand.base_stats[S.max_age] = 0f;
+          m1garand.base_stats[S.attack_speed] = -200;
+          m1garand.base_stats[S.damage] = 100;
+          m1garand.base_stats[S.speed] = 0f;
+          m1garand.base_stats[S.health] = 0;
+          m1garand.base_stats[S.accuracy] = -20f;
+          m1garand.base_stats[S.range] = 23;
+          m1garand.base_stats[S.armor] = 0;
+          m1garand.base_stats[S.scale] = 0.0f;
+          m1garand.base_stats[S.dodge] = 0f;
+          m1garand.base_stats[S.targets] = 0f;
+          m1garand.base_stats[S.critical_chance] = 0.3f;
+          m1garand.base_stats[S.critical_damage_multiplier] = 0.4f;
+          m1garand.base_stats[S.knockback] = 1f;
+          m1garand.base_stats[S.knockback_reduction] = 0f;
+          m1garand.base_stats[S.intelligence] = 0;
+          m1garand.base_stats[S.warfare] = 0;
+          m1garand.base_stats[S.diplomacy] = 0;
+          m1garand.base_stats[S.stewardship] = 0;
+          m1garand.base_stats[S.opinion] = 0f;
+          m1garand.base_stats[S.loyalty_traits] = 0f;
+          m1garand.base_stats[S.cities] = 0;
+          m1garand.base_stats[S.zone_range] = 0;
+          m1garand.equipment_value = 200;
+          m1garand.path_slash_animation = "effects/slashes/slash_punch";
+          m1garand.tech_needed = "Firearms";
+          m1garand.equipmentType = EquipmentType.Weapon;
+          m1garand.name_class = "item_class_weapon";
+
+          AssetManager.items.list.AddItem(m1garand);
+          Localization.addLocalization("item_m1garand", "m1garand");
+          addgunSprite(m1garand.id, m1garand.materials[0]);
+
+          AddPreferredWeaponToCivRaces("m1garand", 5);
+
+
+                    ItemAsset Americanshotgun = AssetManager.items.clone("Americanshotgun", "_range");
+          Americanshotgun.id = "Americanshotgun";
+          Americanshotgun.name_class = "item_class_weapon";
+          Americanshotgun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          Americanshotgun.materials = List.Of<string>(new string[]{"copper"});
+          Americanshotgun.projectile = "shotgun_bullet";
+          Americanshotgun.base_stats[S.projectiles] = 10;
+          Americanshotgun.base_stats[S.fertility] = 0.0f;
+          Americanshotgun.base_stats[S.max_children] = 0f;
+          Americanshotgun.base_stats[S.max_age] = 0f;
+          Americanshotgun.base_stats[S.attack_speed] = -200;
+          Americanshotgun.base_stats[S.damage] = 6;
+          Americanshotgun.base_stats[S.speed] = 0f;
+          Americanshotgun.base_stats[S.health] = 0;
+          Americanshotgun.base_stats[S.accuracy] = -20f;
+          Americanshotgun.base_stats[S.range] = 6;
+          Americanshotgun.base_stats[S.armor] = 0;
+          Americanshotgun.base_stats[S.scale] = 0.0f;
+          Americanshotgun.base_stats[S.dodge] = 0f;
+          Americanshotgun.base_stats[S.targets] = 0f;
+          Americanshotgun.base_stats[S.critical_chance] = 0.1f;
+          Americanshotgun.base_stats[S.critical_damage_multiplier] = 0.6f;
+          Americanshotgun.base_stats[S.knockback] = 3f;
+          Americanshotgun.base_stats[S.knockback_reduction] = 0f;
+          Americanshotgun.base_stats[S.intelligence] = 0;
+          Americanshotgun.base_stats[S.warfare] = 0;
+          Americanshotgun.base_stats[S.diplomacy] = 0;
+          Americanshotgun.base_stats[S.stewardship] = 0;
+          Americanshotgun.base_stats[S.opinion] = 0f;
+          Americanshotgun.base_stats[S.loyalty_traits] = 0f;
+          Americanshotgun.base_stats[S.cities] = 0;
+          Americanshotgun.base_stats[S.zone_range] = 0;
+          Americanshotgun.equipment_value = 200;
+          Americanshotgun.path_slash_animation = "effects/slashes/slash_punch";
+          Americanshotgun.tech_needed = "Firearms";
+          Americanshotgun.equipmentType = EquipmentType.Weapon;
+          Americanshotgun.name_class = "item_class_weapon";
+
+          AssetManager.items.list.AddItem(Americanshotgun);
+          Localization.addLocalization("item_Americanshotgun", "Americanshotgun");
+          addgunSprite(Americanshotgun.id, Americanshotgun.materials[0]);
+
+          AddPreferredWeaponToCivRaces("Americanshotgun", 5);
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////MODERN/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+                ///////////ARMOR///////////
+           ItemAsset modernarmor = AssetManager.items.clone("modernarmor", "_equipment");
+          modernarmor.id = "modernarmor";
+          modernarmor.name_class = "item_class_armor";
+          modernarmor.name_templates = Toolbox.splitStringIntoList("armor_name");
+          modernarmor.materials = List.Of<string>(new string[]{"copper"});
+          modernarmor.base_stats[S.armor] = 0f;
+          modernarmor.base_stats[S.speed] = 13f;
+          modernarmor.base_stats[S.dodge] = 20f;
+          modernarmor.base_stats[S.attack_speed] = 60;
+          modernarmor.equipment_value = 300;
+          modernarmor.tech_needed = "MilitaryModern";
+          modernarmor.equipmentType = EquipmentType.Armor;
+          modernarmor.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(modernarmor);
+          Localization.addLocalization("item_modernarmor", "modern armor");
+
+          ItemAsset modernboots = AssetManager.items.clone("modernboots", "_equipment");
+          modernboots.id = "modernboots";
+          modernboots.name_class = "item_class_armor";
+          modernboots.name_templates = Toolbox.splitStringIntoList("boots_name");
+          modernboots.materials = List.Of<string>(new string[]{"copper"});
+          modernboots.base_stats[S.armor] = 0f;
+          modernboots.base_stats[S.speed] = 13f;
+          modernboots.base_stats[S.dodge] = 20f;
+          modernboots.base_stats[S.attack_speed] = 60;
+          modernboots.equipment_value = 300;
+          modernboots.tech_needed = "MilitaryModern";
+          modernboots.equipmentType = EquipmentType.Boots;
+          modernboots.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(modernboots);
+          Localization.addLocalization("item_modernboots", "modern boots");
+
+          ItemAsset modernhelmet = AssetManager.items.clone("modernhelmet", "_equipment");
+          modernhelmet.id = "modernhelmet";
+          modernhelmet.name_class = "item_class_armor";
+          modernhelmet.name_templates = Toolbox.splitStringIntoList("helmet_name");
+          modernhelmet.materials = List.Of<string>(new string[]{"copper"});
+          modernhelmet.base_stats[S.armor] = 0f;
+          modernhelmet.base_stats[S.speed] = 13f;
+          modernhelmet.base_stats[S.dodge] = 20f;
+          modernhelmet.base_stats[S.attack_speed] = 60;
+          modernhelmet.equipment_value = 300;
+          modernhelmet.tech_needed = "MilitaryModern";
+          modernhelmet.equipmentType = EquipmentType.Helmet;
+          modernhelmet.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(modernhelmet);
+          Localization.addLocalization("item_modernhelmet", "modern helmet");
+
+
+          ////////////////WEAPONS//////////////////
 			ItemAsset Glock17 = AssetManager.items.clone("Glock17", "_range");
 			Glock17.id = "Glock17";
-			Glock17.name_templates = Toolbox.splitStringIntoList(new string[]
-			{
-				"sword_name#30",
-				"sword_name_king#3",
-				"weapon_name_city",
-				"weapon_name_kingdom",
-				"weapon_name_culture",
-				"weapon_name_enemy_king",
-				"weapon_name_enemy_kingdom"
-			});
-			Glock17.materials = List.Of<string>(new string[] { "iron" });
+            Glock17.name_class = "item_class_weapon";
+            Glock17.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			Glock17.materials = List.Of<string>(new string[]{"copper"});
 			Glock17.projectile = "shotgun_bullet";
-			Glock17.tech_needed = "Firearms";
-			Glock17.base_stats[S.range] = 15f;
-			Glock17.base_stats[S.accuracy] = 95;
+			Glock17.tech_needed = "MilitaryModern";
+			Glock17.base_stats[S.range] = 12f;
+			Glock17.base_stats[S.accuracy] = -25;
 			Glock17.base_stats[S.attack_speed] = 1f;
 			Glock17.base_stats[S.damage] = 35;
-			Glock17.base_stats[S.health] = 10;
-			Glock17.equipment_value = 500;
+			Glock17.equipment_value = 300;
 			Glock17.path_slash_animation = "effects/slashes/slash_punch";
 			Glock17.quality = ItemQuality.Legendary;
 			Glock17.equipmentType = EquipmentType.Weapon;
@@ -1227,22 +1176,596 @@ AssetManager.effects_library.add(DankyMatter);
 			Localization.addLocalization("item_Glock17", "Glock 17");
 			addgunSprite(Glock17.id, Glock17.materials[0]);
 
+            AddPreferredWeaponToCivRaces("Glock17", 5);
+
+            ItemAsset MP7 = AssetManager.items.clone("MP7", "_range");
+            MP7.id = "MP7";
+            MP7.name_class = "item_class_weapon";
+            MP7.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            MP7.materials = List.Of<string>(new string[]{"copper"});
+            MP7.projectile = "shotgun_bullet";
+			MP7.tech_needed = "MilitaryModern";
+            MP7.base_stats[S.range] = 14f;
+			MP7.base_stats[S.accuracy] = -30;
+            MP7.base_stats[S.attack_speed] = 12000f;
+            MP7.base_stats[S.damage] = 7;
+            MP7.equipment_value = 300;
+            MP7.path_slash_animation = "effects/slashes/slash_punch";
+            MP7.quality = ItemQuality.Legendary;
+            MP7.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(MP7);
+            Localization.addLocalization("item_MP7", "MP7");
+            addgunSprite(MP7.id, MP7.materials[0]);
+
+             AddPreferredWeaponToCivRaces("MP7", 5);
+
+			ItemAsset HK416 = AssetManager.items.clone("HK416", "_range");
+            HK416.id = "HK416";
+            HK416.name_class = "item_class_weapon";
+            HK416.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            HK416.materials = List.Of<string>(new string[]{"copper"});
+            HK416.projectile = "shotgun_bullet";
+			HK416.tech_needed = "MilitaryModern";
+            HK416.base_stats[S.range] = 20f;
+            HK416.base_stats[S.accuracy] = 5;
+            HK416.base_stats[S.attack_speed] = 300f;
+            HK416.base_stats[S.damage] = 60;
+            HK416.equipment_value = 300;
+            HK416.path_slash_animation = "effects/slashes/slash_punch";
+            HK416.quality = ItemQuality.Legendary;
+            HK416.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(HK416);
+            Localization.addLocalization("item_HK416", "HK416");
+            addgunSprite(HK416.id, HK416.materials[0]);
+
+              AddPreferredWeaponToCivRaces("HK416", 5);
+
+			ItemAsset M16 = AssetManager.items.clone("M16", "_range");
+            M16.id = "M16";
+            M16.name_class = "item_class_weapon";
+            M16.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            M16.materials = List.Of<string>(new string[]{"copper"});
+            M16.projectile = "shotgun_bullet";
+			M16.tech_needed = "MilitaryModern";
+            M16.base_stats[S.range] = 0f;
+            M16.base_stats[S.accuracy] = 5;
+            M16.base_stats[S.attack_speed] = 12f;
+            M16.base_stats[S.damage] = 60;
+            M16.equipment_value = 300;
+            M16.path_slash_animation = "effects/slashes/slash_punch";
+            M16.quality = ItemQuality.Legendary;
+            M16.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(M16);
+            Localization.addLocalization("item_M16", "M16");
+            addgunSprite(M16.id, M16.materials[0]);
+
+             AddPreferredWeaponToCivRaces("M16", 5);
+
+			ItemAsset DesertEagle = AssetManager.items.clone("DesertEagle", "_range");
+			DesertEagle.id = "DesertEagle";
+			   DesertEagle.name_class = "item_class_weapon";
+          DesertEagle.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			DesertEagle.materials = List.Of<string>(new string[]{"copper"});
+			DesertEagle.projectile = "shotgun_bullet";
+			DesertEagle.tech_needed = "MilitaryModern";
+			DesertEagle.base_stats[S.range] = 20f;
+			DesertEagle.base_stats[S.accuracy] = 90;
+			DesertEagle.base_stats[S.attack_speed] = 1f;
+			DesertEagle.base_stats[S.damage] = 40;
+			DesertEagle.equipment_value = 300;
+			DesertEagle.path_slash_animation = "effects/slashes/slash_punch";
+			DesertEagle.quality = ItemQuality.Legendary;
+			DesertEagle.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(DesertEagle);
+			Localization.addLocalization("item_DesertEagle", "Desert Eagle");
+			addgunSprite(DesertEagle.id, DesertEagle.materials[0]);
+
+     AddPreferredWeaponToCivRaces("DesertEagle", 5);
+
+		  	ItemAsset malorian = AssetManager.items.clone("malorian", "_range");
+            malorian.id = "malorian";
+            malorian.name_class = "item_class_weapon";
+          malorian.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            malorian.materials = List.Of<string>(new string[]{"copper"});
+            malorian.projectile = "shotgun_bullet";
+			malorian.tech_needed = "MilitaryModern";
+            malorian.base_stats[S.range] = 6f;
+            malorian.base_stats[S.accuracy] = 400;
+            malorian.base_stats[S.attack_speed] = 70;
+            malorian.base_stats[S.damage] = 3;
+            malorian.equipment_value = 300;
+            malorian.path_slash_animation = "effects/slashes/slash_punch";
+            malorian.quality = ItemQuality.Legendary;
+            malorian.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(malorian);
+            Localization.addLocalization("item_malorian", "Malorian Arms 3516");
+            addgunSprite(malorian.id, malorian.materials[0]);
+
+            AddPreferredWeaponToCivRaces("malorian", 5);
+
+			ItemAsset Uzi = AssetManager.items.clone("Uzi", "_range");
+            Uzi.id = "Uzi";
+          Uzi.name_class = "item_class_weapon";
+          Uzi.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            Uzi.materials = List.Of<string>(new string[]{"copper"});
+            Uzi.projectile = "shotgun_bullet";
+            Uzi.base_stats[S.range] = 6f;
+            Uzi.base_stats[S.accuracy] = -10;
+            Uzi.base_stats[S.attack_speed] = 7000;
+            Uzi.base_stats[S.damage] = 5;
+			Uzi.tech_needed = "MilitaryModern";
+            Uzi.equipment_value = 300;
+            Uzi.path_slash_animation = "effects/slashes/slash_punch";
+            Uzi.quality = ItemQuality.Legendary;
+            Uzi.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(Uzi);
+            Localization.addLocalization("item_Uzi", "Uzi");
+            addgunSprite(Uzi.id, Uzi.materials[0]);
+
+             AddPreferredWeaponToCivRaces("Uzi", 5);
+
+			ItemAsset Minigun = AssetManager.items.clone("Minigun", "_range");
+            Minigun.id = "Minigun";
+Minigun.name_class = "item_class_weapon";
+          Minigun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            Minigun.materials = List.Of<string>(new string[]{"copper"});
+            Minigun.projectile = "shotgun_bullet";
+			Minigun.tech_needed = "MilitaryModern";
+            Minigun.base_stats[S.range] = 10f;
+            Minigun.base_stats[S.accuracy] = -40;
+            Minigun.base_stats[S.attack_speed] = 20000f;
+            Minigun.base_stats[S.projectiles] = 3;
+            Minigun.base_stats[S.damage] = 13;
+            Minigun.equipment_value = 300;
+            Minigun.path_slash_animation = "effects/slashes/slash_punch";
+            Minigun.quality = ItemQuality.Legendary;
+            Minigun.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(Minigun);
+            Localization.addLocalization("item_Minigun", "Minigun");
+            addgunSprite(Minigun.id, Minigun.materials[0]);
+
+             AddPreferredWeaponToCivRaces("Minigun", 5);
+
+			ItemAsset AK47 = AssetManager.items.clone("AK47", "_range");
+            AK47.id = "AK47";
+           AK47.name_class = "item_class_weapon";
+          AK47.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            AK47.materials = List.Of<string>(new string[]{"copper"});
+            AK47.projectile = "shotgun_bullet";
+			AK47.tech_needed = "MilitaryModern";
+            AK47.base_stats[S.range] = 14f;
+            AK47.base_stats[S.accuracy] = 3;
+            AK47.base_stats[S.attack_speed] = 170f;
+            AK47.base_stats[S.damage] = 13;
+            AK47.equipment_value = 300;
+            AK47.path_slash_animation = "effects/slashes/slash_punch";
+            AK47.quality = ItemQuality.Legendary;
+            AK47.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(AK47);
+			Localization.addLocalization("item_AK47", "AK47");
+			addgunSprite(AK47.id, AK47.materials[0]);
+
+              AddPreferredWeaponToCivRaces("AK47", 5);
+
+			ItemAsset AK103 = AssetManager.items.clone("AK103", "_range");
+            AK103.id = "AK103";
+             AK103.name_class = "item_class_weapon";
+          AK103.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            AK103.materials = List.Of<string>(new string[]{"copper"});
+            AK103.projectile = "shotgun_bullet";
+			AK103.tech_needed = "MilitaryModern";
+            AK103.base_stats[S.range] = 14f;
+            AK103.base_stats[S.accuracy] = 400;
+            AK103.base_stats[S.attack_speed] = 170f;
+            AK103.base_stats[S.damage] = 36;
+            AK103.equipment_value = 300;
+            AK103.path_slash_animation = "effects/slashes/slash_punch";
+            AK103.quality = ItemQuality.Legendary;
+            AK103.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(AK103);
+			Localization.addLocalization("item_AK103", "AK-103");
+			addgunSprite(AK103.id, AK103.materials[0]);
+
+              AddPreferredWeaponToCivRaces("AK103", 5);
+
+          ItemAsset XM8 = AssetManager.items.clone("XM8", "_range");
+          XM8.id = "XM8";
+        XM8.name_class = "item_class_weapon";
+          XM8.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          XM8.materials = List.Of<string>(new string[]{"copper"});
+          XM8.projectile = "shotgun_bullet";
+          XM8.base_stats[S.fertility] = 0.0f;
+          XM8.base_stats[S.max_children] = 0f;
+          XM8.base_stats[S.max_age] = 0f;
+          XM8.base_stats[S.attack_speed] = 1800;
+          XM8.base_stats[S.damage] = 13;
+          XM8.base_stats[S.speed] = 0f;
+          XM8.base_stats[S.health] = 0;
+          XM8.base_stats[S.accuracy] = 400f;
+          XM8.base_stats[S.range] = 14;
+          XM8.base_stats[S.armor] = 0;
+		  XM8.tech_needed = "MilitaryModern";
+          XM8.base_stats[S.scale] = 0.0f;
+          XM8.base_stats[S.dodge] = 0f;
+          XM8.base_stats[S.targets] = 0f;
+          XM8.base_stats[S.critical_chance] = 0.0f;
+          XM8.base_stats[S.knockback] = 0f;
+          XM8.base_stats[S.knockback_reduction] = 0f;
+          XM8.base_stats[S.intelligence] = 0;
+          XM8.base_stats[S.warfare] = 0;
+          XM8.base_stats[S.diplomacy] = 0;
+          XM8.base_stats[S.stewardship] = 0;
+          XM8.base_stats[S.opinion] = 0f;
+          XM8.base_stats[S.loyalty_traits] = 0f;
+          XM8.base_stats[S.cities] = 0;
+          XM8.base_stats[S.zone_range] = 0;
+          XM8.equipment_value = 300;
+          XM8.path_slash_animation = "effects/slashes/slash_punch";
+          XM8.equipmentType = EquipmentType.Weapon;
+          XM8.name_class = "item_class_weapon";
+
+          AssetManager.items.list.AddItem(XM8);
+          Localization.addLocalization("item_XM8", "XM8");
+          addgunSprite(XM8.id, XM8.materials[0]);
+
+            AddPreferredWeaponToCivRaces("XM8", 5);
+
+			ItemAsset SGT44 = AssetManager.items.clone("SGT44", "_range");
+            SGT44.id = "SGT44";
+            SGT44.name_class = "item_class_weapon";
+          SGT44.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            SGT44.materials = List.Of<string>(new string[]{"copper"});
+            SGT44.projectile = "shotgun_bullet";
+			SGT44.tech_needed = "MilitaryModern";
+            SGT44.base_stats[S.range] = 14f;
+            SGT44.base_stats[S.accuracy] = 40;
+            SGT44.base_stats[S.attack_speed] = 70f;
+            SGT44.base_stats[S.damage] = 11;
+            SGT44.equipment_value = 300;
+            SGT44.path_slash_animation = "effects/slashes/slash_punch";
+            SGT44.quality = ItemQuality.Legendary;
+            SGT44.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(SGT44);
+            Localization.addLocalization("item_SGT44", "SGT44");
+            addgunSprite(SGT44.id, SGT44.materials[0]);
 
 
+            AddPreferredWeaponToCivRaces("SGT44", 5);
+
+			ItemAsset ThompsonM1A1 = AssetManager.items.clone("ThompsonM1A1", "_range");
+            ThompsonM1A1.id = "ThompsonM1A1";
+            ThompsonM1A1.name_class = "item_class_weapon";
+          ThompsonM1A1.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            ThompsonM1A1.materials = List.Of<string>(new string[]{"copper"});
+            ThompsonM1A1.projectile = "shotgun_bullet";
+			ThompsonM1A1.tech_needed = "MilitaryModern";
+            ThompsonM1A1.base_stats[S.range] = 14f;
+            ThompsonM1A1.base_stats[S.accuracy] = -30;
+            ThompsonM1A1.base_stats[S.attack_speed] = 17000f;
+            ThompsonM1A1.base_stats[S.damage] = 13;
+            ThompsonM1A1.equipment_value = 300;
+            ThompsonM1A1.path_slash_animation = "effects/slashes/slash_punch";
+            ThompsonM1A1.quality = ItemQuality.Legendary;
+            ThompsonM1A1.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(ThompsonM1A1);
+            Localization.addLocalization("item_ThompsonM1A1", "ThompsonM1A1");
+            addgunSprite(ThompsonM1A1.id, ThompsonM1A1.materials[0]);
+
+            AddPreferredWeaponToCivRaces("ThompsonM1A1", 5);
+
+			ItemAsset M4A1 = AssetManager.items.clone("M4A1", "_range");
+			M4A1.id = "M4A1";
+			 M4A1.name_class = "item_class_weapon";
+          M4A1.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			M4A1.materials = List.Of<string>(new string[]{"copper"});
+			M4A1.projectile = "shotgun_bullet";
+			M4A1.tech_needed = "MilitaryModern";
+			M4A1.base_stats[S.range] = 14f;
+			M4A1.base_stats[S.accuracy] = 400;
+			M4A1.base_stats[S.attack_speed] = 100f;
+			M4A1.base_stats[S.damage] = 40;
+			M4A1.equipment_value = 300;
+			M4A1.path_slash_animation = "effects/slashes/slash_punch";
+			M4A1.quality = ItemQuality.Legendary;
+			M4A1.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(M4A1);
+			Localization.addLocalization("item_M4A1", "M4A1");
+			addgunSprite(M4A1.id, M4A1.materials[0]);
+
+              AddPreferredWeaponToCivRaces("M4A1", 5);
+
+		  ItemAsset FAMAS = AssetManager.items.clone("FAMAS", "_range");
+          FAMAS.id = "FAMAS";
+          FAMAS.name_class = "item_class_weapon";
+          FAMAS.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+          FAMAS.materials = List.Of<string>(new string[]{"copper"});
+          FAMAS.projectile = "shotgun_bullet";
+          FAMAS.base_stats[S.fertility] = 0.0f;
+          FAMAS.base_stats[S.max_children] = 0f;
+          FAMAS.base_stats[S.max_age] = 0f;
+          FAMAS.base_stats[S.attack_speed] = 1800;
+          FAMAS.base_stats[S.damage] = 13;
+          FAMAS.base_stats[S.speed] = 0f;
+          FAMAS.base_stats[S.health] = 0;
+          FAMAS.base_stats[S.accuracy] = 40f;
+          FAMAS.base_stats[S.range] = 14;
+          FAMAS.base_stats[S.armor] = 0;
+		  FAMAS.tech_needed = "MilitaryModern";
+          FAMAS.base_stats[S.scale] = 0.0f;
+          FAMAS.base_stats[S.dodge] = 0f;
+          FAMAS.base_stats[S.targets] = 0f;
+          FAMAS.base_stats[S.critical_chance] = 0.0f;
+          FAMAS.base_stats[S.knockback] = 0f;
+          FAMAS.base_stats[S.knockback_reduction] = 0f;
+          FAMAS.base_stats[S.intelligence] = 0;
+          FAMAS.base_stats[S.warfare] = 0;
+          FAMAS.base_stats[S.diplomacy] = 0;
+          FAMAS.base_stats[S.stewardship] = 0;
+          FAMAS.base_stats[S.opinion] = 0f;
+          FAMAS.base_stats[S.loyalty_traits] = 0f;
+          FAMAS.base_stats[S.cities] = 0;
+          FAMAS.base_stats[S.zone_range] = 0;
+          FAMAS.equipment_value = 300;
+          FAMAS.path_slash_animation = "effects/slashes/slash_punch";
+          FAMAS.equipmentType = EquipmentType.Weapon;
+          FAMAS.name_class = "item_class_weapon";
+
+          AssetManager.items.list.AddItem(FAMAS);
+          Localization.addLocalization("item_FAMAS", "FAMAS");
+          addgunSprite(FAMAS.id, FAMAS.materials[0]);
 
 
+              AddPreferredWeaponToCivRaces("FAMAS", 5);
+
+			ItemAsset Sniper = AssetManager.items.clone("Sniper", "_range");
+            Sniper.id = "Sniper";
+           Sniper.name_class = "item_class_weapon";
+          Sniper.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            Sniper.materials = List.Of<string>(new string[]{"copper"});
+            Sniper.projectile = "shotgun_bullet";
+			Sniper.tech_needed = "MilitaryModern";
+            Sniper.base_stats[S.range] = 40f;
+            Sniper.base_stats[S.accuracy] = 5;
+            Sniper.base_stats[S.attack_speed] = -200f;
+            Sniper.base_stats[S.damage] = 200;
+            Sniper.equipment_value = 300;
+            Sniper.path_slash_animation = "effects/slashes/slash_punch";
+            Sniper.quality = ItemQuality.Legendary;
+            Sniper.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(Sniper);
+            Localization.addLocalization("item_Sniper", "Sniper");
+            addgunSprite(Sniper.id, Sniper.materials[0]);
+
+                AddPreferredWeaponToCivRaces("Sniper", 5);
+
+			ItemAsset RocketLauncher = AssetManager.items.clone("RocketLauncher", "_range");
+            RocketLauncher.id = "RocketLauncher";
+            RocketLauncher.name_class = "item_class_weapon";
+            RocketLauncher.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            RocketLauncher.materials = List.Of<string>(new string[]{"copper"});
+            RocketLauncher.projectile = "RPGload";
+            RocketLauncher.base_stats[S.range] = 14f;
+			RocketLauncher.tech_needed = "MilitaryModern";
+            RocketLauncher.base_stats[S.accuracy] = 400;
+            RocketLauncher.base_stats[S.attack_speed] = -5000f;
+            RocketLauncher.base_stats[S.damage] = 400;
+            RocketLauncher.equipment_value = 300;
+            RocketLauncher.path_slash_animation = "effects/slashes/slash_punch";
+            RocketLauncher.quality = ItemQuality.Legendary;
+            RocketLauncher.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(RocketLauncher);
+            Localization.addLocalization("item_RocketLauncher", "Rocket Propelled Grenade (RPG)");
+            addgunSprite(RocketLauncher.id, RocketLauncher.materials[0]);
+
+    AddPreferredWeaponToCivRaces("RocketLauncher", 5);
 
 
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////MODERN/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
+                ///////////ARMOR///////////
 
+           ItemAsset futurearmor = AssetManager.items.clone("futurearmor", "_equipment");
+          futurearmor.id = "futurearmor";
+          futurearmor.name_class = "item_class_armor";
+          futurearmor.name_templates = Toolbox.splitStringIntoList("armor_name");
+          futurearmor.materials = List.Of<string>(new string[]{"copper"});
+          futurearmor.base_stats[S.armor] = 15f;
+          futurearmor.base_stats[S.speed] = 4f;
+          futurearmor.base_stats[S.dodge] = 10f;
+          futurearmor.equipment_value = 500;
+          futurearmor.tech_needed = "Future";
+          futurearmor.equipmentType = EquipmentType.Armor;
+          futurearmor.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(futurearmor);
+          Localization.addLocalization("item_futurearmor", "future armor");
+
+          ItemAsset futureboots = AssetManager.items.clone("futureboots", "_equipment");
+          futureboots.id = "futureboots";
+          futureboots.name_class = "item_class_armor";
+          futureboots.name_templates = Toolbox.splitStringIntoList("boots_name");
+          futureboots.materials = List.Of<string>(new string[]{"copper"});
+          futureboots.base_stats[S.armor] = 15f;
+          futureboots.base_stats[S.speed] = 4f;
+          futureboots.base_stats[S.dodge] = 10f;
+          futureboots.equipment_value = 500;
+          futureboots.tech_needed = "Future";
+          futureboots.equipmentType = EquipmentType.Boots;
+          futureboots.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(futureboots);
+          Localization.addLocalization("item_futureboots", "future boots");
+
+          ItemAsset futurehelmet = AssetManager.items.clone("futurehelmet", "_equipment");
+          futurehelmet.id = "futurehelmet";
+          futurehelmet.name_class = "item_class_armor";
+          futurehelmet.name_templates = Toolbox.splitStringIntoList("helmet_name");
+          futurehelmet.materials = List.Of<string>(new string[]{"copper"});
+          futurehelmet.base_stats[S.armor] = 15f;
+          futurehelmet.base_stats[S.speed] = 4f;
+          futurehelmet.base_stats[S.dodge] = 10f;
+          futurehelmet.equipment_value = 500;
+          futurehelmet.tech_needed = "Future";
+          futurehelmet.equipmentType = EquipmentType.Helmet;
+          futurehelmet.name_class = "item_class_armor";
+
+          AssetManager.items.list.AddItem(futurehelmet);
+          Localization.addLocalization("item_futurehelmet", "future helmet");
 
 			static void makecraftable()
 			{
-
-
-		
 			}
+
+
+
 		}
+
+public enum ArmorTechTier {
+    None,
+    Renaissance,
+    Industrial,
+    Modern,
+    Future
+}
+
+public static class ArmorTechOverride {
+    public static ArmorTechTier OverrideTier = ArmorTechTier.None;
+}
+
+[HarmonyPatch(typeof(City), "tryProduceItem")]
+public static class City_TryProduceItem_ArmorPatch {
+    static void Prefix(Actor pActor, ItemProductionOrder pOrder) {
+        if (pOrder == ItemProductionOrder.RandomArmor) {
+            Culture culture = pActor.getCulture();
+            if (culture != null) {
+                if (culture.hasTech("Future")) {
+                    ArmorTechOverride.OverrideTier = ArmorTechTier.Future;
+                }
+                else if (culture.hasTech("MilitaryModern")) {
+                    ArmorTechOverride.OverrideTier = ArmorTechTier.Modern;
+                }
+                else if (culture.hasTech("Firearms")) {
+                    ArmorTechOverride.OverrideTier = ArmorTechTier.Industrial;
+                }
+                else if (culture.hasTech("Renaissance")) {
+                    ArmorTechOverride.OverrideTier = ArmorTechTier.Renaissance;
+                }
+                else {
+                    ArmorTechOverride.OverrideTier = ArmorTechTier.None;
+                }
+            }
+        }
+    }
+    }
+
+    static void Postfix(Actor pActor, ItemProductionOrder pOrder) {
+        if (pOrder == ItemProductionOrder.RandomArmor) {
+            ArmorTechOverride.OverrideTier = ArmorTechTier.None;
+        }
+    }
+
+[HarmonyPatch(typeof(ItemLibrary), "getEquipmentID")]
+public static class CustomArmorEquipmentIDPatch {
+    static void Postfix(EquipmentType pType, ref string __result) {
+        if (pType == EquipmentType.Helmet || pType == EquipmentType.Armor || pType == EquipmentType.Boots) {
+            if (ArmorTechOverride.OverrideTier != ArmorTechTier.None) {
+                switch (pType) {
+                    case EquipmentType.Helmet:
+                        switch (ArmorTechOverride.OverrideTier) {
+                            case ArmorTechTier.Future:
+                                __result = "futurehelmet";
+                                break;
+                            case ArmorTechTier.Modern:
+                                __result = "modernhelmet";
+                                break;
+                            case ArmorTechTier.Industrial:
+                                __result = "wwhelmet";
+                                break;
+                            case ArmorTechTier.Renaissance:
+                                __result = "pristinehelmet";
+                                break;
+                        }
+                        break;
+                    case EquipmentType.Armor:
+                        switch (ArmorTechOverride.OverrideTier) {
+                            case ArmorTechTier.Future:
+                                __result = "futurearmor";
+                                break;
+                            case ArmorTechTier.Modern:
+                                __result = "modernarmor";
+                                break;
+                            case ArmorTechTier.Industrial:
+                                __result = "wwarmor";
+                                break;
+                            case ArmorTechTier.Renaissance:
+                                __result = "pristinearmor";
+                                break;
+                        }
+                        break;
+                    case EquipmentType.Boots:
+                        switch (ArmorTechOverride.OverrideTier) {
+                            case ArmorTechTier.Future:
+                                __result = "futureboots";
+                                break;
+                            case ArmorTechTier.Modern:
+                                __result = "modernboots";
+                                break;
+                            case ArmorTechTier.Industrial:
+                                __result = "wwboots";
+                                break;
+                            case ArmorTechTier.Renaissance:
+                                __result = "pristineboots";
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+			private static void AddPreferredWeaponToCivRaces(string weaponId, int amount)
+{
+    foreach (Race race in AssetManager.raceLibrary.list)
+    {
+        if (race.civilization)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                race.preferred_weapons.Add(weaponId);
+            }
+        }
+    }
+}
+
+/*
 		
 		public static void toggleGuns()
         {
@@ -1476,25 +1999,21 @@ AssetManager.effects_library.add(DankyMatter);
 				human.preferred_weapons.Add("PipePistol");				
 				human.preferred_weapons.Add("PipeRifle");	
 				human.preferred_weapons.Add("PipeShotgun");	
-				human.preferred_weapons.Add("Musket");		
 
 
 				orc.preferred_weapons.Add("PipePistol");				
 				orc.preferred_weapons.Add("PipeRifle");	
-				orc.preferred_weapons.Add("PipeShotgun");	
-				orc.preferred_weapons.Add("Musket");					
+				orc.preferred_weapons.Add("PipeShotgun");
 
 
 				dwarf.preferred_weapons.Add("PipePistol");				
 				dwarf.preferred_weapons.Add("PipeRifle");	
 				dwarf.preferred_weapons.Add("PipeShotgun");	
-				dwarf.preferred_weapons.Add("Musket");	
 
 				
 				elf.preferred_weapons.Add("PipePistol");				
 				elf.preferred_weapons.Add("PipeRifle");	
 				elf.preferred_weapons.Add("PipeShotgun");	
-				elf.preferred_weapons.Add("Musket");	
 
 
             }
@@ -1507,31 +2026,28 @@ AssetManager.effects_library.add(DankyMatter);
 
  				human.preferred_weapons.Remove("PipePistol");				
 				human.preferred_weapons.Remove("PipeRifle");	
-				human.preferred_weapons.Remove("PipeShotgun");	
-				human.preferred_weapons.Remove("Musket");		
+				human.preferred_weapons.Remove("PipeShotgun");
 
 
 				orc.preferred_weapons.Remove("PipePistol");				
 				orc.preferred_weapons.Remove("PipeRifle");	
-				orc.preferred_weapons.Remove("PipeShotgun");	
-				orc.preferred_weapons.Remove("Musket");					
+				orc.preferred_weapons.Remove("PipeShotgun");
 
 
 				dwarf.preferred_weapons.Remove("PipePistol");				
 				dwarf.preferred_weapons.Remove("PipeRifle");	
 				dwarf.preferred_weapons.Remove("PipeShotgun");	
-				dwarf.preferred_weapons.Remove("Musket");	
 
 				
 				elf.preferred_weapons.Remove("PipePistol");				
 				elf.preferred_weapons.Remove("PipeRifle");	
 				elf.preferred_weapons.Remove("PipeShotgun");	
-				elf.preferred_weapons.Remove("Musket");	
-				
 
 
             }
-		
+		*/
+
+
 			static void addgunSprite(string id, string material)
 			{
 				var dictItems = Reflection.GetField(typeof(ActorAnimationLoader), null, "dictItems") as Dictionary<string, Sprite>;

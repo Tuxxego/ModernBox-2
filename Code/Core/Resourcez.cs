@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -84,9 +84,9 @@ namespace M2
             NUKER.hitShake = true;
             NUKER.endEffect = "fx_explosion_nuke_atomic";
             NUKER.terraformOption = "NUKERExplode";
-            NUKER.terraformRange = 43;
-            NUKER.startScale = 0.01f;
-            NUKER.targetScale = 0.2f;
+            NUKER.terraformRange = 30;
+            NUKER.startScale = 0.3f;
+            NUKER.targetScale = 0.3f;
             AssetManager.projectiles.add(NUKER);
 
             TerraformOptions NUKERExplode = new TerraformOptions();
@@ -95,6 +95,7 @@ namespace M2
             NUKERExplode.damageBuildings = true;
             NUKERExplode.damage = 10000;
             NUKERExplode.applyForce = true;
+			NUKERExplode.applies_to_high_flyers = true;
             NUKERExplode.explode_and_set_random_fire = true;
             NUKERExplode.explode_tile = true;
             NUKERExplode.explosion_pixel_effect = true;
@@ -182,7 +183,7 @@ namespace M2
 			  equipment_value = 100
 			  };
 			  PipeGun.setCost(1, "Parts", 1);
-			  PipeGun.tech_needed = "LowFirearms";
+			  PipeGun.tech_needed = "Renaissance";
 			  NCMS.Utils.Localization.AddOrSet("item_mat_PipeGun", "Pipe Gun");
 			  AssetManager.items_material_weapon.add(PipeGun);
 

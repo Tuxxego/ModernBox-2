@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -19,6 +19,7 @@ using System.IO;
 using pathfinding;
 using System.Reflection;
 
+
 namespace M2 {
 class Commerce {
 
@@ -31,10 +32,10 @@ class Commerce {
             harmony.Patch(balls, new HarmonyMethod(dalls)); 
     RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
 
+    /*
     BuildingAsset casino = AssetManager.buildings.clone("casino", "!city_building");
     AssetManager.buildings.add(casino);
     casino.id = "casino";
-
     casino.priority = 69999;
     casino.fundament = new BuildingFundament(2, 2, 2, 0);
     casino.cost = new ConstructionCost(pWood : 15, pStone : 25, pGold : 250);
@@ -142,9 +143,6 @@ class Commerce {
     AirFactory.base_stats[S.health] = 3000f;
     loadSprites(AirFactory);
 
-
-
-
     BuildingAsset TankFactory = AssetManager.buildings.clone("TankFactory", "!city_building");
     AssetManager.buildings.add(TankFactory);
     TankFactory.id = "TankFactory";
@@ -158,12 +156,9 @@ class Commerce {
     TankFactory.base_stats[S.health] = 3000f;
     loadSprites(TankFactory);
 
-
-
     BuildingAsset TerranFactory = AssetManager.buildings.clone("TerranFactory", "!city_building");
     AssetManager.buildings.add(TerranFactory);
     TerranFactory.id = "TerranFactory";
-
     TerranFactory.priority = 69999;
     TerranFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     TerranFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -174,7 +169,6 @@ class Commerce {
     TerranFactory.base_stats[S.health] = 3000f;
     loadSprites(TerranFactory);
 
-	
     BuildingAsset P9000Factory = AssetManager.buildings.clone("P9000Factory", "!city_building");
     AssetManager.buildings.add(P9000Factory);
     P9000Factory.id = "P9000Factory";
@@ -188,8 +182,6 @@ class Commerce {
     P9000Factory.base_stats[S.health] = 3000f;
     loadSprites(P9000Factory);
 
-
-	
             BuildingAsset RailgunFactory = AssetManager.buildings.clone("RailgunFactory", "!city_building");
             AssetManager.buildings.add(RailgunFactory);
             RailgunFactory.id = "RailgunFactory";
@@ -203,9 +195,7 @@ class Commerce {
             RailgunFactory.base_stats[S.health] = 3000f;
             loadSprites(RailgunFactory);
 
-
-
-            BuildingAsset HumveeFactory = AssetManager.buildings.clone("HumveeFactory", "!city_building");
+    BuildingAsset HumveeFactory = AssetManager.buildings.clone("HumveeFactory", "!city_building");
     AssetManager.buildings.add(HumveeFactory);
     HumveeFactory.id = "HumveeFactory";
     HumveeFactory.priority = 69999;
@@ -218,14 +208,9 @@ class Commerce {
     HumveeFactory.base_stats[S.health] = 3000f;
     loadSprites(HumveeFactory);
 
-
-
-
-
     BuildingAsset HelicopterFactory = AssetManager.buildings.clone("HelicopterFactory", "!city_building");
     AssetManager.buildings.add(HelicopterFactory);
     HelicopterFactory.id = "HelicopterFactory";
-
     HelicopterFactory.priority = 69999;
     HelicopterFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     HelicopterFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -235,10 +220,6 @@ class Commerce {
     HelicopterFactory.spawnUnits_asset = "Heli";
     HelicopterFactory.base_stats[S.health] = 3000f;
     loadSprites(HelicopterFactory);
-
-
-
-
 
     BuildingAsset DroneFactory = AssetManager.buildings.clone("DroneFactory", "!city_building");
     AssetManager.buildings.add(DroneFactory);
@@ -253,9 +234,6 @@ class Commerce {
     DroneFactory.base_stats[S.health] = 3000f;
     loadSprites(DroneFactory);
 
-
-
-
     BuildingAsset AirshipFactory = AssetManager.buildings.clone("AirshipFactory", "!city_building");
     AssetManager.buildings.add(AirshipFactory);
     AirshipFactory.id = "AirshipFactory";
@@ -269,13 +247,9 @@ class Commerce {
     AirshipFactory.base_stats[S.health] = 3000f;
     loadSprites(AirshipFactory);
 
-
-
-
     BuildingAsset FighterJetFactory = AssetManager.buildings.clone("FighterJetFactory", "!city_building");
     AssetManager.buildings.add(FighterJetFactory);
     FighterJetFactory.id = "FighterJetFactory";
-
     FighterJetFactory.priority = 69999;
     FighterJetFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     FighterJetFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -286,13 +260,9 @@ class Commerce {
     FighterJetFactory.base_stats[S.health] = 3000f;
     loadSprites(FighterJetFactory);
 
-
-
-
     BuildingAsset BoiFactory = AssetManager.buildings.clone("BoiFactory", "!city_building");
     AssetManager.buildings.add(BoiFactory);
     BoiFactory.id = "BoiFactory";
-
     BoiFactory.priority = 69999;
     BoiFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     BoiFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -303,13 +273,9 @@ class Commerce {
     BoiFactory.base_stats[S.health] = 3000f;
     loadSprites(BoiFactory);
 
-
-
-
     BuildingAsset GunshipFactory = AssetManager.buildings.clone("GunshipFactory", "!city_building");
     AssetManager.buildings.add(GunshipFactory);
     GunshipFactory.id = "GunshipFactory";
-
     GunshipFactory.priority = 69999;
     GunshipFactory.fundament = new BuildingFundament(2, 2, 2, 0);
     GunshipFactory.cost = new ConstructionCost(0, 2, 1, 1);
@@ -320,24 +286,19 @@ class Commerce {
     GunshipFactory.base_stats[S.health] = 3000f;
     loadSprites(GunshipFactory);
 
-
-
-
-    BuildingAsset ModernBarracks = AssetManager.buildings.clone("ModernBarracks", "!city_building");
-    AssetManager.buildings.add(ModernBarracks);
-    ModernBarracks.id = "ModernBarracks";
-
-    ModernBarracks.priority = 89893289;
-    ModernBarracks.fundament = new BuildingFundament(2, 2, 2, 0);
-    ModernBarracks.cost = new ConstructionCost(pCommonMetals: 1, pGold: 1);
-    ModernBarracks.tech = "MilitaryModern";
-    ModernBarracks.housing = 60;
-    ModernBarracks.spawnUnits = true;
-    ModernBarracks.spawnUnits_asset = "Soldier";
-    ModernBarracks.base_stats[S.health] = 3000f;
-    loadSprites(ModernBarracks);
-
-
+    BuildingAsset Barracks_modern_human = AssetManager.buildings.clone("Barracks_modern_human", "!city_building");
+    AssetManager.buildings.add(Barracks_modern_human);
+    Barracks_modern_human.id = "Barracks_modern_human";
+    Barracks_modern_human.priority = 89893289;
+    Barracks_modern_human.fundament = new BuildingFundament(2, 2, 2, 0);
+    Barracks_modern_human.cost = new ConstructionCost(pCommonMetals: 1, pGold: 1);
+    Barracks_modern_human.tech = "MilitaryModern";
+    Barracks_modern_human.housing = 60;
+    Barracks_modern_human.spawnUnits = true;
+    Barracks_modern_human.spawnUnits_asset = "Soldier";
+    Barracks_modern_human.base_stats[S.health] = 3000f;
+    loadSprites(Barracks_modern_human);
+    */
 
 
             BuildingAsset MissileSilo = AssetManager.buildings.clone("MissileSilo", "!city_building");
@@ -375,6 +336,11 @@ class Commerce {
             BuildingAsset scraps = AssetManager.buildings.clone("scraps", "!building");
             scraps.affected_by_drought = false;
 		    scraps.burnable = false;
+		    scraps.remove_ruins = true;
+		scraps.ignoreBuildings = false;
+		scraps.ignoredByCities = true;
+		scraps.ignore_same_building_id = true;
+		scraps.buildingType = BuildingType.Mineral;
             scraps.base_stats[S.health] = 100f;
             scraps.has_ruins_graphics = false;
 		    scraps.fundament = new BuildingFundament(1, 0, 1, 0);
@@ -393,7 +359,7 @@ class Commerce {
             AssetManager.buildings.loadSprites(scraps);
 
 
-BuildingAsset Soldier_scraps = AssetManager.buildings.clone("Soldier_scraps", "!building");
+BuildingAsset Soldier_scraps = AssetManager.buildings.clone("Soldier_scraps", "scraps");
             Soldier_scraps.affected_by_drought = false;
 		    Soldier_scraps.burnable = false;
             Soldier_scraps.base_stats[S.health] = 100f;
@@ -413,7 +379,7 @@ BuildingAsset Soldier_scraps = AssetManager.buildings.clone("Soldier_scraps", "!
             AssetManager.buildings.add(Soldier_scraps);
             AssetManager.buildings.loadSprites(Soldier_scraps);
 
-            BuildingAsset P9000_scraps = AssetManager.buildings.clone("P9000_scraps", "!building");
+            BuildingAsset P9000_scraps = AssetManager.buildings.clone("P9000_scraps", "scraps");
             P9000_scraps.affected_by_drought = false;
 		    P9000_scraps.burnable = false;
             P9000_scraps.base_stats[S.health] = 100f;
@@ -434,7 +400,7 @@ BuildingAsset Soldier_scraps = AssetManager.buildings.clone("Soldier_scraps", "!
             AssetManager.buildings.loadSprites(P9000_scraps);
 
 
-BuildingAsset AbramTank_scraps = AssetManager.buildings.clone("AbramTank_scraps", "!building");
+BuildingAsset AbramTank_scraps = AssetManager.buildings.clone("AbramTank_scraps", "scraps");
             AbramTank_scraps.affected_by_drought = false;
 		    AbramTank_scraps.burnable = false;
             AbramTank_scraps.base_stats[S.health] = 100f;
@@ -454,7 +420,7 @@ BuildingAsset AbramTank_scraps = AssetManager.buildings.clone("AbramTank_scraps"
             AssetManager.buildings.add(AbramTank_scraps);
             AssetManager.buildings.loadSprites(AbramTank_scraps);
 
-            BuildingAsset dreadnaught_scraps = AssetManager.buildings.clone("dreadnaught_scraps", "!building");
+            BuildingAsset dreadnaught_scraps = AssetManager.buildings.clone("dreadnaught_scraps", "scraps");
             dreadnaught_scraps.affected_by_drought = false;
 		    dreadnaught_scraps.burnable = false;
             dreadnaught_scraps.base_stats[S.health] = 100f;
@@ -474,7 +440,7 @@ BuildingAsset AbramTank_scraps = AssetManager.buildings.clone("AbramTank_scraps"
             AssetManager.buildings.add(dreadnaught_scraps);
             AssetManager.buildings.loadSprites(dreadnaught_scraps);
 
-BuildingAsset EliteBomber_scraps = AssetManager.buildings.clone("EliteBomber_scraps", "!building");
+BuildingAsset EliteBomber_scraps = AssetManager.buildings.clone("EliteBomber_scraps", "scraps");
             EliteBomber_scraps.affected_by_drought = false;
 		    EliteBomber_scraps.burnable = false;
             EliteBomber_scraps.base_stats[S.health] = 100f;
@@ -495,7 +461,7 @@ BuildingAsset EliteBomber_scraps = AssetManager.buildings.clone("EliteBomber_scr
             AssetManager.buildings.loadSprites(EliteBomber_scraps);
 
 
-BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_scraps", "!building");
+BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_scraps", "scraps");
             eliteGunship_scraps.affected_by_drought = false;
 		    eliteGunship_scraps.burnable = false;
             eliteGunship_scraps.base_stats[S.health] = 100f;
@@ -515,7 +481,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(eliteGunship_scraps);
             AssetManager.buildings.loadSprites(eliteGunship_scraps);
 
-            BuildingAsset EliteP9000_scraps = AssetManager.buildings.clone("EliteP9000_scraps", "!building");
+            BuildingAsset EliteP9000_scraps = AssetManager.buildings.clone("EliteP9000_scraps", "scraps");
             EliteP9000_scraps.affected_by_drought = false;
 		    EliteP9000_scraps.burnable = false;
             EliteP9000_scraps.base_stats[S.health] = 100f;
@@ -535,7 +501,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(EliteP9000_scraps);
             AssetManager.buildings.loadSprites(EliteP9000_scraps);
 
-            BuildingAsset EliteZeppelin_scraps = AssetManager.buildings.clone("EliteZeppelin_scraps", "!building");
+            BuildingAsset EliteZeppelin_scraps = AssetManager.buildings.clone("EliteZeppelin_scraps", "scraps");
             EliteZeppelin_scraps.affected_by_drought = false;
 		    EliteZeppelin_scraps.burnable = false;
             EliteZeppelin_scraps.base_stats[S.health] = 100f;
@@ -555,7 +521,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(EliteZeppelin_scraps);
             AssetManager.buildings.loadSprites(EliteZeppelin_scraps);
 
-            BuildingAsset eliteMissileSystem_scraps = AssetManager.buildings.clone("eliteMissileSystem_scraps", "!building");
+            BuildingAsset eliteMissileSystem_scraps = AssetManager.buildings.clone("eliteMissileSystem_scraps", "scraps");
             eliteMissileSystem_scraps.affected_by_drought = false;
 		    eliteMissileSystem_scraps.burnable = false;
             eliteMissileSystem_scraps.base_stats[S.health] = 100f;
@@ -575,7 +541,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(eliteMissileSystem_scraps);
             AssetManager.buildings.loadSprites(eliteMissileSystem_scraps);
 
-            BuildingAsset F55FighterJet_scraps = AssetManager.buildings.clone("F55FighterJet_scraps", "!building");
+            BuildingAsset F55FighterJet_scraps = AssetManager.buildings.clone("F55FighterJet_scraps", "scraps");
             F55FighterJet_scraps.affected_by_drought = false;
 		    F55FighterJet_scraps.burnable = false;
             F55FighterJet_scraps.base_stats[S.health] = 100f;
@@ -595,7 +561,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(F55FighterJet_scraps);
             AssetManager.buildings.loadSprites(F55FighterJet_scraps);
 
-            BuildingAsset HeliELite_scraps = AssetManager.buildings.clone("HeliELite_scraps", "!building");
+            BuildingAsset HeliELite_scraps = AssetManager.buildings.clone("HeliELite_scraps", "scraps");
             HeliELite_scraps.affected_by_drought = false;
 		    HeliELite_scraps.burnable = false;
             HeliELite_scraps.base_stats[S.health] = 100f;
@@ -615,7 +581,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(HeliELite_scraps);
             AssetManager.buildings.loadSprites(HeliELite_scraps);
 
-            BuildingAsset OmegaRailgun_scraps = AssetManager.buildings.clone("OmegaRailgun_scraps", "!building");
+            BuildingAsset OmegaRailgun_scraps = AssetManager.buildings.clone("OmegaRailgun_scraps", "scraps");
             OmegaRailgun_scraps.affected_by_drought = false;
 		    OmegaRailgun_scraps.burnable = false;
             OmegaRailgun_scraps.base_stats[S.health] = 100f;
@@ -635,7 +601,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(OmegaRailgun_scraps);
             AssetManager.buildings.loadSprites(OmegaRailgun_scraps);
 
-            BuildingAsset SpaceMarine_scraps = AssetManager.buildings.clone("SpaceMarine_scraps", "!building");
+            BuildingAsset SpaceMarine_scraps = AssetManager.buildings.clone("SpaceMarine_scraps", "scraps");
             SpaceMarine_scraps.affected_by_drought = false;
 		    SpaceMarine_scraps.burnable = false;
             SpaceMarine_scraps.base_stats[S.health] = 100f;
@@ -655,7 +621,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(SpaceMarine_scraps);
             AssetManager.buildings.loadSprites(SpaceMarine_scraps);
 
-            BuildingAsset TIEfighter_scraps = AssetManager.buildings.clone("TIEfighter_scraps", "!building");
+            BuildingAsset TIEfighter_scraps = AssetManager.buildings.clone("TIEfighter_scraps", "scraps");
             TIEfighter_scraps.affected_by_drought = false;
 		    TIEfighter_scraps.burnable = false;
             TIEfighter_scraps.base_stats[S.health] = 100f;
@@ -675,7 +641,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(TIEfighter_scraps);
             AssetManager.buildings.loadSprites(TIEfighter_scraps);
 
-            BuildingAsset wheeledtank_scraps = AssetManager.buildings.clone("wheeledtank_scraps", "!building");
+            BuildingAsset wheeledtank_scraps = AssetManager.buildings.clone("wheeledtank_scraps", "scraps");
             wheeledtank_scraps.affected_by_drought = false;
 		    wheeledtank_scraps.burnable = false;
             wheeledtank_scraps.base_stats[S.health] = 100f;
@@ -695,7 +661,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(wheeledtank_scraps);
             AssetManager.buildings.loadSprites(wheeledtank_scraps);
 
-            BuildingAsset Terran_scraps = AssetManager.buildings.clone("Terran_scraps", "!building");
+            BuildingAsset Terran_scraps = AssetManager.buildings.clone("Terran_scraps", "scraps");
             Terran_scraps.affected_by_drought = false;
 		    Terran_scraps.burnable = false;
             Terran_scraps.base_stats[S.health] = 100f;
@@ -715,7 +681,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Terran_scraps);
             AssetManager.buildings.loadSprites(Terran_scraps);
 
-            BuildingAsset MissileSystem_scraps = AssetManager.buildings.clone("MissileSystem_scraps", "!building");
+            BuildingAsset MissileSystem_scraps = AssetManager.buildings.clone("MissileSystem_scraps", "scraps");
             MissileSystem_scraps.affected_by_drought = false;
 		    MissileSystem_scraps.burnable = false;
             MissileSystem_scraps.base_stats[S.health] = 100f;
@@ -735,7 +701,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(MissileSystem_scraps);
             AssetManager.buildings.loadSprites(MissileSystem_scraps);
 
-            BuildingAsset Railgun_scraps = AssetManager.buildings.clone("Railgun_scraps", "!building");
+            BuildingAsset Railgun_scraps = AssetManager.buildings.clone("Railgun_scraps", "scraps");
             Railgun_scraps.affected_by_drought = false;
 		    Railgun_scraps.burnable = false;
             Railgun_scraps.base_stats[S.health] = 100f;
@@ -755,7 +721,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Railgun_scraps);
             AssetManager.buildings.loadSprites(Railgun_scraps);
 
-            BuildingAsset Humvee_scraps = AssetManager.buildings.clone("Humvee_scraps", "!building");
+            BuildingAsset Humvee_scraps = AssetManager.buildings.clone("Humvee_scraps", "scraps");
             Humvee_scraps.affected_by_drought = false;
 		    Humvee_scraps.burnable = false;
             Humvee_scraps.base_stats[S.health] = 100f;
@@ -775,7 +741,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Humvee_scraps);
             AssetManager.buildings.loadSprites(Humvee_scraps);
 
-            BuildingAsset Tank_scraps = AssetManager.buildings.clone("Tank_scraps", "!building");
+            BuildingAsset Tank_scraps = AssetManager.buildings.clone("Tank_scraps", "scraps");
             Tank_scraps.affected_by_drought = false;
 		    Tank_scraps.burnable = false;
             Tank_scraps.base_stats[S.health] = 100f;
@@ -795,7 +761,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Tank_scraps);
             AssetManager.buildings.loadSprites(Tank_scraps);
 
-            BuildingAsset FighterJet_scraps = AssetManager.buildings.clone("FighterJet_scraps", "!building");
+            BuildingAsset FighterJet_scraps = AssetManager.buildings.clone("FighterJet_scraps", "scraps");
             FighterJet_scraps.affected_by_drought = false;
 		    FighterJet_scraps.burnable = false;
             FighterJet_scraps.base_stats[S.health] = 100f;
@@ -815,7 +781,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(FighterJet_scraps);
             AssetManager.buildings.loadSprites(FighterJet_scraps);
 
-            BuildingAsset MIRVBomber_scraps = AssetManager.buildings.clone("MIRVBomber_scraps", "!building");
+            BuildingAsset MIRVBomber_scraps = AssetManager.buildings.clone("MIRVBomber_scraps", "scraps");
             MIRVBomber_scraps.affected_by_drought = false;
 		    MIRVBomber_scraps.burnable = false;
             MIRVBomber_scraps.base_stats[S.health] = 100f;
@@ -835,7 +801,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(MIRVBomber_scraps);
             AssetManager.buildings.loadSprites(MIRVBomber_scraps);
 
-            BuildingAsset Zeppelin_scraps = AssetManager.buildings.clone("Zeppelin_scraps", "!building");
+            BuildingAsset Zeppelin_scraps = AssetManager.buildings.clone("Zeppelin_scraps", "scraps");
             Zeppelin_scraps.affected_by_drought = false;
 		    Zeppelin_scraps.burnable = false;
             Zeppelin_scraps.base_stats[S.health] = 100f;
@@ -855,7 +821,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Zeppelin_scraps);
             AssetManager.buildings.loadSprites(Zeppelin_scraps);
 
-            BuildingAsset Drone_scraps = AssetManager.buildings.clone("Drone_scraps", "!building");
+            BuildingAsset Drone_scraps = AssetManager.buildings.clone("Drone_scraps", "scraps");
             Drone_scraps.affected_by_drought = false;
 		    Drone_scraps.burnable = false;
             Drone_scraps.base_stats[S.health] = 100f;
@@ -875,7 +841,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Drone_scraps);
             AssetManager.buildings.loadSprites(Drone_scraps);
 
-            BuildingAsset Gunship_scraps = AssetManager.buildings.clone("Gunship_scraps", "!building");
+            BuildingAsset Gunship_scraps = AssetManager.buildings.clone("Gunship_scraps", "scraps");
             Gunship_scraps.affected_by_drought = false;
 		    Gunship_scraps.burnable = false;
             Gunship_scraps.base_stats[S.health] = 100f;
@@ -895,7 +861,7 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.add(Gunship_scraps);
             AssetManager.buildings.loadSprites(Gunship_scraps);
 
-            BuildingAsset Heli_scraps = AssetManager.buildings.clone("Heli_scraps", "!building");
+            BuildingAsset Heli_scraps = AssetManager.buildings.clone("Heli_scraps", "scraps");
             Heli_scraps.affected_by_drought = false;
 		    Heli_scraps.burnable = false;
             Heli_scraps.base_stats[S.health] = 100f;
@@ -914,8 +880,382 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
             AssetManager.buildings.addResource("common_metals", 10, false);
             AssetManager.buildings.add(Heli_scraps);
             AssetManager.buildings.loadSprites(Heli_scraps);
-			
-	
+
+
+            BuildingAsset americanbomberww_scraps = AssetManager.buildings.clone("americanbomberww_scraps", "scraps");
+            americanbomberww_scraps.affected_by_drought = false;
+		    americanbomberww_scraps.burnable = false;
+            americanbomberww_scraps.base_stats[S.health] = 100f;
+            americanbomberww_scraps.has_ruins_graphics = false;
+		    americanbomberww_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    americanbomberww_scraps.race = "nature";
+            americanbomberww_scraps.kingdom = "nature";
+            americanbomberww_scraps.checkForCloseBuilding = false;
+		    americanbomberww_scraps.canBeLivingHouse = false;
+            americanbomberww_scraps.canBePlacedOnLiquid = true;
+            americanbomberww_scraps.ignoreBuildings = true;
+            americanbomberww_scraps.canBeHarvested = true;
+            americanbomberww_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            americanbomberww_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    americanbomberww_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 1, false);
+            AssetManager.buildings.add(americanbomberww_scraps);
+            AssetManager.buildings.loadSprites(americanbomberww_scraps);
+
+            BuildingAsset AT9000_scraps = AssetManager.buildings.clone("AT9000_scraps", "scraps");
+            AT9000_scraps.affected_by_drought = false;
+		    AT9000_scraps.burnable = false;
+            AT9000_scraps.base_stats[S.health] = 100f;
+            AT9000_scraps.has_ruins_graphics = false;
+		    AT9000_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    AT9000_scraps.race = "nature";
+            AT9000_scraps.kingdom = "nature";
+            AT9000_scraps.checkForCloseBuilding = false;
+		    AT9000_scraps.canBeLivingHouse = false;
+            AT9000_scraps.canBePlacedOnLiquid = true;
+            AT9000_scraps.ignoreBuildings = true;
+            AT9000_scraps.canBeHarvested = true;
+            AT9000_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            AT9000_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    AT9000_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(AT9000_scraps);
+            AssetManager.buildings.loadSprites(AT9000_scraps);
+
+
+BuildingAsset balloonunit_scraps = AssetManager.buildings.clone("balloonunit_scraps", "scraps");
+            balloonunit_scraps.affected_by_drought = false;
+		    balloonunit_scraps.burnable = false;
+            balloonunit_scraps.base_stats[S.health] = 100f;
+            balloonunit_scraps.has_ruins_graphics = false;
+		    balloonunit_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    balloonunit_scraps.race = "nature";
+            balloonunit_scraps.kingdom = "nature";
+            balloonunit_scraps.checkForCloseBuilding = false;
+		    balloonunit_scraps.canBeLivingHouse = false;
+            balloonunit_scraps.canBePlacedOnLiquid = true;
+            balloonunit_scraps.ignoreBuildings = true;
+            balloonunit_scraps.canBeHarvested = true;
+            balloonunit_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            balloonunit_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    balloonunit_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(balloonunit_scraps);
+            AssetManager.buildings.loadSprites(balloonunit_scraps);
+
+            BuildingAsset bigtankww_scraps = AssetManager.buildings.clone("bigtankww_scraps", "scraps");
+            bigtankww_scraps.affected_by_drought = false;
+		    bigtankww_scraps.burnable = false;
+            bigtankww_scraps.base_stats[S.health] = 100f;
+            bigtankww_scraps.has_ruins_graphics = false;
+		    bigtankww_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    bigtankww_scraps.race = "nature";
+            bigtankww_scraps.kingdom = "nature";
+            bigtankww_scraps.checkForCloseBuilding = false;
+		    bigtankww_scraps.canBeLivingHouse = false;
+            bigtankww_scraps.canBePlacedOnLiquid = true;
+            bigtankww_scraps.ignoreBuildings = true;
+            bigtankww_scraps.canBeHarvested = true;
+            bigtankww_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            bigtankww_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    bigtankww_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(bigtankww_scraps);
+            AssetManager.buildings.loadSprites(bigtankww_scraps);
+
+BuildingAsset biplane_scraps = AssetManager.buildings.clone("biplane_scraps", "scraps");
+            biplane_scraps.affected_by_drought = false;
+		    biplane_scraps.burnable = false;
+            biplane_scraps.base_stats[S.health] = 100f;
+            biplane_scraps.has_ruins_graphics = false;
+		    biplane_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    biplane_scraps.race = "nature";
+            biplane_scraps.kingdom = "nature";
+            biplane_scraps.checkForCloseBuilding = false;
+		    biplane_scraps.canBeLivingHouse = false;
+            biplane_scraps.canBePlacedOnLiquid = true;
+            biplane_scraps.ignoreBuildings = true;
+            biplane_scraps.canBeHarvested = true;
+            biplane_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            biplane_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    biplane_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(biplane_scraps);
+            AssetManager.buildings.loadSprites(biplane_scraps);
+
+
+BuildingAsset davincitank_scraps = AssetManager.buildings.clone("davincitank_scraps", "scraps");
+            davincitank_scraps.affected_by_drought = false;
+		    davincitank_scraps.burnable = false;
+            davincitank_scraps.base_stats[S.health] = 100f;
+            davincitank_scraps.has_ruins_graphics = false;
+		    davincitank_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    davincitank_scraps.race = "nature";
+            davincitank_scraps.kingdom = "nature";
+            davincitank_scraps.checkForCloseBuilding = false;
+		    davincitank_scraps.canBeLivingHouse = false;
+            davincitank_scraps.canBePlacedOnLiquid = true;
+            davincitank_scraps.ignoreBuildings = true;
+            davincitank_scraps.canBeHarvested = true;
+            davincitank_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            davincitank_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    davincitank_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(davincitank_scraps);
+            AssetManager.buildings.loadSprites(davincitank_scraps);
+
+            BuildingAsset genericwwtank_scraps = AssetManager.buildings.clone("genericwwtank_scraps", "scraps");
+            genericwwtank_scraps.affected_by_drought = false;
+		    genericwwtank_scraps.burnable = false;
+            genericwwtank_scraps.base_stats[S.health] = 100f;
+            genericwwtank_scraps.has_ruins_graphics = false;
+		    genericwwtank_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    genericwwtank_scraps.race = "nature";
+            genericwwtank_scraps.kingdom = "nature";
+            genericwwtank_scraps.checkForCloseBuilding = false;
+		    genericwwtank_scraps.canBeLivingHouse = false;
+            genericwwtank_scraps.canBePlacedOnLiquid = true;
+            genericwwtank_scraps.ignoreBuildings = true;
+            genericwwtank_scraps.canBeHarvested = true;
+            genericwwtank_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            genericwwtank_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    genericwwtank_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(genericwwtank_scraps);
+            AssetManager.buildings.loadSprites(genericwwtank_scraps);
+
+            BuildingAsset HumanTitan_scraps = AssetManager.buildings.clone("HumanTitan_scraps", "scraps");
+            HumanTitan_scraps.affected_by_drought = false;
+		    HumanTitan_scraps.burnable = false;
+            HumanTitan_scraps.base_stats[S.health] = 100f;
+            HumanTitan_scraps.has_ruins_graphics = false;
+		    HumanTitan_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    HumanTitan_scraps.race = "nature";
+            HumanTitan_scraps.kingdom = "nature";
+            HumanTitan_scraps.checkForCloseBuilding = false;
+		    HumanTitan_scraps.canBeLivingHouse = false;
+            HumanTitan_scraps.canBePlacedOnLiquid = true;
+            HumanTitan_scraps.ignoreBuildings = true;
+            HumanTitan_scraps.canBeHarvested = true;
+            HumanTitan_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            HumanTitan_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    HumanTitan_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(HumanTitan_scraps);
+            AssetManager.buildings.loadSprites(HumanTitan_scraps);
+
+            BuildingAsset shermanww_scraps = AssetManager.buildings.clone("shermanww_scraps", "scraps");
+            shermanww_scraps.affected_by_drought = false;
+		    shermanww_scraps.burnable = false;
+            shermanww_scraps.base_stats[S.health] = 100f;
+            shermanww_scraps.has_ruins_graphics = false;
+		    shermanww_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    shermanww_scraps.race = "nature";
+            shermanww_scraps.kingdom = "nature";
+            shermanww_scraps.checkForCloseBuilding = false;
+		    shermanww_scraps.canBeLivingHouse = false;
+            shermanww_scraps.canBePlacedOnLiquid = true;
+            shermanww_scraps.ignoreBuildings = true;
+            shermanww_scraps.canBeHarvested = true;
+            shermanww_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            shermanww_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    shermanww_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(shermanww_scraps);
+            AssetManager.buildings.loadSprites(shermanww_scraps);
+
+            BuildingAsset HumanTitanElite_scraps = AssetManager.buildings.clone("HumanTitanElite_scraps", "scraps");
+            HumanTitanElite_scraps.affected_by_drought = false;
+		    HumanTitanElite_scraps.burnable = false;
+            HumanTitanElite_scraps.base_stats[S.health] = 100f;
+            HumanTitanElite_scraps.has_ruins_graphics = false;
+		    HumanTitanElite_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    HumanTitanElite_scraps.race = "nature";
+            HumanTitanElite_scraps.kingdom = "nature";
+            HumanTitanElite_scraps.checkForCloseBuilding = false;
+		    HumanTitanElite_scraps.canBeLivingHouse = false;
+            HumanTitanElite_scraps.canBePlacedOnLiquid = true;
+            HumanTitanElite_scraps.ignoreBuildings = true;
+            HumanTitanElite_scraps.canBeHarvested = true;
+            HumanTitanElite_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            HumanTitanElite_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    HumanTitanElite_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(HumanTitanElite_scraps);
+            AssetManager.buildings.loadSprites(HumanTitanElite_scraps);
+
+            BuildingAsset landship_scraps = AssetManager.buildings.clone("landship_scraps", "scraps");
+            landship_scraps.affected_by_drought = false;
+		    landship_scraps.burnable = false;
+            landship_scraps.base_stats[S.health] = 100f;
+            landship_scraps.has_ruins_graphics = false;
+		    landship_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    landship_scraps.race = "nature";
+            landship_scraps.kingdom = "nature";
+            landship_scraps.checkForCloseBuilding = false;
+		    landship_scraps.canBeLivingHouse = false;
+            landship_scraps.canBePlacedOnLiquid = true;
+            landship_scraps.ignoreBuildings = true;
+            landship_scraps.canBeHarvested = true;
+            landship_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            landship_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    landship_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(landship_scraps);
+            AssetManager.buildings.loadSprites(landship_scraps);
+
+            BuildingAsset MA9000_scraps = AssetManager.buildings.clone("MA9000_scraps", "scraps");
+            MA9000_scraps.affected_by_drought = false;
+		    MA9000_scraps.burnable = false;
+            MA9000_scraps.base_stats[S.health] = 100f;
+            MA9000_scraps.has_ruins_graphics = false;
+		    MA9000_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    MA9000_scraps.race = "nature";
+            MA9000_scraps.kingdom = "nature";
+            MA9000_scraps.checkForCloseBuilding = false;
+		    MA9000_scraps.canBeLivingHouse = false;
+            MA9000_scraps.canBePlacedOnLiquid = true;
+            MA9000_scraps.ignoreBuildings = true;
+            MA9000_scraps.canBeHarvested = true;
+            MA9000_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            MA9000_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    MA9000_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(MA9000_scraps);
+            AssetManager.buildings.loadSprites(MA9000_scraps);
+
+            BuildingAsset modernhumvee_scraps = AssetManager.buildings.clone("modernhumvee_scraps", "scraps");
+            modernhumvee_scraps.affected_by_drought = false;
+		    modernhumvee_scraps.burnable = false;
+            modernhumvee_scraps.base_stats[S.health] = 100f;
+            modernhumvee_scraps.has_ruins_graphics = false;
+		    modernhumvee_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    modernhumvee_scraps.race = "nature";
+            modernhumvee_scraps.kingdom = "nature";
+            modernhumvee_scraps.checkForCloseBuilding = false;
+		    modernhumvee_scraps.canBeLivingHouse = false;
+            modernhumvee_scraps.canBePlacedOnLiquid = true;
+            modernhumvee_scraps.ignoreBuildings = true;
+            modernhumvee_scraps.canBeHarvested = true;
+            modernhumvee_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            modernhumvee_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    modernhumvee_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(modernhumvee_scraps);
+            AssetManager.buildings.loadSprites(modernhumvee_scraps);
+
+            BuildingAsset modernsupporttruck_scraps = AssetManager.buildings.clone("modernsupporttruck_scraps", "scraps");
+            modernsupporttruck_scraps.affected_by_drought = false;
+		    modernsupporttruck_scraps.burnable = false;
+            modernsupporttruck_scraps.base_stats[S.health] = 100f;
+            modernsupporttruck_scraps.has_ruins_graphics = false;
+		    modernsupporttruck_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    modernsupporttruck_scraps.race = "nature";
+            modernsupporttruck_scraps.kingdom = "nature";
+            modernsupporttruck_scraps.checkForCloseBuilding = false;
+		    modernsupporttruck_scraps.canBeLivingHouse = false;
+            modernsupporttruck_scraps.canBePlacedOnLiquid = true;
+            modernsupporttruck_scraps.ignoreBuildings = true;
+            modernsupporttruck_scraps.canBeHarvested = true;
+            modernsupporttruck_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            modernsupporttruck_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    modernsupporttruck_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(modernsupporttruck_scraps);
+            AssetManager.buildings.loadSprites(modernsupporttruck_scraps);
+
+            BuildingAsset tankie_scraps = AssetManager.buildings.clone("tankie_scraps", "scraps");
+            tankie_scraps.affected_by_drought = false;
+		    tankie_scraps.burnable = false;
+            tankie_scraps.base_stats[S.health] = 100f;
+            tankie_scraps.has_ruins_graphics = false;
+		    tankie_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    tankie_scraps.race = "nature";
+            tankie_scraps.kingdom = "nature";
+            tankie_scraps.checkForCloseBuilding = false;
+		    tankie_scraps.canBeLivingHouse = false;
+            tankie_scraps.canBePlacedOnLiquid = true;
+            tankie_scraps.ignoreBuildings = true;
+            tankie_scraps.canBeHarvested = true;
+            tankie_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            tankie_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    tankie_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(tankie_scraps);
+            AssetManager.buildings.loadSprites(tankie_scraps);
+
+            BuildingAsset teslatruckgun_scraps = AssetManager.buildings.clone("teslatruckgun_scraps", "scraps");
+            teslatruckgun_scraps.affected_by_drought = false;
+		    teslatruckgun_scraps.burnable = false;
+            teslatruckgun_scraps.base_stats[S.health] = 100f;
+            teslatruckgun_scraps.has_ruins_graphics = false;
+		    teslatruckgun_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    teslatruckgun_scraps.race = "nature";
+            teslatruckgun_scraps.kingdom = "nature";
+            teslatruckgun_scraps.checkForCloseBuilding = false;
+		    teslatruckgun_scraps.canBeLivingHouse = false;
+            teslatruckgun_scraps.canBePlacedOnLiquid = true;
+            teslatruckgun_scraps.ignoreBuildings = true;
+            teslatruckgun_scraps.canBeHarvested = true;
+            teslatruckgun_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            teslatruckgun_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    teslatruckgun_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(teslatruckgun_scraps);
+            AssetManager.buildings.loadSprites(teslatruckgun_scraps);
+
+            BuildingAsset wwartillery_scraps = AssetManager.buildings.clone("wwartillery_scraps", "scraps");
+            wwartillery_scraps.affected_by_drought = false;
+		    wwartillery_scraps.burnable = false;
+            wwartillery_scraps.base_stats[S.health] = 100f;
+            wwartillery_scraps.has_ruins_graphics = false;
+		    wwartillery_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    wwartillery_scraps.race = "nature";
+            wwartillery_scraps.kingdom = "nature";
+            wwartillery_scraps.checkForCloseBuilding = false;
+		    wwartillery_scraps.canBeLivingHouse = false;
+            wwartillery_scraps.canBePlacedOnLiquid = true;
+            wwartillery_scraps.ignoreBuildings = true;
+            wwartillery_scraps.canBeHarvested = true;
+            wwartillery_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            wwartillery_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    wwartillery_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(wwartillery_scraps);
+            AssetManager.buildings.loadSprites(wwartillery_scraps);
+
+            BuildingAsset wwsupporttruck_scraps = AssetManager.buildings.clone("wwsupporttruck_scraps", "scraps");
+            wwsupporttruck_scraps.affected_by_drought = false;
+		    wwsupporttruck_scraps.burnable = false;
+            wwsupporttruck_scraps.base_stats[S.health] = 100f;
+            wwsupporttruck_scraps.has_ruins_graphics = false;
+		    wwsupporttruck_scraps.fundament = new BuildingFundament(1, 0, 1, 0);
+		    wwsupporttruck_scraps.race = "nature";
+            wwsupporttruck_scraps.kingdom = "nature";
+            wwsupporttruck_scraps.checkForCloseBuilding = false;
+		    wwsupporttruck_scraps.canBeLivingHouse = false;
+            wwsupporttruck_scraps.canBePlacedOnLiquid = true;
+            wwsupporttruck_scraps.ignoreBuildings = true;
+            wwsupporttruck_scraps.canBeHarvested = true;
+            wwsupporttruck_scraps.setShadow(0.5f, 0.03f, 0.12f);
+            wwsupporttruck_scraps.sound_built = "event:/SFX/BUILDINGS/SpawnBuildingGeneric";
+		    wwsupporttruck_scraps.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.addResource("common_metals", 10, false);
+            AssetManager.buildings.add(wwsupporttruck_scraps);
+            AssetManager.buildings.loadSprites(wwsupporttruck_scraps);
+
+
+
+
+//ProfessionAsset kingskinfix = AssetManager.professions.get("king");
+//kingskinfix.use_skin_culture = true;
+
+//ProfessionAsset leaderskinfix = AssetManager.professions.get("leader");
+//leaderskinfix.use_skin_culture = true;
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     MethodInfo original = typeof(BuildOrder).GetMethod(nameof(BuildOrder.getBuildingAsset), BindingFlags.Instance | BindingFlags.Public);
     MethodInfo prefix = typeof(Commerce).GetMethod(nameof(getBuildingAsset_Prefix), BindingFlags.Static | BindingFlags.NonPublic);
     harmony.Patch(original, new HarmonyMethod(prefix));
@@ -924,6 +1264,70 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
     harmony.Patch(original, new HarmonyMethod(prefix));
   }
 
+
+
+      private static void AddBuildingOrderKeysToCivRaces1(string key, string value)
+    {
+        foreach (Race race in AssetManager.raceLibrary.list.Where(r => r.civilization))
+        {
+            race.building_order_keys[key] = value;
+        }
+    }
+
+    private static void loadSprites1(BuildingAsset asset)
+    {
+        AssetManager.buildings.loadSprites(asset);
+    }
+
+
+[HarmonyPatch(typeof(BuildOrder), "getBuildingAsset")]
+public static class BuildOrder_GetBuildingAsset_Patch
+{
+    static bool Prefix(Asset __instance, ref BuildingAsset __result, City pCity, string pBuildingID = null)
+    {
+        if (string.IsNullOrEmpty(pBuildingID))
+            pBuildingID = __instance.id;
+        try
+        {
+            string orderKey = pCity.race.building_order_keys[pBuildingID];
+            __result = AssetManager.buildings.get(orderKey);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Failed to get building order key for " + pBuildingID + ": " + e.Message);
+        }
+        return false;
+    }
+}
+
+[HarmonyPatch(typeof(ai.behaviours.CityBehBuild), "haveRequiredBuildings")]
+public static class CityBehBuild_HaveRequiredBuildings_Patch
+{
+    static bool Prefix(BuildOrder pOrder, City pCity, ref bool __result)
+    {
+        if (pOrder == null || pOrder.requirements_orders == null || pOrder.requirements_orders.Count == 0)
+        {
+            __result = true;
+            return false;
+        }
+        foreach (string req in pOrder.requirements_orders)
+        {
+            BuildingAsset reqAsset = pOrder.getBuildingAsset(pCity, req);
+            if (reqAsset == null || pCity.countBuildingExact(reqAsset.id) == 0)
+            {
+                __result = false;
+                return false;
+            }
+        }
+        __result = true;
+        return false;
+    }
+}
+
+
+
+
+/*
   public static void toggleDrones() {
     Main.modifyBoolOption("DronesOption", PowerButtons.GetToggleValue("Drones_Toggle"));
     if (PowerButtons.GetToggleValue("Drones_Toggle")) {
@@ -1038,13 +1442,13 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
     }
   }
 
-   public static void turnOnSoldiers() { SetFactorySpawnUnits("ModernBarracks", true);
+   public static void turnOnSoldiers() { SetFactorySpawnUnits("Barracks_modern_human", true);
       RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
-      human.addBuilding("order_ModernBarracks", 1, pPop : 50, pBuildings : 16);
-  AddBuildingOrderKeysToCivRaces("order_ModernBarracks", "ModernBarracks"); }
+      human.addBuilding("order_Barracks_modern_human", 1, pPop : 50, pBuildings : 16);
+  AddBuildingOrderKeysToCivRaces("order_Barracks_modern_human", "Barracks_modern_human"); }
 
   public static void turnOffSoldiers()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
-			RemoveBuilding(human, "order_ModernBarracks"); }
+			RemoveBuilding(human, "order_Barracks_modern_human"); }
 
 
         public static void toggleRailgunFactory()
@@ -1182,13 +1586,23 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
   public static void turnOffGunshipFactory()  { RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
 			RemoveBuilding(human, "order_GunshipFactory"); }
 
-
+  private static void SetFactoriesSpawnDrone(bool spawn) {
+    List<string> droneIDs = new List<string>{"DroneFactory"};
+    foreach (string droneID in droneIDs) {
+      BuildingAsset dronefac = AssetManager.buildings.get(droneID);
+      if (dronefac != null) {
+        dronefac.spawnUnits = true;
+      }
+    }
+  }
+  */
 
 
 	private static void SetFactorySpawnUnits(string factoryID, bool spawn) {
 		BuildingAsset factory = AssetManager.buildings.get(factoryID);
 		if (factory != null) {
 			factory.spawnUnits = spawn;
+
 
     RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
 
@@ -1205,18 +1619,6 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
 		}
 	}
 
-
-
-  private static void SetFactoriesSpawnDrone(bool spawn) {
-    List<string> droneIDs = new List<string>{"DroneFactory"};
-    foreach (string droneID in droneIDs) {
-      BuildingAsset dronefac = AssetManager.buildings.get(droneID);
-      if (dronefac != null) {
-        dronefac.spawnUnits = true;
-      }
-    }
-  }
-  
   public static void toggleNukes() {
     Main.modifyBoolOption("NukeOption", PowerButtons.GetToggleValue("Nuke_toggle"));
     if (PowerButtons.GetToggleValue("Nuke_toggle")) {
@@ -1232,14 +1634,12 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
       RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
 
       human.addBuilding("order_MissileSilo", 1, pPop : 50, pBuildings : 16);
-
-  AddBuildingOrderKeysToCivRaces("order_MissileSilo", "MissileSilo"); 
-  
+  AddBuildingOrderKeysToCivRaces("order_MissileSilo", "MissileSilo");
   }
 
-  public static void turnOffNukes() { 	      RaceBuildOrderAsset human = AssetManager.race_build_orders.get("kingdom_base");
-
-			RemoveBuilding(human, "order_MissileSilo"); }
+  public static void turnOffNukes() {
+      RemoveBuildingOrderKeysToCivRaces("order_MissileSilo", "MissileSilo");
+}
 
 
   private static void OpenNukeWindow() {
@@ -1249,6 +1649,56 @@ BuildingAsset eliteGunship_scraps = AssetManager.buildings.clone("eliteGunship_s
 
   }
   
+    private static void AddBuildingOrderKeysToCivRaces(string key, string value)
+    {
+        foreach (Race race in AssetManager.raceLibrary.list.Where(r => r.civilization))
+        {
+            race.building_order_keys[key] = value;
+        }
+    }
+
+
+    /*
+public static void toggleRenaissance() {
+    Main.modifyBoolOption("RenaissanceOption", PowerButtons.GetToggleValue("Renaissance_toggle"));
+    if (PowerButtons.GetToggleValue("Renaissance_toggle")) {
+      turnOnRenaissance();
+    } else {
+      turnOffRenaissance();
+    }
+  }
+
+  public static void turnOnRenaissance()
+  {
+  EnableTech("Renaissance");
+  }
+
+  public static void turnOffRenaissance() {
+  DisableTech("Renaissance");
+}
+
+
+public static void EnableTech(string techId)
+{
+    foreach (Race race in AssetManager.raceLibrary.list.Where(r => r.civilization))
+    {
+        race.culture_forbidden_tech.Remove(techId);
+    }
+}
+
+public static void DisableTech(string techId)
+{
+    foreach (Race race in AssetManager.raceLibrary.list.Where(r => r.civilization))
+    {
+        if (!race.culture_forbidden_tech.Contains(techId))
+            race.culture_forbidden_tech.Add(techId);
+    }
+}
+
+*/
+
+
+
   private static bool getBuildingAsset_Prefix(Asset __instance, ref BuildingAsset __result, City pCity, string pBuildingID = null) {
     if (string.IsNullOrEmpty(pBuildingID))
       pBuildingID = __instance.id;
@@ -1319,18 +1769,16 @@ private static bool Building_checkSpriteToRender_Prefix(Building __instance) {
     return false;
 }
 
-
-  private static void AddBuildingOrderKeysToCivRaces(string key, string value) {
-    foreach (Race race in AssetManager.raceLibrary.list.Where(race => race.civilization)) {
-      race.building_order_keys.Add(key, value);
+  private static void RemoveBuildingOrderKeysToCivRaces(string key, string value)
+    {
+        foreach (Race race in AssetManager.raceLibrary.list.Where(r => r.civilization))
+        {
+            if (race.building_order_keys.ContainsKey(key))
+            {
+                race.building_order_keys.Remove(key);
+            }
+        }
     }
-  }
-  private static void RemoveBuildingOrderKeysToCivRaces(string key, string value) {
-    foreach (Race race in AssetManager.raceLibrary.list.Where(race => race.civilization)) {
-        race.building_order_keys.Remove(key, out value);
-    }
-  }
-  
       public static void RemoveBuilding(RaceBuildOrderAsset raceBuildOrder, string buildingID) {
         if (raceBuildOrder == null || raceBuildOrder.list == null) {
             UnityEngine.Debug.LogError("RaceBuildOrderAsset or its list is null.");
@@ -1347,31 +1795,361 @@ private static bool Building_checkSpriteToRender_Prefix(Building __instance) {
         }
     }
 	
-        [HarmonyPatch(typeof(BaseSimObject), "findEnemyObjectTarget")]
-        [HarmonyPrefix]
-        public static bool findEnemyObjectTarget_prefix(BaseSimObject __instance, ref BaseSimObject __result)
-        {
-            bool pFindClosest = Toolbox.randomChance(0.6f);
-            int range = -1; 
+       [HarmonyPatch(typeof(BaseSimObject), "findEnemyObjectTarget")]
+[HarmonyPrefix]
+public static bool findEnemyObjectTarget_prefix(BaseSimObject __instance, ref BaseSimObject __result)
+{
+    bool pFindClosest = Toolbox.randomChance(0.6f);
+    int range = -1;
+    if (__instance is Building building && building.asset.id == "MissileSilo")
+    {
+        range = 25;
+    }
+    EnemyFinderData enemyFinderData = EnemiesFinder.findEnemiesFrom(__instance.currentTile, __instance.kingdom, range);
+    if (enemyFinderData.list == null)
+    {
+        __result = null;
+        return false;
+    }
+    BaseSimObject candidate = null;
+    __instance.checkObjectList(enemyFinderData.list, pFindClosest, out candidate);
 
-            if (__instance is Building d && d.asset.id == "MissileSilo")
-            { 
-                range = 25; 
-            }
-            EnemyFinderData enemyFinderData = EnemiesFinder.findEnemiesFrom(__instance.currentTile, __instance.kingdom, range);
-            if (enemyFinderData.list == null)
+    if (__instance is Building silo && silo.asset.id == "MissileSilo" && __instance.kingdom != null)
+    {
+        if (candidate != null && candidate.kingdom == __instance.kingdom)
+        {
+            __result = null;
+            return false;
+        }
+        if (candidate?.a != null)
+        {
+            if (candidate.a.data.health < 10000)
             {
                 __result = null;
                 return false;
             }
-
-            BaseSimObject result = null;
-            __instance.checkObjectList(enemyFinderData.list, pFindClosest, out result);
-            __result = result;
-            return false;
         }
-    
-	
+    }
+    __result = candidate;
+    return false;
+}
+
+
+
+
+
+
+[HarmonyPatch(typeof(ActorBase), "getUnitTexturePath")]
+public static class ActorBase_getUnitTexturePath_Patch
+{
+      /////////////////SOLDIER/////////////////////
+    /////////////////////////////////////////////
+    static string GetFutureSoldierTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Soldier_future_human";
+            case "orc":   return "Soldier_future_orc";
+            case "elf":   return "Soldier_future_elf";
+            case "dwarf": return "Soldier_future_dwarf";
+            default:
+                return "Soldier_future_human";
+        }
+    }
+      static string GetModernSoldierTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Soldier_modern_human";
+            case "orc":   return "Soldier_modern_orc";
+            case "elf":   return "Soldier_modern_elf";
+            case "dwarf": return "Soldier_modern_dwarf";
+            default:
+                return "Soldier_modern_human";
+        }
+    }
+    static string GetIndustrialSoldierTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Soldier_industrial_human";
+            case "orc":   return "Soldier_industrial_orc";
+            case "elf":   return "Soldier_industrial_elf";
+            case "dwarf": return "Soldier_industrial_dwarf";
+            default:
+                return "Soldier_industrial_human";
+        }
+    }
+    static string GetMedievalSoldierTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Soldier_medieval_human";
+            case "orc":   return "Soldier_medieval_orc";
+            case "elf":   return "Soldier_medieval_elf";
+            case "dwarf": return "Soldier_medieval_dwarf";
+            default:
+                return "Soldier_medieval_human";
+        }
+    }
+    //////////////////LEADER//////////////////////
+    /////////////////////////////////////////////
+    static string GetModernLeaderTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Leader_modern_human";
+            case "orc":   return "Leader_modern_orc";
+            case "elf":   return "Leader_modern_elf";
+            case "dwarf": return "Leader_modern_dwarf";
+            default:
+                return "Leader_modern_human";
+        }
+    }
+    static string GetRainLeaderTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Leader_rain_human";
+            case "orc":   return "Leader_rain_orc";
+            case "elf":   return "Leader_rain_elf";
+            case "dwarf": return "Leader_rain_dwarf";
+            default:
+                return "Leader_rain_human";
+        }
+    }
+        /////////////////KING//////////////////////
+    /////////////////////////////////////////////
+     static string GetModernKingTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "King_modern_human";
+            case "orc":   return "King_modern_orc";
+            case "elf":   return "King_modern_elf";
+            case "dwarf": return "King_modern_dwarf";
+            default:
+                return "King_modern_human";
+        }
+    }
+    static string GetRainKingTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "King_rain_human";
+            case "orc":   return "King_rain_orc";
+            case "elf":   return "King_rain_elf";
+            case "dwarf": return "King_rain_dwarf";
+            default:
+                return "King_rain_human";
+        }
+    }
+        //////////////UNITS/CIVILIANS////////////////////
+    /////////////////////////////////////////////
+     static string GetModernUnitTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Unit_modern_human";
+            case "orc":   return "Unit_modern_orc";
+            case "elf":   return "Unit_modern_elf";
+            case "dwarf": return "Unit_modern_dwarf";
+            default:
+                return "Unit_modern_human";
+        }
+    }
+    static string GetRainUnitTexture(string race)
+    {
+        switch (race.ToLower())
+        {
+            case "human": return "Unit_rain_human";
+            case "orc":   return "Unit_rain_orc";
+            case "elf":   return "Unit_rain_elf";
+            case "dwarf": return "Unit_rain_dwarf";
+            default:
+                return "Unit_rain_human";
+        }
+    }
+        /////////////////////////////////////////////
+    /////////////////////////////////////////////
+
+    [HarmonyPostfix]
+    public static void Postfix(ActorBase __instance, ref string __result)
+    {
+        if (__instance.professionAsset.use_skin_culture &&
+            __instance.professionAsset.profession_id == UnitProfession.Warrior)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null)
+            {
+                string race = __instance.asset.race;
+                if (culture.hasTech("Future"))
+                {
+                    __result = GetFutureSoldierTexture(race);
+                }
+                 else if (culture.hasTech("MilitaryModern"))
+                {
+                    __result = GetModernSoldierTexture(race);
+                }
+                 else if (culture.hasTech("Industrial"))
+                {
+                    __result = GetIndustrialSoldierTexture(race);
+                }
+                else if (culture.hasTech("Renaissance"))
+                {
+                    __result = GetMedievalSoldierTexture(race);
+                }
+            }
+        }
+        else if (__instance.professionAsset.profession_id == UnitProfession.Leader)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null)
+            {
+                string race = __instance.asset.race;
+                if (culture.hasTech("MilitaryModern"))
+                {
+                    __result = GetModernLeaderTexture(race);
+                }
+                else if (culture.hasTech("Renaissance"))
+                {
+                    __result = GetRainLeaderTexture(race);
+                }
+            }
+        }
+         else if (__instance.professionAsset.profession_id == UnitProfession.King)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null)
+            {
+                string race = __instance.asset.race;
+                if (culture.hasTech("MilitaryModern"))
+                {
+                    __result = GetModernKingTexture(race);
+                }
+                else if (culture.hasTech("Renaissance"))
+                {
+                    __result = GetRainKingTexture(race);
+                }
+            }
+        }
+        else if (__instance.professionAsset.use_skin_culture &&
+            __instance.professionAsset.profession_id == UnitProfession.Unit)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null)
+            {
+                string race = __instance.asset.race;
+                if (culture.hasTech("MilitaryModern"))
+                {
+                    __result = GetModernUnitTexture(race);
+                }
+                else if (culture.hasTech("Renaissance"))
+                {
+                    __result = GetRainUnitTexture(race);
+                }
+            }
+        }
+    }
+}
+
+
+[HarmonyPatch(typeof(ActorBase), "checkSpriteHead")]
+public static class ActorBase_checkSpriteHead_Patch
+{
+    [HarmonyPrefix]
+    public static bool Prefix(ActorBase __instance)
+    {
+        if (!__instance.dirty_sprite_head)
+        {
+            return true;
+        }
+        if (__instance.asset.unit && __instance.data.profession == UnitProfession.Warrior)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance")))
+            {
+                __instance.dirty_sprite_head = false;
+                string pPath = "actors/Soldier_head";
+                __instance.setHeadSprite(ActorAnimationLoader.getHeadFromFullPath(pPath));
+                return false;
+            }
+        }
+        else if (__instance.asset.unit && __instance.data.profession == UnitProfession.King)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance")))
+            {
+                __instance.dirty_sprite_head = false;
+                string pPath = "actors/Soldier_head";
+                __instance.setHeadSprite(ActorAnimationLoader.getHeadFromFullPath(pPath));
+                return false;
+            }
+        }
+                else if (__instance.asset.unit && __instance.data.profession == UnitProfession.Leader)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance")))
+            {
+                __instance.dirty_sprite_head = false;
+                string pPath = "actors/Soldier_head";
+                __instance.setHeadSprite(ActorAnimationLoader.getHeadFromFullPath(pPath));
+                return false;
+            }
+        }
+                else if (__instance.asset.unit && __instance.data.profession == UnitProfession.Unit)
+        {
+            Culture culture = World.world.cultures.get(__instance.data.culture);
+            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance")))
+            {
+                __instance.dirty_sprite_head = false;
+                string pPath = "actors/Soldier_head";
+                __instance.setHeadSprite(ActorAnimationLoader.getHeadFromFullPath(pPath));
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+
+
+
+
+      [HarmonyPostfix]
+        [HarmonyPatch(typeof(ActorAnimationLoader), "generateFrameData")]
+
+        public static void generateFrameData_post(ActorAnimationLoader __instance,string pFrameString, AnimationContainerUnit pAnimContainer, Dictionary<string, Sprite> pFrames, string pFramesIDs)
+        {
+
+        }
+
+        public static Sprite[] loadAllSprite(string path, bool withFolders = false)
+        {
+            string p = $"{Main.mainPath}/EmbededResources/{path}";
+            DirectoryInfo folder = new DirectoryInfo(p);
+            List<Sprite> res = new List<Sprite>();
+            foreach (FileInfo file in folder.GetFiles("*.png"))
+            {
+                Sprite sprite = Sprites.LoadSprite($"{file.FullName}");
+                sprite.name = file.Name.Replace(".png", "");
+                res.Add(sprite);
+            }
+            foreach (DirectoryInfo cFolder in folder.GetDirectories())
+            {
+                foreach (FileInfo file in cFolder.GetFiles("*.png"))
+                {
+                    Sprite sprite = Sprites.LoadSprite($"{file.FullName}");
+                    sprite.name = file.Name.Replace(".png", "");
+                    res.Add(sprite);
+                }
+            }
+            return res.ToArray();
+        }
+
+
+
   private static Dictionary<string, Sprite[]> cached_sprite_list;
   internal static void loadSprites(BuildingAsset pTemplate) {
     if (cached_sprite_list is null) {

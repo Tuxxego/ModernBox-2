@@ -28,6 +28,8 @@ namespace M2
         public static Text GuideTab5;
         public static void init()
         {
+
+          /*
             ScrollWindow GuideWindow = Windows.CreateNewWindow("GuideWindow", null);
             GuideWindow.transform.Find("Background").Find("Scroll View").gameObject.SetActive(true);
             
@@ -124,6 +126,7 @@ namespace M2
             .Find("Content"));
             contentComponent5.SetActive(true);
             RTF5();
+            */
         }
         public static void RTF1()
         {

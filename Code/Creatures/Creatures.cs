@@ -29,7 +29,6 @@ namespace M2
   public static readonly string Terlanius;
 	//private static BiomeAsset Glitch;
 
-
         public static void init()
         {
             loadAssets();
@@ -329,6 +328,31 @@ namespace M2
             AssetManager.buildings.add(icewatchtower);
             AssetManager.buildings.loadSprites(icewatchtower);
 
+
+  BuildingAsset newicetower = AssetManager.buildings.clone("newicetower", "!building");
+            newicetower.affected_by_drought = false;
+		    newicetower.burnable = false;
+            newicetower.base_stats[S.health] = 500f;
+            newicetower.base_stats[S.damage] = 10f;
+		    newicetower.fundament = new BuildingFundament(1, 0, 1, 0);
+            newicetower.spawnUnits = true;
+		    newicetower.race = "walkers";
+            newicetower.kingdom = "walkers";
+            newicetower.spawnUnits_asset = "newwalker";
+            newicetower.draw_light_area = true;
+            newicetower.draw_light_size = 0.5f;
+		    newicetower.draw_light_area_offset_y = 8f;
+            newicetower.checkForCloseBuilding = false;
+		    newicetower.canBeLivingHouse = false;
+            newicetower.canBePlacedOnLiquid = false;
+            newicetower.ignoreBuildings = true;
+            newicetower.canBeHarvested = true;
+            newicetower.setShadow(0.5f, 0.03f, 0.12f);
+		    newicetower.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingGeneric";
+            AssetManager.buildings.add(newicetower);
+            AssetManager.buildings.loadSprites(newicetower);
+
+
             BuildingAsset walkercorpse = AssetManager.buildings.clone("walkercorpse", "!building");
             walkercorpse.affected_by_drought = false;
 		    walkercorpse.burnable = false;
@@ -382,8 +406,6 @@ namespace M2
             AssetManager.topTiles.loadSpritesForTile(cybertilehigh);
             MapBox.instance.tilemap.layers[cybertilehigh.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
 
-var icewalker = AssetManager.actor_library.get("walker");
- icewalker.traits.Add("Potential");
    var assimilatorin = AssetManager.actor_library.get("assimilator");
  assimilatorin.traits.Add("Potential");
  assimilatorin.traits.Add("SolarPoweredCyberBody");
@@ -391,7 +413,7 @@ var icewalker = AssetManager.actor_library.get("walker");
                        var glitchtarantula = AssetManager.actor_library.clone("glitchtarantula", "skeleton");
 		glitchtarantula.texture_path = "glitchtarantula";
         glitchtarantula.defaultAttack = "jaws";
-       glitchtarantula.base_stats[S.max_age] = 130;
+       glitchtarantula.base_stats[S.max_age] = 200f;
        glitchtarantula.base_stats[S.health] = 80;
        glitchtarantula.base_stats[S.damage] = 20;
        glitchtarantula.base_stats[S.armor] = 0;
@@ -544,10 +566,10 @@ var icewalker = AssetManager.actor_library.get("walker");
 			  DisasterAsset CyberDisaster = new DisasterAsset
         {
             id = "CyberDisaster",
-            rate = 1,
-            chance = 0.2f,
-            min_world_population = 1000,
-            min_world_cities = 4,
+            rate = 0,
+            chance = 0f,
+            min_world_population = 10000,
+            min_world_cities = 100,
             world_log = "worldlog_disaster_alien_invasion",
             world_log_icon = "SolarPoweredCyberBody",
             spawn_asset_unit = "Assimilatus",
@@ -567,10 +589,10 @@ var icewalker = AssetManager.actor_library.get("walker");
            DisasterAsset IceWalkerDisaster = new DisasterAsset
         {
             id = "IceWalkerDisaster",
-            rate = 1,
-            chance = 0.2f,
-            min_world_population = 1000,
-            min_world_cities = 4,
+            rate = 0,
+            chance = 0f,
+            min_world_population = 10000,
+            min_world_cities = 100,
             world_log = "worldlog_disaster_ice_ones",
             world_log_icon = "Walker_TitanIcon",
             spawn_asset_unit = "Cocytuswalker",
@@ -584,6 +606,28 @@ var icewalker = AssetManager.actor_library.get("walker");
         IceWalkerDisaster.ages_allow.Add(S.age_despair);
  		IceWalkerDisaster.action = simpleUnitAssetSpawnUsingIslands;
         AssetManager.disasters.add(IceWalkerDisaster);
+
+        	  DisasterAsset hashbrowncatdisaster = new DisasterAsset
+        {
+            id = "hashbrowncatdisaster",
+            rate = 1,
+            chance = 0.1f,
+            min_world_population = 500,
+            min_world_cities = 4,
+            world_log = "worldlog_disaster_alien_invasion",
+            world_log_icon = "iconCat",
+            spawn_asset_unit = "hashbrowncat",
+            max_existing_units = 5,
+            units_min = 5,
+            units_max = 1,
+            type = DisasterType.Other,
+            premium_only = false
+        };
+        hashbrowncatdisaster.ages_allow.Add(S.age_hope);
+        hashbrowncatdisaster.ages_allow.Add(S.age_sun);
+        hashbrowncatdisaster.ages_allow.Add(S.age_wonders);
+ 		hashbrowncatdisaster.action = simpleUnitAssetSpawnUsingIslands;
+        AssetManager.disasters.add(hashbrowncatdisaster);
 
 
            Spell spawnassimilatorzeppelin = new Spell
@@ -714,7 +758,6 @@ var icewalker = AssetManager.actor_library.get("walker");
 		Cocytuswalker.fmod_attack = "event:/SFX/UNITS/ColdOne/ColdOneAttack";
 		Cocytuswalker.fmod_idle = "event:/SFX/UNITS/ColdOne/ColdOneIdle";
 		Cocytuswalker.fmod_death = "event:/SFX/UNITS/ColdOne/ColdOneDeath";
-		Cocytuswalker.fmod_theme = "Units_ColdOne";
 		Cocytuswalker.sound_hit = "event:/SFX/HIT/HitGeneric";
        Cocytuswalker.immune_to_slowness = true;
        Cocytuswalker.attack_spells = List.Of<string>("spawnicewalker", "spawnicewalker" , "spawnicewalker");
@@ -802,6 +845,23 @@ var icewalker = AssetManager.actor_library.get("walker");
         AssetManager.actor_library.CallMethod("addTrait", "Freezer");
         Localization.addLocalization(Cocytuswalker.nameLocale,Cocytuswalker.nameLocale);
 
+            var newwalker = AssetManager.actor_library.clone("newwalker", "walker");
+                  newwalker.id = "newwalker";
+        newwalker.texture_path = "t_walker";
+		newwalker.texture_heads = "t_walker_heads";
+        newwalker.base_stats[S.damage] = 15f;
+		newwalker.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+		newwalker.animation_swim = "swim_0,swim_1,swim_2,swim_3";
+		newwalker.fmod_spawn = "event:/SFX/UNITS/ColdOne/ColdOneSpawn";
+		newwalker.fmod_attack = "event:/SFX/UNITS/ColdOne/ColdOneAttack";
+		newwalker.fmod_idle = "event:/SFX/UNITS/ColdOne/ColdOneIdle";
+		newwalker.fmod_death = "event:/SFX/UNITS/ColdOne/ColdOneDeath";
+		newwalker.sound_hit = "event:/SFX/HIT/HitGeneric";
+                  AssetManager.actor_library.add(newwalker);
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
+                  AssetManager.actor_library.CallMethod("loadShadow", newwalker);
+                  Localization.addLocalization(newwalker.nameLocale,newwalker.nameLocale);
+
          var icedracoid = AssetManager.actor_library.clone("icedracoid", "walker");
                   icedracoid.id = "icedracoid";
                   icedracoid.texture_path = "icedracoid";
@@ -830,6 +890,7 @@ var icewalker = AssetManager.actor_library.get("walker");
 		    icedracoid.dieOnBlocks = false;
                   AssetManager.actor_library.add(icedracoid);
                   AssetManager.actor_library.CallMethod("addTrait", "IceTowerSpawner");
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
                   AssetManager.actor_library.CallMethod("loadShadow", icedracoid);
                   Localization.addLocalization(icedracoid.nameLocale,icedracoid.nameLocale);
 
@@ -849,10 +910,10 @@ var icewalker = AssetManager.actor_library.get("walker");
 		buffrost.fmod_attack = "event:/SFX/UNITS/ColdOne/ColdOneAttack";
 		buffrost.fmod_idle = "event:/SFX/UNITS/ColdOne/ColdOneIdle";
 		buffrost.fmod_death = "event:/SFX/UNITS/ColdOne/ColdOneDeath";
-		buffrost.fmod_theme = "Units_ColdOne";
 		buffrost.sound_hit = "event:/SFX/HIT/HitGeneric";
                   AssetManager.actor_library.add(buffrost);
                   AssetManager.actor_library.CallMethod("addTrait", "Freezer");
+                   AssetManager.actor_library.CallMethod("addTrait", "Potential");
                   AssetManager.actor_library.CallMethod("loadShadow", buffrost);
                   Localization.addLocalization(buffrost.nameLocale,buffrost.nameLocale);
 
@@ -867,10 +928,10 @@ var icewalker = AssetManager.actor_library.get("walker");
 		normalwalker.fmod_attack = "event:/SFX/UNITS/ColdOne/ColdOneAttack";
 		normalwalker.fmod_idle = "event:/SFX/UNITS/ColdOne/ColdOneIdle";
 		normalwalker.fmod_death = "event:/SFX/UNITS/ColdOne/ColdOneDeath";
-		normalwalker.fmod_theme = "Units_ColdOne";
 		normalwalker.sound_hit = "event:/SFX/HIT/HitGeneric";
                   AssetManager.actor_library.add(normalwalker);
                   AssetManager.actor_library.CallMethod("loadShadow", normalwalker);
+                   AssetManager.actor_library.CallMethod("addTrait", "Potential");
                   Localization.addLocalization(normalwalker.nameLocale,normalwalker.nameLocale);
 
 
@@ -1888,7 +1949,7 @@ var icewalker = AssetManager.actor_library.get("walker");
 		    pileofcorpses.fundament = new BuildingFundament(1, 0, 1, 0);
             pileofcorpses.spawnUnits = true;
 		    pileofcorpses.spawnUnits_asset = "zombie";
-            pileofcorpses.has_ruins_graphics = false;
+            pileofcorpses.has_ruins_graphics = true;
 		    pileofcorpses.race = "undead";
             pileofcorpses.kingdom = "undead";
             pileofcorpses.checkForCloseBuilding = false;
@@ -1921,8 +1982,8 @@ var icewalker = AssetManager.actor_library.get("walker");
            var zombie = AssetManager.actor_library.get("zombie");
 zombie.take_items = true;
         zombie.use_items = true;
-          zombie.base_stats[S.health] = 200;
-       zombie.base_stats[S.damage] = 30;
+          zombie.base_stats[S.health] = 200f;
+       zombie.base_stats[S.damage] = 30f;
        zombie.job = "ZombieWorse";
 
             var zombiespeed = AssetManager.actor_library.clone("zombiespeed", "zombie");
@@ -1933,9 +1994,9 @@ zombie.take_items = true;
         zombiespeed.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiespeed.animation_idle = "walk_0";
         zombiespeed.color = Toolbox.makeColor("#24803E");
-        zombiespeed.base_stats[S.max_age] = 130;
-       zombiespeed.base_stats[S.health] = 200;
-       zombiespeed.base_stats[S.damage] = 30;
+        zombiespeed.base_stats[S.max_age] = 200f;
+       zombiespeed.base_stats[S.health] = 200f;
+       zombiespeed.base_stats[S.damage] = 30f;
        zombiespeed.base_stats[S.armor] = 0f;
        zombiespeed.base_stats[S.speed] = 100f;
        	zombiespeed.base_stats[S.attack_speed] = 310f;
@@ -1983,9 +2044,9 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombiespikes.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiespikes.animation_idle = "walk_0";
         zombiespikes.color = Toolbox.makeColor("#24803E");
-        zombiespikes.base_stats[S.max_age] = 130;
-       zombiespikes.base_stats[S.health] = 350;
-       zombiespikes.base_stats[S.damage] = 50;
+        zombiespikes.base_stats[S.max_age] = 200f;
+       zombiespikes.base_stats[S.health] = 200f;
+       zombiespikes.base_stats[S.damage] = 50f;
        zombiespikes.base_stats[S.armor] = 15f;
        zombiespikes.base_stats[S.speed] = 50f;
        	zombiespikes.base_stats[S.attack_speed] = 110f;
@@ -2032,9 +2093,9 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombiepoison.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiepoison.animation_idle = "walk_0";
         zombiepoison.color = Toolbox.makeColor("#24803E");
-        zombiepoison.base_stats[S.max_age] = 130;
-       zombiepoison.base_stats[S.health] = 350;
-       zombiepoison.base_stats[S.damage] = 54;
+        zombiepoison.base_stats[S.max_age] = 200f;
+       zombiepoison.base_stats[S.health] = 200f;
+       zombiepoison.base_stats[S.damage] = 54f;
        zombiepoison.base_stats[S.armor] = 0f;
        zombiepoison.base_stats[S.speed] = 50f;
        	zombiepoison.base_stats[S.attack_speed] = 510f;
@@ -2083,9 +2144,9 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombieacid.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombieacid.animation_idle = "walk_0";
         zombieacid.color = Toolbox.makeColor("#24803E");
-        zombieacid.base_stats[S.max_age] = 130;
-       zombieacid.base_stats[S.health] = 350;
-       zombieacid.base_stats[S.damage] = 64;
+        zombieacid.base_stats[S.max_age] = 200f;
+       zombieacid.base_stats[S.health] = 200f;
+       zombieacid.base_stats[S.damage] = 64f;
        zombieacid.base_stats[S.armor] = 0f;
        zombieacid.base_stats[S.speed] = 60f;
        	zombieacid.base_stats[S.attack_speed] = 210f;
@@ -2134,9 +2195,9 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombietentacle.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombietentacle.animation_idle = "walk_0";
         zombietentacle.color = Toolbox.makeColor("#24803E");
-        zombietentacle.base_stats[S.max_age] = 130;
-       zombietentacle.base_stats[S.health] = 400;
-       zombietentacle.base_stats[S.damage] = 33;
+        zombietentacle.base_stats[S.max_age] = 200f;
+       zombietentacle.base_stats[S.health] = 400f;
+       zombietentacle.base_stats[S.damage] = 33f;
        zombietentacle.base_stats[S.armor] = 0f;
       zombietentacle.base_stats[S.dodge] = 6f;
        zombietentacle.base_stats[S.speed] = 70f;
@@ -2183,12 +2244,12 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombiestalker.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiestalker.animation_idle = "walk_0";
         zombiestalker.color = Toolbox.makeColor("#24803E");
-        zombiestalker.base_stats[S.max_age] = 130;
-       zombiestalker.base_stats[S.health] = 1050;
-       zombiestalker.base_stats[S.damage] = 104;
+        zombiestalker.base_stats[S.max_age] = 200f;
+       zombiestalker.base_stats[S.health] = 600f;
+       zombiestalker.base_stats[S.damage] = 104f;
        zombiestalker.base_stats[S.armor] = 10f;
        zombiestalker.base_stats[S.speed] = 60f;
-       	zombiestalker.base_stats[S.attack_speed] = 210f;
+       	zombiestalker.base_stats[S.attack_speed] = 21f;
        zombiestalker.base_stats[S.area_of_effect] = 1;
        zombiestalker.base_stats[S.knockback] = 2;
        zombiestalker.base_stats[S.knockback_reduction] = 3f;
@@ -2233,9 +2294,9 @@ var zombiespikes = AssetManager.actor_library.clone("zombiespikes", "zombie");
         zombiemother.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiemother.animation_idle = "walk_0";
         zombiemother.color = Toolbox.makeColor("#24803E");
-        zombiemother.base_stats[S.max_age] = 130;
-       zombiemother.base_stats[S.health] = 2000;
-       zombiemother.base_stats[S.damage] = 204;
+        zombiemother.base_stats[S.max_age] = 200f;
+       zombiemother.base_stats[S.health] = 800f;
+       zombiemother.base_stats[S.damage] = 204f;
        zombiemother.base_stats[S.armor] = 0f;
        zombiemother.base_stats[S.speed] = 30f;
        	zombiemother.base_stats[S.attack_speed] = 150f;
@@ -2287,9 +2348,9 @@ var zombiefiremaniac = AssetManager.actor_library.clone("zombiefiremaniac", "zom
         zombiefiremaniac.animation_walk = "walk_0,walk_1,walk_2,walk_3";
         zombiefiremaniac.animation_idle = "walk_0";
         zombiefiremaniac.color = Toolbox.makeColor("#24803E");
-        zombiefiremaniac.base_stats[S.max_age] = 130;
-       zombiefiremaniac.base_stats[S.health] = 450;
-       zombiefiremaniac.base_stats[S.damage] = 70;
+        zombiefiremaniac.base_stats[S.max_age] = 200f;
+       zombiefiremaniac.base_stats[S.health] = 450f;
+       zombiefiremaniac.base_stats[S.damage] = 70f;
        zombiefiremaniac.base_stats[S.armor] = 0f;
        zombiefiremaniac.base_stats[S.speed] = 70f;
        	zombiefiremaniac.base_stats[S.attack_speed] = 110f;
@@ -2340,12 +2401,12 @@ var zombiehulk = AssetManager.actor_library.clone("zombiehulk", "zombie");
         zombiehulk.animation_idle = "walk_0";
         zombiehulk.defaultAttack = "base";
         zombiehulk.color = Toolbox.makeColor("#24803E");
-        zombiehulk.base_stats[S.max_age] = 130;
-       zombiehulk.base_stats[S.health] = 1000;
-       zombiehulk.base_stats[S.damage] = 240;
+        zombiehulk.base_stats[S.max_age] = 200f;
+       zombiehulk.base_stats[S.health] = 600f;
+       zombiehulk.base_stats[S.damage] = 240f;
        zombiehulk.base_stats[S.armor] = 20f;
        zombiehulk.base_stats[S.speed] = 40f;
-       	zombiehulk.base_stats[S.attack_speed] = 300f;
+       	zombiehulk.base_stats[S.attack_speed] = 15f;
        zombiehulk.base_stats[S.area_of_effect] = 1;
        zombiehulk.base_stats[S.knockback] = 3;
        zombiehulk.base_stats[S.knockback_reduction] = 5f;
@@ -2393,12 +2454,12 @@ var zombieabomination = AssetManager.actor_library.clone("zombieabomination", "z
         zombieabomination.animation_idle = "walk_0";
         zombieabomination.defaultAttack = "jaws";
         zombieabomination.color = Toolbox.makeColor("#24803E");
-        zombieabomination.base_stats[S.max_age] = 130;
-       zombieabomination.base_stats[S.health] = 1300;
-       zombieabomination.base_stats[S.damage] = 240;
+        zombieabomination.base_stats[S.max_age] = 200f;
+       zombieabomination.base_stats[S.health] = 600f;
+       zombieabomination.base_stats[S.damage] = 240f;
        zombieabomination.base_stats[S.armor] = 30f;
        zombieabomination.base_stats[S.speed] = 40f;
-       	zombieabomination.base_stats[S.attack_speed] = 300f;
+       	zombieabomination.base_stats[S.attack_speed] = 3f;
        zombieabomination.base_stats[S.area_of_effect] = 1;
        zombieabomination.base_stats[S.knockback] = 3;
        zombieabomination.base_stats[S.knockback_reduction] = 5f;
@@ -2446,9 +2507,9 @@ var zombieclawed = AssetManager.actor_library.clone("zombieclawed", "zombie");
         zombieclawed.animation_idle = "walk_0";
         zombieclawed.defaultAttack = "claws";
         zombieclawed.color = Toolbox.makeColor("#24803E");
-        zombieclawed.base_stats[S.max_age] = 130;
-       zombieclawed.base_stats[S.health] = 1300;
-       zombieclawed.base_stats[S.damage] = 240;
+        zombieclawed.base_stats[S.max_age] = 200f;
+       zombieclawed.base_stats[S.health] = 800f;
+       zombieclawed.base_stats[S.damage] = 240f;
        zombieclawed.base_stats[S.armor] = 35f;
        zombieclawed.base_stats[S.speed] = 40f;
        	zombieclawed.base_stats[S.attack_speed] = 300f;
@@ -2499,9 +2560,9 @@ var zombieballoon = AssetManager.actor_library.clone("zombieballoon", "zombie");
         zombieballoon.animation_idle = "walk_0,walk_1,walk_2,walk_3";
         zombieballoon.defaultAttack = "base";
         zombieballoon.color = Toolbox.makeColor("#24803E");
-        zombieballoon.base_stats[S.max_age] = 130;
-       zombieballoon.base_stats[S.health] = 100;
-       zombieballoon.base_stats[S.damage] = 10;
+        zombieballoon.base_stats[S.max_age] = 200f;
+       zombieballoon.base_stats[S.health] = 100f;
+       zombieballoon.base_stats[S.damage] = 10f;
        zombieballoon.base_stats[S.armor] = 0f;
        zombieballoon.base_stats[S.speed] = 40f;
        	zombieballoon.base_stats[S.attack_speed] = 300f;
@@ -2560,9 +2621,9 @@ var zombieacidman = AssetManager.actor_library.clone("zombieacidman", "zombie");
         zombieacidman.animation_idle = "walk_0";
         zombieacidman.defaultAttack = "base";
         zombieacidman.color = Toolbox.makeColor("#24803E");
-        zombieacidman.base_stats[S.max_age] = 130;
-       zombieacidman.base_stats[S.health] = 300;
-       zombieacidman.base_stats[S.damage] = 204;
+        zombieacidman.base_stats[S.max_age] = 200f;
+       zombieacidman.base_stats[S.health] = 300f;
+       zombieacidman.base_stats[S.damage] = 204f;
        zombieacidman.base_stats[S.armor] = 0f;
        zombieacidman.base_stats[S.speed] = 40f;
        	zombieacidman.base_stats[S.attack_speed] = 70f;
@@ -2616,9 +2677,9 @@ var zombiedemon = AssetManager.actor_library.clone("zombiedemon", "zombie");
         zombiedemon.animation_idle = "walk_0";
         zombiedemon.defaultAttack = "base";
         zombiedemon.color = Toolbox.makeColor("#24803E");
-        zombiedemon.base_stats[S.max_age] = 130;
-       zombiedemon.base_stats[S.health] = 717;
-       zombiedemon.base_stats[S.damage] = 10;
+        zombiedemon.base_stats[S.max_age] = 200f;
+       zombiedemon.base_stats[S.health] = 717f;
+       zombiedemon.base_stats[S.damage] = 10f;
        zombiedemon.base_stats[S.armor] = 0f;
        zombiedemon.base_stats[S.speed] = 50f;
        	zombiedemon.base_stats[S.attack_speed] = 110f;
@@ -2669,9 +2730,9 @@ var zombiedoctor = AssetManager.actor_library.clone("zombiedoctor", "zombie");
         zombiedoctor.animation_idle = "walk_0";
         zombiedoctor.defaultAttack = "base";
         zombiedoctor.color = Toolbox.makeColor("#24803E");
-        zombiedoctor.base_stats[S.max_age] = 130;
-       zombiedoctor.base_stats[S.health] = 600;
-       zombiedoctor.base_stats[S.damage] = 1;
+        zombiedoctor.base_stats[S.max_age] = 200f;
+       zombiedoctor.base_stats[S.health] = 600f;
+       zombiedoctor.base_stats[S.damage] = 1f;
        zombiedoctor.base_stats[S.armor] = 0f;
        zombiedoctor.base_stats[S.speed] = 40f;
        zombiedoctor.base_stats[S.targets] = 1f;
@@ -2726,9 +2787,9 @@ var zombiedruid = AssetManager.actor_library.clone("zombiedruid", "zombie");
         zombiedruid.animation_idle = "idle_0";
         zombiedruid.defaultAttack = "base";
         zombiedruid.color = Toolbox.makeColor("#24803E");
-        zombiedruid.base_stats[S.max_age] = 130;
-       zombiedruid.base_stats[S.health] = 600;
-       zombiedruid.base_stats[S.damage] = 1;
+        zombiedruid.base_stats[S.max_age] = 200f;
+       zombiedruid.base_stats[S.health] = 600f;
+       zombiedruid.base_stats[S.damage] = 1f;
        zombiedruid.base_stats[S.armor] = 0f;
        zombiedruid.base_stats[S.speed] = 50f;
        	zombiedruid.base_stats[S.attack_speed] = 110f;
@@ -2782,9 +2843,9 @@ var zombieevilhorseman = AssetManager.actor_library.clone("zombieevilhorseman", 
         zombieevilhorseman.animation_idle = "walk_0";
         zombieevilhorseman.defaultAttack = "base";
         zombieevilhorseman.color = Toolbox.makeColor("#24803E");
-        zombieevilhorseman.base_stats[S.max_age] = 130;
-       zombieevilhorseman.base_stats[S.health] = 600;
-       zombieevilhorseman.base_stats[S.damage] = 1;
+        zombieevilhorseman.base_stats[S.max_age] = 200f;
+       zombieevilhorseman.base_stats[S.health] = 600f;
+       zombieevilhorseman.base_stats[S.damage] = 1f;
        zombieevilhorseman.base_stats[S.armor] = 0f;
        zombieevilhorseman.base_stats[S.speed] = 80f;
        	zombieevilhorseman.base_stats[S.attack_speed] = 110f;
@@ -2845,9 +2906,9 @@ var zombieicelich = AssetManager.actor_library.clone("zombieicelich", "zombie");
         zombieicelich.animation_idle = "walk_0";
         zombieicelich.defaultAttack = "icebolt";
         zombieicelich.color = Toolbox.makeColor("#24803E");
-        zombieicelich.base_stats[S.max_age] = 130;
-       zombieicelich.base_stats[S.health] = 400;
-       zombieicelich.base_stats[S.damage] = 1;
+        zombieicelich.base_stats[S.max_age] = 200f;
+       zombieicelich.base_stats[S.health] = 400f;
+       zombieicelich.base_stats[S.damage] = 1f;
        zombieicelich.base_stats[S.armor] = 0f;
        zombieicelich.base_stats[S.speed] = 40f;
        	zombieicelich.base_stats[S.attack_speed] = 110f;
@@ -2904,9 +2965,9 @@ fairy.canTurnIntoZombie = true;
         zombiefairy.animation_idle = "walk_0,walk_1,walk_2,walk_3";
         zombiefairy.defaultAttack = "base";
         zombiefairy.color = Toolbox.makeColor("#24803E");
-        zombiefairy.base_stats[S.max_age] = 130;
-       zombiefairy.base_stats[S.health] = 150;
-       zombiefairy.base_stats[S.damage] = 24;
+        zombiefairy.base_stats[S.max_age] = 200f;
+       zombiefairy.base_stats[S.health] = 150f;
+       zombiefairy.base_stats[S.damage] = 24f;
        zombiefairy.base_stats[S.armor] = 0f;
        zombiefairy.base_stats[S.speed] = 50f;
        	zombiefairy.base_stats[S.attack_speed] = 110f;
@@ -2973,9 +3034,9 @@ var zombietarantula = AssetManager.actor_library.clone("zombietarantula", "zombi
         zombietarantula.animation_idle = "walk_0";
         zombietarantula.defaultAttack = "base";
         zombietarantula.color = Toolbox.makeColor("#24803E");
-        zombietarantula.base_stats[S.max_age] = 130;
-       zombietarantula.base_stats[S.health] = 150;
-       zombietarantula.base_stats[S.damage] = 24;
+        zombietarantula.base_stats[S.max_age] = 200f;
+       zombietarantula.base_stats[S.health] = 150f;
+       zombietarantula.base_stats[S.damage] = 24f;
        zombietarantula.base_stats[S.armor] = 0f;
        zombietarantula.base_stats[S.speed] = 40f;
        	zombietarantula.base_stats[S.attack_speed] = 110f;
@@ -3182,6 +3243,19 @@ var zombietarantula = AssetManager.actor_library.clone("zombietarantula", "zombi
                 Localization.addLocalization(geckoid.nameLocale,geckoid.nameLocale);
              AssetManager.actor_library.CallMethod("addTrait", "thorns");
 
+
+
+              var hashbrowncat = AssetManager.actor_library.clone("hashbrowncat", "cat");
+       hashbrowncat.nameLocale = "hashbrowncat";
+       hashbrowncat.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+       hashbrowncat.texture_path = "hashbrowncat";
+       hashbrowncat.job = "animal_herd";
+       hashbrowncat.action_liquid = new WorldAction(ActionLibrary.swimToIsland);
+       hashbrowncat.landCreature = true;
+        AssetManager.actor_library.add(hashbrowncat);
+        AssetManager.actor_library.CallMethod("loadShadow",hashbrowncat);
+        Localization.addLocalization(hashbrowncat.nameLocale,hashbrowncat.nameLocale);
+
              var peones = AssetManager.actor_library.clone("peones", "cat");
        peones.nameLocale = "peones";
        peones.animation_walk = "walk_0,walk_1,walk_2";
@@ -3303,7 +3377,288 @@ var zombietarantula = AssetManager.actor_library.clone("zombietarantula", "zombi
             AssetManager.topTiles.loadSpritesForTile(AlienJungle_high);
             AssetManager.topTiles.add(AssetManager.topTiles.get("AlienJungle_high"));
             MapBox.instance.tilemap.layers[AlienJungle_high.render_z].tilemap.GetComponent<TilemapRenderer>().mode = TilemapRenderer.Mode.Individual;
+
+
+        AssetManager.job_actor.add(new ActorJob{id = "VaticanForce"});
+		 AssetManager.job_actor.t.addTask("follow_same_race");
+		 AssetManager.job_actor.t.addTask("swim_to_island");
+		 AssetManager.job_actor.t.addTask("random_move");
+		 AssetManager.job_actor.t.addTask("check_cure");
+		 AssetManager.job_actor.t.addTask("burn_tumors");
+		 AssetManager.job_actor.t.addTask("random_move_towards_civ_building");
+		 AssetManager.job_actor.t.addTask("check_heal");
+         AssetManager.job_actor.t.addTask("wait");
+
+                  var basecrusader = AssetManager.actor_library.clone("basecrusader", "plagueDoctor");
+                  basecrusader.id = "basecrusader";
+        basecrusader.texture_path = "basecrusader";
+        basecrusader.base_stats[S.max_age] = 10f;
+        basecrusader.base_stats[S.damage] = 15f;
+        basecrusader.base_stats[S.health] = 800f;
+        Assimilatus.base_stats[S.armor] = 25f;
+		basecrusader.base_stats[S.speed] = 35f;
+		basecrusader.base_stats[S.knockback] = 2f;
+		basecrusader.base_stats[S.targets] = 5f;
+        basecrusader.job = "VaticanForce";
+		basecrusader.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+		basecrusader.animation_swim = "swim_0,swim_1,swim_2,swim_3";
+		basecrusader.fmod_spawn = "event:/SFX/UNITS/PlagueDoctor/PlagueDoctorSpawn";
+		basecrusader.fmod_attack = "event:/SFX/UNITS/PlagueDoctor/PlagueDoctorAttack";
+		basecrusader.fmod_idle = "event:/SFX/UNITS/PlagueDoctor/PlagueDoctorIdle";
+		basecrusader.fmod_death = "event:/SFX/UNITS/PlagueDoctor/PlagueDoctorDeath";
+                  AssetManager.actor_library.add(basecrusader);
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
+                AssetManager.actor_library.CallMethod("addTrait", "regeneration");
+                AssetManager.actor_library.CallMethod("addTrait", "immune");
+                AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+                  AssetManager.actor_library.CallMethod("loadShadow", basecrusader);
+                  Localization.addLocalization(basecrusader.nameLocale,basecrusader.nameLocale);
+
+            var crusaderdreadnaught = AssetManager.actor_library.clone("crusaderdreadnaught","_mob");
+			//ActorAsset heli = new ActorAsset();
+           // crusaderdreadnaught.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
+		crusaderdreadnaught.race = SK.good;
+		crusaderdreadnaught.kingdom = SK.good;
+           crusaderdreadnaught.base_stats[S.max_age] = 10f;
+            crusaderdreadnaught.base_stats[S.health] = 2000f;
+            crusaderdreadnaught.base_stats[S.speed] = 30f;
+            crusaderdreadnaught.base_stats[S.armor] = 40f;
+            crusaderdreadnaught.base_stats[S.damage] = 40f;
+			crusaderdreadnaught.base_stats[S.projectiles] = 1;
+            crusaderdreadnaught.base_stats[S.scale] = 0.1f;
+            crusaderdreadnaught.base_stats[S.attack_speed] = 10500f;
+			crusaderdreadnaught.base_stats[S.range] = 20f;
+			crusaderdreadnaught.base_stats[S.knockback_reduction] = 3f;
+            crusaderdreadnaught.has_skin = false;
+			crusaderdreadnaught.immune_to_injuries = true;
+            crusaderdreadnaught.inspect_stats = true;
+			crusaderdreadnaught.landCreature = true;
+			crusaderdreadnaught.hideOnMinimap = false;
+			 crusaderdreadnaught.disablePunchAttackAnimation = true;
+			crusaderdreadnaught.can_edit_traits = true;
+			crusaderdreadnaught.canReceiveTraits = true;
+			crusaderdreadnaught.flying = false;
+			//crusaderdreadnaught.tech = "Terrans";
+			crusaderdreadnaught.very_high_flyer = false;
+			crusaderdreadnaught.defaultAttack = "bigbulletattack";
+            crusaderdreadnaught.isBoat = false;
+			crusaderdreadnaught.dieOnBlocks = true;
+			crusaderdreadnaught.ignoreBlocks = false;
+			//crusaderdreadnaught.moveFromBlock = false;
+			crusaderdreadnaught.procreate = false;
+		    crusaderdreadnaught.inspect_children = false;
+            crusaderdreadnaught.inspect_experience = true;
+            crusaderdreadnaught.inspect_kills = true;
+            crusaderdreadnaught.use_items = false;
+			crusaderdreadnaught.oceanCreature = false;
+            crusaderdreadnaught.take_items = false;
+            crusaderdreadnaught.nameLocale = "crusaderdreadnaught";
+            crusaderdreadnaught.nameTemplate = "Jet_Names";
+			crusaderdreadnaught.job = "VaticanForce";
+            crusaderdreadnaught.icon = "iconTerran";
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
+                AssetManager.actor_library.CallMethod("addTrait", "regeneration");
+                AssetManager.actor_library.CallMethod("addTrait", "immune");
+                AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+			AssetManager.actor_library.CallMethod("addTrait", "crusaderdreadnaught");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+			AssetManager.actor_library.CallMethod("loadShadow", crusaderdreadnaught);
+			AssetManager.actor_library.CallMethod("addTrait", "light_lamp");
+            crusaderdreadnaught.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+			crusaderdreadnaught.animation_idle = "walk_0";
+            crusaderdreadnaught.animation_swim = "swim_0,swim_1,swim_2";
+            crusaderdreadnaught.texture_path = "crusaderdreadnaught";
+			AssetManager.actor_library.addColorSet("heliColor");
+			crusaderdreadnaught.color = Toolbox.makeColor("#33724D");
+            AssetManager.actor_library.add(crusaderdreadnaught);
+			Localization.addLocalization(crusaderdreadnaught.nameLocale, crusaderdreadnaught.nameLocale);
+
+             var crusaderHeli = AssetManager.actor_library.clone("crusaderHeli", "_mob");
+    // ActorAsset heli = new ActorAsset();
+    // Heli.get_override_sprite = AssetManager.actor_library.get("Jet").get_override_sprite;
+  crusaderHeli.race = SK.good;
+		crusaderHeli.kingdom = SK.good;
+    crusaderHeli.base_stats[S.max_age] = 10f;
+    crusaderHeli.base_stats[S.attack_speed] = 10000f;
+    crusaderHeli.base_stats[S.accuracy] = 100f;
+    crusaderHeli.base_stats[S.health] = 500f;
+    crusaderHeli.base_stats[S.speed] = 200f;
+    crusaderHeli.base_stats[S.scale] = 0.1f;
+    crusaderHeli.base_stats[S.damage] = 10f;
+    crusaderHeli.base_stats[S.knockback_reduction] = 300f;
+    crusaderHeli.immune_to_injuries = true;
+    crusaderHeli.inspect_stats = true;
+    crusaderHeli.landCreature = true;
+    crusaderHeli.has_skin = false;
+    crusaderHeli.flying = true;
+    crusaderHeli.can_edit_traits = true;
+    // Heli.tech = "Helicopters";
+    crusaderHeli.canReceiveTraits = true;
+    crusaderHeli.very_high_flyer = true;
+    crusaderHeli.defaultAttack = "machinegunery";
+    crusaderHeli.isBoat = false;
+    crusaderHeli.dieOnBlocks = false;
+    crusaderHeli.ignoreBlocks = true;
+    crusaderHeli.disablePunchAttackAnimation = true;
+    crusaderHeli.moveFromBlock = false;
+    crusaderHeli.inspect_children = false;
+    crusaderHeli.inspect_experience = true;
+    crusaderHeli.inspect_kills = true;
+    crusaderHeli.hideOnMinimap = false;
+    crusaderHeli.use_items = false;
+    crusaderHeli.oceanCreature = true;
+    crusaderHeli.take_items = false;
+    crusaderHeli.nameLocale = "crusaderHeli";
+    crusaderHeli.nameTemplate = "Jet_Names";
+    // Heli.job = "attacker";
+    crusaderHeli.job = "VaticanForce";
+    crusaderHeli.icon = "iconHeli";
+    AssetManager.actor_library.CallMethod("addTrait", "Helicopter");
+    AssetManager.actor_library.CallMethod("addTrait", "light_lamp");
+    AssetManager.actor_library.CallMethod("loadShadow", crusaderHeli);
+    crusaderHeli.animation_idle = "walk_0,walk_1,walk_2,walk_3";
+    crusaderHeli.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+    crusaderHeli.animation_swim = "walk_0,walk_1,walk_2,walk_3";
+    crusaderHeli.texture_path = "crusaderHeli";
+    // Heli.actorSize = ActorSize.S17_Dragon;
+    AssetManager.actor_library.add(crusaderHeli);
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
+                AssetManager.actor_library.CallMethod("addTrait", "regeneration");
+                AssetManager.actor_library.CallMethod("addTrait", "immune");
+                AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+            AssetManager.actor_library.CallMethod("addTrait", "freeze_proof");
+    AssetManager.actor_library.addColorSet("heliColor");
+    crusaderHeli.color = Toolbox.makeColor("#33724D");
+    Localization.addLocalization(crusaderHeli.nameLocale, crusaderHeli.nameLocale);
+
+                var crusadermaus = AssetManager.actor_library.clone("crusadermaus","_mob");
+			//ActorAsset heli = new ActorAsset();
+           // crusadermaus.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
+			crusadermaus.race = SK.good;
+		crusadermaus.kingdom = SK.good;
+			crusadermaus.base_stats[S.max_age] = 10f;
+            crusadermaus.base_stats[S.health] = 800f;
+            crusadermaus.base_stats[S.speed] = 20f;
+            crusadermaus.base_stats[S.armor] = 70f;
+            crusadermaus.base_stats[S.damage] = 40f;
+            crusadermaus.base_stats[S.scale] = 0.2f;
+            crusadermaus.base_stats[S.attack_speed] = 0;
+			crusadermaus.base_stats[S.range] = 60f;
+			crusadermaus.base_stats[S.knockback_reduction] = 300f;
+			crusadermaus.immune_to_injuries = true;
+            crusadermaus.inspect_stats = true;
+			crusadermaus.landCreature = true;
+			crusadermaus.hideOnMinimap = false;
+            crusadermaus.drawBoatMark = true;
+			crusadermaus.can_edit_traits = true;
+             crusadermaus.disablePunchAttackAnimation = true;
+			crusadermaus.canReceiveTraits = true;
+			crusadermaus.flying = false;
+			//crusadermaus.tech = "Tanks";
+			crusadermaus.very_high_flyer = false;
+			crusadermaus.defaultAttack = "tankshellattack";
+            crusadermaus.has_skin = false;
+			crusadermaus.dieOnBlocks = true;
+			crusadermaus.ignoreBlocks = false;
+			//crusadermaus.moveFromBlock = false;
+			crusadermaus.procreate = false;
+		    crusadermaus.inspect_children = false;
+            crusadermaus.inspect_experience = true;
+            crusadermaus.inspect_kills = true;
+            crusadermaus.use_items = false;
+			crusadermaus.oceanCreature = false;
+            crusadermaus.take_items = false;
+            crusadermaus.nameLocale = "crusadermaus";
+            crusadermaus.nameTemplate = "Jet_Names";
+			crusadermaus.job = "VaticanForce";
+            crusadermaus.icon = "iconTank";
+                 AssetManager.actor_library.CallMethod("addTrait", "Potential");
+                AssetManager.actor_library.CallMethod("addTrait", "regeneration");
+                AssetManager.actor_library.CallMethod("addTrait", "immune");
+                AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+			AssetManager.actor_library.CallMethod("addTrait", "Tank");
+			 AssetManager.actor_library.CallMethod("addTrait", "fire_proof");
+			AssetManager.actor_library.CallMethod("loadShadow", crusadermaus);
+			AssetManager.actor_library.CallMethod("addTrait", "light_lamp");
+            crusadermaus.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+            crusadermaus.animation_swim = "swim_0,swim_1,swim_2,swim_4";
+            crusadermaus.texture_path = "crusadermaus";
+			AssetManager.actor_library.addColorSet("heliColor");
+			crusadermaus.color = Toolbox.makeColor("#33724D");
+            AssetManager.actor_library.add(crusadermaus);
+			Localization.addLocalization(crusadermaus.nameLocale, crusadermaus.nameLocale);
+
+
+              DisasterAsset Vaticandisaster = new DisasterAsset
+        {
+            id = "Vaticandisaster",
+            rate = 4,
+            chance = 0.5f,
+            min_world_population = 0,
+            min_world_cities = 0,
+            world_log = "worldlog_disaster_alien_invasion",
+            world_log_icon = "Vatican",
+            spawn_asset_unit = "basecrusader",
+            max_existing_units = 1000,
+            units_min = 300,
+            units_max = 300,
+            type = DisasterType.Other,
+            premium_only = false
+        };
+        Vaticandisaster.ages_allow.Add(S.age_hope);
+        Vaticandisaster.ages_allow.Add(S.age_sun);
+        Vaticandisaster.ages_allow.Add(S.age_ash);
+        Vaticandisaster.ages_allow.Add(S.age_dark);
+        Vaticandisaster.ages_allow.Add(S.age_tears);
+        Vaticandisaster.ages_allow.Add(S.age_moon);
+        Vaticandisaster.ages_allow.Add(S.age_chaos);
+        Vaticandisaster.ages_allow.Add(S.age_despair);
+        Vaticandisaster.ages_allow.Add(S.age_ice);
+        Vaticandisaster.ages_allow.Add(S.age_wonders);
+ 		Vaticandisaster.action = SpawnVaticanDisasterwithTrait;
+        AssetManager.disasters.add(Vaticandisaster);
+
+
+
 		}
+
+    private const string zombieTraitinpopulation = "zombie";
+    private const int zombieTraitinpopulationCount = 500;
+
+  public static void SpawnVaticanDisasterwithTrait(DisasterAsset pAsset)
+{
+    if (!HasSufficientTraitCount(zombieTraitinpopulation, zombieTraitinpopulationCount))
+    {
+        return;
+    }
+    WorldTile randomTile = World.world.tilesList.GetRandom();
+    EffectsLibrary.spawn("fx_spawn", randomTile);
+    int num = Toolbox.randomInt(pAsset.units_min, pAsset.units_max);
+    for (int i = 0; i < num; i++)
+    {
+         World.world.units.createNewUnit(pAsset.spawn_asset_unit, randomTile);
+    }
+    WorldLog.logDisaster(pAsset, randomTile);
+}
+
+
+
+    private static bool HasSufficientTraitCount(string traitId, int requiredCount)
+    {
+        int count = 0;
+        foreach (var actor in World.world.units)
+        {
+            if (actor.hasTrait(traitId))
+            {
+                count++;
+                if (count >= requiredCount)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
 
@@ -3358,10 +3713,10 @@ public static bool activeCorpseSpawnerEffect(BaseSimObject pTarget, WorldTile pT
     }
 
 
-    if (IsLiquidTile(pTile))
-    {
-        return false;
-    }
+if (pTile == null || pTile.Type == null || pTile.Type.liquid)
+{
+    return false;
+}
 
 
     if (!exhaustedSpawner)
@@ -3904,10 +4259,10 @@ public static bool activeAssimilatorSpawnerEffect(BaseSimObject pTarget, WorldTi
     }
 
 
-    if (IsLiquidTile(pTile))
-    {
-        return false;
-    }
+if (pTile == null || pTile.Type == null || pTile.Type.liquid)
+{
+    return false;
+}
 
 
     if (!exhaustedSpawner)
@@ -3963,7 +4318,7 @@ public static bool activeIceTowerSpawnerEffect(BaseSimObject pTarget, WorldTile 
     actor.data.get("exhaustedSpawner", out bool exhaustedSpawner);
 
 
-    List<string> buildingIds = new List<string> { "icewatchtower", "ice_tower" };
+    List<string> buildingIds = new List<string> { "icewatchtower", "newicetower" };
     int perChunkLimit = 1;
 
 
@@ -3977,11 +4332,10 @@ public static bool activeIceTowerSpawnerEffect(BaseSimObject pTarget, WorldTile 
     }
 
 
-    if (IsLiquidTile(pTile))
-    {
-        return false;
-    }
-
+if (pTile == null || pTile.Type == null || pTile.Type.liquid)
+{
+    return false;
+}
 
     if (!exhaustedSpawner)
     {
@@ -3995,7 +4349,7 @@ public static bool activeIceTowerSpawnerEffect(BaseSimObject pTarget, WorldTile 
         if (targetTile != null && targetTile.building == null)
         {
 
-            string buildingToSpawn = Toolbox.randomChance(0.05f) ? "icewatchtower" : "ice_tower";
+            string buildingToSpawn = Toolbox.randomChance(0.05f) ? "icewatchtower" : "newicetower";
 
 
             Building spawnedBuilding = MapBox.instance.buildings.addBuilding(buildingToSpawn, targetTile, false, false, BuildPlacingType.New);
@@ -4081,7 +4435,7 @@ private static bool CheckAndTransformByTraitsAgeKills(Actor actor, float age, in
 {
     switch (actor.asset.id)
     {
-			case "walker":
+			case "newwalker":
 
              if (Toolbox.randomChance(0.3f))
             {
@@ -4122,6 +4476,17 @@ private static bool CheckAndTransformByTraitsAgeKills(Actor actor, float age, in
     }
     break;
 
+    case "basecrusader":
+    if (kills > 5)
+    {
+        string[] transformationOptions = { "crusaderdreadnaught", "crusaderHeli", "crusadermaus" };
+        string chosenTransformation = transformationOptions[Toolbox.randomInt(0, transformationOptions.Length)];
+
+        TransformActor(actor, chosenTransformation, pTile);
+        return true;
+    }
+    break;
+
     }
 
     return false;
@@ -4133,7 +4498,7 @@ private static bool CheckAndTransformByEraAndMob(Actor actor, WorldTile pTile)
     bool isColdAge = World.world_era.overlay_winter;
 
 
-    HashSet<string> walkerRelatedMobs = new HashSet<string> { "walker", "icedracoid", "buffrost", "normalwalker" };
+    HashSet<string> walkerRelatedMobs = new HashSet<string> { "walker", "icedracoid", "buffrost", "normalwalker", "newwalker" };
 
 
     if (walkerRelatedMobs.Contains(actor.asset.id))
@@ -4143,7 +4508,7 @@ private static bool CheckAndTransformByEraAndMob(Actor actor, WorldTile pTile)
 
             if (Toolbox.randomChance(0.1f))
             {
-                TransformActorToUFO(actor, "snowman", pTile);
+                TransformActorToUFO(actor, "fly", pTile);
                 return true;
             }
         }
@@ -4205,7 +4570,7 @@ private static void TransformActorToUFO(Actor originalActor, string newActorId, 
 		{
 			pTile = pTarget.currentTile;
 		}
-		Toolbox.findSameUnitInChunkAround(pTile.chunk, "walker");
+		Toolbox.findSameUnitInChunkAround(pTile.chunk, "newwalker");
 		if (Toolbox.temp_list_units.Count > 6)
 		{
 			return false;
@@ -4225,7 +4590,7 @@ public static bool spawnicewalker(BaseSimObject pTarget, WorldTile pTile = null)
     {
         return false;
     }
-    World.world.units.createNewUnit("walker", pTile).makeWait(1f);
+    World.world.units.createNewUnit("newwalker", pTile).makeWait(1f);
     return true;
 }
 

@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -80,9 +80,7 @@ namespace M2
             Soldier.base_stats[S.scale] = 0.1f;
             Soldier.base_stats[S.attack_speed] = 80;
 			Soldier.base_stats[S.range] = 25f;
-			Soldier.base_stats[S.warfare] = 20f;
             Soldier.drawBoatMark_big = true;
-            Soldier.skipFightLogic = false;
             Soldier.inspect_stats = true;
 			Soldier.landCreature = true;
 			Soldier.inspect_home = true;
@@ -100,15 +98,6 @@ namespace M2
 			Soldier.procreate = false;
 		    Soldier.inspect_children = false;
             Soldier.inspect_experience = true;
-			Soldier.defaultWeapons = List.Of<string>(new string[]
-				{
-			 "XM8",
-			 "Mp5"
-				});
-			Soldier.defaultWeaponsMaterial = List.Of<string>(new string[]
-				{
-				 "iron"
-				});
 			Soldier.canBeCitizen = true;
             Soldier.inspect_kills = true;
             Soldier.use_items = true;
@@ -143,7 +132,6 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             EVA01.base_stats[S.attack_speed] = 200;
 			EVA01.base_stats[S.range] = 25f;
             EVA01.drawBoatMark_big = true;
-            EVA01.skipFightLogic = false;
             EVA01.inspect_stats = true;
 			EVA01.landCreature = true;
 			EVA01.inspect_home = true;
@@ -151,6 +139,8 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             EVA01.drawBoatMark = true;
 			EVA01.can_edit_traits = true;
 			EVA01.canReceiveTraits = true;
+			EVA01.has_skin = false;
+			EVA01.immune_to_injuries = true;
 			EVA01.flying = false;
 			//EVA01.tech = "EVA01s";
 			EVA01.very_high_flyer = false;
@@ -163,9 +153,9 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             EVA01.inspect_experience = true;
 			EVA01.canBeCitizen = true;
             EVA01.inspect_kills = true;
-            EVA01.use_items = true;
+            EVA01.use_items = false;
 			EVA01.oceanCreature = false;
-            EVA01.take_items = true;
+            EVA01.take_items = false;
             EVA01.nameLocale = "EVA01";
             EVA01.nameTemplate = "Modern_Names";
 			EVA01.shadow = false;
@@ -187,11 +177,12 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             AssetManager.actor_library.add(EVA01);
 			Localization.addLocalization(EVA01.nameLocale, EVA01.nameLocale);
 
-						var SpaceMarine = AssetManager.actor_library.clone("SpaceMarine","_mob");
+			var SpaceMarine = AssetManager.actor_library.clone("SpaceMarine","_mob");
 			//ActorAsset heli = new ActorAsset();
            // SpaceMarine.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
 			SpaceMarine.race = "human";
 			SpaceMarine.kingdom = "ModernKingdom";
+			SpaceMarine.base_stats[S.max_age] = 500f;
             SpaceMarine.base_stats[S.health] = 500f;
             SpaceMarine.base_stats[S.speed] = 70f;
             SpaceMarine.base_stats[S.armor] = 100f;
@@ -199,9 +190,8 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             SpaceMarine.base_stats[S.scale] = 0.1f;
             SpaceMarine.base_stats[S.attack_speed] = 20;
 			SpaceMarine.base_stats[S.range] = 10f;
-			SpaceMarine.defaultAttack = "tankshellattack";
+			SpaceMarine.defaultAttack = "bigbulletattack";
             SpaceMarine.drawBoatMark_big = true;
-            SpaceMarine.skipFightLogic = false;
             SpaceMarine.inspect_stats = true;
 			SpaceMarine.landCreature = true;
 			SpaceMarine.inspect_home = true;
@@ -239,6 +229,59 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
 			SpaceMarine.color = Toolbox.makeColor("#33724D");
             AssetManager.actor_library.add(SpaceMarine);
 			Localization.addLocalization(SpaceMarine.nameLocale, SpaceMarine.nameLocale);
+
+				var spaceork = AssetManager.actor_library.clone("spaceork","_mob");
+			//ActorAsset heli = new ActorAsset();
+           // spaceork.get_override_sprite = AssetManager.actor_library.get("_boat").get_override_sprite;
+			spaceork.race = "orc";
+			spaceork.kingdom = "ModernKingdom";
+			spaceork.base_stats[S.max_age] = 200f;
+            spaceork.base_stats[S.health] = 500f;
+            spaceork.base_stats[S.speed] = 70f;
+            spaceork.base_stats[S.armor] = 100f;
+            spaceork.base_stats[S.damage] = 40f;
+            spaceork.base_stats[S.scale] = 0.1f;
+            spaceork.base_stats[S.attack_speed] = 20;
+			spaceork.base_stats[S.range] = 10f;
+			spaceork.defaultAttack = "bigbulletattack";
+            spaceork.drawBoatMark_big = true;
+            spaceork.inspect_stats = true;
+			spaceork.landCreature = true;
+			spaceork.inspect_home = true;
+			spaceork.hideOnMinimap = false;
+            spaceork.drawBoatMark = true;
+			spaceork.can_edit_traits = true;
+			spaceork.canReceiveTraits = true;
+			spaceork.flying = false;
+			//spaceork.tech = "Soldiers";
+			spaceork.very_high_flyer = false;
+            spaceork.isBoat = false;
+			spaceork.dieOnBlocks = false;
+			spaceork.ignoreBlocks = false;
+			spaceork.moveFromBlock = true;
+			spaceork.procreate = false;
+		    spaceork.inspect_children = false;
+            spaceork.inspect_experience = true;
+			spaceork.canBeCitizen = true;
+            spaceork.inspect_kills = true;
+            spaceork.use_items = false;
+			spaceork.oceanCreature = false;
+            spaceork.take_items = false;
+            spaceork.nameLocale = "spaceork";
+            spaceork.nameTemplate = "Modern_Names";
+			spaceork.job = "attacker";
+            spaceork.icon = "iconSoldier";
+			//AssetManager.actor_library.CallMethod("addTrait", "spaceork");
+			AssetManager.actor_library.CallMethod("loadShadow", spaceork);
+            spaceork.animation_walk = "walk_0,walk_1,walk_2,walk_3";
+			spaceork.animation_idle = "walk_0";
+            spaceork.animation_swim = "swim_0,swim_1,swim_2,swim_3";
+            spaceork.texture_path = "spaceork";
+			AssetManager.actor_library.addColorSet("heliColor");
+			AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
+			spaceork.color = Toolbox.makeColor("#33724D");
+            AssetManager.actor_library.add(spaceork);
+			Localization.addLocalization(spaceork.nameLocale, spaceork.nameLocale);
 		  
 			var Xiexel = AssetManager.actor_library.clone("Xiexel","_mob");
 			//ActorAsset heli = new ActorAsset();
@@ -254,7 +297,6 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
 			Xiexel.base_stats[S.range] = 9999999f;
 			Xiexel.base_stats[S.warfare] = 9999999f;
             Xiexel.drawBoatMark_big = true;
-            Xiexel.skipFightLogic = false;
             Xiexel.inspect_stats = true;
 			Xiexel.landCreature = true;
 			Xiexel.inspect_home = true;
@@ -300,8 +342,18 @@ var EVA01 = AssetManager.actor_library.clone("EVA01","_mob");
             AssetManager.actor_library.add(Xiexel);
 			Localization.addLocalization(Xiexel.nameLocale, Xiexel.nameLocale);
 		  		  
-
-
 		}
+
+
+
+
+
+
+
+
+
+
+
 		}
 }
+

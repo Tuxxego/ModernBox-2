@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -103,22 +103,23 @@ namespace M2
 
           ItemAsset Meth = AssetManager.items.clone("Meth", "_accessory");
           Meth.id = "Meth";
+          Meth.name_class = "item_class_accessory";
           Meth.base_stats[S.fertility] = -0.1f;
           Meth.base_stats[S.max_children] = -5f;
           Meth.base_stats[S.max_age] = -10f;
           Meth.base_stats[S.attack_speed] = 20;
-          Meth.base_stats[S.damage] = 90;
-          Meth.base_stats[S.speed] = 50f;
-          Meth.base_stats[S.health] = -30;
+          Meth.base_stats[S.damage] = 10;
+          Meth.base_stats[S.speed] = 5f;
+          Meth.base_stats[S.health] = -10;
           Meth.base_stats[S.accuracy] = 0f;
           Meth.base_stats[S.range] = 1;
-          Meth.base_stats[S.armor] = 100;
+          Meth.base_stats[S.armor] = 1;
           Meth.base_stats[S.scale] = 0.0f;
           Meth.base_stats[S.dodge] = 0f;
-          Meth.base_stats[S.targets] = 2f;
+          Meth.base_stats[S.targets] = 1f;
           Meth.base_stats[S.critical_chance] = 0.15f;
           Meth.base_stats[S.knockback] = 0f;
-          Meth.base_stats[S.knockback_reduction] = 200f;
+          Meth.base_stats[S.knockback_reduction] = 2f;
           Meth.base_stats[S.intelligence] = -7;
           Meth.base_stats[S.warfare] = -4;
           Meth.base_stats[S.diplomacy] = 0;
@@ -128,31 +129,32 @@ namespace M2
           Meth.base_stats[S.cities] = 0;
           Meth.base_stats[S.zone_range] = 0;
           Meth.equipmentType = EquipmentType.Ring;
-          Meth.name_templates = List.Of<string>(new string[]{ "ring_name" });
-          Meth.materials = List.Of<string>(new string[]{ "steel" });
+          Meth.name_templates = List.Of<string>(new string[]{"ring_name"});
+          Meth.materials = List.Of<string>(new string[]{"copper"});
           Meth.tech_needed = "Cyberware";
-          Meth.equipment_value = 1500;
+          Meth.equipment_value = 300;
           AssetManager.items.list.AddItem(Meth);
           Localization.addLocalization("item_Meth", "Meth"); 
 		  
 		 ItemAsset Crack = AssetManager.items.clone("Crack", "_accessory");
           Crack.id = "Crack";
+          Crack.name_class = "item_class_accessory";
           Crack.base_stats[S.fertility] = -0.1f;
           Crack.base_stats[S.max_children] = -5f;
           Crack.base_stats[S.max_age] = -10f;
           Crack.base_stats[S.attack_speed] = -20;
-          Crack.base_stats[S.damage] = 90;
-          Crack.base_stats[S.speed] = -50f;
-          Crack.base_stats[S.health] = -30;
+          Crack.base_stats[S.damage] = 9;
+          Crack.base_stats[S.speed] = -5f;
+          Crack.base_stats[S.health] = -13;
           Crack.base_stats[S.accuracy] = 0f;
           Crack.base_stats[S.range] = 1;
-          Crack.base_stats[S.armor] = 100;
+          Crack.base_stats[S.armor] = 4;
           Crack.base_stats[S.scale] = 0.0f;
           Crack.base_stats[S.dodge] = 0f;
           Crack.base_stats[S.targets] = 2f;
           Crack.base_stats[S.critical_chance] = 0.15f;
           Crack.base_stats[S.knockback] = 0f;
-          Crack.base_stats[S.knockback_reduction] = 200f;
+          Crack.base_stats[S.knockback_reduction] = 2f;
           Crack.base_stats[S.intelligence] = -7;
           Crack.base_stats[S.warfare] = -4;
           Crack.base_stats[S.diplomacy] = 0;
@@ -162,13 +164,14 @@ namespace M2
           Crack.base_stats[S.cities] = -5;
           Crack.base_stats[S.zone_range] = 0;
           Crack.equipmentType = EquipmentType.Ring;
-          Crack.name_templates = List.Of<string>(new string[]{ "ring_name" });
-          Crack.materials = List.Of<string>(new string[]{ "steel" });
+          Crack.name_templates = List.Of<string>(new string[]{"ring_name"});
+          Crack.materials = List.Of<string>(new string[]{"copper"});
           Crack.tech_needed = "Cyberware";
-          Crack.equipment_value = 1500;
+          Crack.equipment_value = 300;
           AssetManager.items.list.AddItem(Crack);
           Localization.addLocalization("item_Crack", "Crack"); 
 		}
+		/*
 		public static void toggleDrugs()
         {
             Main.modifyBoolOption("DrugsOption", PowerButtons.GetToggleValue("Drugs_toggle"));
@@ -225,6 +228,7 @@ namespace M2
                 elf.preferred_weapons.Remove("Crack");
 
             }
+            */
             static void addDrugSprite(string id, string material)
             {
               var dictItems = Reflection.GetField(typeof(ActorAnimationLoader), null, "dictItems") as Dictionary<string, Sprite>;

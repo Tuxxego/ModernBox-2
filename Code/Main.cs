@@ -1,4 +1,4 @@
-//========= MODERNBOX 2.2.0.0 ============//
+//========= MODERNBOX 2.1.0.1 ============//
 //
 // Made by Tuxxego
 //
@@ -34,14 +34,13 @@ namespace M2
  public Commerce Commerce = new Commerce();
  public Resourcez Resourcez = new Resourcez();
  public static SavedSettings savedSettings = new SavedSettings();
- private static string correctSettingsVersion = "2.2.0.0"; 
+ private static string correctSettingsVersion = "2.1.0.1";
  public ModernKingdoms ModernKingdoms = new ModernKingdoms();
- public const string settingsKey = "MBoxSettings"; 
+ public const string settingsKey = "MBoxSettings";
  public SpaceManager SpaceManager = new SpaceManager();
  public PlanetGenerator PlanetGenerator = new PlanetGenerator();
  // public DeveloperConsole DeveloperConsole = new DeveloperConsole();
  public PlanetManager PlanetManager = new PlanetManager();
- public AchievementManager AchievementManager = new AchievementManager();
  public LocalizationManager LocalizationManager = new LocalizationManager ();
  private AudioSource audioSource;
  public DeveloperMode DeveloperMode = new DeveloperMode();
@@ -67,9 +66,9 @@ namespace M2
 // Harmony.CreateAndPatchAll(typeof(Docks));
  //Harmony.CreateAndPatchAll(typeof(BuildingRenderer));
  //Harmony.CreateAndPatchAll(typeof(City));
- //Harmony.CreateAndPatchAll(typeof(ProduceItemPatch)); 
- //Harmony.CreateAndPatchAll(typeof(TryProduceItemPatch)); 
- //Harmony.CreateAndPatchAll(typeof(setLanguage)); 
+ //Harmony.CreateAndPatchAll(typeof(ProduceItemPatch));
+ //Harmony.CreateAndPatchAll(typeof(TryProduceItemPatch));
+ //Harmony.CreateAndPatchAll(typeof(setLanguage));
  var harmony = new Harmony("com.tuxxego.m2");
 	harmony.PatchAll();
  Debug.Log("Loading ModernBox shit");
@@ -77,10 +76,10 @@ namespace M2
 public void Awake()
 {
 	 loadSettings();
-
+ NavalVehicles.init();
  Debug.Log("[M2] Mod Core has been called, booting mod core.");
      tab.createTab("Button Tab_ModernBox", "Tab_ModernBox", "M2", "Guns, Vehicles, Drugs, Casinos, MIRVs, and SPACE. Welcome to the Modern Age.", -150);
-	 
+
 	         // Find the first instance of the WorldBoxConsole script in the scene
         var worldBoxConsole = FindObjectOfType<WorldBoxConsole.Console>();
         if (worldBoxConsole != null)
@@ -93,26 +92,15 @@ public void Awake()
         {
             Debug.LogWarning("No GameObject with WorldBoxConsole script found in the scene.");
         }
-		
-		  AchievementManager = gameObject.AddComponent<AchievementManager>();
 
 LoadReplacement();
 
  Debug.Log("[M2] Loading SaveSystemWindow...");
  SaveSystemWindow.init();
  Debug.Log("[M2] SaveSystemWindow loaded!");
- Debug.Log("[M2] Loading M2InfoWindow...");
- M2InfoWindow.init();
- Debug.Log("[M2] M2InfoWindow loaded!");
- Debug.Log("[M2] Loading SpaceWindow...");
- SpaceWindow.init();
- Debug.Log("[M2] SpaceWindow loaded!");
- Debug.Log("[M2] Loading CustomGalaxiesWindow...");
- CustomGalaxiesWindow.init();
- Debug.Log("[M2] CustomGalaxiesWindow loaded!");
- Debug.Log("[M2] Loading GalaxyHubWindow...");
- GalaxyHubWindow.init();
- Debug.Log("[M2] GalaxyHubWindow loaded!");
+ Debug.Log("[M2] Loading InfoWindow...");
+ InfoWindow.init();
+ Debug.Log("[M2] InfoWindow loaded!");
  Debug.Log("[M2] Loading DiscordWindow...");
  DiscordWindow.init();
  Debug.Log("[M2] DiscordWindow loaded!");
@@ -128,7 +116,7 @@ LoadReplacement();
  Debug.Log("[M2] Patching stuff...");
  PatchStuff();
  Debug.Log("===============================");
- Debug.Log("ModernBox 2.2.0.0");
+ Debug.Log("ModernBox 2.1.0.1");
  Debug.Log("MADE BY TUXXEGO");
  Debug.Log("===============================");
  Debug.Log("[M2] Initializing Name...");
@@ -142,6 +130,7 @@ LoadReplacement();
  Debug.Log("[M2] MIRV loaded!");
  Debug.Log("[M2] Initializing ModernKingdoms...");
  ModernKingdoms.init();
+ MedievalUnits.init();
  Debug.Log("[M2] ModernKingdoms loaded!");
  Debug.Log("[M2] Initializing cyberware...");
  cyberware.init();
@@ -149,14 +138,12 @@ LoadReplacement();
    Debug.Log("[M2] Loading BombsWindow...");
  BombsWindow.init();
  Debug.Log("[M2] BombsWindow loaded!");
- Debug.Log("[M2] Loading AchievementsWindow...");
- AchievementsWindow.init();
- Debug.Log("[M2] AchievementsWindow loaded!");
  Debug.Log("[M2] Initializing Buttonz...");
  Buttonz.init();
  Debug.Log("[M2] Buttonz loaded!");
  Debug.Log("[M2] Initializing tab...");
  tab.init();
+ biomewaves.init();
  Debug.Log("[M2] tab loaded!");
  Debug.Log("[M2] Initializing MBTraitGroup...");
  MBTraitGroup.init();
@@ -172,6 +159,7 @@ LoadReplacement();
  Debug.Log("[M2] Tech loaded!");
  Debug.Log("[M2] Initializing Commerce...");
  Commerce.init();
+ UpgradesUwU.init();
  Debug.Log("[M2] Commerce loaded!");
  Debug.Log("[M2] Initializing DefaultSettingsWindow...");
  DefaultSettingsWindow.init();
@@ -198,12 +186,12 @@ LoadReplacement();
  Debug.Log("[M2] Initializing GoliathCannon...");
  GoliathCannon.init();
  Debug.Log("[M2] GoliathCannon loaded!");
- 
+
 
   Debug.Log("[M2] Initializing GoliathVehicles...");
  GoliathVehicles.init();
  Debug.Log("[M2] GoliathVehicles loaded!");
- 
+
   Debug.Log("[M2] Initializing Creatures...");
   Creatures.init();
   Debug.Log("[M2] Creatures loaded!");
@@ -211,7 +199,7 @@ LoadReplacement();
   Debug.Log("[M2] Space Manager starting...");
   SpaceManager = gameObject.AddComponent<SpaceManager>();
   Debug.Log("[M2] That big manager has started.");
-  
+
          Debug.Log("SpaceBoxModernBox: Pls no lag!");
          //PatchStuff();
 
@@ -239,19 +227,39 @@ LoadReplacement();
 
             ExportResources.loadMaterial();
 
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "monarchhuman");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "monarchelf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "monarchorc");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "monarchdwarf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "communisthuman");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "communistelf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "communistorc");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "communistdwarf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "fascisthuman");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "fascistelf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "fascistorc");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "fascistdwarf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "capitalisthuman");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "capitalistelf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "capitalistorc");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "capitalistdwarf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "anarchhuman");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "anarchelf");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "anarchorc");
+Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "anarchdwarf");
+
 
  audioSource = GetComponent<AudioSource>();
 // PlayMP3("file");
- Debug.Log("ModernBox 2.2.0.0: Loaded.");
+ Debug.Log("ModernBox 2.1.0.1: Loaded.");
  if (isNewVersion)
  {
  Debug.Log("[M2] Showing SaveSystemWindow...");
  Windows.ShowWindow("SaveSystemWindow");
  }
- 
- AchievementManager.Instance.UnlockAchievement("played_m2");
-
 }
+
+
 
 // from ancient warfare mod
         public static void LoadReplacement()
@@ -290,7 +298,7 @@ LoadReplacement();
             backgroundImage.sprite = Toolbox.LoadSprite($"{path}/{selectedFile}");
             transitionScreen.enabled = true;
         }
-		
+
  public static Building findNewBuildingTarget(City pCity, string pType)
  {
  return (Building)pCity.CallMethod("getBuildingType", pType, true, true);
@@ -298,7 +306,7 @@ LoadReplacement();
  public const string mainPath = "Mods/ModernBox";
  public static void resetToDefaults()
  {
- SavedSettings defaultSettings = new SavedSettings(); 
+ SavedSettings defaultSettings = new SavedSettings();
  Windows.ShowWindow("DefaultSettingsWindow");
  foreach (var option in defaultSettings.boolOptions)
  {
@@ -311,10 +319,10 @@ LoadReplacement();
  if (previousSettings != null && savedSettings.Equals(previousSettings))
  {
  Debug.Log("ModernBox: No changes to settings, skipping saving!");
- return; 
+ return;
  }
  Debug.Log("===============================");
- Debug.Log("ModernBox 2.2.0.0");
+ Debug.Log("ModernBox 2.1.0.1");
  Debug.Log("Changes were made, saving!");
  Debug.Log("===============================");
  foreach (var option in savedSettings.boolOptions)
@@ -351,7 +359,7 @@ LoadReplacement();
  {
  if (savedSettings.boolOptions.TryGetValue(key, out bool oldValue) && oldValue == value)
  {
- return; 
+ return;
  }
  Main.savedSettings.boolOptions[key] = value;
  saveSettings();
@@ -385,7 +393,7 @@ public class ProduceItemPatch
  static bool Prefix(ref bool __result, City __instance, Actor pActor, string pCreatorName, EquipmentType pType, int pTries)
  {
  if (!DeveloperMode.isDeveloperEnabled)
- return true; 
+ return true;
  Debug.Log($"[produceItem] Called with pActor: {pActor}, pCreatorName: {pCreatorName}, pType: {pType}, pTries: {pTries}");
  try
  {
@@ -395,7 +403,7 @@ public class ProduceItemPatch
  __result = false;
  return false;
  }
- List<ItemData> equipmentList = __instance.data?.storage?.getEquipmentList(pType); 
+ List<ItemData> equipmentList = __instance.data?.storage?.getEquipmentList(pType);
  if (equipmentList == null || equipmentList.Count >= __instance.status.maximumItems)
  {
  __result = false;
@@ -426,7 +434,7 @@ public class ProduceItemPatch
  }
  string pID = AssetManager.items.getEquipmentID(pType);
  if (pID == "weapon")
- pID = __instance.race?.preferred_weapons?.GetRandom<string>(); 
+ pID = __instance.race?.preferred_weapons?.GetRandom<string>();
  if (pID == null)
  {
  Debug.LogError("[produceItem] Error: pID is null");
@@ -452,7 +460,7 @@ public class ProduceItemPatch
  __result = false;
  return false;
  }
- ItemAsset materialForItem = __instance.data?.storage?.getMaterialForItem(pItemAsset, pLib, __instance); 
+ ItemAsset materialForItem = __instance.data?.storage?.getMaterialForItem(pItemAsset, pLib, __instance);
  if (materialForItem == null)
  {
  Debug.LogError($"[produceItem] Error: materialForItem is null for pItemAsset: {pItemAsset}, pLib: {pLib}");
@@ -500,7 +508,7 @@ public class TryProduceItemPatch
  static bool Prefix(ref bool __result, City __instance, Actor pActor, ItemProductionOrder pOrder)
  {
  if (!DeveloperMode.isDeveloperEnabled)
- return true; 
+ return true;
  Debug.Log($"[tryProduceItem] Called with pActor: {pActor}, pOrder: {pOrder}");
  try
  {
