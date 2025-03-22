@@ -1,4 +1,4 @@
-# ModernBox-2
+# Erabox
 A Mod for Worldbox
 
-Welcome to the Modern and Space Age.
+An amazing mod beginning in the Renaissance and going far beyond the future
