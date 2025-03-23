@@ -26,7 +26,7 @@ namespace M2
              TerraformOptions nonannoyingbomb = AssetManager.terraform.clone("nonannoyingbomb", "grenade");
           nonannoyingbomb.id = "nonannoyingbomb";
 		nonannoyingbomb.shake = false;
-		nonannoyingbomb.explode_tile = true;
+		nonannoyingbomb.explode_tile = false;
 		nonannoyingbomb.damageBuildings = true;
 		nonannoyingbomb.damage = 0;
         nonannoyingbomb.explode_strength = 2;
@@ -50,7 +50,7 @@ namespace M2
             TerraformOptions antiairbomb = AssetManager.terraform.clone("antiairbomb", "grenade");
           antiairbomb.id = "antiairbomb";
 		antiairbomb.shake = false;
-		antiairbomb.explode_tile = true;
+		antiairbomb.explode_tile = false;
 		antiairbomb.damageBuildings = true;
 		antiairbomb.damage = 0;
         antiairbomb.explode_strength = 2;
