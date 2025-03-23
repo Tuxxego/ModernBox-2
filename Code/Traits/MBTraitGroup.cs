@@ -15,7 +15,7 @@ namespace M2
     {
  
         public static string ModernBox = "ModernBox";
-        public static string IdeologyBox = "IdeologyBox";
+        public static string IdeologiesBox = "IdeologiesBox";
         public static void init()
         {
  
@@ -25,6 +25,16 @@ namespace M2
             ModernBox.color = Toolbox.makeColor("#FFFF00", -1f);
             AssetManager.trait_groups.add(ModernBox);
             addTraitGroupToLocalizedLibrary(ModernBox.id, "ModernBox");
+
+
+            ActorTraitGroupAsset IdeologiesBox = new ActorTraitGroupAsset();
+            IdeologiesBox.id = "IdeologiesBox";
+            IdeologiesBox.name = "trait_group_IdeologiesBox";
+            IdeologiesBox.color = Toolbox.makeColor("#FFFF00", -1f);
+            AssetManager.trait_groups.add(IdeologiesBox);
+            addTraitGroupToLocalizedLibrary(IdeologiesBox.id, "IdeologiesBox");
+
+
         }
         private static void addTraitGroupToLocalizedLibrary(string id, string name)
         {

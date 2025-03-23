@@ -66,7 +66,7 @@ namespace M2
          Dynastic.id = "Dynastic";
          Dynastic.path_icon = "ui/Icons/Dynastic";
          Dynastic.type = TraitType.Positive;
-         Dynastic.group_id = MBTraitGroup.ModernBox;
+         Dynastic.group_id = MBTraitGroup.IdeologiesBox;
          Dynastic.opposite = "Mercantile,Peoplewoven,Martial,Chaosvolt";
          Dynastic.can_be_cured = false;
          Dynastic.needs_to_be_explored = false;
@@ -94,7 +94,7 @@ namespace M2
          Mercantile.path_icon = "ui/Icons/Mercantile";
          Mercantile.type = TraitType.Positive;
          Mercantile.opposite = "Dynastic,Peoplewoven,Martial,Chaosvolt";
-         Mercantile.group_id = MBTraitGroup.ModernBox;
+         Mercantile.group_id = MBTraitGroup.IdeologiesBox;
          Mercantile.can_be_cured = false;
          Mercantile.needs_to_be_explored = false;
          Mercantile.can_be_given = true;
@@ -119,7 +119,7 @@ namespace M2
          Peoplewoven.path_icon = "ui/Icons/Peoplewoven";
          Peoplewoven.type = TraitType.Positive;
          Peoplewoven.opposite = "Dynastic,Mercantile,Martial,Chaosvolt";
-         Peoplewoven.group_id = MBTraitGroup.ModernBox;
+         Peoplewoven.group_id = MBTraitGroup.IdeologiesBox;
          Peoplewoven.can_be_cured = false;
          Peoplewoven.needs_to_be_explored = false;
          Peoplewoven.can_be_given = true;
@@ -144,7 +144,7 @@ namespace M2
          Martial.path_icon = "ui/Icons/Martial";
          Martial.opposite = "Dynastic,Mercantile,Peoplewoven,Chaosvolt";
          Martial.type = TraitType.Positive;
-         Martial.group_id = MBTraitGroup.ModernBox;
+         Martial.group_id = MBTraitGroup.IdeologiesBox;
          Martial.can_be_cured = false;
          Martial.needs_to_be_explored = false;
          Martial.can_be_given = true;
@@ -170,7 +170,7 @@ namespace M2
          Chaosvolt.path_icon = "ui/Icons/Chaosvolt";
          Chaosvolt.opposite = "Martial,Dynastic,Mercantile,Peoplewoven";
          Chaosvolt.type = TraitType.Positive;
-         Chaosvolt.group_id = MBTraitGroup.ModernBox;
+         Chaosvolt.group_id = MBTraitGroup.IdeologiesBox;
          Chaosvolt.can_be_cured = false;
          Chaosvolt.needs_to_be_explored = false;
          Chaosvolt.can_be_given = true;
@@ -895,29 +895,42 @@ public static class KingdomBehCheckKing_IdeologyPatch {
     static void Postfix(Kingdom pKingdom) {
         if (pKingdom == null)
             return;
+
         Actor king = pKingdom.king;
         if (king == null || !king.isAlive())
             return;
-        string[] ideologyTraits = new string[] { "Peoplewoven", "Martial", "Mercantile", "Dynastic" };
+
+        string[] commonIdeologies = new string[] { "Peoplewoven", "Martial", "Mercantile", "Dynastic" };
+
         bool kingHasIdeology = false;
-        foreach (string trait in ideologyTraits) {
+        foreach (string trait in commonIdeologies) {
             if (king.hasTrait(trait)) {
                 kingHasIdeology = true;
                 break;
             }
         }
+
+        bool kingHasChaosvolt = king.hasTrait("Chaosvolt");
+        if (kingHasChaosvolt)
+            kingHasIdeology = true;
+
         if (!kingHasIdeology) {
-            int rnd = Toolbox.randomInt(0, ideologyTraits.Length);
-            string chosenIdeology = ideologyTraits[rnd];
+            string chosenIdeology = commonIdeologies[Toolbox.randomInt(0, commonIdeologies.Length)];
             king.addTrait(chosenIdeology);
+            kingHasIdeology = true;
         }
+
         string kingIdeology = null;
-        foreach (string trait in ideologyTraits) {
+        foreach (string trait in commonIdeologies) {
             if (king.hasTrait(trait)) {
                 kingIdeology = trait;
                 break;
             }
         }
+
+        if (kingIdeology == null && kingHasChaosvolt)
+            kingIdeology = "Chaosvolt";
+
         if (string.IsNullOrEmpty(kingIdeology))
             return;
 
@@ -925,46 +938,39 @@ public static class KingdomBehCheckKing_IdeologyPatch {
             if (actor == null || actor == king)
                 continue;
 
-            bool hasAnyIdeology = false;
-            foreach (string trait in ideologyTraits) {
+            bool actorHasIdeology = false;
+            foreach (string trait in commonIdeologies) {
                 if (actor.hasTrait(trait)) {
-                    hasAnyIdeology = true;
+                    actorHasIdeology = true;
                     break;
                 }
             }
 
-            if (!hasAnyIdeology) {
-                actor.addTrait(kingIdeology);
-            } else {
-                if (!actor.hasTrait(kingIdeology) && Toolbox.randomChance(0.4f)) {
-                    actor.addTrait(kingIdeology);
-                }
-            }
-        }
-        if (king.hasTrait("Chaosvolt")) {
-            foreach (Actor actor in pKingdom.units.getSimpleList()) {
-                if (actor == null || actor == king)
-                    continue;
+            if (actor.hasTrait("Chaosvolt"))
+                actorHasIdeology = true;
 
-                bool actorHasAnyIdeology = false;
-                foreach (string trait in ideologyTraits) {
-                    if (actor.hasTrait(trait)) {
-                        actorHasAnyIdeology = true;
-                        break;
-                    }
-                }
-                if (!actorHasAnyIdeology) {
-                    actor.addTrait("Chaosvolt");
-                }
-                else {
-                    if (!actor.hasTrait("Chaosvolt") && Toolbox.randomChance(0.4f)) {
+            if (kingHasChaosvolt) {
+                if (!actor.hasTrait("Chaosvolt")) {
+                    if (!actorHasIdeology) {
                         actor.addTrait("Chaosvolt");
                     }
+                    else if (Toolbox.randomChance(0.4f)) {
+                        actor.addTrait("Chaosvolt");
+                    }
+                }
+            }
+            else {
+                if (!actorHasIdeology) {
+                    actor.addTrait(kingIdeology);
+                }
+                else if (!actor.hasTrait(kingIdeology) && Toolbox.randomChance(0.4f)) {
+                    actor.addTrait(kingIdeology);
                 }
             }
         }
     }
 }
+
 
 
 
@@ -1124,28 +1130,28 @@ public static class CartTransformations
         new Dictionary<string, Dictionary<string, List<string>>>
     {
          { "human", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" } },
+            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
             { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
             { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
             { "renaissance", new List<string>{ "humancavalry" , "balloonunit" , "humancannon" , "davincitank" } },
             { "medieval",    new List<string>{ "catapulta" , "batteringram" , "humancavalry" } }
         }},
         { "orc", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "spaceork" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" } },
+            { "future",      new List<string>{ "spaceork" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
             { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
             { "renaissance", new List<string>{ "ogreunit", "orccannon", "armoredwolf" , "davincitank" } },
             { "medieval",    new List<string>{ "orcatapulta" , "ogreunit" , "armoredwolf" } }
         }},
         { "dwarf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" } },
+            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
             { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
             { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
             { "renaissance", new List<string>{ "santaguin" , "Gunship" , "dwarfcannon" , "davincitank" } },
             { "medieval",    new List<string>{ "santaguin" , "golemgem" } }
         }},
         { "elf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" } },
+            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
             { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
             { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
             { "renaissance", new List<string>{ "treant" , "elfcannon" , "bigfaerydragon" , "davincitank" } },
@@ -1157,28 +1163,28 @@ public static class CartTransformations
         new Dictionary<string, Dictionary<string, List<string>>>
     {
         { "human", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "AT9000" } },
+            { "future",      new List<string>{ "AT9000" , "supportatst" } },
             { "modern",      new List<string>{ "modernsupporttruck" } },
             { "industrial",  new List<string>{ "wwsupporttruck" } },
             { "renaissance", new List<string>{ "humanpaladin" } },
             { "medieval",    new List<string>{ "humanpaladin" } }
         }},
         { "orc", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "AT9000" } },
+            { "future",      new List<string>{ "AT9000" , "supportatst" } },
             { "modern",      new List<string>{ "modernsupporttruck" } },
             { "industrial",  new List<string>{ "wwsupporttruck" } },
             { "renaissance", new List<string>{ "orcwarlock" } },
             { "medieval",    new List<string>{ "orcwarlock" } }
         }},
         { "dwarf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "AT9000" } },
+            { "future",      new List<string>{ "AT9000" , "supportatst" } },
             { "modern",      new List<string>{ "modernsupporttruck" } },
             { "industrial",  new List<string>{ "wwsupporttruck" } },
             { "renaissance", new List<string>{ "dwarfdoctor" } },
             { "medieval",    new List<string>{ "dwarfdoctor" } }
         }},
         { "elf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "AT9000" } },
+            { "future",      new List<string>{ "AT9000" , "supportatst" } },
             { "modern",      new List<string>{ "modernsupporttruck"} },
             { "industrial",  new List<string>{ "wwsupporttruck" } },
             { "renaissance", new List<string>{ "fairelf" } },
@@ -1440,6 +1446,10 @@ public static bool cloneVehicleBasedOnCityCount(BaseSimObject pTarget, WorldTile
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
         else if (unitId == "dreadnaught")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+            else if (unitId == "P9000")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }

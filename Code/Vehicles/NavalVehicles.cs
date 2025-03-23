@@ -144,7 +144,7 @@ namespace M2
 		    human_renaissance_trading.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_renaissance_trading.base_stats[S.projectiles] = 5f;
             human_renaissance_trading.base_stats[S.max_age] = 25f;
-            human_renaissance_trading.base_stats[S.health] = 500f;
+            human_renaissance_trading.base_stats[S.health] = 2000f;
             human_renaissance_trading.base_stats[S.speed] = 70f;
             human_renaissance_trading.base_stats[S.armor] = 20f;
             human_renaissance_trading.base_stats[S.damage] = 50f;
@@ -220,16 +220,16 @@ namespace M2
              human_renaissance_corvette1.landCreature = true;
              human_renaissance_corvette1.inspect_experience = true;
             human_renaissance_corvette1.inspect_kills = true;
-            human_renaissance_corvette1.skipFightLogic = false;
             human_renaissance_corvette1.specialAnimation = false;
             human_renaissance_corvette1.has_override_sprite = false;
+            human_renaissance_corvette1.skipFightLogic = true;
             human_renaissance_corvette1.canFlip = true;
             human_renaissance_corvette1.texture_path = "human_renaissance_corvette";
             human_renaissance_corvette1.animation_walk = "walk_0";
 		    human_renaissance_corvette1.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_renaissance_corvette1.base_stats[S.projectiles] = 3f;
             human_renaissance_corvette1.base_stats[S.max_age] = 25f;
-            human_renaissance_corvette1.base_stats[S.health] = 500f;
+            human_renaissance_corvette1.base_stats[S.health] = 1000f;
             human_renaissance_corvette1.base_stats[S.speed] = 50f;
             human_renaissance_corvette1.base_stats[S.armor] = 20f;
             human_renaissance_corvette1.base_stats[S.damage] = 10f;
@@ -271,7 +271,7 @@ namespace M2
 		    human_renaissance_corvette2.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_renaissance_corvette2.base_stats[S.projectiles] = 3f;
             human_renaissance_corvette2.base_stats[S.max_age] = 25f;
-            human_renaissance_corvette2.base_stats[S.health] = 500f;
+            human_renaissance_corvette2.base_stats[S.health] = 1000f;
             human_renaissance_corvette2.base_stats[S.speed] = 50f;
             human_renaissance_corvette2.base_stats[S.armor] = 20f;
             human_renaissance_corvette2.base_stats[S.damage] = 10f;
@@ -312,7 +312,7 @@ namespace M2
 		    human_industrial_battleship.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_industrial_battleship.base_stats[S.projectiles] = 2f;
             human_industrial_battleship.base_stats[S.max_age] = 25f;
-            human_industrial_battleship.base_stats[S.health] = 2500f;
+            human_industrial_battleship.base_stats[S.health] = 4000f;
             human_industrial_battleship.base_stats[S.speed] = 50f;
             human_industrial_battleship.base_stats[S.armor] = 40f;
             human_industrial_battleship.base_stats[S.damage] = 40f;
@@ -375,7 +375,7 @@ namespace M2
             AssetManager.actor_library.CallMethod("addTrait", "light_lamp");
                 AssetManager.actor_library.CallMethod("addTrait", "Unitpotential");
 
-                		  ActorAsset fishing_boat_industrial = AssetManager.actor_library.clone("fishing_boat_industrial", "_boat");
+            ActorAsset fishing_boat_industrial = AssetManager.actor_library.clone("fishing_boat_industrial", "_boat");
             fishing_boat_industrial.id = "fishing_boat_industrial";
             fishing_boat_industrial.nameLocale = "fishing_boat_industrial";
             fishing_boat_industrial.nameTemplate = "human_name";
@@ -396,7 +396,7 @@ namespace M2
 		    fishing_boat_industrial.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             fishing_boat_industrial.base_stats[S.projectiles] = 5f;
             fishing_boat_industrial.base_stats[S.max_age] = 25f;
-            fishing_boat_industrial.base_stats[S.health] = 500f;
+            fishing_boat_industrial.base_stats[S.health] = 1000f;
             fishing_boat_industrial.base_stats[S.speed] = 70f;
             fishing_boat_industrial.base_stats[S.armor] = 30f;
             fishing_boat_industrial.base_stats[S.damage] = 50f;
@@ -430,16 +430,16 @@ namespace M2
                 human_industrial_corvette1.landCreature = true;
                 human_industrial_corvette1.disablePunchAttackAnimation = true;
             human_industrial_corvette1.inspect_kills = true;
-            human_industrial_corvette1.skipFightLogic = false;
             human_industrial_corvette1.specialAnimation = false;
             human_industrial_corvette1.has_override_sprite = false;
+             human_industrial_corvette1.skipFightLogic = true;
             human_industrial_corvette1.canFlip = true;
             human_industrial_corvette1.texture_path = "human_industrial_corvette";
             human_industrial_corvette1.animation_walk = "walk_0";
 		    human_industrial_corvette1.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_industrial_corvette1.base_stats[S.projectiles] = 1f;
             human_industrial_corvette1.base_stats[S.max_age] = 25f;
-            human_industrial_corvette1.base_stats[S.health] = 500f;
+            human_industrial_corvette1.base_stats[S.health] = 3000f;
             human_industrial_corvette1.base_stats[S.speed] = 50f;
             human_industrial_corvette1.base_stats[S.armor] = 40f;
             human_industrial_corvette1.base_stats[S.damage] = 40f;
@@ -481,7 +481,7 @@ namespace M2
 		    human_industrial_corvette2.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_industrial_corvette2.base_stats[S.projectiles] = 1f;
             human_industrial_corvette2.base_stats[S.max_age] = 25f;
-            human_industrial_corvette2.base_stats[S.health] = 500f;
+            human_industrial_corvette2.base_stats[S.health] = 3000f;
             human_industrial_corvette2.base_stats[S.speed] = 50f;
             human_industrial_corvette2.base_stats[S.armor] = 40f;
             human_industrial_corvette2.base_stats[S.damage] = 40f;
@@ -545,7 +545,7 @@ namespace M2
             human_modern_battleship.base_stats[S.projectiles] = 2f;
             human_modern_battleship.base_stats[S.max_age] = 25f;
                 human_modern_battleship.landCreature = true;
-            human_modern_battleship.base_stats[S.health] = 2500f;
+            human_modern_battleship.base_stats[S.health] = 10000f;
             human_modern_battleship.base_stats[S.speed] = 50f;
             human_modern_battleship.base_stats[S.armor] = 50f;
             human_modern_battleship.base_stats[S.damage] = 6f;
@@ -629,7 +629,7 @@ namespace M2
 		    fishing_boat_modern.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             fishing_boat_modern.base_stats[S.projectiles] = 5f;
             fishing_boat_modern.base_stats[S.max_age] = 25f;
-            fishing_boat_modern.base_stats[S.health] = 500f;
+            fishing_boat_modern.base_stats[S.health] = 2000f;
             fishing_boat_modern.base_stats[S.speed] = 70f;
             fishing_boat_modern.base_stats[S.armor] = 40f;
             fishing_boat_modern.base_stats[S.damage] = 50f;
@@ -671,7 +671,7 @@ namespace M2
     human_modern_gunboat.base_stats[S.max_age] = 4f;
     human_modern_gunboat.base_stats[S.attack_speed] = 100f;
     human_modern_gunboat.base_stats[S.accuracy] = 0f;
-    human_modern_gunboat.base_stats[S.health] = 100f;
+    human_modern_gunboat.base_stats[S.health] = 200f;
     human_modern_gunboat.base_stats[S.speed] = 70f;
     human_modern_gunboat.base_stats[S.knockback_reduction] = 3f;
     human_modern_gunboat.base_stats[S.scale] = 0.2f;
@@ -730,10 +730,10 @@ namespace M2
              human_modern_corvette1.inspect_experience = true;
               human_modern_corvette1.disablePunchAttackAnimation = true;
             human_modern_corvette1.inspect_kills = true;
-            human_modern_corvette1.skipFightLogic = false;
                human_modern_corvette1.landCreature = true;
             human_modern_corvette1.specialAnimation = false;
             human_modern_corvette1.has_override_sprite = false;
+             human_modern_corvette1.skipFightLogic = true;
             human_modern_corvette1.canFlip = true;
             human_modern_corvette1.attack_spells = List.Of<string>("gunboat", "gunboat" ,"gunboat", "gunboat" , "gunboat");
             human_modern_corvette1.texture_path = "human_modern_corvette";
@@ -741,7 +741,7 @@ namespace M2
 		    human_modern_corvette1.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_modern_corvette1.base_stats[S.projectiles] = 1f;
             human_modern_corvette1.base_stats[S.max_age] = 25f;
-            human_modern_corvette1.base_stats[S.health] = 500f;
+            human_modern_corvette1.base_stats[S.health] = 8000f;
             human_modern_corvette1.base_stats[S.speed] = 50f;
             human_modern_corvette1.base_stats[S.armor] = 50f;
             human_modern_corvette1.base_stats[S.damage] = 40f;
@@ -784,7 +784,7 @@ namespace M2
 		    human_modern_corvette2.animation_swim = "swim_0,swim_1,swim_2,swim_3";
             human_modern_corvette2.base_stats[S.projectiles] = 1f;
             human_modern_corvette2.base_stats[S.max_age] = 25f;
-            human_modern_corvette2.base_stats[S.health] = 500f;
+            human_modern_corvette2.base_stats[S.health] = 8000f;
             human_modern_corvette2.base_stats[S.speed] = 50f;
             human_modern_corvette2.base_stats[S.armor] = 50f;
             human_modern_corvette2.base_stats[S.damage] = 40f;
@@ -825,7 +825,7 @@ namespace M2
 		    human_modern_submarine.animation_swim = "swim_0,swim_1,swim_2,swim_3,swim_4,swim_5,swim_6,swim_7,swim_8,swim_9,swim_10";
             human_modern_submarine.base_stats[S.projectiles] = 1f;
             human_modern_submarine.base_stats[S.max_age] = 25f;
-            human_modern_submarine.base_stats[S.health] = 1000f;
+            human_modern_submarine.base_stats[S.health] = 6000f;
             human_modern_submarine.base_stats[S.speed] = 40f;
             human_modern_submarine.base_stats[S.armor] = 70f;
             human_modern_submarine.base_stats[S.damage] = 50f;

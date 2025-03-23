@@ -872,7 +872,23 @@ AddBuildingOrderKeysToCivRaces("order_temple_4", "temple_future_human");
             docktwoOrder.requirements_orders = new List<string> { SB.order_bonfire };
         }
 
+ BuildOrder statuelmao = based.addBuilding("order_statue", 1, 0, 30, 10);
+        if (statuelmao != null)
+        {
+            statuelmao.requirements_orders = new List<string> { SB.order_bonfire };
+        }
 
+        BuildOrder windmillone = based.addBuilding("order_windmill_0", 1, 0, 30, 10);
+        if (windmillone != null)
+        {
+            windmillone.requirements_orders = new List<string> { SB.order_bonfire };
+        }
+
+        BuildOrder windmilltwo = based.addBuilding("order_windmill_1", 1, 0, 30, 10);
+        if (windmilltwo != null)
+        {
+            windmilltwo.requirements_orders = new List<string> { SB.order_bonfire };
+        }
 
 
   }
