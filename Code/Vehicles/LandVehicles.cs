@@ -957,7 +957,7 @@ namespace M2
             teslatruckgun.base_stats[S.speed] = 100f;
             teslatruckgun.base_stats[S.armor] = 35f;
             teslatruckgun.base_stats[S.damage] = 25f;
-            teslatruckgun.base_stats[S.scale] = 0.1f;
+            teslatruckgun.base_stats[S.scale] = 0.2f;
             teslatruckgun.base_stats[S.attack_speed] = 0;
 			teslatruckgun.base_stats[S.range] = 20f;
 			teslatruckgun.base_stats[S.knockback_reduction] = 300f;
