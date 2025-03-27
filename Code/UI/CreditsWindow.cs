@@ -50,6 +50,7 @@ Fakher
 Goosefang
 Ariel
 Mr. P
+Melvin Shwuaner
 Nico_the_Nine
 
 
@@ -74,16 +75,11 @@ slowatplaye
 keymasterer
 
 Moderators:
-matthewn0008
-the_state_of_florida
-cakewashere
-.xiexel
-_harrier
+matthewn0008 the_state_of_florida cakewashere
+.xiexel _harrier
 <color='" + gold + @"'>SERVER BOOSTERS:</color>
 keymasterer
-sog1029
-icee9924
-wolfenmicky
+sog1029 icee9924 wolfenmicky
 ";
 
 

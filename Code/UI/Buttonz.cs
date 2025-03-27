@@ -1036,6 +1036,8 @@ PowerButtons.CreateButton("spawn_Troop", Resources.Load<Sprite>("ui/Icons/Soldie
       PowerButtons.ToggleButton("names_toggle");
       Name.toggleNames();
     }
+
+
 /*
 PowerButtons.CreateButton(
     "Renaissance_toggle",
@@ -1117,8 +1119,22 @@ if (Main.savedSettings.boolOptions.TryGetValue("RenaissanceOption", out renaissa
     PowerButtons.CreateButton("arrowleft3", Resources.Load<Sprite>("ui/icons/arrowright"), "Land Units", "Land Units on your planet.", new Vector2(108, -18), NCMS.Utils.ButtonType.GodPower, tab.transform, null
 	);		
     // index++;
+
+
+
+PowerButtons.CreateButton("MedievalWindow", Resources.Load<Sprite>("ui/Icons/Bomber"), "Medieval Units Menu", "Tis but a scratch", new Vector2(290, 18), NCMS.Utils.ButtonType.Click, tab.transform, MedievalWindow);
+
+
+
+
+
   }
-        public static bool callSpawnUnit(WorldTile pTile, string pPowerID)
+private static void MedievalWindow() { Windows.ShowWindow("Medieval Unit Spawner"); }
+
+
+
+
+     public static bool callSpawnUnit(WorldTile pTile, string pPowerID)
         {
             AssetManager.powers.CallMethod("spawnUnit", pTile, pPowerID);
             return true;

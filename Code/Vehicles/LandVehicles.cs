@@ -41,7 +41,7 @@ namespace M2
 			Tank.base_stats[S.max_age] = 50f;
             Tank.base_stats[S.health] = 800f;
             Tank.base_stats[S.speed] = 50f;
-            Tank.base_stats[S.armor] = 50f;
+            Tank.base_stats[S.armor] = 40f;
             Tank.base_stats[S.damage] = 60f;
             Tank.base_stats[S.scale] = 0.2f;
             Tank.base_stats[S.attack_speed] = 0;
@@ -98,7 +98,7 @@ namespace M2
 			AbramTank.base_stats[S.max_age] = 50f;
             AbramTank.base_stats[S.health] = 800f;
             AbramTank.base_stats[S.speed] = 20f;
-            AbramTank.base_stats[S.armor] = 70f;
+            AbramTank.base_stats[S.armor] = 40f;
             AbramTank.base_stats[S.damage] = 40f;
             AbramTank.base_stats[S.scale] = 0.2f;
             AbramTank.base_stats[S.attack_speed] = 0;
@@ -154,7 +154,7 @@ namespace M2
 			tankie.base_stats[S.max_age] = 50f;
             tankie.base_stats[S.health] = 450f;
             tankie.base_stats[S.speed] = 50f;
-            tankie.base_stats[S.armor] = 40f;
+            tankie.base_stats[S.armor] = 20f;
             tankie.base_stats[S.damage] = 40f;
             tankie.base_stats[S.scale] = 0.2f;
             tankie.base_stats[S.attack_speed] = 0;
@@ -268,7 +268,7 @@ namespace M2
 			genericwwtank.base_stats[S.max_age] = 50f;
             genericwwtank.base_stats[S.health] = 550f;
             genericwwtank.base_stats[S.speed] = 50f;
-            genericwwtank.base_stats[S.armor] = 40f;
+            genericwwtank.base_stats[S.armor] = 20f;
             genericwwtank.base_stats[S.damage] = 40f;
             genericwwtank.base_stats[S.scale] = 0.2f;
             genericwwtank.base_stats[S.attack_speed] = 0;
@@ -325,7 +325,7 @@ namespace M2
 			landship.base_stats[S.max_age] = 50f;
             landship.base_stats[S.health] = 350f;
             landship.base_stats[S.speed] = 50f;
-            landship.base_stats[S.armor] = 30f;
+            landship.base_stats[S.armor] = 20f;
             landship.base_stats[S.damage] = 10f;
             landship.base_stats[S.scale] = 0.2f;
             landship.base_stats[S.attack_speed] = 200;
@@ -382,7 +382,7 @@ namespace M2
 			bigtankww.base_stats[S.max_age] = 50f;
             bigtankww.base_stats[S.health] = 650f;
             bigtankww.base_stats[S.speed] = 20f;
-            bigtankww.base_stats[S.armor] = 30f;
+            bigtankww.base_stats[S.armor] = 20f;
             bigtankww.base_stats[S.damage] = 55f;
             bigtankww.base_stats[S.scale] = 0.2f;
             bigtankww.base_stats[S.attack_speed] = 0;
@@ -553,7 +553,7 @@ namespace M2
 			shermanww.base_stats[S.max_age] = 50f;
             shermanww.base_stats[S.health] = 400f;
             shermanww.base_stats[S.speed] = 30f;
-            shermanww.base_stats[S.armor] = 40f;
+            shermanww.base_stats[S.armor] = 20f;
             shermanww.base_stats[S.damage] = 10f;
             shermanww.base_stats[S.scale] = 0.2f;
             shermanww.base_stats[S.projectiles] = 5f;
@@ -611,7 +611,7 @@ namespace M2
             Railgun.base_stats[S.max_age] = 50f;
             Railgun.base_stats[S.health] = 1000f;
             Railgun.base_stats[S.speed] = 30f;
-            Railgun.base_stats[S.armor] = 60f;
+            Railgun.base_stats[S.armor] = 40f;
             Railgun.base_stats[S.damage] = 60f;
             Railgun.base_stats[S.attack_speed] = 0;
             Railgun.base_stats[S.scale] = 0.2f;
@@ -629,7 +629,7 @@ namespace M2
             Railgun.flying = false;
             //Tank.tech = "Tanks";
             Railgun.very_high_flyer = false;
-            Railgun.defaultAttack = "tankshellattack";
+            Railgun.defaultAttack = "greentankplasma";
             Railgun.has_skin = false;
             Railgun.dieOnBlocks = true;
             Railgun.ignoreBlocks = false;
@@ -668,7 +668,7 @@ namespace M2
             OmegaRailgun.base_stats[S.max_age] = 50f;
             OmegaRailgun.base_stats[S.health] = 1200f;
             OmegaRailgun.base_stats[S.speed] = 20f;
-            OmegaRailgun.base_stats[S.armor] = 70f;
+            OmegaRailgun.base_stats[S.armor] = 40f;
             OmegaRailgun.base_stats[S.damage] = 100f;
             OmegaRailgun.base_stats[S.scale] = 0.2f;
             OmegaRailgun.base_stats[S.attack_speed] = 0;
@@ -686,7 +686,7 @@ namespace M2
             OmegaRailgun.flying = false;
             //Tank.tech = "Tanks";
             OmegaRailgun.very_high_flyer = false;
-            OmegaRailgun.defaultAttack = "tankshellattack";
+            OmegaRailgun.defaultAttack = "redtankplasma";
             OmegaRailgun.has_skin = false;
             OmegaRailgun.dieOnBlocks = true;
             OmegaRailgun.ignoreBlocks = false;
@@ -980,7 +980,7 @@ namespace M2
 		    teslatruckgun.inspect_children = false;
             teslatruckgun.inspect_experience = true;
               teslatruckgun.disablePunchAttackAnimation = true;
-			teslatruckgun.defaultAttack = "Minigun";
+			teslatruckgun.defaultAttack = "blueminigun";
 			teslatruckgun.canBeCitizen = true;
             teslatruckgun.inspect_kills = true;
             teslatruckgun.use_items = false;

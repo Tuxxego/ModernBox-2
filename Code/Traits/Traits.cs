@@ -76,7 +76,7 @@ namespace M2
          Dynastic.inherit = 1f;
          Dynastic.base_stats[S.max_age] = 30f;
          Dynastic.base_stats[S.attack_speed] = 0;
-         Dynastic.base_stats[S.intelligence] = -10;
+         Dynastic.base_stats[S.intelligence] = -2;
          Dynastic.base_stats[S.warfare] = 0;
          Dynastic.base_stats[S.diplomacy] = 10;
          Dynastic.base_stats[S.stewardship] = 10;
@@ -111,7 +111,7 @@ namespace M2
          Mercantile.base_stats[S.loyalty_traits] = 15f;
          Mercantile.base_stats[S.cities] = -3;
          AssetManager.traits.add(Mercantile);
-         addTraitToLocalizedLibrary(Mercantile.id, "The very best prices, the yugest golden toilets, and the bestest hairstyles");
+         addTraitToLocalizedLibrary(Mercantile.id, "The very best prices, the yugest golden toilets, and the bestest hairstyles!");
          PlayerConfig.unlockTrait("Mercantile");
 
           ActorTrait Peoplewoven= new ActorTrait();
@@ -153,7 +153,7 @@ namespace M2
          Martial.inherit = 0.8f;
          Martial.base_stats[S.max_age] = 0f;
          Martial.base_stats[S.attack_speed] = 0;
-         Martial.base_stats[S.intelligence] = 10;
+         Martial.base_stats[S.intelligence] = 5;
          Martial.base_stats[S.warfare] = 20;
          Martial.base_stats[S.diplomacy] = -10;
          Martial.base_stats[S.stewardship] = 5;
@@ -161,7 +161,7 @@ namespace M2
          Martial.base_stats[S.loyalty_traits] = -50f;
          Martial.base_stats[S.cities] = 3;
          AssetManager.traits.add(Martial);
-         addTraitToLocalizedLibrary(Martial.id, "TUXXEDAN TECHNOLOGY IS THE BEST");
+         addTraitToLocalizedLibrary(Martial.id, "TUXXEDAN TECHNOLOGY IS THE BEST!!!");
          PlayerConfig.unlockTrait("Martial");
 
 
@@ -179,7 +179,7 @@ namespace M2
          Chaosvolt.inherit = 0f;
          Chaosvolt.base_stats[S.max_age] = -10f;
          Chaosvolt.base_stats[S.attack_speed] = 15;
-         Chaosvolt.base_stats[S.intelligence] = 2;
+         Chaosvolt.base_stats[S.intelligence] = -5;
          Chaosvolt.base_stats[S.warfare] = 20;
          Chaosvolt.base_stats[S.diplomacy] = -500;
          Chaosvolt.base_stats[S.stewardship] = -400;
@@ -187,7 +187,7 @@ namespace M2
          Chaosvolt.base_stats[S.loyalty_traits] = -10000f;
          Chaosvolt.base_stats[S.cities] = -100;
          AssetManager.traits.add(Chaosvolt);
-         addTraitToLocalizedLibrary(Chaosvolt.id, "THE CHAINS ARE BROKEN, THE PEOPLE RISE");
+         addTraitToLocalizedLibrary(Chaosvolt.id, "THE CHAINS ARE BROKEN, THE PEOPLE RISE!");
          PlayerConfig.unlockTrait("Chaosvolt");
 
 
@@ -701,81 +701,84 @@ namespace M2
 
         }
 
-
-
-[HarmonyPatch(typeof(MapBorder), "generateTexture")]
-public static class MapBorder_generateTexture_Combined_Patch
+[HarmonyPatch(typeof(BehFightCheckEnemyIsOk), "execute")]
+public static class BehFightCheckEnemyIsOk_Patch
 {
-    static void Postfix(MapBorder __instance)
+    static bool Prefix(Actor pActor, ref BehResult __result)
     {
-        BannerLoader loader = __instance.GetComponent<BannerLoader>();
-        if (loader == null || loader.kingdom == null)
-            return;
-
-        Kingdom kingdom = loader.kingdom;
-        string dynamicId = Traits.GetDynamicBannerId(kingdom);
-        BannerContainer bannerContainer;
-
-        if (!BannerGenerator.dict.TryGetValue(dynamicId, out bannerContainer))
+        if (!pActor.has_attack_target)
         {
-            if (!BannerGenerator.dict.TryGetValue(kingdom.race.banner_id, out bannerContainer))
-                return;
+            __result = BehResult.Stop;
+            return false;
         }
 
-        if (kingdom.data.banner_background_id < 0 || kingdom.data.banner_background_id >= bannerContainer.backrounds.Count)
-            kingdom.data.banner_background_id = 0;
-
-        if (kingdom.data.banner_icon_id < 0 || kingdom.data.banner_icon_id >= bannerContainer.icons.Count)
-            kingdom.data.banner_icon_id = 0;
-
-        loader.partBackround.sprite = bannerContainer.backrounds[kingdom.data.banner_background_id];
-        loader.partIcon.sprite = bannerContainer.icons[kingdom.data.banner_icon_id];
-
-        if (!loader.gameObject.name.StartsWith("KingdomBanner_"))
-            return;
-
-        Transform flagTransform = __instance.transform.Find("KingdomFlag");
-        GameObject flagGO;
-
-        if (flagTransform == null)
+        if (!pActor.isEnemyTargetAlive())
         {
-            flagGO = new GameObject("KingdomFlag");
-            flagGO.transform.SetParent(__instance.transform, false);
-
-            SpriteRenderer flagSR = flagGO.AddComponent<SpriteRenderer>();
-            SpriteRenderer borderSR = __instance.GetComponent<SpriteRenderer>();
-            if (borderSR != null)
-                flagSR.sortingOrder = borderSR.sortingOrder + 1;
-        }
-        else
-        {
-            flagGO = flagTransform.gameObject;
+            __result = BehResult.Stop;
+            return false;
         }
 
-        Sprite flagSprite = bannerContainer.icons[kingdom.data.banner_icon_id];
-        if (flagSprite == null)
-            return;
+        Kingdom actorKingdom = pActor.kingdom;
 
-        SpriteRenderer srFlag = flagGO.GetComponent<SpriteRenderer>();
-        srFlag.sprite = flagSprite;
-        srFlag.color = new Color(0.85f, 0.85f, 0.85f, 1f);
+        if (pActor.hasTrait("UnitPotential") && pActor.city != null)
+        {
+            actorKingdom = pActor.city.kingdom;
+        }
 
-        SpriteRenderer borderRenderer = __instance.GetComponent<SpriteRenderer>();
-        if (borderRenderer == null)
-            return;
+        if (!actorKingdom.isEnemy(pActor.attackTarget.kingdom))
+        {
+            pActor.clearAttackTarget();
+            __result = BehResult.Stop;
+            return false;
+        }
 
-        Vector3 topRightWorld = borderRenderer.bounds.max;
-        Vector3 topRightLocal = __instance.transform.InverseTransformPoint(topRightWorld);
+        if (!pActor.canAttackTarget(pActor.attackTarget))
+        {
+            pActor.ignoreTarget(pActor.attackTarget);
+            pActor.clearAttackTarget();
+            __result = BehResult.Stop;
+            return false;
+        }
 
-        Vector3 flagSize = flagSprite.bounds.size;
-        Vector3 offset = new Vector3(flagSize.x / 2f, flagSize.y / 2f, 0f);
-        flagGO.transform.localPosition = topRightLocal - offset;
+        if (!pActor.isInAttackRange(pActor.attackTarget))
+        {
+            if (pActor.asset.oceanCreature)
+            {
+                if ((!pActor.attackTarget.isInLiquid() && !pActor.asset.landCreature) || pActor.attackTarget.isFlying())
+                {
+                    pActor.ignoreTarget(pActor.attackTarget);
+                    pActor.clearAttackTarget();
+                    __result = BehResult.Stop;
+                    return false;
+                }
+            }
+            else if ((pActor.attackTarget.isInLiquid() && !pActor.asset.oceanCreature) || pActor.attackTarget.isFlying())
+            {
+                pActor.ignoreTarget(pActor.attackTarget);
+                pActor.clearAttackTarget();
+                __result = BehResult.Stop;
+                return false;
+            }
+        }
 
-        flagGO.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        int x = pActor.currentTile.chunk.x;
+        int y = pActor.currentTile.chunk.y;
+        int x2 = pActor.attackTarget.currentTile.chunk.x;
+        int y2 = pActor.attackTarget.currentTile.chunk.y;
+
+        float num = 1f;
+        if (Toolbox.Dist(x, y, x2, y2) >= (float)SimGlobals.m.unit_chunk_sight_range + num)
+        {
+            pActor.clearAttackTarget();
+            __result = BehResult.Stop;
+            return false;
+        }
+
+        pActor.beh_actor_target = pActor.attackTarget;
+        __result = BehResult.Continue;
+        return false;
     }
 }
-
-
 
 
 [HarmonyPatch(typeof(BannerLoader), "load")]
@@ -827,9 +830,9 @@ public static class Combined_BannerLoader_Load_Patch
         clone.name = "BigOverlayLogo";
         Image icon = clone.GetComponent<Image>();
         RectTransform rt = icon.rectTransform;
-        rt.localScale = new Vector3(5f, 5f, 1f);
-        rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.anchorMin = new Vector2(0.5f, 0.5f);
+        rt.localScale = new Vector3(3f, 3f, 0.8f);
+        rt.pivot = new Vector2(-0.50f, 0.50f);
+        rt.anchorMin = new Vector2(0.50f, 0.50f);
         rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = Vector2.zero;
         icon.sprite = emblem;
@@ -837,6 +840,7 @@ public static class Combined_BannerLoader_Load_Patch
         clone.transform.SetAsFirstSibling();
     }
 }
+
 
 
       [HarmonyPatch(typeof(Kingdom), "generateBanner")]
@@ -993,7 +997,7 @@ public static class KingdomBehCheckKing_IdeologyPatch {
         };
 
         string[] buffStatuses = new string[]
-          { "powerup", "shield", "caffeinated", "rage", "powerup" , "enchanted", "invincible" };
+          { "shield", "caffeinated", "rage" , "enchanted", "invincible" };
 
         for (int i = 0; i < World.world.temp_map_objects.Count; i++)
         {
@@ -1036,7 +1040,7 @@ public static bool UnitpotentialEffect(BaseSimObject pTarget, WorldTile pTile = 
         return false;
 
     HandleCartTransformation(actor, pTile);
-   cloneVehicleBasedOnCityCount(pTarget, pTile);
+  // cloneVehicleBasedOnCityCount(pTarget, pTile);
    NomadHandlerEffect(pTarget, pTile);
     HandleLandAirUnitTransformations(actor, pTile);
     HandleOrcBoatTransformations(actor, pTile);
@@ -1049,7 +1053,6 @@ private static void HandleCartTransformation(Actor a, WorldTile pTile)
     if (a.asset.id != "baseoffensiveunit")
         return;
 
-    bool useSupport = Toolbox.randomChance(0.2f);
     string raceCategory = "human";
     if (a.kingdom != null)
     {
@@ -1068,7 +1071,7 @@ private static void HandleCartTransformation(Actor a, WorldTile pTile)
             if (unit.hasTrait("spawnedvehicle"))
                 spawnedCount++;
         }
-        if (spawnedCount >= 20)
+        if (spawnedCount >= 40)
         {
             return;
         }
@@ -1077,39 +1080,26 @@ private static void HandleCartTransformation(Actor a, WorldTile pTile)
     Culture culture = World.world.cultures.get(a.data.culture);
     List<string> candidates = new List<string>();
 
-    if (!useSupport)
+    float roll = Toolbox.randomFloat(0f, 1f);
+    string roleType = GetRoleType(roll, culture);
+
+    switch (roleType)
     {
-        var options = CartTransformations.OffensiveOptions[raceCategory];
-        if (culture != null)
-        {
-            if (culture.hasTech("Future") && options.ContainsKey("future"))
-                candidates.AddRange(options["future"]);
-            else if (culture.hasTech("MilitaryModern") && options.ContainsKey("modern"))
-                candidates.AddRange(options["modern"]);
-            else if (culture.hasTech("Firearms") && options.ContainsKey("industrial"))
-                candidates.AddRange(options["industrial"]);
-            else if (culture.hasTech("Renaissance") && options.ContainsKey("renaissance"))
-                candidates.AddRange(options["renaissance"]);
-            else if (culture.hasTech("Medieval") && options.ContainsKey("medieval"))
-                candidates.AddRange(options["medieval"]);
-        }
-    }
-    else
-    {
-        var options = CartTransformations.SupportOptions[raceCategory];
-        if (culture != null)
-        {
-            if (culture.hasTech("Future") && options.ContainsKey("future"))
-                candidates.AddRange(options["future"]);
-            else if (culture.hasTech("MilitaryModern") && options.ContainsKey("modern"))
-                candidates.AddRange(options["modern"]);
-            else if (culture.hasTech("Firearms") && options.ContainsKey("industrial"))
-                candidates.AddRange(options["industrial"]);
-            else if (culture.hasTech("Renaissance") && options.ContainsKey("renaissance"))
-                candidates.AddRange(options["renaissance"]);
-            else if (culture.hasTech("Medieval") && options.ContainsKey("medieval"))
-                candidates.AddRange(options["medieval"]);
-        }
+        case "support":
+            candidates = GetUnitCandidates(CartTransformations.SupportOptions, raceCategory, culture);
+            break;
+        case "heavy":
+            candidates = GetUnitCandidates(CartTransformations.HeavyOptions, raceCategory, culture);
+            break;
+        case "air":
+            candidates = GetAirSupportUnits(CartTransformations.AirOptions, raceCategory, culture);
+            break;
+        case "titan":
+            candidates = GetTitanUnits(CartTransformations.TitanOptions, raceCategory, culture);
+            break;
+        default:
+            candidates = GetUnitCandidates(CartTransformations.OffensiveOptions, raceCategory, culture);
+            break;
     }
 
     float transformationChance = 0.5f;
@@ -1121,7 +1111,103 @@ private static void HandleCartTransformation(Actor a, WorldTile pTile)
     }
 }
 
+private static string GetRoleType(float roll, Culture culture)
+{
+    if (culture == null)
+        return "offensive";
 
+    if (culture.hasTech("Future"))
+    {
+        if (roll < 0.05f) return "titan";
+        if (roll < 0.20f) return "support";
+        if (roll < 0.30f) return "air";
+        if (roll < 0.20f) return "heavy";
+    }
+      else if (culture.hasTech("MilitaryModern"))
+    {
+        if (roll < 0.30f) return "air";
+        if (roll < 0.10f) return "support";
+        if (roll < 0.30f) return "heavy";
+    }
+      else if (culture.hasTech("Firearms"))
+    {
+        if (roll < 0.20f) return "air";
+        if (roll < 0.10f) return "support";
+        if (roll < 0.40f) return "heavy";
+    }
+    else if (culture.hasTech("Renaissance"))
+    {
+        if (roll < 0.10f) return "air";
+        if (roll < 0.20f) return "support";
+        if (roll < 0.30f) return "heavy";
+    }
+    else if (culture.hasTech("building_barracks"))
+    {
+        if (roll < 0.20f) return "support";
+        if (roll < 0.30f) return "heavy";
+    }
+    return "offensive";
+}
+
+
+private static List<string> GetUnitCandidates(Dictionary<string, Dictionary<string, List<string>>> options, string raceCategory, Culture culture)
+{
+    List<string> candidates = new List<string>();
+
+    if (options.ContainsKey(raceCategory) && culture != null)
+    {
+        var raceOptions = options[raceCategory];
+        if (culture.hasTech("Future") && raceOptions.ContainsKey("future"))
+            candidates.AddRange(raceOptions["future"]);
+        else if (culture.hasTech("MilitaryModern") && raceOptions.ContainsKey("modern"))
+            candidates.AddRange(raceOptions["modern"]);
+        else if (culture.hasTech("Firearms") && raceOptions.ContainsKey("industrial"))
+            candidates.AddRange(raceOptions["industrial"]);
+        else if (culture.hasTech("Renaissance") && raceOptions.ContainsKey("renaissance"))
+            candidates.AddRange(raceOptions["renaissance"]);
+        else if (culture.hasTech("building_barracks") && raceOptions.ContainsKey("medieval"))
+            candidates.AddRange(raceOptions["medieval"]);
+    }
+
+    return candidates;
+}
+
+
+private static List<string> GetAirSupportUnits(Dictionary<string, Dictionary<string, List<string>>> options, string raceCategory, Culture culture)
+{
+    List<string> candidates = new List<string>();
+
+    if (options.ContainsKey(raceCategory) && culture != null)
+    {
+        var raceOptions = options[raceCategory];
+        if (culture.hasTech("Future") && raceOptions.ContainsKey("future"))
+            candidates.AddRange(raceOptions["future"]);
+        else if (culture.hasTech("MilitaryModern") && raceOptions.ContainsKey("modern"))
+            candidates.AddRange(raceOptions["modern"]);
+        else if (culture.hasTech("Firearms") && raceOptions.ContainsKey("industrial"))
+            candidates.AddRange(raceOptions["industrial"]);
+        else if (culture.hasTech("Renaissance") && raceOptions.ContainsKey("renaissance"))
+            candidates.AddRange(raceOptions["renaissance"]);
+    }
+
+    return candidates;
+}
+
+
+
+private static List<string> GetTitanUnits(Dictionary<string, Dictionary<string, List<string>>> options, string raceCategory, Culture culture)
+{
+    List<string> candidates = new List<string>();
+
+    if (options.ContainsKey(raceCategory) && culture != null)
+    {
+        var raceOptions = options[raceCategory];
+        if (culture.hasTech("Future") && raceOptions.ContainsKey("future"))
+            candidates.AddRange(raceOptions["future"]);
+    }
+
+    return candidates;
+}
 
 
 public static class CartTransformations
@@ -1130,32 +1216,65 @@ public static class CartTransformations
         new Dictionary<string, Dictionary<string, List<string>>>
     {
          { "human", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
-            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
-            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
-            { "renaissance", new List<string>{ "humancavalry" , "balloonunit" , "humancannon" , "davincitank" } },
-            { "medieval",    new List<string>{ "catapulta" , "batteringram" , "humancavalry" } }
+            { "future",      new List<string>{ "SpaceMarine" , "Terran" , "teslatruckgun" , "atst" ,  "SpaceMarine" , "artilleryatst" , "atstsniper" } },
+            { "modern",      new List<string>{ "modernhumvee" , "wwartillery" } },
+            { "industrial",  new List<string>{ "Humvee" , "wwartillery" } },
+            { "renaissance", new List<string>{ "humancavalry" , "humancannon" } },
+            { "medieval",    new List<string>{ "humancavalry" } }
         }},
         { "orc", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "spaceork" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
-           { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
-            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
-            { "renaissance", new List<string>{ "ogreunit", "orccannon", "armoredwolf" , "davincitank" } },
-            { "medieval",    new List<string>{ "orcatapulta" , "ogreunit" , "armoredwolf" } }
+            { "future",      new List<string>{ "spaceork" , "Terran" , "teslatruckgun" , "atst" ,  "spaceork" , "artilleryatst" , "atstsniper" } },
+            { "modern",      new List<string>{ "modernhumvee" , "wwartillery" } },
+            { "industrial",  new List<string>{ "Humvee" , "wwartillery" } },
+            { "renaissance", new List<string>{ "ogreunit", "orccannon", "armoredwolf" } },
+            { "medieval",    new List<string>{ "ogreunit" , "armoredwolf" } }
         }},
         { "dwarf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
-            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
-            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
-            { "renaissance", new List<string>{ "santaguin" , "Gunship" , "dwarfcannon" , "davincitank" } },
-            { "medieval",    new List<string>{ "santaguin" , "golemgem" } }
+           { "future",      new List<string>{ "SpaceMarine" , "Terran" , "teslatruckgun" , "atst" ,  "SpaceMarine" , "artilleryatst" , "atstsniper" } },
+            { "modern",      new List<string>{ "modernhumvee" , "wwartillery" } },
+            { "industrial",  new List<string>{ "Humvee" , "wwartillery" } },
+            { "renaissance", new List<string>{ "dwarfcannon" } },
+            { "medieval",    new List<string>{ "golemgem" } }
         }},
         { "elf", new Dictionary<string, List<string>> {
-            { "future",      new List<string>{ "SpaceMarine" , "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" , "F55FighterJet" , "P9000" , "Terran" , "dreadnaught" , "Railgun" , "teslatruckgun" , "HumanTitan" , "MA9000" , "atst" } },
-            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "Tank" , "MissileSystem" , "wheeledtank" , "modernhumvee" , "wwartillery" } },
-            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "AbramTank" , "shermanww" , "Humvee" , "tankie" , "genericwwtank" , "landship" , "bigtankww" , "americanbomberww" , "biplane" , "wwartillery" } },
-            { "renaissance", new List<string>{ "treant" , "elfcannon" , "bigfaerydragon" , "davincitank" } },
-            { "medieval",    new List<string>{ "woolyrhino" , "treant" } }
+          { "future",      new List<string>{ "SpaceMarine" , "Terran" , "teslatruckgun" , "atst" ,  "SpaceMarine" , "artilleryatst" , "atstsniper" } },
+            { "modern",      new List<string>{ "modernhumvee" , "wwartillery" } },
+            { "industrial",  new List<string>{ "Humvee" , "wwartillery" } },
+            { "renaissance", new List<string>{ "treant" , "elfcannon" } },
+            { "medieval",    new List<string>{ "treant" } }
+        }}
+    };
+
+     public static Dictionary<string, Dictionary<string, List<string>>> HeavyOptions =
+        new Dictionary<string, Dictionary<string, List<string>>>
+    {
+         { "human", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "P9000" , "dreadnaught" , "Railgun" , "baseMA9000" } },
+            { "modern",      new List<string>{ "Tank" , "MissileSystem" , "wheeledtank" } },
+            { "industrial",  new List<string>{ "AbramTank" , "shermanww" , "tankie" , "genericwwtank" , "landship" , "bigtankww" } },
+            { "renaissance", new List<string>{ "davincitank" } },
+            { "medieval",    new List<string>{ "catapulta" , "batteringram" } }
+        }},
+        { "orc", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "P9000" , "dreadnaught" , "Railgun" , "baseMA9000" } },
+            { "modern",      new List<string>{ "Tank" , "MissileSystem" , "wheeledtank" } },
+            { "industrial",  new List<string>{ "AbramTank" , "shermanww" , "tankie" , "genericwwtank" , "landship" , "bigtankww" } },
+            { "renaissance", new List<string>{ "davincitank" } },
+            { "medieval",    new List<string>{ "orcatapulta" } }
+        }},
+        { "dwarf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "P9000" , "dreadnaught" , "Railgun" , "baseMA9000" } },
+            { "modern",      new List<string>{ "Tank" , "MissileSystem" , "wheeledtank" } },
+            { "industrial",  new List<string>{ "AbramTank" , "shermanww" , "tankie" , "genericwwtank" , "landship" , "bigtankww" } },
+            { "renaissance", new List<string>{ "davincitank" } },
+            { "medieval",    new List<string>{ "santaguin" } }
+        }},
+        { "elf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "P9000" , "dreadnaught" , "Railgun" , "baseMA9000" } },
+            { "modern",      new List<string>{ "Tank" , "MissileSystem" , "wheeledtank" } },
+            { "industrial",  new List<string>{ "AbramTank" , "shermanww" , "tankie" , "genericwwtank" , "landship" , "bigtankww" } },
+            { "renaissance", new List<string>{ "davincitank" } },
+            { "medieval",    new List<string>{ "woolyrhino" } }
         }}
     };
 
@@ -1192,7 +1311,57 @@ public static class CartTransformations
         }}
     };
 
+     public static Dictionary<string, Dictionary<string, List<string>>> AirOptions =
+        new Dictionary<string, Dictionary<string, List<string>>>
+    {
+         { "human", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" } },
+            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "F55FighterJet" } },
+            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "americanbomberww" , "biplane" , "fighterww" } },
+            { "renaissance", new List<string>{ "balloonunit" } }
+        }},
+        { "orc", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" } },
+            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "F55FighterJet" } },
+            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "americanbomberww" , "biplane" , "fighterww" } },
+            { "renaissance", new List<string>{ "orccannon", "armoredwolf" } }
+        }},
+        { "dwarf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" } },
+            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "F55FighterJet" } },
+            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "americanbomberww" , "biplane" , "fighterww" } },
+            { "renaissance", new List<string>{ "Gunship" } }
+        }},
+        { "elf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HeliELite" , "eliteGunship" , "TIEfighter" , "EliteBomber" } },
+            { "modern",      new List<string>{ "Heli" , "MIRVBomber" , "FighterJet" , "F55FighterJet" } },
+            { "industrial",  new List<string>{ "Zeppelin" , "EliteZeppelin" , "americanbomberww" , "biplane" , "fighterww" } },
+            { "renaissance", new List<string>{ "bigfaerydragon" } }
+        }}
+    };
+
+
+      public static Dictionary<string, Dictionary<string, List<string>>> TitanOptions =
+        new Dictionary<string, Dictionary<string, List<string>>>
+    {
+         { "human", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HumanTitan" } }
+        }},
+        { "orc", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HumanTitan" } }
+        }},
+        { "dwarf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HumanTitan" } }
+        }},
+        { "elf", new Dictionary<string, List<string>> {
+            { "future",      new List<string>{ "HumanTitan" } }
+        }}
+    };
 }
+
+
+
+
 
 public static bool cloneVehicleBasedOnCityCount(BaseSimObject pTarget, WorldTile pTile = null)
 {
@@ -1212,258 +1381,69 @@ public static bool cloneVehicleBasedOnCityCount(BaseSimObject pTarget, WorldTile
 
     if (unitId == "Humvee")
     {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
 
-    else if (unitId == "spaceork")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-  else if (unitId == "SpaceMarine")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "HeliELite")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-  else if (unitId == "eliteGunship")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "TIEfighter")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-      else if (unitId == "humancavalry")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "Terran")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "teslatruckgun")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "modernhumvee")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-          else if (unitId == "Heli")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-         else if (unitId == "landship")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-      else if (unitId == "armoredwolf")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-       else if (unitId == "biplane")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-    else if (unitId == "golemgem")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-      else if (unitId == "woolyrhino")
-    {
-        if (numCities == 1)
-            clonesToSpawn = 2;
-        else if (numCities >= 2 && numCities <= 3)
-            clonesToSpawn = 1;
-        else
-            clonesToSpawn = 0;
-    }
-
-    else if (unitId == "balloonunit")
+  else if (unitId == "spaceork")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
-    else if (unitId == "batteringram")
+   else if (unitId == "SpaceMarine")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
 
-   else if (unitId == "catapulta")
+  else if (unitId == "humancavalry")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
-  else if (unitId == "orcatapulta")
+   else if (unitId == "Terran")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+
+  else if (unitId == "teslatruckgun")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+   else if (unitId == "modernhumvee")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+
+  else if (unitId == "landship")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+   else if (unitId == "atstsniper")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+
+  else if (unitId == "atst")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+   else if (unitId == "artilleryatst")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+
+  else if (unitId == "armoredwolf")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+
+  else if (unitId == "woolyrhino")
+    {
+        clonesToSpawn = (numCities == 1) ? 1 : 0;
+    }
+   else if (unitId == "golemgem")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
 
   else if (unitId == "ogreunit")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-    else if (unitId == "santaguin")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-    else if (unitId == "dwarfcannon")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-    else if (unitId == "Gunship")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-          else if (unitId == "treant")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-         else if (unitId == "davincitank")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-        else if (unitId == "bigfaerydragon")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-       else if (unitId == "elfcannon")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-       else if (unitId == "tankie")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-     else if (unitId == "genericwwtank")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-    else if (unitId == "Zeppelin")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-          else if (unitId == "wheeledtank")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-          else if (unitId == "FighterJet")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-        else if (unitId == "dreadnaught")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-            else if (unitId == "P9000")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-      else if (unitId == "Railgun")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-     else if (unitId == "F55FighterJet")
-    {
-        clonesToSpawn = (numCities == 1) ? 1 : 0;
-    }
-
-    else if (unitId == "Tank")
     {
         clonesToSpawn = (numCities == 1) ? 1 : 0;
     }
@@ -1581,19 +1561,28 @@ public static bool NomadHandlerEffect(BaseSimObject pTarget, WorldTile pTile = n
 
 private static void HandleLandAirUnitTransformations(Actor a, WorldTile pTile)
 {
-    if (a.asset.id == "Tank")
-    {
-        if (a.hasTrait("veteran"))
-        {
-            TransformUnit(a, "AbramTank", pTile);
-        }
-    }
 
-    else if (a.asset.id == "Railgun")
+     if (a.asset.id == "Railgun")
     {
       if (a.hasTrait("veteran"))
         {
             TransformUnit(a, "OmegaRailgun", pTile);
+        }
+    }
+
+        else if (a.asset.id == "baseMA9000")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "MA9000", pTile);
+        }
+    }
+
+    else if (a.asset.id == "biplane")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "fighterww", pTile);
         }
     }
 
@@ -1613,6 +1602,14 @@ private static void HandleLandAirUnitTransformations(Actor a, WorldTile pTile)
         }
     }
 
+        else if (a.asset.id == "AT9000")
+    {
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "eliteAT9000", pTile);
+        }
+    }
+
     else if (a.asset.id == "SpaceMarine")
     {
       if (a.hasTrait("veteran") && a.hasTrait("skin_burns"))
@@ -1625,12 +1622,12 @@ private static void HandleLandAirUnitTransformations(Actor a, WorldTile pTile)
         }
     }
 
-   else if (a.asset.id == "HumanTitan")
+    else if (a.asset.id == "HumanTitan")
     {
-     if (a.data.kills > 200)
-            {
-                TransformUnit(a, "HumanTitanElite", pTile);
-            }
+      if (a.hasTrait("veteran"))
+        {
+            TransformUnit(a, "HumanTitanElite", pTile);
+        }
     }
 
 
@@ -1829,7 +1826,7 @@ private static string GetBuildingForActor(Actor actor)
             return "HumanTitanElite_scraps";
               case "landship":
             return "landship_scraps";
-        case "MA9000":
+        case "eliteMA9000":
             return "MA9000_scraps";
         case "modernhumvee":
             return "modernhumvee_scraps";

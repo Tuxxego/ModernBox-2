@@ -320,7 +320,7 @@ class Commerce {
             MissileSilo.tower = true;
             MissileSilo.tower_projectile = "NUKER";
             MissileSilo.tower_projectile_offset = 4f;
-            MissileSilo.tower_projectile_reload = 64f;
+            MissileSilo.tower_projectile_reload = 32f;
             AssetManager.buildings.loadSprites(MissileSilo);
 
 
@@ -1637,9 +1637,8 @@ public static class CityBehBuild_HaveRequiredBuildings_Patch
   AddBuildingOrderKeysToCivRaces("order_MissileSilo", "MissileSilo");
   }
 
-  public static void turnOffNukes() {
-      RemoveBuildingOrderKeysToCivRaces("order_MissileSilo", "MissileSilo");
-}
+
+  public static void turnOffNukes() { }
 
 
   private static void OpenNukeWindow() {
@@ -1803,7 +1802,7 @@ public static bool findEnemyObjectTarget_prefix(BaseSimObject __instance, ref Ba
     int range = -1;
     if (__instance is Building building && building.asset.id == "MissileSilo")
     {
-        range = 25;
+        range = 150;
     }
     EnemyFinderData enemyFinderData = EnemiesFinder.findEnemiesFrom(__instance.currentTile, __instance.kingdom, range);
     if (enemyFinderData.list == null)
@@ -1823,7 +1822,7 @@ public static bool findEnemyObjectTarget_prefix(BaseSimObject __instance, ref Ba
         }
         if (candidate?.a != null)
         {
-            if (candidate.a.data.health < 10000)
+            if (candidate.a.data.health < 8000)
             {
                 __result = null;
                 return false;
@@ -2067,7 +2066,7 @@ public static class ActorBase_checkSpriteHead_Patch
         if (__instance.asset.unit && __instance.data.profession == UnitProfession.Warrior)
         {
             Culture culture = World.world.cultures.get(__instance.data.culture);
-            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance")))
+            if (culture != null && (culture.hasTech("MilitaryModern") || culture.hasTech("Renaissance") || culture.hasTech("Future") || culture.hasTech("Industrial") ))
             {
                 __instance.dirty_sprite_head = false;
                 string pPath = "actors/Soldier_head";

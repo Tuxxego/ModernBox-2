@@ -82,7 +82,7 @@ groundshake.draw_light_area_offset_y = 5f;
 groundshake.limit = 100;
 AssetManager.effects_library.add(groundshake);
 
-          EffectAsset DankyMatter = new EffectAsset();
+EffectAsset DankyMatter = new EffectAsset();
 DankyMatter.id = "fx_dankymatter_effect";
 DankyMatter.use_basic_prefab = true;
 DankyMatter.sorting_layer_id = "EffectsTop";
@@ -219,8 +219,6 @@ AssetManager.effects_library.add(DankyMatter);
           cannonballprojectile.targetScale = 0.2f;
           cannonballprojectile.parabolic = true;
           cannonballprojectile.speed = 10f;
-          ProjectileAsset cannonballprojectile1 = cannonballprojectile;
-          cannonballprojectile1.world_actions = (AttackAction)Delegate.Combine(cannonballprojectile1.world_actions, new AttackAction(ActionLibrary.burnTile));
           AssetManager.projectiles.add(cannonballprojectile);
 
            ProjectileAsset tankshell = new ProjectileAsset();
@@ -260,6 +258,267 @@ AssetManager.effects_library.add(DankyMatter);
           bigbullet.speed = 45f;
           AssetManager.projectiles.add(bigbullet);
 
+          ProjectileAsset blueplasma = new ProjectileAsset();
+          blueplasma.id = "blueplasma";
+          blueplasma.texture = "blueplasma";
+          blueplasma.trailEffect_enabled = false;
+	      blueplasma.look_at_target = true;
+          blueplasma.draw_light_area = true;
+          blueplasma.looped = false;
+	      blueplasma.draw_light_size = 1f;
+          blueplasma.animation_speed = 0.1f;
+          blueplasma.terraformOption = "nonannoyingbullet";
+          blueplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          blueplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          blueplasma.terraformRange = 1;
+          blueplasma.startScale = 0.07f;
+          blueplasma.targetScale = 0.07f;
+          blueplasma.parabolic = false;
+          blueplasma.speed = 15f;
+          AssetManager.projectiles.add(blueplasma);
+
+                  ProjectileAsset redplasma = new ProjectileAsset();
+          redplasma.id = "redplasma";
+          redplasma.texture = "redplasma";
+          redplasma.trailEffect_enabled = false;
+	      redplasma.look_at_target = true;
+          redplasma.draw_light_area = true;
+          redplasma.looped = false;
+	      redplasma.draw_light_size = 1f;
+          redplasma.animation_speed = 0.1f;
+          redplasma.terraformOption = "nonannoyingbullet";
+          redplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          redplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          redplasma.terraformRange = 1;
+          redplasma.startScale = 0.07f;
+          redplasma.targetScale = 0.07f;
+          redplasma.parabolic = false;
+          redplasma.speed = 15f;
+          AssetManager.projectiles.add(redplasma);
+
+            ProjectileAsset greenplasma = new ProjectileAsset();
+          greenplasma.id = "greenplasma";
+          greenplasma.texture = "greenplasma";
+          greenplasma.trailEffect_enabled = false;
+	      greenplasma.look_at_target = true;
+          greenplasma.draw_light_area = true;
+          greenplasma.looped = false;
+	      greenplasma.draw_light_size = 1f;
+          greenplasma.animation_speed = 0.1f;
+          greenplasma.terraformOption = "nonannoyingbullet";
+          greenplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          greenplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          greenplasma.terraformRange = 1;
+          greenplasma.startScale = 0.07f;
+          greenplasma.targetScale = 0.07f;
+          greenplasma.parabolic = false;
+          greenplasma.speed = 15f;
+          AssetManager.projectiles.add(greenplasma);
+
+          ProjectileAsset bluemediumplasma = new ProjectileAsset();
+          bluemediumplasma.id = "bluemediumplasma";
+          bluemediumplasma.texture = "blueplasma";
+          bluemediumplasma.trailEffect_enabled = false;
+	      bluemediumplasma.look_at_target = true;
+          bluemediumplasma.draw_light_area = true;
+          bluemediumplasma.looped = false;
+          bluemediumplasma.endEffect = "blueplasmaboom";
+	      bluemediumplasma.draw_light_size = 1f;
+          bluemediumplasma.animation_speed = 0.1f;
+          bluemediumplasma.terraformOption = "nonannoyingbullet";
+          bluemediumplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          bluemediumplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          bluemediumplasma.terraformRange = 1;
+          bluemediumplasma.startScale = 0.2f;
+          bluemediumplasma.targetScale = 0.2f;
+          bluemediumplasma.parabolic = false;
+          bluemediumplasma.speed = 15f;
+          AssetManager.projectiles.add(bluemediumplasma);
+
+          ProjectileAsset redmediumplasma = new ProjectileAsset();
+          redmediumplasma.id = "redmediumplasma";
+          redmediumplasma.texture = "redplasma";
+          redmediumplasma.trailEffect_enabled = false;
+	      redmediumplasma.look_at_target = true;
+          redmediumplasma.draw_light_area = true;
+          redmediumplasma.looped = false;
+          redmediumplasma.endEffect = "redplasmaboom";
+	      redmediumplasma.draw_light_size = 1f;
+          redmediumplasma.animation_speed = 0.1f;
+          redmediumplasma.terraformOption = "nonannoyingbullet";
+          redmediumplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          redmediumplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          redmediumplasma.terraformRange = 1;
+          redmediumplasma.startScale = 0.2f;
+          redmediumplasma.targetScale = 0.2f;
+          redmediumplasma.parabolic = false;
+          redmediumplasma.speed = 15f;
+          AssetManager.projectiles.add(redmediumplasma);
+
+            ProjectileAsset greenmediumplasma = new ProjectileAsset();
+          greenmediumplasma.id = "greenmediumplasma";
+          greenmediumplasma.texture = "greenplasma";
+          greenmediumplasma.trailEffect_enabled = false;
+	      greenmediumplasma.look_at_target = true;
+          greenmediumplasma.draw_light_area = true;
+          greenmediumplasma.looped = false;
+          greenmediumplasma.endEffect = "greenplasmaboom";
+	      greenmediumplasma.draw_light_size = 1f;
+          greenmediumplasma.animation_speed = 0.1f;
+          greenmediumplasma.terraformOption = "nonannoyingbullet";
+          greenmediumplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          greenmediumplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          greenmediumplasma.terraformRange = 1;
+          greenmediumplasma.startScale = 0.2f;
+          greenmediumplasma.targetScale = 0.2f;
+          greenmediumplasma.parabolic = false;
+          greenmediumplasma.speed = 15f;
+          AssetManager.projectiles.add(greenmediumplasma);
+
+          ProjectileAsset bluebigplasma = new ProjectileAsset();
+          bluebigplasma.id = "bluebigplasma";
+          bluebigplasma.texture = "blueplasma";
+          bluebigplasma.trailEffect_enabled = false;
+	      bluebigplasma.look_at_target = true;
+          bluebigplasma.draw_light_area = true;
+          bluebigplasma.looped = false;
+          bluebigplasma.endEffect = "kameboom";
+	      bluebigplasma.draw_light_size = 1f;
+          bluebigplasma.animation_speed = 0.1f;
+          bluebigplasma.terraformOption = "nonannoyingbullet";
+          bluebigplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          bluebigplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          bluebigplasma.terraformRange = 1;
+          bluebigplasma.startScale = 0.4f;
+          bluebigplasma.targetScale = 0.4f;
+          bluebigplasma.parabolic = false;
+          bluebigplasma.speed = 20f;
+          AssetManager.projectiles.add(bluebigplasma);
+
+          ProjectileAsset redbigplasma = new ProjectileAsset();
+          redbigplasma.id = "redbigplasma";
+          redbigplasma.texture = "redplasma";
+          redbigplasma.trailEffect_enabled = false;
+	      redbigplasma.look_at_target = true;
+          redbigplasma.draw_light_area = true;
+          redbigplasma.looped = false;
+          redbigplasma.endEffect = "redbigboom";
+	      redbigplasma.draw_light_size = 1f;
+          redbigplasma.animation_speed = 0.1f;
+          redbigplasma.terraformOption = "nonannoyingbullet";
+          redbigplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          redbigplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          redbigplasma.terraformRange = 1;
+          redbigplasma.startScale = 0.4f;
+          redbigplasma.targetScale = 0.4f;
+          redbigplasma.parabolic = false;
+          redbigplasma.speed = 20f;
+          AssetManager.projectiles.add(redbigplasma);
+
+            ProjectileAsset greenbigplasma = new ProjectileAsset();
+          greenbigplasma.id = "greenbigplasma";
+          greenbigplasma.texture = "greenplasma";
+          greenbigplasma.trailEffect_enabled = false;
+	      greenbigplasma.look_at_target = true;
+          greenbigplasma.draw_light_area = true;
+          greenbigplasma.looped = false;
+          greenbigplasma.endEffect = "greenbigboom";
+	      greenbigplasma.draw_light_size = 1f;
+          greenbigplasma.animation_speed = 0.1f;
+          greenbigplasma.terraformOption = "nonannoyingbullet";
+          greenbigplasma.sound_launch = "event:/SFX/WEAPONS/WeaponPlasmaBallStart";
+          greenbigplasma.sound_impact = "event:/SFX/WEAPONS/WeaponPlasmaBallLand";
+          greenbigplasma.terraformRange = 1;
+          greenbigplasma.startScale = 0.4f;
+          greenbigplasma.targetScale = 0.4f;
+          greenbigplasma.parabolic = false;
+          greenbigplasma.speed = 20f;
+          AssetManager.projectiles.add(greenbigplasma);
+
+                      EffectAsset blueplasmaboom = new EffectAsset();
+		    blueplasmaboom.id = "blueplasmaboom";
+		    blueplasmaboom.use_basic_prefab = true;
+		    blueplasmaboom.sorting_layer_id = "EffectsTop";
+		    blueplasmaboom.sprite_path = $"effects/blueplasmaboom";
+            blueplasmaboom.show_on_mini_map = true;
+		    blueplasmaboom.draw_light_area = true;
+            blueplasmaboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+		    blueplasmaboom.draw_light_size = 1f;
+		    blueplasmaboom.limit = 80;
+		    AssetManager.effects_library.add(blueplasmaboom);
+
+                        EffectAsset redplasmaboom = new EffectAsset();
+		    redplasmaboom.id = "redplasmaboom";
+		    redplasmaboom.use_basic_prefab = true;
+		    redplasmaboom.sorting_layer_id = "EffectsTop";
+		    redplasmaboom.sprite_path = $"effects/redplasmaboom";
+            redplasmaboom.show_on_mini_map = true;
+		    redplasmaboom.draw_light_area = true;
+            redplasmaboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+		    redplasmaboom.draw_light_size = 1f;
+		    redplasmaboom.limit = 80;
+		    AssetManager.effects_library.add(redplasmaboom);
+
+                        EffectAsset greenplasmaboom = new EffectAsset();
+		    greenplasmaboom.id = "greenplasmaboom";
+		    greenplasmaboom.use_basic_prefab = true;
+		    greenplasmaboom.sorting_layer_id = "EffectsTop";
+		    greenplasmaboom.sprite_path = $"effects/greenplasmaboom";
+            greenplasmaboom.show_on_mini_map = true;
+		    greenplasmaboom.draw_light_area = true;
+            greenplasmaboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+		    greenplasmaboom.draw_light_size = 1f;
+		    greenplasmaboom.limit = 80;
+		    AssetManager.effects_library.add(greenplasmaboom);
+
+            EffectAsset kameboom = new EffectAsset();
+		    kameboom.id = "kameboom";
+		    kameboom.use_basic_prefab = true;
+		    kameboom.sorting_layer_id = "EffectsTop";
+		    kameboom.sprite_path = $"effects/kameboomtest";
+            kameboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+            kameboom.show_on_mini_map = true;
+		    kameboom.draw_light_area = true;
+		    kameboom.draw_light_size = 1f;
+		    kameboom.limit = 80;
+		    AssetManager.effects_library.add(kameboom);
+
+              EffectAsset hyperboom = new EffectAsset();
+		    hyperboom.id = "hyperboom";
+		    hyperboom.use_basic_prefab = true;
+		    hyperboom.sorting_layer_id = "EffectsTop";
+		    hyperboom.sprite_path = $"effects/hyperboom";
+            hyperboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionAntimatterBomb";
+            hyperboom.show_on_mini_map = true;
+		    hyperboom.draw_light_area = true;
+		    hyperboom.draw_light_size = 1f;
+		    hyperboom.limit = 80;
+		    AssetManager.effects_library.add(hyperboom);
+
+              EffectAsset greenbigboom = new EffectAsset();
+		    greenbigboom.id = "greenbigboom";
+		    greenbigboom.use_basic_prefab = true;
+		    greenbigboom.sorting_layer_id = "EffectsTop";
+		    greenbigboom.sprite_path = $"effects/greenbigboom";
+		    greenbigboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+            greenbigboom.show_on_mini_map = true;
+		    greenbigboom.draw_light_area = true;
+		    greenbigboom.draw_light_size = 1f;
+		    greenbigboom.limit = 80;
+		    AssetManager.effects_library.add(greenbigboom);
+
+              EffectAsset redbigboom = new EffectAsset();
+		    redbigboom.id = "redbigboom";
+		    redbigboom.use_basic_prefab = true;
+		    redbigboom.sorting_layer_id = "EffectsTop";
+		    redbigboom.sprite_path = $"effects/redbigboom";
+		    redbigboom.sound_launch = "event:/SFX/EXPLOSIONS/ExplosionSmall";
+            redbigboom.show_on_mini_map = true;
+		    redbigboom.draw_light_area = true;
+		    redbigboom.draw_light_size = 1f;
+		    redbigboom.limit = 80;
+		    AssetManager.effects_library.add(redbigboom);
+
         ProjectileAsset crabartilleryshell = new ProjectileAsset();
           crabartilleryshell.id = "crabartilleryshell";
           crabartilleryshell.texture = "shotgun_bullet";
@@ -277,6 +536,7 @@ AssetManager.effects_library.add(DankyMatter);
           ProjectileAsset shellboomboomeffecto = crabartilleryshell;
           shellboomboomeffecto.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffecto.world_actions, new AttackAction(ActionLibrary.burnTile));
           AssetManager.projectiles.add(crabartilleryshell);
+
 
 
 
@@ -464,6 +724,39 @@ AssetManager.effects_library.add(DankyMatter);
 		tankshellattack.base_stats[S.damage_range] = 0.7f;
             tankshellattack.path_slash_animation = "effects/slashes/slash_punch";
 
+              ItemAsset bluetankplasma = AssetManager.items.clone("bluetankplasma", "_range");
+            bluetankplasma.id = "bluetankplasma";
+            bluetankplasma.projectile = "bluebigplasma";
+            bluetankplasma.materials = List.Of<string>(new string[] { "base" });
+		bluetankplasma.base_stats[S.attack_speed] = -500f;
+		bluetankplasma.base_stats[S.range] = 0f;
+		bluetankplasma.base_stats[S.targets] = 4f;
+		bluetankplasma.base_stats[S.damage] = 0f;
+		bluetankplasma.base_stats[S.damage_range] = 0.7f;
+            bluetankplasma.path_slash_animation = "effects/slashes/slash_punch";
+
+              ItemAsset redtankplasma = AssetManager.items.clone("redtankplasma", "_range");
+            redtankplasma.id = "redtankplasma";
+            redtankplasma.projectile = "redbigplasma";
+            redtankplasma.materials = List.Of<string>(new string[] { "base" });
+		redtankplasma.base_stats[S.attack_speed] = -500f;
+		redtankplasma.base_stats[S.range] = 0f;
+		redtankplasma.base_stats[S.targets] = 4f;
+		redtankplasma.base_stats[S.damage] = 0f;
+		redtankplasma.base_stats[S.damage_range] = 0.7f;
+            redtankplasma.path_slash_animation = "effects/slashes/slash_punch";
+
+              ItemAsset greentankplasma = AssetManager.items.clone("greentankplasma", "_range");
+            greentankplasma.id = "greentankplasma";
+            greentankplasma.projectile = "greenbigplasma";
+            greentankplasma.materials = List.Of<string>(new string[] { "base" });
+		greentankplasma.base_stats[S.attack_speed] = -500f;
+		greentankplasma.base_stats[S.range] = 0f;
+		greentankplasma.base_stats[S.targets] = 4f;
+		greentankplasma.base_stats[S.damage] = 0f;
+		greentankplasma.base_stats[S.damage_range] = 0.7f;
+            greentankplasma.path_slash_animation = "effects/slashes/slash_punch";
+
                  ItemAsset crabartillery = AssetManager.items.clone("crabartillery", "_range");
             crabartillery.id = "crabartillery";
             crabartillery.projectile = "crabartilleryshell";
@@ -588,7 +881,7 @@ AssetManager.effects_library.add(DankyMatter);
             GunshipCannon.base_stats[S.range] = 0f;
             GunshipCannon.base_stats[S.accuracy] = 400;
             GunshipCannon.base_stats[S.attack_speed] = 200f;
-            GunshipCannon.base_stats[S.damage] = 13;
+            GunshipCannon.base_stats[S.damage] = 13f;
             GunshipCannon.equipment_value = 300;
             GunshipCannon.path_slash_animation = "effects/slashes/slash_punch";
 		  
@@ -602,7 +895,7 @@ AssetManager.effects_library.add(DankyMatter);
           PipeRifle.base_stats[S.max_children] = 0f;
           PipeRifle.base_stats[S.max_age] = 0f;
           PipeRifle.base_stats[S.attack_speed] = 180;
-          PipeRifle.base_stats[S.damage] = 13;
+          PipeRifle.base_stats[S.damage] = 13f;
           PipeRifle.base_stats[S.speed] = 0f;
           PipeRifle.base_stats[S.health] = 0;
           PipeRifle.base_stats[S.accuracy] = 70f;
@@ -641,7 +934,7 @@ AssetManager.effects_library.add(DankyMatter);
           PipePistol.base_stats[S.max_children] = 0f;
           PipePistol.base_stats[S.max_age] = 0f;
           PipePistol.base_stats[S.attack_speed] = 20;
-          PipePistol.base_stats[S.damage] = 13;
+          PipePistol.base_stats[S.damage] = 13f;
           PipePistol.base_stats[S.speed] = 0f;
           PipePistol.base_stats[S.health] = 0;
           PipePistol.base_stats[S.accuracy] = 70f;
@@ -680,7 +973,7 @@ AssetManager.effects_library.add(DankyMatter);
           PipeShotgun.base_stats[S.max_children] = 0f;
           PipeShotgun.base_stats[S.max_age] = 0f;
           PipeShotgun.base_stats[S.attack_speed] = 20;
-          PipeShotgun.base_stats[S.damage] = 130;
+          PipeShotgun.base_stats[S.damage] = 130f;
           PipeShotgun.base_stats[S.speed] = 0f;
           PipeShotgun.base_stats[S.health] = 0;
           PipeShotgun.base_stats[S.accuracy] = 70f;
@@ -816,7 +1109,7 @@ AssetManager.effects_library.add(DankyMatter);
           piratpistol.base_stats[S.max_children] = 0f;
           piratpistol.base_stats[S.max_age] = 0f;
           piratpistol.base_stats[S.attack_speed] = -100;
-          piratpistol.base_stats[S.damage] = 30;
+          piratpistol.base_stats[S.damage] = 30f;
           piratpistol.base_stats[S.speed] = 0f;
           piratpistol.base_stats[S.health] = 0;
           piratpistol.base_stats[S.accuracy] = -20f;
@@ -859,7 +1152,7 @@ AssetManager.effects_library.add(DankyMatter);
           Musket.base_stats[S.max_children] = 0f;
           Musket.base_stats[S.max_age] = 0f;
           Musket.base_stats[S.attack_speed] = -200;
-          Musket.base_stats[S.damage] = 40;
+          Musket.base_stats[S.damage] = 40f;
           Musket.base_stats[S.speed] = 0f;
           Musket.base_stats[S.health] = 0;
           Musket.base_stats[S.accuracy] = -20f;
@@ -1002,7 +1295,7 @@ AssetManager.effects_library.add(DankyMatter);
           AssetManager.items.list.AddItem(wwhelmet);
           Localization.addLocalization("item_wwhelmet", "ww helmet");
 
-
+//////////////////////WEAPONS////////////////////////////////
 
 
           ItemAsset m1garand = AssetManager.items.clone("m1garand", "_range");
@@ -1015,7 +1308,7 @@ AssetManager.effects_library.add(DankyMatter);
           m1garand.base_stats[S.max_children] = 0f;
           m1garand.base_stats[S.max_age] = 0f;
           m1garand.base_stats[S.attack_speed] = -200;
-          m1garand.base_stats[S.damage] = 100;
+          m1garand.base_stats[S.damage] = 100f;
           m1garand.base_stats[S.speed] = 0f;
           m1garand.base_stats[S.health] = 0;
           m1garand.base_stats[S.accuracy] = -20f;
@@ -1060,7 +1353,7 @@ AssetManager.effects_library.add(DankyMatter);
           Americanshotgun.base_stats[S.max_children] = 0f;
           Americanshotgun.base_stats[S.max_age] = 0f;
           Americanshotgun.base_stats[S.attack_speed] = -200;
-          Americanshotgun.base_stats[S.damage] = 6;
+          Americanshotgun.base_stats[S.damage] = 6f;
           Americanshotgun.base_stats[S.speed] = 0f;
           Americanshotgun.base_stats[S.health] = 0;
           Americanshotgun.base_stats[S.accuracy] = -20f;
@@ -1166,10 +1459,9 @@ AssetManager.effects_library.add(DankyMatter);
 			Glock17.base_stats[S.range] = 12f;
 			Glock17.base_stats[S.accuracy] = -25;
 			Glock17.base_stats[S.attack_speed] = 1f;
-			Glock17.base_stats[S.damage] = 35;
+			Glock17.base_stats[S.damage] = 35f;
 			Glock17.equipment_value = 300;
 			Glock17.path_slash_animation = "effects/slashes/slash_punch";
-			Glock17.quality = ItemQuality.Legendary;
 			Glock17.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(Glock17);
@@ -1188,10 +1480,9 @@ AssetManager.effects_library.add(DankyMatter);
             MP7.base_stats[S.range] = 14f;
 			MP7.base_stats[S.accuracy] = -30;
             MP7.base_stats[S.attack_speed] = 12000f;
-            MP7.base_stats[S.damage] = 7;
+            MP7.base_stats[S.damage] = 7f;
             MP7.equipment_value = 300;
             MP7.path_slash_animation = "effects/slashes/slash_punch";
-            MP7.quality = ItemQuality.Legendary;
             MP7.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(MP7);
@@ -1210,10 +1501,9 @@ AssetManager.effects_library.add(DankyMatter);
             HK416.base_stats[S.range] = 20f;
             HK416.base_stats[S.accuracy] = 5;
             HK416.base_stats[S.attack_speed] = 300f;
-            HK416.base_stats[S.damage] = 60;
+            HK416.base_stats[S.damage] = 60f;
             HK416.equipment_value = 300;
             HK416.path_slash_animation = "effects/slashes/slash_punch";
-            HK416.quality = ItemQuality.Legendary;
             HK416.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(HK416);
@@ -1232,10 +1522,9 @@ AssetManager.effects_library.add(DankyMatter);
             M16.base_stats[S.range] = 0f;
             M16.base_stats[S.accuracy] = 5;
             M16.base_stats[S.attack_speed] = 12f;
-            M16.base_stats[S.damage] = 60;
+            M16.base_stats[S.damage] = 60f;
             M16.equipment_value = 300;
             M16.path_slash_animation = "effects/slashes/slash_punch";
-            M16.quality = ItemQuality.Legendary;
             M16.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(M16);
@@ -1254,10 +1543,9 @@ AssetManager.effects_library.add(DankyMatter);
 			DesertEagle.base_stats[S.range] = 20f;
 			DesertEagle.base_stats[S.accuracy] = 90;
 			DesertEagle.base_stats[S.attack_speed] = 1f;
-			DesertEagle.base_stats[S.damage] = 40;
+			DesertEagle.base_stats[S.damage] = 40f;
 			DesertEagle.equipment_value = 300;
 			DesertEagle.path_slash_animation = "effects/slashes/slash_punch";
-			DesertEagle.quality = ItemQuality.Legendary;
 			DesertEagle.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(DesertEagle);
@@ -1276,7 +1564,7 @@ AssetManager.effects_library.add(DankyMatter);
             malorian.base_stats[S.range] = 6f;
             malorian.base_stats[S.accuracy] = 400;
             malorian.base_stats[S.attack_speed] = 70;
-            malorian.base_stats[S.damage] = 3;
+            malorian.base_stats[S.damage] = 3f;
             malorian.equipment_value = 300;
             malorian.path_slash_animation = "effects/slashes/slash_punch";
             malorian.quality = ItemQuality.Legendary;
@@ -1297,11 +1585,10 @@ AssetManager.effects_library.add(DankyMatter);
             Uzi.base_stats[S.range] = 6f;
             Uzi.base_stats[S.accuracy] = -10;
             Uzi.base_stats[S.attack_speed] = 7000;
-            Uzi.base_stats[S.damage] = 5;
+            Uzi.base_stats[S.damage] = 5f;
 			Uzi.tech_needed = "MilitaryModern";
             Uzi.equipment_value = 300;
             Uzi.path_slash_animation = "effects/slashes/slash_punch";
-            Uzi.quality = ItemQuality.Legendary;
             Uzi.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(Uzi);
@@ -1321,10 +1608,9 @@ Minigun.name_class = "item_class_weapon";
             Minigun.base_stats[S.accuracy] = -40;
             Minigun.base_stats[S.attack_speed] = 20000f;
             Minigun.base_stats[S.projectiles] = 3;
-            Minigun.base_stats[S.damage] = 13;
+            Minigun.base_stats[S.damage] = 13f;
             Minigun.equipment_value = 300;
             Minigun.path_slash_animation = "effects/slashes/slash_punch";
-            Minigun.quality = ItemQuality.Legendary;
             Minigun.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(Minigun);
@@ -1343,10 +1629,9 @@ Minigun.name_class = "item_class_weapon";
             AK47.base_stats[S.range] = 14f;
             AK47.base_stats[S.accuracy] = 3;
             AK47.base_stats[S.attack_speed] = 170f;
-            AK47.base_stats[S.damage] = 13;
+            AK47.base_stats[S.damage] = 13f;
             AK47.equipment_value = 300;
             AK47.path_slash_animation = "effects/slashes/slash_punch";
-            AK47.quality = ItemQuality.Legendary;
             AK47.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(AK47);
@@ -1365,10 +1650,9 @@ Minigun.name_class = "item_class_weapon";
             AK103.base_stats[S.range] = 14f;
             AK103.base_stats[S.accuracy] = 400;
             AK103.base_stats[S.attack_speed] = 170f;
-            AK103.base_stats[S.damage] = 36;
+            AK103.base_stats[S.damage] = 36f;
             AK103.equipment_value = 300;
             AK103.path_slash_animation = "effects/slashes/slash_punch";
-            AK103.quality = ItemQuality.Legendary;
             AK103.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(AK103);
@@ -1387,7 +1671,7 @@ Minigun.name_class = "item_class_weapon";
           XM8.base_stats[S.max_children] = 0f;
           XM8.base_stats[S.max_age] = 0f;
           XM8.base_stats[S.attack_speed] = 1800;
-          XM8.base_stats[S.damage] = 13;
+          XM8.base_stats[S.damage] = 13f;
           XM8.base_stats[S.speed] = 0f;
           XM8.base_stats[S.health] = 0;
           XM8.base_stats[S.accuracy] = 400f;
@@ -1429,10 +1713,9 @@ Minigun.name_class = "item_class_weapon";
             SGT44.base_stats[S.range] = 14f;
             SGT44.base_stats[S.accuracy] = 40;
             SGT44.base_stats[S.attack_speed] = 70f;
-            SGT44.base_stats[S.damage] = 11;
+            SGT44.base_stats[S.damage] = 11f;
             SGT44.equipment_value = 300;
             SGT44.path_slash_animation = "effects/slashes/slash_punch";
-            SGT44.quality = ItemQuality.Legendary;
             SGT44.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(SGT44);
@@ -1452,10 +1735,9 @@ Minigun.name_class = "item_class_weapon";
             ThompsonM1A1.base_stats[S.range] = 14f;
             ThompsonM1A1.base_stats[S.accuracy] = -30;
             ThompsonM1A1.base_stats[S.attack_speed] = 17000f;
-            ThompsonM1A1.base_stats[S.damage] = 13;
+            ThompsonM1A1.base_stats[S.damage] = 13f;
             ThompsonM1A1.equipment_value = 300;
             ThompsonM1A1.path_slash_animation = "effects/slashes/slash_punch";
-            ThompsonM1A1.quality = ItemQuality.Legendary;
             ThompsonM1A1.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(ThompsonM1A1);
@@ -1474,10 +1756,9 @@ Minigun.name_class = "item_class_weapon";
 			M4A1.base_stats[S.range] = 14f;
 			M4A1.base_stats[S.accuracy] = 400;
 			M4A1.base_stats[S.attack_speed] = 100f;
-			M4A1.base_stats[S.damage] = 40;
+			M4A1.base_stats[S.damage] = 40f;
 			M4A1.equipment_value = 300;
 			M4A1.path_slash_animation = "effects/slashes/slash_punch";
-			M4A1.quality = ItemQuality.Legendary;
 			M4A1.equipmentType = EquipmentType.Weapon;
 
 			AssetManager.items.list.AddItem(M4A1);
@@ -1496,7 +1777,7 @@ Minigun.name_class = "item_class_weapon";
           FAMAS.base_stats[S.max_children] = 0f;
           FAMAS.base_stats[S.max_age] = 0f;
           FAMAS.base_stats[S.attack_speed] = 1800;
-          FAMAS.base_stats[S.damage] = 13;
+          FAMAS.base_stats[S.damage] = 13f;
           FAMAS.base_stats[S.speed] = 0f;
           FAMAS.base_stats[S.health] = 0;
           FAMAS.base_stats[S.accuracy] = 40f;
@@ -1539,10 +1820,9 @@ Minigun.name_class = "item_class_weapon";
             Sniper.base_stats[S.range] = 40f;
             Sniper.base_stats[S.accuracy] = 5;
             Sniper.base_stats[S.attack_speed] = -200f;
-            Sniper.base_stats[S.damage] = 200;
+            Sniper.base_stats[S.damage] = 200f;
             Sniper.equipment_value = 300;
             Sniper.path_slash_animation = "effects/slashes/slash_punch";
-            Sniper.quality = ItemQuality.Legendary;
             Sniper.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(Sniper);
@@ -1561,10 +1841,9 @@ Minigun.name_class = "item_class_weapon";
 			RocketLauncher.tech_needed = "MilitaryModern";
             RocketLauncher.base_stats[S.accuracy] = 400;
             RocketLauncher.base_stats[S.attack_speed] = -5000f;
-            RocketLauncher.base_stats[S.damage] = 400;
+            RocketLauncher.base_stats[S.damage] = 400f;
             RocketLauncher.equipment_value = 300;
             RocketLauncher.path_slash_animation = "effects/slashes/slash_punch";
-            RocketLauncher.quality = ItemQuality.Legendary;
             RocketLauncher.equipmentType = EquipmentType.Weapon;
 
             AssetManager.items.list.AddItem(RocketLauncher);
@@ -1590,6 +1869,7 @@ Minigun.name_class = "item_class_weapon";
           futurearmor.base_stats[S.armor] = 15f;
           futurearmor.base_stats[S.speed] = 4f;
           futurearmor.base_stats[S.dodge] = 10f;
+          futurearmor.base_stats[S.health] = 200f;
           futurearmor.equipment_value = 500;
           futurearmor.tech_needed = "Future";
           futurearmor.equipmentType = EquipmentType.Armor;
@@ -1606,6 +1886,7 @@ Minigun.name_class = "item_class_weapon";
           futureboots.base_stats[S.armor] = 15f;
           futureboots.base_stats[S.speed] = 4f;
           futureboots.base_stats[S.dodge] = 10f;
+          futureboots.base_stats[S.health] = 200f;
           futureboots.equipment_value = 500;
           futureboots.tech_needed = "Future";
           futureboots.equipmentType = EquipmentType.Boots;
@@ -1622,6 +1903,7 @@ Minigun.name_class = "item_class_weapon";
           futurehelmet.base_stats[S.armor] = 15f;
           futurehelmet.base_stats[S.speed] = 4f;
           futurehelmet.base_stats[S.dodge] = 10f;
+          futurehelmet.base_stats[S.health] = 200f;
           futurehelmet.equipment_value = 500;
           futurehelmet.tech_needed = "Future";
           futurehelmet.equipmentType = EquipmentType.Helmet;
@@ -1629,6 +1911,411 @@ Minigun.name_class = "item_class_weapon";
 
           AssetManager.items.list.AddItem(futurehelmet);
           Localization.addLocalization("item_futurehelmet", "future helmet");
+
+
+
+          //////////////////////WEAPONS////////////////////////
+
+          			ItemAsset blueheavyblaster = AssetManager.items.clone("blueheavyblaster", "_range");
+            blueheavyblaster.id = "blueheavyblaster";
+            blueheavyblaster.name_class = "item_class_weapon";
+            blueheavyblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            blueheavyblaster.materials = List.Of<string>(new string[]{"copper"});
+            blueheavyblaster.projectile = "bluemediumplasma";
+            blueheavyblaster.base_stats[S.range] = 14f;
+			blueheavyblaster.tech_needed = "Future";
+            blueheavyblaster.base_stats[S.accuracy] = 400;
+            blueheavyblaster.base_stats[S.attack_speed] = -5000f;
+            blueheavyblaster.base_stats[S.damage] = 1000f;
+            blueheavyblaster.equipment_value = 500;
+            blueheavyblaster.path_slash_animation = "effects/slashes/slash_punch";
+            blueheavyblaster.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(blueheavyblaster);
+            Localization.addLocalization("item_blueheavyblaster", "Heavy Blaster");
+            addgunSprite(blueheavyblaster.id, blueheavyblaster.materials[0]);
+
+    AddPreferredWeaponToCivRaces("blueheavyblaster", 5);
+
+
+          			ItemAsset redheavyblaster = AssetManager.items.clone("redheavyblaster", "_range");
+            redheavyblaster.id = "redheavyblaster";
+            redheavyblaster.name_class = "item_class_weapon";
+            redheavyblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            redheavyblaster.materials = List.Of<string>(new string[]{"copper"});
+            redheavyblaster.projectile = "redmediumplasma";
+            redheavyblaster.base_stats[S.range] = 14f;
+			redheavyblaster.tech_needed = "Future";
+            redheavyblaster.base_stats[S.accuracy] = 400;
+            redheavyblaster.base_stats[S.attack_speed] = -5000f;
+            redheavyblaster.base_stats[S.damage] = 1000f;
+            redheavyblaster.equipment_value = 500;
+            redheavyblaster.path_slash_animation = "effects/slashes/slash_punch";
+            redheavyblaster.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(redheavyblaster);
+            Localization.addLocalization("item_redheavyblaster", "Heavy Blaster");
+            addgunSprite(redheavyblaster.id, redheavyblaster.materials[0]);
+
+    AddPreferredWeaponToCivRaces("redheavyblaster", 5);
+
+    ItemAsset greenheavyblaster = AssetManager.items.clone("greenheavyblaster", "_range");
+            greenheavyblaster.id = "greenheavyblaster";
+            greenheavyblaster.name_class = "item_class_weapon";
+            greenheavyblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            greenheavyblaster.materials = List.Of<string>(new string[]{"copper"});
+            greenheavyblaster.projectile = "greenmediumplasma";
+            greenheavyblaster.base_stats[S.range] = 14f;
+			greenheavyblaster.tech_needed = "Future";
+            greenheavyblaster.base_stats[S.accuracy] = 400;
+            greenheavyblaster.base_stats[S.attack_speed] = -5000f;
+            greenheavyblaster.base_stats[S.damage] = 1000f;
+            greenheavyblaster.equipment_value = 500;
+            greenheavyblaster.path_slash_animation = "effects/slashes/slash_punch";
+            greenheavyblaster.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(greenheavyblaster);
+            Localization.addLocalization("item_greenheavyblaster", "Heavy Blaster");
+            addgunSprite(greenheavyblaster.id, greenheavyblaster.materials[0]);
+
+    AddPreferredWeaponToCivRaces("greenheavyblaster", 5);
+
+	ItemAsset redblastersniper = AssetManager.items.clone("redblastersniper", "_range");
+            redblastersniper.id = "redblastersniper";
+           redblastersniper.name_class = "item_class_weapon";
+          redblastersniper.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            redblastersniper.materials = List.Of<string>(new string[]{"copper"});
+            redblastersniper.projectile = "redplasma";
+			redblastersniper.tech_needed = "Future";
+            redblastersniper.base_stats[S.range] = 40f;
+            redblastersniper.base_stats[S.accuracy] = 5;
+            redblastersniper.base_stats[S.attack_speed] = -200f;
+            redblastersniper.base_stats[S.damage] = 500f;
+            redblastersniper.equipment_value = 500;
+            redblastersniper.path_slash_animation = "effects/slashes/slash_punch";
+            redblastersniper.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(redblastersniper);
+            Localization.addLocalization("item_redblastersniper", "redblastersniper");
+            addgunSprite(redblastersniper.id, redblastersniper.materials[0]);
+
+                AddPreferredWeaponToCivRaces("redblastersniper", 5);
+
+	ItemAsset blueblastersniper = AssetManager.items.clone("blueblastersniper", "_range");
+            blueblastersniper.id = "blueblastersniper";
+           blueblastersniper.name_class = "item_class_weapon";
+          blueblastersniper.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            blueblastersniper.materials = List.Of<string>(new string[]{"copper"});
+            blueblastersniper.projectile = "blueplasma";
+			blueblastersniper.tech_needed = "Future";
+            blueblastersniper.base_stats[S.range] = 40f;
+            blueblastersniper.base_stats[S.accuracy] = 5;
+            blueblastersniper.base_stats[S.attack_speed] = -200f;
+            blueblastersniper.base_stats[S.damage] = 500f;
+            blueblastersniper.equipment_value = 500;
+            blueblastersniper.path_slash_animation = "effects/slashes/slash_punch";
+            blueblastersniper.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(blueblastersniper);
+            Localization.addLocalization("item_blueblastersniper", "blueblastersniper");
+            addgunSprite(blueblastersniper.id, blueblastersniper.materials[0]);
+
+                AddPreferredWeaponToCivRaces("blueblastersniper", 5);
+
+                	ItemAsset greenblastersniper = AssetManager.items.clone("greenblastersniper", "_range");
+            greenblastersniper.id = "greenblastersniper";
+           greenblastersniper.name_class = "item_class_weapon";
+          greenblastersniper.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            greenblastersniper.materials = List.Of<string>(new string[]{"copper"});
+            greenblastersniper.projectile = "greenplasma";
+			greenblastersniper.tech_needed = "Future";
+            greenblastersniper.base_stats[S.range] = 40f;
+            greenblastersniper.base_stats[S.accuracy] = 5;
+            greenblastersniper.base_stats[S.attack_speed] = -200f;
+            greenblastersniper.base_stats[S.damage] = 500f;
+            greenblastersniper.equipment_value = 500;
+            greenblastersniper.path_slash_animation = "effects/slashes/slash_punch";
+            greenblastersniper.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(greenblastersniper);
+            Localization.addLocalization("item_greenblastersniper", "greenblastersniper");
+            addgunSprite(greenblastersniper.id, greenblastersniper.materials[0]);
+
+                AddPreferredWeaponToCivRaces("greenblastersniper", 5);
+
+	ItemAsset blueblaster = AssetManager.items.clone("blueblaster", "_range");
+            blueblaster.id = "blueblaster";
+             blueblaster.name_class = "item_class_weapon";
+          blueblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            blueblaster.materials = List.Of<string>(new string[]{"copper"});
+            blueblaster.projectile = "blueplasma";
+			blueblaster.tech_needed = "Future";
+            blueblaster.base_stats[S.range] = 14f;
+            blueblaster.base_stats[S.accuracy] = -40f;
+            blueblaster.base_stats[S.attack_speed] = 170f;
+            blueblaster.base_stats[S.damage] = 100f;
+            blueblaster.equipment_value = 500;
+            blueblaster.path_slash_animation = "effects/slashes/slash_punch";
+            blueblaster.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(blueblaster);
+			Localization.addLocalization("item_blueblaster", "AK-103");
+			addgunSprite(blueblaster.id, blueblaster.materials[0]);
+
+              AddPreferredWeaponToCivRaces("blueblaster", 5);
+
+            ItemAsset redblaster = AssetManager.items.clone("redblaster", "_range");
+            redblaster.id = "redblaster";
+             redblaster.name_class = "item_class_weapon";
+          redblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            redblaster.materials = List.Of<string>(new string[]{"copper"});
+            redblaster.projectile = "redplasma";
+			redblaster.tech_needed = "Future";
+            redblaster.base_stats[S.range] = 14f;
+            redblaster.base_stats[S.accuracy] = -40f;
+            redblaster.base_stats[S.attack_speed] = 170f;
+            redblaster.base_stats[S.damage] = 100f;
+            redblaster.equipment_value = 500;
+            redblaster.path_slash_animation = "effects/slashes/slash_punch";
+            redblaster.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(redblaster);
+			Localization.addLocalization("item_redblaster", "AK-103");
+			addgunSprite(redblaster.id, redblaster.materials[0]);
+
+              AddPreferredWeaponToCivRaces("redblaster", 5);
+
+			ItemAsset greenblaster = AssetManager.items.clone("greenblaster", "_range");
+            greenblaster.id = "greenblaster";
+             greenblaster.name_class = "item_class_weapon";
+          greenblaster.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            greenblaster.materials = List.Of<string>(new string[]{"copper"});
+            greenblaster.projectile = "greenplasma";
+			greenblaster.tech_needed = "Future";
+            greenblaster.base_stats[S.range] = 14f;
+            greenblaster.base_stats[S.accuracy] = -40f;
+            greenblaster.base_stats[S.attack_speed] = 170f;
+            greenblaster.base_stats[S.damage] = 100f;
+            greenblaster.equipment_value = 500;
+            greenblaster.path_slash_animation = "effects/slashes/slash_punch";
+            greenblaster.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(greenblaster);
+			Localization.addLocalization("item_greenblaster", "AK-103");
+			addgunSprite(greenblaster.id, greenblaster.materials[0]);
+
+              AddPreferredWeaponToCivRaces("greenblaster", 5);
+
+ItemAsset redminigun = AssetManager.items.clone("redminigun", "_range");
+            redminigun.id = "redminigun";
+redminigun.name_class = "item_class_weapon";
+          redminigun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            redminigun.materials = List.Of<string>(new string[]{"copper"});
+            redminigun.projectile = "redplasma";
+			redminigun.tech_needed = "Future";
+            redminigun.base_stats[S.range] = 10f;
+            redminigun.base_stats[S.accuracy] = -50f;
+            redminigun.base_stats[S.attack_speed] = 20000f;
+            redminigun.base_stats[S.damage] = 30f;
+            redminigun.equipment_value = 500;
+            redminigun.path_slash_animation = "effects/slashes/slash_punch";
+            redminigun.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(redminigun);
+            Localization.addLocalization("item_redminigun", "redminigun");
+            addgunSprite(redminigun.id, redminigun.materials[0]);
+
+             AddPreferredWeaponToCivRaces("redminigun", 5);
+
+
+			ItemAsset blueminigun = AssetManager.items.clone("blueminigun", "_range");
+            blueminigun.id = "blueminigun";
+blueminigun.name_class = "item_class_weapon";
+          blueminigun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            blueminigun.materials = List.Of<string>(new string[]{"copper"});
+            blueminigun.projectile = "blueplasma";
+			blueminigun.tech_needed = "Future";
+            blueminigun.base_stats[S.range] = 10f;
+            blueminigun.base_stats[S.accuracy] = -50f;
+            blueminigun.base_stats[S.attack_speed] = 20000f;
+            blueminigun.base_stats[S.damage] = 30f;
+            blueminigun.equipment_value = 500;
+            blueminigun.path_slash_animation = "effects/slashes/slash_punch";
+            blueminigun.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(blueminigun);
+            Localization.addLocalization("item_blueminigun", "blueminigun");
+            addgunSprite(blueminigun.id, blueminigun.materials[0]);
+
+             AddPreferredWeaponToCivRaces("blueminigun", 5);
+
+
+			ItemAsset greenminigun = AssetManager.items.clone("greenminigun", "_range");
+            greenminigun.id = "greenminigun";
+greenminigun.name_class = "item_class_weapon";
+          greenminigun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+            greenminigun.materials = List.Of<string>(new string[]{"copper"});
+            greenminigun.projectile = "greenplasma";
+			greenminigun.tech_needed = "Future";
+            greenminigun.base_stats[S.range] = 10f;
+            greenminigun.base_stats[S.accuracy] = -50f;
+            greenminigun.base_stats[S.attack_speed] = 20000f;
+            greenminigun.base_stats[S.damage] = 30f;
+            greenminigun.equipment_value = 500;
+            greenminigun.path_slash_animation = "effects/slashes/slash_punch";
+            greenminigun.equipmentType = EquipmentType.Weapon;
+
+            AssetManager.items.list.AddItem(greenminigun);
+            Localization.addLocalization("item_greenminigun", "greenminigun");
+            addgunSprite(greenminigun.id, greenminigun.materials[0]);
+
+             AddPreferredWeaponToCivRaces("greenminigun", 5);
+
+	ItemAsset blueplasmagun = AssetManager.items.clone("blueplasmagun", "_range");
+			blueplasmagun.id = "blueplasmagun";
+			   blueplasmagun.name_class = "item_class_weapon";
+          blueplasmagun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			blueplasmagun.materials = List.Of<string>(new string[]{"copper"});
+			blueplasmagun.projectile = "blueplasma";
+			blueplasmagun.tech_needed = "Future";
+			blueplasmagun.base_stats[S.range] = 8f;
+			blueplasmagun.base_stats[S.accuracy] = 90;
+			blueplasmagun.base_stats[S.attack_speed] = 1f;
+			blueplasmagun.base_stats[S.damage] = 80f;
+			blueplasmagun.equipment_value = 500;
+			blueplasmagun.path_slash_animation = "effects/slashes/slash_punch";
+			blueplasmagun.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(blueplasmagun);
+			Localization.addLocalization("item_blueplasmagun", "Desert Eagle");
+			addgunSprite(blueplasmagun.id, blueplasmagun.materials[0]);
+
+     AddPreferredWeaponToCivRaces("blueplasmagun", 5);
+
+
+             	ItemAsset redplasmagun = AssetManager.items.clone("redplasmagun", "_range");
+			redplasmagun.id = "redplasmagun";
+			   redplasmagun.name_class = "item_class_weapon";
+          redplasmagun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			redplasmagun.materials = List.Of<string>(new string[]{"copper"});
+			redplasmagun.projectile = "redplasma";
+			redplasmagun.tech_needed = "Future";
+			redplasmagun.base_stats[S.range] = 8f;
+			redplasmagun.base_stats[S.accuracy] = 90;
+			redplasmagun.base_stats[S.attack_speed] = 1f;
+			redplasmagun.base_stats[S.damage] = 80f;
+			redplasmagun.equipment_value = 500;
+			redplasmagun.path_slash_animation = "effects/slashes/slash_punch";
+			redplasmagun.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(redplasmagun);
+			Localization.addLocalization("item_redplasmagun", "Desert Eagle");
+			addgunSprite(redplasmagun.id, redplasmagun.materials[0]);
+
+     AddPreferredWeaponToCivRaces("redplasmagun", 5);
+
+     	ItemAsset greenplasmagun = AssetManager.items.clone("greenplasmagun", "_range");
+			greenplasmagun.id = "greenplasmagun";
+			   greenplasmagun.name_class = "item_class_weapon";
+          greenplasmagun.name_templates = Toolbox.splitStringIntoList("bow_name#30");
+			greenplasmagun.materials = List.Of<string>(new string[]{"copper"});
+			greenplasmagun.projectile = "greenplasma";
+			greenplasmagun.tech_needed = "Future";
+			greenplasmagun.base_stats[S.range] = 8f;
+			greenplasmagun.base_stats[S.accuracy] = 90;
+			greenplasmagun.base_stats[S.attack_speed] = 1f;
+			greenplasmagun.base_stats[S.damage] = 80f;
+			greenplasmagun.equipment_value = 500;
+			greenplasmagun.path_slash_animation = "effects/slashes/slash_punch";
+			greenplasmagun.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(greenplasmagun);
+			Localization.addLocalization("item_greenplasmagun", "Desert Eagle");
+			addgunSprite(greenplasmagun.id, greenplasmagun.materials[0]);
+
+     AddPreferredWeaponToCivRaces("greenplasmagun", 5);
+
+
+            ItemAsset redlightsaber = AssetManager.items.clone("redlightsaber", "_melee");
+			redlightsaber.id = "redlightsaber";
+            redlightsaber.name_class = "item_class_weapon";
+            redlightsaber.name_templates = Toolbox.splitStringIntoList("sword_name#30");
+			redlightsaber.materials = List.Of<string>(new string[]{"copper"});
+			redlightsaber.tech_needed = "Future";
+	     	redlightsaber.base_stats[S.damage] = 600f;
+		    redlightsaber.base_stats[S.attack_speed] = 200f;
+            redlightsaber.base_stats[S.damage_range] = 0.1f;
+            redlightsaber.base_stats[S.armor] = 20f;
+			redlightsaber.equipment_value = 500;
+			redlightsaber.path_slash_animation = "effects/slashes/slash_sword";
+			redlightsaber.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(redlightsaber);
+			Localization.addLocalization("item_redlightsaber", "Lightsaber");
+			addgunSprite(redlightsaber.id, redlightsaber.materials[0]);
+
+            AddPreferredWeaponToCivRaces("redlightsaber", 5);
+
+                        ItemAsset bluelightsaber = AssetManager.items.clone("bluelightsaber", "_melee");
+			bluelightsaber.id = "bluelightsaber";
+            bluelightsaber.name_class = "item_class_weapon";
+            bluelightsaber.name_templates = Toolbox.splitStringIntoList("sword_name#30");
+			bluelightsaber.materials = List.Of<string>(new string[]{"copper"});
+			bluelightsaber.tech_needed = "Future";
+	     	bluelightsaber.base_stats[S.damage] = 600f;
+		    bluelightsaber.base_stats[S.attack_speed] = 200f;
+            bluelightsaber.base_stats[S.damage_range] = 0.1f;
+            bluelightsaber.base_stats[S.armor] = 20f;
+			bluelightsaber.equipment_value = 500;
+			bluelightsaber.path_slash_animation = "effects/slashes/slash_sword";
+			bluelightsaber.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(bluelightsaber);
+			Localization.addLocalization("item_bluelightsaber", "Lightsaber");
+			addgunSprite(bluelightsaber.id, bluelightsaber.materials[0]);
+
+            AddPreferredWeaponToCivRaces("bluelightsaber", 5);
+
+                        ItemAsset greenlightsaber = AssetManager.items.clone("greenlightsaber", "_melee");
+			greenlightsaber.id = "greenlightsaber";
+            greenlightsaber.name_class = "item_class_weapon";
+            greenlightsaber.name_templates = Toolbox.splitStringIntoList("sword_name#30");
+			greenlightsaber.materials = List.Of<string>(new string[]{"copper"});
+			greenlightsaber.tech_needed = "Future";
+	     	greenlightsaber.base_stats[S.damage] = 600f;
+		    greenlightsaber.base_stats[S.attack_speed] = 200f;
+            greenlightsaber.base_stats[S.damage_range] = 0.1f;
+            greenlightsaber.base_stats[S.armor] = 20f;
+			greenlightsaber.equipment_value = 500;
+			greenlightsaber.path_slash_animation = "effects/slashes/slash_sword";
+			greenlightsaber.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(greenlightsaber);
+			Localization.addLocalization("item_greenlightsaber", "Lightsaber");
+			addgunSprite(greenlightsaber.id, greenlightsaber.materials[0]);
+
+            AddPreferredWeaponToCivRaces("greenlightsaber", 5);
+
+                        ItemAsset chainsaw = AssetManager.items.clone("chainsaw", "_melee");
+			chainsaw.id = "chainsaw";
+            chainsaw.name_class = "item_class_weapon";
+            chainsaw.name_templates = Toolbox.splitStringIntoList("sword_name#30");
+			chainsaw.materials = List.Of<string>(new string[]{"copper"});
+			chainsaw.tech_needed = "Future";
+	     	chainsaw.base_stats[S.damage] = 1000f;
+		    chainsaw.base_stats[S.attack_speed] = 200f;
+            chainsaw.base_stats[S.damage_range] = 0.1f;
+            chainsaw.base_stats[S.armor] = 5f;
+			chainsaw.equipment_value = 500;
+			chainsaw.path_slash_animation = "effects/slashes/slash_sword";
+			chainsaw.equipmentType = EquipmentType.Weapon;
+
+			AssetManager.items.list.AddItem(chainsaw);
+			Localization.addLocalization("item_chainsaw", "Chainsaw");
+			addgunSprite(chainsaw.id, chainsaw.materials[0]);
+
+            AddPreferredWeaponToCivRaces("chainsaw", 5);
+
 
 			static void makecraftable()
 			{
@@ -1645,42 +2332,75 @@ public enum ArmorTechTier {
     Modern,
     Future
 }
+public enum WeaponTechTier {
+    None,
+    Renaissance,
+    Industrial,
+    Modern,
+    Future
+}
 
 public static class ArmorTechOverride {
     public static ArmorTechTier OverrideTier = ArmorTechTier.None;
 }
-
+public static class WeaponTechOverride {
+    public static WeaponTechTier OverrideTier = WeaponTechTier.None;
+}
 [HarmonyPatch(typeof(City), "tryProduceItem")]
-public static class City_TryProduceItem_ArmorPatch {
+public static class City_TryProduceItem_EpochPatch {
+
     static void Prefix(Actor pActor, ItemProductionOrder pOrder) {
+        Culture culture = pActor.getCulture();
+        if (culture == null) return;
+
         if (pOrder == ItemProductionOrder.RandomArmor) {
-            Culture culture = pActor.getCulture();
-            if (culture != null) {
-                if (culture.hasTech("Future")) {
-                    ArmorTechOverride.OverrideTier = ArmorTechTier.Future;
-                }
-                else if (culture.hasTech("MilitaryModern")) {
-                    ArmorTechOverride.OverrideTier = ArmorTechTier.Modern;
-                }
-                else if (culture.hasTech("Firearms")) {
-                    ArmorTechOverride.OverrideTier = ArmorTechTier.Industrial;
-                }
-                else if (culture.hasTech("Renaissance")) {
-                    ArmorTechOverride.OverrideTier = ArmorTechTier.Renaissance;
-                }
-                else {
-                    ArmorTechOverride.OverrideTier = ArmorTechTier.None;
-                }
+            if (culture.hasTech("Future")) {
+                ArmorTechOverride.OverrideTier = ArmorTechTier.Future;
+            }
+            else if (culture.hasTech("MilitaryModern")) {
+                ArmorTechOverride.OverrideTier = ArmorTechTier.Modern;
+            }
+            else if (culture.hasTech("Firearms")) {
+                ArmorTechOverride.OverrideTier = ArmorTechTier.Industrial;
+            }
+            else if (culture.hasTech("Renaissance")) {
+                ArmorTechOverride.OverrideTier = ArmorTechTier.Renaissance;
+            }
+            else {
+                ArmorTechOverride.OverrideTier = ArmorTechTier.None;
             }
         }
-    }
+
+        if (pOrder == ItemProductionOrder.Weapon) {
+            if (culture.hasTech("Future")) {
+                WeaponTechOverride.OverrideTier = WeaponTechTier.Future;
+            }
+            else if (culture.hasTech("MilitaryModern")) {
+                WeaponTechOverride.OverrideTier = WeaponTechTier.Modern;
+            }
+            else if (culture.hasTech("Firearms")) {
+                WeaponTechOverride.OverrideTier = WeaponTechTier.Industrial;
+            }
+            else if (culture.hasTech("Renaissance")) {
+                WeaponTechOverride.OverrideTier = WeaponTechTier.Renaissance;
+            }
+            else {
+                WeaponTechOverride.OverrideTier = WeaponTechTier.None;
+            }
+        }
     }
 
     static void Postfix(Actor pActor, ItemProductionOrder pOrder) {
         if (pOrder == ItemProductionOrder.RandomArmor) {
             ArmorTechOverride.OverrideTier = ArmorTechTier.None;
         }
+
+        if (pOrder == ItemProductionOrder.Weapon) {
+            WeaponTechOverride.OverrideTier = WeaponTechTier.None;
+        }
     }
+}
+
 
 [HarmonyPatch(typeof(ItemLibrary), "getEquipmentID")]
 public static class CustomArmorEquipmentIDPatch {

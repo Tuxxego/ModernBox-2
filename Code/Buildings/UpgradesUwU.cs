@@ -242,7 +242,7 @@ watch_tower_future_human.base_stats[S.targets] = 1f;
 watch_tower_future_human.base_stats[S.area_of_effect] = 1f;
 watch_tower_future_human.base_stats[S.damage] = 1000f;
 watch_tower_future_human.base_stats[S.knockback] = 3f;
-watch_tower_future_human.base_stats[S.range] = 150f;
+watch_tower_future_human.base_stats[S.range] = 50f;
 watch_tower_future_human.base_stats[S.attack_speed] = 100;
 watch_tower_future_human.tower_projectile = "big_plasma_bomb";
 watch_tower_future_human.tower_projectile_offset = 4f;
@@ -743,6 +743,10 @@ AssetManager.buildings.add(dock_modern_human);
 
 
 /////////////REMOVE////////////////
+
+
+RemoveBuildingOrderKeysToCivRaces(SB.order_watch_tower, SB.watch_tower_human);
+
 RemoveBuildingOrderKeysToCivRaces(SB.order_mine, SB.mine);
 
 RemoveBuildingOrderKeysToCivRaces(SB.order_docks_0, SB.fishing_docks_human);
@@ -775,6 +779,8 @@ AddBuildingOrderKeysToCivRaces(SB.order_house_5, SB.house_human_5);
 AddBuildingOrderKeysToCivRaces(SB.order_hall_0, SB.hall_human_0);
 AddBuildingOrderKeysToCivRaces(SB.order_hall_1, SB.hall_human_1);
 AddBuildingOrderKeysToCivRaces(SB.order_hall_2, SB.hall_human_2);
+
+AddBuildingOrderKeysToCivRaces(SB.order_watch_tower, SB.watch_tower_human);
 
 RaceBuildOrderAsset based = AssetManager.race_build_orders.get("kingdom_base");
 based.addUpgrade("order_docks_1");

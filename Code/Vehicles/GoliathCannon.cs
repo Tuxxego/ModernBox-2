@@ -45,22 +45,22 @@ namespace M2
 				thunderartillery.base_stats[S.projectiles] = 1f;
 				thunderartillery.base_stats[S.attack_speed] = 90f;
 				thunderartillery.base_stats[S.range] = 0f;
-				thunderartillery.base_stats[S.targets] = 20f;
+				thunderartillery.base_stats[S.targets] = 10f;
 				thunderartillery.base_stats[S.damage] = 6f;
 				thunderartillery.base_stats[S.damage_range] = 0.7f;
 					thunderartillery.path_slash_animation = "effects/slashes/slash_punch";
 
-
-  EffectAsset kameboom = new EffectAsset();
-		    kameboom.id = "kameboom";
-		    kameboom.use_basic_prefab = true;
-		    kameboom.sorting_layer_id = "EffectsTop";
-		    kameboom.sprite_path = $"effects/kameboomtest";
-            kameboom.show_on_mini_map = true;
-		    kameboom.draw_light_area = true;
-		    kameboom.draw_light_size = 1f;
-		    kameboom.limit = 80;
-		    AssetManager.effects_library.add(kameboom);
+				ItemAsset hyperartillery = AssetManager.items.clone("hyperartillery", "_range");
+					hyperartillery.id = "hyperartillery";
+					hyperartillery.projectile = "hyperkame";
+					hyperartillery.materials = List.Of<string>(new string[] { "base" });
+				hyperartillery.base_stats[S.projectiles] = 1f;
+				hyperartillery.base_stats[S.attack_speed] = -20000f;
+				hyperartillery.base_stats[S.range] = 0f;
+				hyperartillery.base_stats[S.targets] = 20f;
+				hyperartillery.base_stats[S.damage] = 6f;
+				hyperartillery.base_stats[S.damage_range] = 0.7f;
+					hyperartillery.path_slash_animation = "effects/slashes/slash_punch";
 
 					ProjectileAsset thunderplasma = new ProjectileAsset();
 				  thunderplasma.id = "thunderplasma";
@@ -72,12 +72,12 @@ namespace M2
 				  thunderplasma.draw_light_size = 1f;
 				  thunderplasma.terraformOption = "nonannoyingbomb";
 				  thunderplasma.terraformRange = 4;
-				  thunderplasma.startScale = 0.2f;
-				  thunderplasma.targetScale = 1f;
+				  thunderplasma.startScale = 0.3f;
+				  thunderplasma.targetScale = 0.3f;
 				  thunderplasma.parabolic = true;
 				  thunderplasma.speed = 20f;
-				  ProjectileAsset shellboomboomeffect2 = thunderplasma;
-				  shellboomboomeffect2.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect2.world_actions, new AttackAction(ActionLibrary.burnTile));
+				  ProjectileAsset shellboomboomeffect6 = thunderplasma;
+				  shellboomboomeffect6.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect6.world_actions, new AttackAction(ActionLibrary.burnTile));
 				  AssetManager.projectiles.add(thunderplasma);
 					
 		ProjectileAsset big_plasma_bomb = new ProjectileAsset();
@@ -97,6 +97,24 @@ namespace M2
 				  ProjectileAsset shellboomboomeffect = big_plasma_bomb;
 				  shellboomboomeffect.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect.world_actions, new AttackAction(ActionLibrary.burnTile));
 				  AssetManager.projectiles.add(big_plasma_bomb);
+
+				  		ProjectileAsset hyperkame = new ProjectileAsset();
+				  hyperkame.id = "hyperkame";
+				  hyperkame.texture = "hyperkame";
+				  hyperkame.endEffect = "hyperboom";
+				  hyperkame.trailEffect_enabled = false;
+				  hyperkame.look_at_target = true;
+				  hyperkame.draw_light_area = true;
+				  hyperkame.draw_light_size = 1f;
+				  hyperkame.terraformOption = "nonannoyingbomb";
+				  hyperkame.terraformRange = 5;
+				  hyperkame.startScale = 0.1f;
+				  hyperkame.targetScale = 1f;
+				  hyperkame.parabolic = true;
+				  hyperkame.speed = 5f;
+				  ProjectileAsset shellboomboomeffect2 = hyperkame;
+				  shellboomboomeffect2.world_actions = (AttackAction)Delegate.Combine(shellboomboomeffect2.world_actions, new AttackAction(ActionLibrary.burnTile));
+				  AssetManager.projectiles.add(hyperkame);
 		  
 
 

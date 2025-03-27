@@ -78,7 +78,7 @@ namespace M2
 
             ProjectileAsset NUKER = new ProjectileAsset();
             NUKER.id = "NUKER";
-            NUKER.speed = 3.5f;
+            NUKER.speed = 5.5f;
             NUKER.parabolic = true;
             NUKER.texture = "NUKER";
             NUKER.hitShake = true;
@@ -93,14 +93,14 @@ namespace M2
             NUKERExplode.id = "NUKERExplode";
             NUKERExplode.flash = true;
             NUKERExplode.damageBuildings = true;
-            NUKERExplode.damage = 10000;
+            NUKERExplode.damage = 20000;
             NUKERExplode.applyForce = true;
 			NUKERExplode.applies_to_high_flyers = true;
             NUKERExplode.explode_and_set_random_fire = true;
             NUKERExplode.explode_tile = true;
             NUKERExplode.explosion_pixel_effect = true;
             NUKERExplode.explode_strength = 1;
-            NUKERExplode.transformToWasteland = true;
+            NUKERExplode.transformToWasteland = false;
             NUKERExplode.shake = true;
             NUKERExplode.removeRuins = false;
             NUKERExplode.removeTornado = false;

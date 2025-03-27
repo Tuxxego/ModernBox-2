@@ -39,6 +39,276 @@ namespace M2
 
 
 
+        var culture_convert_chance_1 = AssetManager.culture_tech.get("culture_convert_chance_1");
+        culture_convert_chance_1.knowledge_cost = -2f;
+            AssetManager.culture_tech.add(culture_convert_chance_1);
+
+        var culture_convert_chance_2 = AssetManager.culture_tech.get("culture_convert_chance_2");
+        culture_convert_chance_2.knowledge_cost = -2f;
+            AssetManager.culture_tech.add(culture_convert_chance_2);
+
+        var culture_convert_chance_3 = AssetManager.culture_tech.get("culture_convert_chance_3");
+        culture_convert_chance_3.knowledge_cost = -2f;
+ AssetManager.culture_tech.add(culture_convert_chance_3);
+
+        var culture_spread_speed_1 = AssetManager.culture_tech.get("culture_spread_speed_1");
+        culture_spread_speed_1.knowledge_cost = -2f;
+ AssetManager.culture_tech.add(culture_spread_speed_1);
+
+        var culture_spread_speed_2 = AssetManager.culture_tech.get("culture_spread_speed_2");
+        culture_spread_speed_2.knowledge_cost = -2f;
+AssetManager.culture_tech.add(culture_spread_speed_2);
+
+        var culture_spread_speed_3 = AssetManager.culture_tech.get("culture_spread_speed_3");
+        culture_spread_speed_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(culture_spread_speed_3);
+
+        var ancestors_knowledge = AssetManager.culture_tech.get("ancestors_knowledge");
+        ancestors_knowledge.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(ancestors_knowledge);
+
+        var way_of_live = AssetManager.culture_tech.get("way_of_live");
+        way_of_live.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(way_of_live);
+
+        var heroes = AssetManager.culture_tech.get("heroes");
+        heroes.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(heroes);
+
+        var zones_1 = AssetManager.culture_tech.get("zones_1");
+        zones_1.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(zones_1);
+
+        var zones_2 = AssetManager.culture_tech.get("zones_2");
+        zones_2.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(zones_2);
+
+        var zones_3 = AssetManager.culture_tech.get("zones_3");
+        zones_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(zones_3);
+
+        var housing_1 = AssetManager.culture_tech.get("housing_1");
+        housing_1.knowledge_cost = -2f;
+AssetManager.culture_tech.add(housing_1);
+
+        var housing_2 = AssetManager.culture_tech.get("housing_2");
+        housing_2.knowledge_cost = -2f;
+AssetManager.culture_tech.add(housing_2);
+
+        var housing_3 = AssetManager.culture_tech.get("housing_3");
+        housing_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(housing_3);
+
+        var governance_1 = AssetManager.culture_tech.get("governance_1");
+        governance_1.knowledge_cost = -2f;
+AssetManager.culture_tech.add(governance_1);
+
+        var governance_2 = AssetManager.culture_tech.get("governance_2");
+        governance_2.knowledge_cost = -2f;
+AssetManager.culture_tech.add(governance_2);
+
+        var governance_3 = AssetManager.culture_tech.get("governance_3");
+        governance_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(governance_3);
+
+        var knowledge_gain_1 = AssetManager.culture_tech.get("knowledge_gain_1");
+        knowledge_gain_1.knowledge_cost = -2f;
+AssetManager.culture_tech.add(knowledge_gain_1);
+
+        var knowledge_gain_2 = AssetManager.culture_tech.get("knowledge_gain_2");
+        knowledge_gain_2.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(knowledge_gain_2);
+
+        var knowledge_gain_3 = AssetManager.culture_tech.get("knowledge_gain_3");
+        knowledge_gain_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(knowledge_gain_3);
+
+        var army_training_1 = AssetManager.culture_tech.get("army_training_1");
+        army_training_1.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(army_training_1);
+
+        var army_training_2 = AssetManager.culture_tech.get("army_training_2");
+        army_training_2.knowledge_cost = -2f;
+AssetManager.culture_tech.add(army_training_2);
+
+        var army_training_3 = AssetManager.culture_tech.get("army_training_3");
+        army_training_3.knowledge_cost = -2f;
+AssetManager.culture_tech.add(army_training_3);
+
+        var military_strategy = AssetManager.culture_tech.get("military_strategy");
+        military_strategy.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(military_strategy);
+
+        var defense_strategy = AssetManager.culture_tech.get("defense_strategy");
+        defense_strategy.knowledge_cost = -2f;
+AssetManager.culture_tech.add(defense_strategy);
+
+        var house_tier_0 = AssetManager.culture_tech.get("house_tier_0");
+        house_tier_0.knowledge_cost = -2f;
+AssetManager.culture_tech.add(house_tier_0);
+
+        var house_tier_1 = AssetManager.culture_tech.get("house_tier_1");
+        house_tier_1.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(house_tier_1);
+
+        var house_tier_2 = AssetManager.culture_tech.get("house_tier_2");
+        house_tier_2.knowledge_cost = -2f;
+AssetManager.culture_tech.add(house_tier_2);
+
+        var house_tier_3 = AssetManager.culture_tech.get("house_tier_3");
+        house_tier_3.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(house_tier_3);
+
+        var house_tier_4 = AssetManager.culture_tech.get("house_tier_4");
+        house_tier_4.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(house_tier_4);
+
+        var house_tier_5 = AssetManager.culture_tech.get("house_tier_5");
+        house_tier_5.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(house_tier_5);
+
+        var building_docks = AssetManager.culture_tech.get("building_docks");
+        building_docks.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_docks);
+
+        var building_roads = AssetManager.culture_tech.get("building_roads");
+        building_roads.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_roads);
+
+        var building_well = AssetManager.culture_tech.get("building_well");
+        building_well.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_well);
+
+        var building_watch_tower = AssetManager.culture_tech.get("building_watch_tower");
+        building_watch_tower.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_watch_tower);
+
+        var building_watch_tower_bonus = AssetManager.culture_tech.get("building_watch_tower_bonus");
+        building_watch_tower_bonus.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_watch_tower_bonus);
+
+        var building_statues = AssetManager.culture_tech.get("building_statues");
+        building_statues.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_statues);
+
+        var building_mine = AssetManager.culture_tech.get("building_mine");
+        building_mine.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_mine);
+
+        var building_barracks = AssetManager.culture_tech.get("building_barracks");
+        building_barracks.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_barracks);
+
+        var building_windmill = AssetManager.culture_tech.get("building_windmill");
+        building_windmill.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_windmill);
+
+        var building_temple = AssetManager.culture_tech.get("building_temple");
+        building_temple.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(building_temple);
+
+        var mining_efficiency = AssetManager.culture_tech.get("mining_efficiency");
+        mining_efficiency.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(mining_efficiency);
+
+        var sharp_axes = AssetManager.culture_tech.get("sharp_axes");
+        sharp_axes.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(sharp_axes);
+
+        var weaponsmith = AssetManager.culture_tech.get("weaponsmith");
+        weaponsmith.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weaponsmith);
+
+        var armorsmith = AssetManager.culture_tech.get("armorsmith");
+        armorsmith.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(armorsmith);
+
+        var trading = AssetManager.culture_tech.get("trading");
+        trading.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(trading);
+
+        var trading_efficiency = AssetManager.culture_tech.get("trading_efficiency");
+        trading_efficiency.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(trading_efficiency);
+
+        var boats_trading = AssetManager.culture_tech.get("boats_trading");
+        boats_trading.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(boats_trading);
+
+        var boats_transport = AssetManager.culture_tech.get("boats_transport");
+        boats_transport.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(boats_transport);
+
+        var equipment_storage_1 = AssetManager.culture_tech.get("equipment_storage_1");
+        equipment_storage_1.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(equipment_storage_1);
+
+        var equipment_storage_2 = AssetManager.culture_tech.get("equipment_storage_2");
+        equipment_storage_2.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(equipment_storage_2);
+
+        var equipment_storage_3 = AssetManager.culture_tech.get("equipment_storage_3");
+        equipment_storage_3.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(equipment_storage_3);
+
+        var weapon_sword = AssetManager.culture_tech.get("weapon_sword");
+        weapon_sword.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_sword);
+
+        var weapon_axe = AssetManager.culture_tech.get("weapon_axe");
+        weapon_axe.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_axe);
+
+        var weapon_hammer = AssetManager.culture_tech.get("weapon_hammer");
+        weapon_hammer.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_hammer);
+
+        var weapon_spear = AssetManager.culture_tech.get("weapon_spear");
+        weapon_spear.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_spear);
+
+        var armor_production = AssetManager.culture_tech.get("armor_production");
+        armor_production.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(armor_production);
+
+        var weapon_production = AssetManager.culture_tech.get("weapon_production");
+        weapon_production.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_production);
+
+        var weapon_bow = AssetManager.culture_tech.get("weapon_bow");
+        weapon_bow.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(weapon_bow);
+
+        var material_copper = AssetManager.culture_tech.get("material_copper");
+        material_copper.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_copper);
+
+        var material_bronze = AssetManager.culture_tech.get("material_bronze");
+        material_bronze.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_bronze);
+
+        var material_silver = AssetManager.culture_tech.get("material_silver");
+        material_silver.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_silver);
+
+        var material_iron = AssetManager.culture_tech.get("material_iron");
+        material_iron.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_iron);
+
+        var material_steel = AssetManager.culture_tech.get("material_steel");
+        material_steel.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_steel);
+
+        var material_mythril = AssetManager.culture_tech.get("material_mythril");
+        material_mythril.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_mythril);
+
+        var material_adamantine = AssetManager.culture_tech.get("material_adamantine");
+        material_adamantine.knowledge_cost = -2f;
+        AssetManager.culture_tech.add(material_adamantine);
+
+
+
 		 CultureTechAsset Renaissance = new CultureTechAsset();
             Renaissance.id = "Renaissance";
             Renaissance.path_icon = "Renaissance";

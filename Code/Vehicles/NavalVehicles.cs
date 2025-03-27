@@ -53,7 +53,7 @@ namespace M2
             orcwarturtle.base_stats[S.max_age] = 25f;
             orcwarturtle.base_stats[S.health] = 2500f;
             orcwarturtle.base_stats[S.speed] = 60f;
-            orcwarturtle.base_stats[S.armor] = 80f;
+            orcwarturtle.base_stats[S.armor] = 40f;
             orcwarturtle.base_stats[S.damage] = 200f;
             orcwarturtle.base_stats[S.attack_speed] = 15;
             orcwarturtle.base_stats[S.knockback_reduction] = 6f;
@@ -107,6 +107,7 @@ namespace M2
             human_renaissance_battleship.base_stats[S.attack_speed] = 15;
             human_renaissance_battleship.base_stats[S.knockback_reduction] = 6f;
             human_renaissance_battleship.base_stats[S.knockback] = 0.8f;
+            human_renaissance_battleship.base_stats[S.range] = 20f;
             human_renaissance_battleship.defaultAttack = "cannonstriker";
             human_renaissance_battleship.drawBoatMark = true;
             human_renaissance_battleship.drawBoatMark_big = false;
@@ -230,6 +231,7 @@ namespace M2
             human_renaissance_corvette1.base_stats[S.projectiles] = 3f;
             human_renaissance_corvette1.base_stats[S.max_age] = 25f;
             human_renaissance_corvette1.base_stats[S.health] = 1000f;
+            human_renaissance_corvette1.base_stats[S.range] = 20f;
             human_renaissance_corvette1.base_stats[S.speed] = 50f;
             human_renaissance_corvette1.base_stats[S.armor] = 20f;
             human_renaissance_corvette1.base_stats[S.damage] = 10f;
@@ -274,6 +276,7 @@ namespace M2
             human_renaissance_corvette2.base_stats[S.health] = 1000f;
             human_renaissance_corvette2.base_stats[S.speed] = 50f;
             human_renaissance_corvette2.base_stats[S.armor] = 20f;
+                        human_renaissance_corvette2.base_stats[S.range] = 20f;
             human_renaissance_corvette2.base_stats[S.damage] = 10f;
             human_renaissance_corvette2.base_stats[S.attack_speed] = 11;
             human_renaissance_corvette2.base_stats[S.knockback_reduction] = 6f;
@@ -310,11 +313,12 @@ namespace M2
             human_industrial_battleship.texture_path = "human_industrial_battleship";
             human_industrial_battleship.animation_walk = "walk_0";
 		    human_industrial_battleship.animation_swim = "swim_0,swim_1,swim_2,swim_3";
-            human_industrial_battleship.base_stats[S.projectiles] = 2f;
+            human_industrial_battleship.base_stats[S.projectiles] = 1f;
             human_industrial_battleship.base_stats[S.max_age] = 25f;
             human_industrial_battleship.base_stats[S.health] = 4000f;
             human_industrial_battleship.base_stats[S.speed] = 50f;
             human_industrial_battleship.base_stats[S.armor] = 40f;
+            human_industrial_battleship.base_stats[S.range] = 30f;
             human_industrial_battleship.base_stats[S.damage] = 40f;
             human_industrial_battleship.base_stats[S.attack_speed] = 15;
             human_industrial_battleship.base_stats[S.knockback_reduction] = 6f;
@@ -442,6 +446,7 @@ namespace M2
             human_industrial_corvette1.base_stats[S.health] = 3000f;
             human_industrial_corvette1.base_stats[S.speed] = 50f;
             human_industrial_corvette1.base_stats[S.armor] = 40f;
+            human_industrial_corvette1.base_stats[S.range] = 30f;
             human_industrial_corvette1.base_stats[S.damage] = 40f;
             human_industrial_corvette1.base_stats[S.attack_speed] = 15;
             human_industrial_corvette1.base_stats[S.knockback_reduction] = 6f;
@@ -485,6 +490,7 @@ namespace M2
             human_industrial_corvette2.base_stats[S.speed] = 50f;
             human_industrial_corvette2.base_stats[S.armor] = 40f;
             human_industrial_corvette2.base_stats[S.damage] = 40f;
+            human_industrial_corvette2.base_stats[S.range] = 30f;
             human_industrial_corvette2.base_stats[S.attack_speed] = 15;
             human_industrial_corvette2.base_stats[S.knockback_reduction] = 6f;
             human_industrial_corvette2.base_stats[S.knockback] = 0.8f;
@@ -549,6 +555,7 @@ namespace M2
             human_modern_battleship.base_stats[S.speed] = 50f;
             human_modern_battleship.base_stats[S.armor] = 50f;
             human_modern_battleship.base_stats[S.damage] = 6f;
+            human_modern_battleship.base_stats[S.range] = 20f;
             human_modern_battleship.base_stats[S.attack_speed] = 15;
             human_modern_battleship.base_stats[S.knockback_reduction] = 6f;
             human_modern_battleship.base_stats[S.knockback] = 0.8f;
@@ -745,6 +752,7 @@ namespace M2
             human_modern_corvette1.base_stats[S.speed] = 50f;
             human_modern_corvette1.base_stats[S.armor] = 50f;
             human_modern_corvette1.base_stats[S.damage] = 40f;
+            human_modern_corvette1.base_stats[S.range] = 30f;
             human_modern_corvette1.base_stats[S.attack_speed] = 10;
             human_modern_corvette1.base_stats[S.knockback_reduction] = 6f;
             human_modern_corvette1.base_stats[S.knockback] = 0.8f;
@@ -788,6 +796,7 @@ namespace M2
             human_modern_corvette2.base_stats[S.speed] = 50f;
             human_modern_corvette2.base_stats[S.armor] = 50f;
             human_modern_corvette2.base_stats[S.damage] = 40f;
+            human_modern_corvette2.base_stats[S.range] = 30f;
             human_modern_corvette2.base_stats[S.attack_speed] = 10;
             human_modern_corvette2.base_stats[S.knockback_reduction] = 6f;
             human_modern_corvette2.base_stats[S.knockback] = 0.8f;
@@ -827,8 +836,9 @@ namespace M2
             human_modern_submarine.base_stats[S.max_age] = 25f;
             human_modern_submarine.base_stats[S.health] = 6000f;
             human_modern_submarine.base_stats[S.speed] = 40f;
-            human_modern_submarine.base_stats[S.armor] = 70f;
+            human_modern_submarine.base_stats[S.armor] = 60f;
             human_modern_submarine.base_stats[S.damage] = 50f;
+            human_modern_submarine.base_stats[S.range] = 50f;
             human_modern_submarine.base_stats[S.attack_speed] = 5;
             human_modern_submarine.base_stats[S.knockback_reduction] = 6f;
             human_modern_submarine.base_stats[S.knockback] = 0.8f;
