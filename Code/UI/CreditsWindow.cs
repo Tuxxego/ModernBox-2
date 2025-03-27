@@ -47,7 +47,6 @@ PlayerCro7
 dankmrgreen6444
 LonelyFear
 Fakher
-Goosefang
 Ariel
 Mr. P
 Melvin Shwuaner
