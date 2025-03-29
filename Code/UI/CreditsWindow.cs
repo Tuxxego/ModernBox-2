@@ -40,17 +40,18 @@ Tuxxego
 
 <color='" + gold + @"'>Developer Team:</color>
 
+Dankmrgreen6444
+Goosefang
 MORFOS
 Full Auto Sherman
 Gecko
 PlayerCro7
-dankmrgreen6444
 LonelyFear
 Fakher
 Ariel
 Mr. P
 Melvin Shwuaner
-Nico_the_Nine
+
 
 
 Other Mod Developers to Credit:
@@ -58,15 +59,12 @@ alexnitaly (Gunsmith Book)
 haydar_kara (Hivemind)
 3m1rh4n (RifleActions/WestActions)
 
-Legacy Developers:
-Bluenightyes
-dankmrgreen6444
-
-Legacy Contributors:
+Contributors:
 arielp2
 immortalglitch5500
 thedesertroad
 luck
+Nico_the_Nine
 
 <color='" + gold + @"'>DISCORD SERVER:</color>
 Admins:
