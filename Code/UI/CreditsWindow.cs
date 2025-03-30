@@ -43,16 +43,17 @@ Tuxxego
 Dankmrgreen6444
 Goosefang
 MORFOS
-Full Auto Sherman
 Gecko
 PlayerCro7
 LonelyFear
 Fakher
-Ariel
 Mr. P
-Melvin Shwuaner
 
-
+Sprite makers: 
+Ariel
+Full Auto Sherman
+Immortalglitch5500
+Thedesertroad
 
 Other Mod Developers to Credit:
 alexnitaly (Gunsmith Book)
@@ -60,11 +61,13 @@ haydar_kara (Hivemind)
 3m1rh4n (RifleActions/WestActions)
 
 Contributors:
-arielp2
+Ariel
 immortalglitch5500
 thedesertroad
 luck
 Nico_the_Nine
+Melvin Shwuaner
+
 
 <color='" + gold + @"'>DISCORD SERVER:</color>
 Admins:
@@ -76,7 +79,9 @@ matthewn0008 the_state_of_florida cakewashere
 .xiexel _harrier
 <color='" + gold + @"'>SERVER BOOSTERS:</color>
 keymasterer
-sog1029 icee9924 wolfenmicky
+sog1029
+icee9924
+wolfenmicky
 ";
 
 
