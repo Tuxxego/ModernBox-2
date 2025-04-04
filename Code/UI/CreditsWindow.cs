@@ -40,48 +40,44 @@ Tuxxego
 
 <color='" + gold + @"'>Developer Team:</color>
 
-Dankmrgreen6444
-Goosefang
 MORFOS
-Gecko
-PlayerCro7
-LonelyFear
-Fakher
-Mr. P
-
-Sprite makers: 
-Ariel
 Full Auto Sherman
-Immortalglitch5500
-Thedesertroad
+Gecko
+dankmrgreen6444
+LonelyFear
+Goosefang
+Ariel
+Mr. P
+Melvin Shwuaner
+Nico_the_Nine
+
+Old M2 Dev Team:
+Fakher
+PlayerCro7
 
 Other Mod Developers to Credit:
 alexnitaly (Gunsmith Book)
 haydar_kara (Hivemind)
 3m1rh4n (RifleActions/WestActions)
 
-Contributors:
-Ariel
+Legacy M1 Developers:
+Bluenightyes
+dankmrgreen6444
+
+Legacy M1 Contributors:
+arielp2
 immortalglitch5500
 thedesertroad
 luck
-Nico_the_Nine
-Melvin Shwuaner
-
 
 <color='" + gold + @"'>DISCORD SERVER:</color>
 Admins:
-slowatplaye
-keymasterer
+slowatplayekeymasterer
 
 Moderators:
-matthewn0008 the_state_of_florida cakewashere
-.xiexel _harrier
-<color='" + gold + @"'>SERVER BOOSTERS:</color>
-keymasterer
-sog1029
-icee9924
-wolfenmicky
+matthewn0008 the_state_of_florida cakewashere .xiexel _harrier
+<color='" + gold + @"'>SERVER BOOSTERS:</color> '
+keymasterer sog1029 icee9924 wolfenmicky
 ";
 
 
