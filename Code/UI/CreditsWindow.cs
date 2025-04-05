@@ -44,7 +44,7 @@ MORFOS
 Full Auto Sherman
 Gecko
 dankmrgreen6444
-LonelyFear
+Trike
 Goosefang
 Ariel
 Mr. P
@@ -53,6 +53,7 @@ Nico_the_Nine
 
 Old M2 Dev Team:
 Fakher
+LonelyFear
 PlayerCro7
 
 Other Mod Developers to Credit:
