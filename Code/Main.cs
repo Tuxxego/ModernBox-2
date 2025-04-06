@@ -13,16 +13,16 @@ namespace M3
 		
 		private void Awake()
 		{
-			 Debug.Log("[M2] Mod Core has been called, booting mod core.");
+			 Debug.Log("[M3] Mod Core has been called, booting mod core.");
 			
 			 Debug.Log("===============================");
-			 Debug.Log("ModernBox 2.2.0.0");
+			 Debug.Log("M3 1.0.0");
 			 Debug.Log("MADE BY TUXXEGO");
 			 Debug.Log("===============================");			
 
-			 Debug.Log("[M2] Initializing Buttonz...");
+			 Debug.Log("[M3] Initializing Buttonz...");
 			 Buttonz.Init();
-			 Debug.Log("[M2] Buttonz loaded!");
+			 Debug.Log("[M3] Buttonz loaded!");
  
 		}
 	}
