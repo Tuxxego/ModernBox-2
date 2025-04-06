@@ -9,6 +9,8 @@ namespace M3
 {
 	public class Buttonz
 	{
+		public static PowerButton balls;
+
 		public void Init()
 		{
 				new TabBuilder()
@@ -20,6 +22,14 @@ namespace M3
 					.Build();
 					
 			PowersTab tab = TabManager.FindTab("M3_TAB");
+
+		WindowBuilder windowBuilder = new WindowBuilder();
+		ScrollWindow newWindow = windowBuilder
+			.SetWindowID("my_window_1")
+			.SetWindowTitle("window_title_key")
+		//	.SetSize(800, 600)
+		//	.SetIcon("ui/Icons/WindowIcon")
+			.Build();
 
 			GameObject largeImageObject = new GameObject("LargeImage");
 			largeImageObject.transform.SetParent(tab.transform);
@@ -57,7 +67,7 @@ namespace M3
 				.SetName("Super-Nuke")
 				.SetDescription("Also known as the 'Lag Bomb'.")
 				.SetPosition(new Vector2(576, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -66,7 +76,7 @@ namespace M3
 				.SetName("Xenium Bomb")
 				.SetDescription("You thought the ultron bomb was big? This thing is HUGE.")
 				.SetPosition(new Vector2(576, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -75,7 +85,7 @@ namespace M3
 				.SetName("Cobalt Bomb")
 				.SetDescription("Small Mushroom but huge radius, watch out with this one.")
 				.SetPosition(new Vector2(540, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -84,7 +94,7 @@ namespace M3
 				.SetName("Ultron Bomb")
 				.SetDescription("WOOOAH")
 				.SetPosition(new Vector2(504, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -93,7 +103,7 @@ namespace M3
 				.SetName("Death Bomb")
 				.SetDescription("Such an original name.")
 				.SetPosition(new Vector2(612, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -102,7 +112,7 @@ namespace M3
 				.SetName("Random Bomb")
 				.SetDescription("You could be dropping a proton bomb, or a mini nuke, it's random!")
 				.SetPosition(new Vector2(648, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -120,16 +130,16 @@ namespace M3
 				.SetName("Mini Nuke")
 				.SetDescription("Small nukes, great for minor scuffles.")
 				.SetPosition(new Vector2(540, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Protonbutton")
+			balls = new ButtonBuilder("Protonbutton")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Proton"))
 				.SetName("Proton Bomb")
 				.SetDescription("wtf is this?")
 				.SetPosition(new Vector2(504, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -138,7 +148,7 @@ namespace M3
 				.SetName("Jupiter Bomb")
 				.SetDescription("The new monster.")
 				.SetPosition(new Vector2(612, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -147,7 +157,7 @@ namespace M3
 				.SetName("Eraser Bomb")
 				.SetDescription("also known as the overcompensating bomb.")
 				.SetPosition(new Vector2(648, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -183,7 +193,7 @@ namespace M3
 				.SetDescription("The goat.")
 				.SetIcon(Resources.Load<Sprite>("ui/icons/P9000"))
 				.SetPosition(new Vector2(1044, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -192,7 +202,7 @@ namespace M3
 				.SetDescription("Spawn a mech.")
 				.SetIcon(Resources.Load<Sprite>("ui/icons/Terran"))
 				.SetPosition(new Vector2(1080, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -219,7 +229,7 @@ namespace M3
 				.SetDescription("Spawn a Helicopter")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Heli"))
 				.SetPosition(new Vector2(720, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -237,7 +247,7 @@ namespace M3
 				.SetDescription("Spawn a Zeppelin.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Airship"))
 				.SetPosition(new Vector2(756, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -255,7 +265,7 @@ namespace M3
 				.SetDescription("Spawn a tank.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Tank"))
 				.SetPosition(new Vector2(792, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -273,7 +283,7 @@ namespace M3
 				.SetDescription("Spawn a MIRV Bomber.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRVBomber"))
 				.SetPosition(new Vector2(828, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -291,7 +301,7 @@ namespace M3
 				.SetDescription("Spawn a Humvee.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Humvee"))
 				.SetPosition(new Vector2(864, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -309,7 +319,7 @@ namespace M3
 				.SetDescription("Spawn a FighterJet.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/FighterJet"))
 				.SetPosition(new Vector2(900, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -318,7 +328,7 @@ namespace M3
 				.SetDescription("Spawn a Drone.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Drone"))
 				.SetPosition(new Vector2(1260 + 36 + 36, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -327,7 +337,7 @@ namespace M3
 				.SetDescription("Spawn a Soldier.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Soldier"))
 				.SetPosition(new Vector2(1260 + 36 + 36, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -345,7 +355,7 @@ namespace M3
 				.SetDescription("Spawn a Missile System.")
 				.SetIcon(Resources.Load<Sprite>("actors/MissileSystem/swim_1"))
 				.SetPosition(new Vector2(936, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -363,7 +373,7 @@ namespace M3
 				.SetDescription("Spawn a Gunship")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Gunship"))
 				.SetPosition(new Vector2(972, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -430,21 +440,21 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Nuke_toggle")
-				.SetIcon(Resources.Load<Sprite>("effects/projectiles/NUKER/0"))
-				.SetName("Toggle Nuke Silos")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if kingdoms can nuke each other.")
-				.SetPosition(new Vector2(504, -18))
-				.SetType("Toggle")
-				.SetTab("M3_TAB")
-				.Build();
+			// new ButtonBuilder("Nuke_toggle")
+				// .SetIcon(Resources.Load<Sprite>("effects/projectiles/NUKER/0"))
+				// .SetName("Toggle Nuke Silos")
+				// .SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if kingdoms can nuke each other.")
+				// .SetPosition(new Vector2(504, -18))
+				// .SetType("Toggle")
+				// .SetTab("M3_TAB")
+				// .Build();
 
 			new ButtonBuilder("spawn_Railgun")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Railgun"))
 				.SetName("Spawn Railgun")
 				.SetDescription("Spawn a Railgun")
 				.SetPosition(new Vector2(1008, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -516,7 +526,7 @@ namespace M3
 				.SetName("Choose Units")
 				.SetDescription("Select the units you want to send to space.")
 				.SetPosition(new Vector2(108, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -525,7 +535,7 @@ namespace M3
 				.SetName("Land Units")
 				.SetDescription("Land Units on your planet.")
 				.SetPosition(new Vector2(108, -18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -534,7 +544,7 @@ namespace M3
 				.SetName("Spawn MIRV Bomber")
 				.SetDescription("Spawn a MIRV Bomber.")
 				.SetPosition(new Vector2(828, 18))
-				.SetType("GodPower")
+				.SetType("Active")
 				.SetTab("M3_TAB")
 				.Build();
 
