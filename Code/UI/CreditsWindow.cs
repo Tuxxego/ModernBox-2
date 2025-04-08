@@ -40,18 +40,17 @@ Tuxxego
 
 <color='" + gold + @"'>Developer Team:</color>
 
+Dankmrgreen6444
 MORFOS
 Full Auto Sherman
-Gecko
-dankmrgreen6444
-Trike
 Goosefang
+Trike
 Ariel
 Mr. P
 Melvin Shwuaner
 Nico_the_Nine
 
-Old M2 Dev Team:
+M2 Dev Team:
 Fakher
 LonelyFear
 PlayerCro7
@@ -61,25 +60,12 @@ alexnitaly (Gunsmith Book)
 haydar_kara (Hivemind)
 3m1rh4n (RifleActions/WestActions)
 
-Legacy M1 Developers:
-Bluenightyes
-dankmrgreen6444
 
-Legacy M1 Contributors:
+M1 Contributors:
 arielp2
 immortalglitch5500
 thedesertroad
 luck
-
-<color='" + gold + @"'>DISCORD SERVER:</color>
-Admins:
-slowatplayekeymasterer
-
-Moderators:
-matthewn0008 the_state_of_florida cakewashere .xiexel _harrier
-<color='" + gold + @"'>SERVER BOOSTERS:</color> '
-keymasterer sog1029 icee9924 wolfenmicky
-";
 
 
           var name = window.transform.Find("Background").Find("Name").gameObject;
