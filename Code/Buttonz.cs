@@ -50,6 +50,7 @@ namespace M3
 				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Nuclear MIRVs from being developed (this won't remove existing Nuclear MIRVS)")
 				.SetPosition(new Vector2(288, -18))
 				.SetType("Toggle")
+				 .SetComingSoon()
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -60,6 +61,7 @@ namespace M3
 				.SetPosition(new Vector2(288, 18))
 				.SetType("Toggle")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("MOABbutton")
@@ -69,6 +71,7 @@ namespace M3
 				.SetPosition(new Vector2(576, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Xeniumbutton")
@@ -78,6 +81,7 @@ namespace M3
 				.SetPosition(new Vector2(576, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Cobaltbutton")
@@ -87,6 +91,7 @@ namespace M3
 				.SetPosition(new Vector2(540, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Ultronbutton")
@@ -96,6 +101,7 @@ namespace M3
 				.SetPosition(new Vector2(504, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Deathbutton")
@@ -105,6 +111,7 @@ namespace M3
 				.SetPosition(new Vector2(612, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Randombutton")
@@ -114,6 +121,7 @@ namespace M3
 				.SetPosition(new Vector2(648, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("BombMenu")
@@ -123,6 +131,7 @@ namespace M3
 				.SetPosition(new Vector2(684, -18))
 				.SetType("Click")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Minibutton")
@@ -132,6 +141,7 @@ namespace M3
 				.SetPosition(new Vector2(540, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			balls = new ButtonBuilder("Protonbutton")
@@ -141,6 +151,7 @@ namespace M3
 				.SetPosition(new Vector2(504, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Jupiterbutton")
@@ -150,6 +161,7 @@ namespace M3
 				.SetPosition(new Vector2(612, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Eraserbutton")
@@ -159,6 +171,7 @@ namespace M3
 				.SetPosition(new Vector2(648, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("Cyberware_toggle")

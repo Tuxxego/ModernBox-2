@@ -11,6 +11,8 @@ namespace M3
     {
         public Buttonz Buttonz = new Buttonz();
         public PowersAndDrops PowersAndDrops = new PowersAndDrops();
+        public Guns Guns = new Guns();
+        public Traits Traits = new Traits();
         public static Main instance;
 
         private PowerButtonSelector powerButtonSelector;
@@ -18,34 +20,36 @@ namespace M3
         private void Awake()
         {
 			
-var Tank = AssetManager.actor_library.clone("Tank", "$mob$");
-    Tank.base_stats["health"] = 1000f;
-    Tank.base_stats["damage"] = 100f;
-    Tank.base_stats["speed"] = 40f;
-    Tank.base_stats["scale"] = 0.3f;
-    Tank.base_stats["size"] = 2f;
-    Tank.base_stats["mass"] = 4f;
-    Tank.base_stats["mass_2"] = 2500f;
-    Tank.base_stats["targets"] = 20f;
-    Tank.base_stats["lifespan"] = 0.0f;
-Tank.inspect_stats = true;
-Tank.inspect_home = true;
-//Tank.hideOnMinimap = false;
-Tank.inspect_children = false;
-Tank.inspect_experience = true;
-Tank.inspect_kills = true;
-Tank.use_items = false;
-Tank.take_items = false;
-//Tank.job = "attacker";
-Tank.icon = "iconTank";
-//Tank.animation_walk = "walk_0,walk_1,walk_2,walk_3";
-//Tank.animation_idle = "idle_0,idle_1,idle_2";
-//Tank.animation_swim = "swim_0,swim_1,swim_2";
-//Tank.texture_path = "Tank";
-//AssetManager.actor_library.addColorSet("heliColor");
-Tank.color = Toolbox.makeColor("#33724D");
-AssetManager.actor_library.add(Tank);
-//Localization.addLocalization(Tank.nameLocale, Tank.nameLocale);
+            var Tank = AssetManager.actor_library.clone("Tank", "$mob$");
+            Tank.base_stats["health"] = 1000f;
+            Tank.base_stats["damage"] = 100f;
+            Tank.base_stats["speed"] = 40f;
+            Tank.base_stats["scale"] = 0.3f;
+            Tank.base_stats["size"] = 2f;
+            Tank.base_stats["mass"] = 4f;
+            Tank.base_stats["mass_2"] = 2500f;
+            Tank.base_stats["targets"] = 20f;
+            Tank.base_stats["lifespan"] = 0.0f;
+            Tank.inspect_stats = true;
+            Tank.inspect_home = true;
+            //Tank.hideOnMinimap = false;
+            Tank.inspect_children = false;
+            Tank.inspect_experience = true;
+            Tank.texture_asset = null;
+            Tank.inspect_kills = true;
+            Tank.use_items = false;
+            Tank.texture_id = "t_Tank";
+            Tank.can_have_subspecies = false;
+            Tank.take_items = false;
+            //Tank.job = "attacker";
+            Tank.icon = "iconTank";
+            //Tank.texture_path = "Tank";
+            //AssetManager.actor_library.addColorSet("heliColor");
+            Tank.color = Toolbox.makeColor("#33724D");
+            AssetManager.actor_library.add(Tank);
+            //Localization.addLocalization(Tank.nameLocale, Tank.nameLocale);
+
+            TuxModLoader.Reflection.ReflectionHelper.InvokeMethod(AssetManager.actor_library, "loadTexturesAndSprites", Tank);
 
             Debug.Log("[M3] Mod Core has been called, booting mod core.");
             
@@ -61,7 +65,15 @@ AssetManager.actor_library.add(Tank);
             Debug.Log("[M3] Initializing Buttonz...");
             Buttonz.Init();
             Debug.Log("[M3] Buttonz loaded!");
-            
+
+            Debug.Log("[M3] Initializing Guns...");
+            Guns.Init();
+            Debug.Log("[M3] Guns loaded!");
+
+            Debug.Log("[M3] Initializing Traits...");
+            Traits.Init();
+            Debug.Log("[M3] Traits loaded!");
+
             powerButtonSelector = FindPowerButtonSelector();
             if (powerButtonSelector != null)
             {
