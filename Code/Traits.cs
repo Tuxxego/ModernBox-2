@@ -19,11 +19,13 @@ namespace M3
                 .Build();
 
             ActorTrait Balls = new TraitBuilder("Dumbass")
+			    .SetName("Big Balls")
+				.SetDescription("YEAH YEAH!!!")
                 .SetIcon("ui/icons/Tank")
                 .SetRateBirth(2)
                 .SetRateInherit(5)
                 .SetLikeability(0.1f)
-                .SetGroupID("M3")
+                .SetGroupID("skills")
                 .SetType(TraitType.Positive)
                 .AddOpposite("unlucky")
                 .Build();

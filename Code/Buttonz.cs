@@ -44,160 +44,106 @@ namespace M3
 			largeImageRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
 			largeImageRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
 	
-			new ButtonBuilder("STRONGMIRV_toggle")
+			new ButtonBuilder("STRONGMIRV_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRV_nuke"))
 				.SetName("Nuclear MIRVs")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Nuclear MIRVs from being developed (this won't remove existing Nuclear MIRVS)")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options Nuclear MIRVs from being developed (this won't remove existing Nuclear MIRVS)")
 				.SetPosition(new Vector2(288, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				 .SetComingSoon()
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("MIRV_toggle")
+			new ButtonBuilder("MIRV_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRV"))
 				.SetName("MIRVs")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle MIRVs from being developed (this won't remove existing MIRVS)")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options MIRVs from being developed (this won't remove existing MIRVS)")
 				.SetPosition(new Vector2(288, 18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
+
 				.Build();
 
-			new ButtonBuilder("MOABbutton")
+			new ButtonBuilder("MOAB")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MOAB"))
 				.SetName("Super-Nuke")
 				.SetDescription("Also known as the 'Lag Bomb'.")
 				.SetPosition(new Vector2(576, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
 				.Build();
 
-			new ButtonBuilder("Xeniumbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Xeno"))
-				.SetName("Xenium Bomb")
-				.SetDescription("You thought the ultron bomb was big? This thing is HUGE.")
+			new ButtonBuilder("GayBomb")
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/HOMO!"))
+				.SetName("Gay Bomb")
+				.SetDescription("Turns everyone in the vicinity gay!")
 				.SetPosition(new Vector2(576, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
 				.Build();
 
-			new ButtonBuilder("Cobaltbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Cobalt"))
-				.SetName("Cobalt Bomb")
-				.SetDescription("Small Mushroom but huge radius, watch out with this one.")
+			new ButtonBuilder("IceBomb")
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/I hate this stupid bomb it messed me up"))
+				.SetName("Ice Bomb")
+				.SetDescription("Give everyone in the vicinity a 'nuclear winter'.")
 				.SetPosition(new Vector2(540, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
+
 				.Build();
 
-			new ButtonBuilder("Ultronbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Ultron"))
-				.SetName("Ultron Bomb")
-				.SetDescription("WOOOAH")
+			new ButtonBuilder("TuxiumBomb")
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/tuxxego rocks"))
+				.SetName("Tuxium Bomb")
+				.SetDescription("The most efficient bomb if you only want life to die.")
 				.SetPosition(new Vector2(504, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
+
 				.Build();
 
-			new ButtonBuilder("Deathbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Death"))
-				.SetName("Death Bomb")
-				.SetDescription("Such an original name.")
+			new ButtonBuilder("ZombieBomb")
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/Chicken Jockey"))
+				.SetName("Zombie Bomb")
+				.SetDescription("Zombifies any idiot around.")
 				.SetPosition(new Vector2(612, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
 				.Build();
 
-			new ButtonBuilder("Randombutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/wat"))
-				.SetName("Random Bomb")
-				.SetDescription("You could be dropping a proton bomb, or a mini nuke, it's random!")
-				.SetPosition(new Vector2(648, 18))
-				.SetType("Active")
-				.SetTab("M3_TAB")
-				.SetComingSoon()
-				.Build();
-
-			new ButtonBuilder("BombMenu")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Bomber"))
-				.SetName("Bomb Menu")
-				.SetDescription("Tux and Dank got bored and added a lot of extra bombs....")
-				.SetPosition(new Vector2(684, -18))
-				.SetType("Click")
-				.SetTab("M3_TAB")
-				.SetComingSoon()
-				.Build();
-
-			new ButtonBuilder("Minibutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Mini"))
-				.SetName("Mini Nuke")
-				.SetDescription("Small nukes, great for minor scuffles.")
-				.SetPosition(new Vector2(540, 18))
-				.SetType("Active")
-				.SetTab("M3_TAB")
-				.SetComingSoon()
-				.Build();
-
-			balls = new ButtonBuilder("Protonbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Proton"))
-				.SetName("Proton Bomb")
-				.SetDescription("wtf is this?")
-				.SetPosition(new Vector2(504, -18))
-				.SetType("Active")
-				.SetTab("M3_TAB")
-				.SetComingSoon()
-				.Build();
-
-			new ButtonBuilder("Jupiterbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Jupiter"))
-				.SetName("Jupiter Bomb")
-				.SetDescription("The new monster.")
+			new ButtonBuilder("FireBomb")
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/FIRE!"))
+				.SetName("Sun Glazing Bomb")
+				.SetDescription("Drop the sun on people!")
 				.SetPosition(new Vector2(612, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
-				.SetComingSoon()
 				.Build();
 
-			new ButtonBuilder("Eraserbutton")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/Eraser"))
-				.SetName("Eraser Bomb")
-				.SetDescription("also known as the overcompensating bomb.")
-				.SetPosition(new Vector2(648, -18))
-				.SetType("Active")
-				.SetTab("M3_TAB")
-				.SetComingSoon()
-				.Build();
-
-			new ButtonBuilder("Cyberware_toggle")
+			new ButtonBuilder("Cyberware_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Cyberware"))
 				.SetName("Cyberware")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Cyberware from being developed (this won't remove existing Cyberware)")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options Cyberware from being developed (this won't remove existing Cyberware)")
 				.SetPosition(new Vector2(1224, 18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Drugs_toggle")
+			new ButtonBuilder("Drugs_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Drugs"))
 				.SetName("Drugs")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Drugs from being developed (this won't remove existing Drugs already made)")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options Drugs from being developed (this won't remove existing Drugs already made)")
 				.SetPosition(new Vector2(1224, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Drones_Toggle")
+			new ButtonBuilder("Drones_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Drone"))
 				.SetName("Drones")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle if kingdoms can create Drones.")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options if kingdoms can create Drones.")
 				.SetPosition(new Vector2(1152, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -219,21 +165,21 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("P9000Factory_toggle")
+			new ButtonBuilder("P9000Factory_Options")
 				.SetName("P9000 Factories")
 				.SetDescription("DISABLED, COMING SOON!!!")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/P9000"))
 				.SetPosition(new Vector2(1044, -18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("TerranFactory_toggle")
+			new ButtonBuilder("TerranFactory_Options")
 				.SetName("Terran Goliath Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make the Terran Goliath.")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make the Terran Goliath.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Terran"))
 				.SetPosition(new Vector2(1080, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -246,12 +192,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("HelicopterFactory_toggle")
+			new ButtonBuilder("HelicopterFactory_Options")
 				.SetName("Helicopter Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Helicopters")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Helicopters")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Heli"))
 				.SetPosition(new Vector2(720, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -264,12 +210,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("AirshipFactory_toggle")
+			new ButtonBuilder("AirshipFactory_Options")
 				.SetName("Airship Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Airships")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Airships")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Airship"))
 				.SetPosition(new Vector2(756, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -282,12 +228,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("TankFactory_toggle")
+			new ButtonBuilder("TankFactory_Options")
 				.SetName("Tank Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Tanks")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Tanks")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Tank"))
 				.SetPosition(new Vector2(792, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -300,12 +246,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("AirFactory_toggle")
+			new ButtonBuilder("AirFactory_Options")
 				.SetName("MIRV Bomber Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make MIRV Bombers")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make MIRV Bombers")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRVBomber"))
 				.SetPosition(new Vector2(828, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -318,12 +264,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("HumveeFactory_toggle")
+			new ButtonBuilder("HumveeFactory_Options")
 				.SetName("Humvee Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Humvees")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Humvees")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Humvee"))
 				.SetPosition(new Vector2(864, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -354,12 +300,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("FighterJetFactory_toggle")
+			new ButtonBuilder("FighterJetFactory_Options")
 				.SetName("FighterJet Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make FighterJets")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make FighterJets")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/FighterJet"))
 				.SetPosition(new Vector2(900, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -372,12 +318,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("BoiFactory_toggle")
+			new ButtonBuilder("BoiFactory_Options")
 				.SetName("Missile System Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Missile Systems")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Missile Systems")
 				.SetIcon(Resources.Load<Sprite>("actors/MissileSystem/swim_1"))
 				.SetPosition(new Vector2(936, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -390,48 +336,48 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("GunshipFactory_toggle")
+			new ButtonBuilder("GunshipFactory_Options")
 				.SetName("Gunship Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Gunships")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Gunships")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Gunship"))
 				.SetPosition(new Vector2(972, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("PipeGun_toggle")
-				.SetName("Toggle Pipe Guns.")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Pipe Guns from being developed (this won't remove existing Pipe Guns already made). You're welcome LonelyFear.")
+			new ButtonBuilder("PipeGun_Options")
+				.SetName("Options Pipe Guns.")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options Pipe Guns from being developed (this won't remove existing Pipe Guns already made). You're welcome LonelyFear.")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/lowfirearm"))
 				.SetPosition(new Vector2(1188, 18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Gun_toggle")
-				.SetName("Toggle Guns.")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggle Guns from being developed (this won't remove existing Guns already made).")
+			new ButtonBuilder("Gun_Options")
+				.SetName("Options Guns.")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Options Guns from being developed (this won't remove existing Guns already made).")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/firearm"))
 				.SetPosition(new Vector2(1188, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
 			new ButtonBuilder("Devmode")
-				.SetName("Toggle Developer Mode")
+				.SetName("Options Developer Mode")
 				.SetDescription("Secret stuff")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Dev"))
 				.SetPosition(new Vector2(1200, -72))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
 			new ButtonBuilder("discord_server")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/DiscordServer"))
 				.SetName("Discord Server")
-				.SetDescription("Click this to join the ModernBox Discord server!")
+				.SetDescription("Options this to join the ModernBox Discord server!")
 				.SetPosition(new Vector2(180, -18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -440,25 +386,25 @@ namespace M3
 				.SetName("Guide")
 				.SetDescription("Read the guide on how ModernBox works.")
 				.SetPosition(new Vector2(180, 18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("Soldier_toggle")
+			new ButtonBuilder("Soldier_Options")
 				.SetIcon(Resources.Load<Sprite>("actors/Soldier/walk_0"))
 				.SetName("Modern Militaries")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if modern soldiers can be enlisted.")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if modern soldiers can be enlisted.")
 				.SetPosition(new Vector2(1152, 18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			// new ButtonBuilder("Nuke_toggle")
+			// new ButtonBuilder("Nuke_Options")
 				// .SetIcon(Resources.Load<Sprite>("effects/projectiles/NUKER/0"))
-				// .SetName("Toggle Nuke Silos")
-				// .SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if kingdoms can nuke each other.")
+				// .SetName("Options Nuke Silos")
+				// .SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if kingdoms can nuke each other.")
 				// .SetPosition(new Vector2(504, -18))
-				// .SetType("Toggle")
+				// .SetType("Options")
 				// .SetTab("M3_TAB")
 				// .Build();
 
@@ -471,12 +417,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("RailgunFactory_toggle")
+			new ButtonBuilder("RailgunFactory_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/Railgun"))
 				.SetName("Railgun Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make Railguns")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make Railguns")
 				.SetPosition(new Vector2(1008, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -485,7 +431,7 @@ namespace M3
 				.SetName("Credits")
 				.SetDescription("All the people behind ModernBox and more!")
 				.SetPosition(new Vector2(216, -18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -494,25 +440,25 @@ namespace M3
 				.SetName("Reset to defaults")
 				.SetDescription("Resets ALL saved settings to their default values.")
 				.SetPosition(new Vector2(216, 18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("other_names_toggle")
+			new ButtonBuilder("other_names_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/tabIconModernWarfare"))
 				.SetName("Modern Names for Other Races.")
 				.SetDescription("Enable or Disable First and Last names for other races..")
 				.SetPosition(new Vector2(252, 18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("names_toggle")
+			new ButtonBuilder("names_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/name_1"))
 				.SetName("Modern Names")
 				.SetDescription("Enable or Disable Modern Names.")
 				.SetPosition(new Vector2(252, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -521,7 +467,7 @@ namespace M3
 				.SetName("SPACE")
 				.SetDescription("Download custom galaxies + enter the starmap.")
 				.SetPosition(new Vector2(72, 18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -530,7 +476,7 @@ namespace M3
 				.SetName("Achievements")
 				.SetDescription("COMING SOON")
 				.SetPosition(new Vector2(72, -18))
-				.SetType("Click")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -561,12 +507,12 @@ namespace M3
 				.SetTab("M3_TAB")
 				.Build();
 
-			new ButtonBuilder("AirFactory_toggle")
+			new ButtonBuilder("AirFactory_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRVBomber"))
 				.SetName("MIRV Bomber Factories")
-				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Toggles if factories make MIRV Bombers")
+				.SetDescription("(GREEN MEANS ON, GREY IS OFF) Optionss if factories make MIRV Bombers")
 				.SetPosition(new Vector2(828, -18))
-				.SetType("Toggle")
+				.SetType("Options")
 				.SetTab("M3_TAB")
 				.Build();
 

@@ -109,7 +109,7 @@ namespace M3
 		public void Init()
 		{
 			
-            DropAsset ProtonSHit = new DropBuilder()
+            DropAsset ProtonStuff = new DropBuilder()
                 .SetId("protons")
                 .SetTexturePath("drops/drop_bomb")
                 .SetDefaultScale(0.2f)
@@ -126,6 +126,7 @@ namespace M3
                 .SetAction(Stuff_Drop)
                 .SetSurprisesUnits(true)
 				.SetShowToolSizes(true)
+				.SetCachedDropAsset(ProtonStuff)
                 .Build();
 				
 				GodPower ALIENPower = AssetManager.powers.clone("spawn_tank", "$template_spawn_actor$");
@@ -153,7 +154,7 @@ namespace M3
 
 		  public static void action_ProtonClick(WorldTile pTile, string pPowerID) {
 			EffectsLibrary.spawnAtTileRandomScale("fx_explosion_huge", pTile, 16.3f, 28.9f);
-			MapAction.damageWorld(pTile, 786, TerraformLibrary.czar_bomba, null);
+			MapAction.damageWorld(pTile, 2, TerraformLibrary.czar_bomba, null);
 			World.world.startShake(0.3f, 0.01f, 2f, true, true);
 			// return true;
 		  }
