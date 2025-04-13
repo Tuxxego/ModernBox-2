@@ -9,10 +9,11 @@ namespace M3
 {
     public class Main : MonoBehaviour
     {
-        public Buttonz Buttonz = new Buttonz();
+        public Buttonz Buttonz;
         public PowersAndDrops PowersAndDrops = new PowersAndDrops();
         public Guns Guns = new Guns();
         public Traits Traits = new Traits();
+        public LabelCycler LabelCycler = new LabelCycler();
         public static Main instance;
 
         private PowerButtonSelector powerButtonSelector;
@@ -63,6 +64,8 @@ namespace M3
             Debug.Log("[M3] PowersAndDrops loaded!");
 			
             Debug.Log("[M3] Initializing Buttonz...");
+            GameObject buttonzObj = new GameObject("Buttonz");
+            Buttonz = buttonzObj.AddComponent<Buttonz>();
             Buttonz.Init();
             Debug.Log("[M3] Buttonz loaded!");
 
@@ -73,6 +76,11 @@ namespace M3
             Debug.Log("[M3] Initializing Traits...");
             Traits.Init();
             Debug.Log("[M3] Traits loaded!");
+
+            Debug.Log("[M3] Initializing LabelCycler...");
+            GameObject panelObject = new GameObject("BALLS");
+            LabelCycler = panelObject.AddComponent<LabelCycler>();
+            Debug.Log("[M3] LabelCycler loaded!");
 
             powerButtonSelector = FindPowerButtonSelector();
             if (powerButtonSelector != null)

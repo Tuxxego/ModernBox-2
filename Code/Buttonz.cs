@@ -7,42 +7,82 @@ using UnityEngine.UI;
 
 namespace M3
 {
-	public class Buttonz
+	public class Buttonz : MonoBehaviour
 	{
 		public static PowerButton balls;
+        public static Buttonz instance;
+
+		public string labelText = "THIS DONT WORK";
+		private Text labelTextComponent;
+
+		private void Update()
+		{
+			if (labelTextComponent != null && labelTextComponent.text != labelText)
+			{
+				labelTextComponent.text = labelText;
+			}
+		}
 
 		public void Init()
 		{
-				new TabBuilder()
-					.SetTabID("M3_TAB")
-					.SetName("M3")
-					.SetDescription("Eras, Space, Politics, and more.")
-					.SetPosition(200)
-					.SetIcon("icons/tab2.png")
-					.Build();
-					
+			instance = this;
+
+			new TabBuilder()
+				.SetTabID("M3_TAB")
+				.SetName("M3")
+				.SetDescription("Eras, Space, Politics, and more.")
+				.SetPosition(200)
+				.SetIcon("icons/tab2.png")
+				.Build();
+
 			PowersTab tab = TabManager.FindTab("M3_TAB");
 
-		WindowBuilder windowBuilder = new WindowBuilder();
-		ScrollWindow newWindow = windowBuilder
-			.SetWindowID("my_window_1")
-			.SetWindowTitle("window_title_key")
-		//	.SetSize(800, 600)
-		//	.SetIcon("ui/Icons/WindowIcon")
-			.Build();
+			WindowBuilder windowBuilder = new WindowBuilder();
+			ScrollWindow newWindow = windowBuilder
+				.SetWindowID("my_window_1")
+				.SetWindowTitle("window_title_key")
+				.Build();
 
 			GameObject largeImageObject = new GameObject("LargeImage");
 			largeImageObject.transform.SetParent(tab.transform);
 			largeImageObject.transform.localPosition = new Vector3(396, 18, 0);
-			largeImageObject.transform.localScale = new Vector3(1, 1, 1);
+			largeImageObject.transform.localScale = Vector3.one;
 
 			Image largeImage = largeImageObject.AddComponent<Image>();
 			largeImage.sprite = Resources.Load<Sprite>("ui/Icons/TabText");
 
-			RectTransform largeImageRectTransform = largeImageObject.GetComponent<RectTransform>();
-			largeImageRectTransform.sizeDelta = new Vector2(200, 100);
-			largeImageRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-			largeImageRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+			RectTransform imageRect = largeImageObject.GetComponent<RectTransform>();
+			imageRect.sizeDelta = new Vector2(200, 100);
+			imageRect.anchorMin = new Vector2(0.5f, 0.5f);
+			imageRect.anchorMax = new Vector2(0.5f, 0.5f);
+
+			GameObject textObject = new GameObject("LabelText");
+			textObject.transform.SetParent(tab.transform);
+			textObject.transform.localPosition = new Vector3(396, -18, 0);
+			textObject.transform.localScale = Vector3.one;
+
+			labelTextComponent = textObject.AddComponent<Text>();
+			labelTextComponent.text = labelText;
+
+			Font CoolAssFont = Resources.Load<Font>("pistoleerhalf");
+			labelTextComponent.font = CoolAssFont != null ? CoolAssFont : Resources.GetBuiltinResource<Font>("Arial.ttf");
+
+			labelTextComponent.fontSize = 18;
+			labelTextComponent.alignment = TextAnchor.MiddleCenter;
+			labelTextComponent.color = new Color(0.8f, 0.7f, 1f);
+
+			Outline outline = textObject.AddComponent<Outline>();
+			outline.effectColor = new Color(0.2f, 0f, 0.5f, 0.8f);
+			outline.effectDistance = new Vector2(2, -2);
+
+			Shadow shadow = textObject.AddComponent<Shadow>();
+			shadow.effectColor = new Color(0f, 0f, 0f, 0.5f);
+			shadow.effectDistance = new Vector2(1, -1);
+
+			RectTransform textRect = textObject.GetComponent<RectTransform>();
+			textRect.sizeDelta = new Vector2(200, 100);
+			textRect.anchorMin = new Vector2(0.5f, 0.5f);
+			textRect.anchorMax = new Vector2(0.5f, 0.5f);
 	
 			new ButtonBuilder("STRONGMIRV_Options")
 				.SetIcon(Resources.Load<Sprite>("ui/Icons/MIRV_nuke"))
