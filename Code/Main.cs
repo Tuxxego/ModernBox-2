@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using M3;
 using TuxModLoader;
+using TuxModLoader.Reflection;
 
 namespace M3
 {
@@ -20,37 +21,6 @@ namespace M3
 
         private void Awake()
         {
-			
-            var Tank = AssetManager.actor_library.clone("Tank", "$mob$");
-            Tank.base_stats["health"] = 1000f;
-            Tank.base_stats["damage"] = 100f;
-            Tank.base_stats["speed"] = 40f;
-            Tank.base_stats["scale"] = 0.3f;
-            Tank.base_stats["size"] = 2f;
-            Tank.base_stats["mass"] = 4f;
-            Tank.base_stats["mass_2"] = 2500f;
-            Tank.base_stats["targets"] = 20f;
-            Tank.base_stats["lifespan"] = 0.0f;
-            Tank.inspect_stats = true;
-            Tank.inspect_home = true;
-            //Tank.hideOnMinimap = false;
-            Tank.inspect_children = false;
-            Tank.inspect_experience = true;
-            Tank.texture_asset = null;
-            Tank.inspect_kills = true;
-            Tank.use_items = false;
-            Tank.texture_id = "t_Tank";
-            Tank.can_have_subspecies = false;
-            Tank.take_items = false;
-            //Tank.job = "attacker";
-            Tank.icon = "iconTank";
-            //Tank.texture_path = "Tank";
-            //AssetManager.actor_library.addColorSet("heliColor");
-            Tank.color = Toolbox.makeColor("#33724D");
-            AssetManager.actor_library.add(Tank);
-            //Localization.addLocalization(Tank.nameLocale, Tank.nameLocale);
-
-            TuxModLoader.Reflection.ReflectionHelper.InvokeMethod(AssetManager.actor_library, "loadTexturesAndSprites", Tank);
 
             Debug.Log("[M3] Mod Core has been called, booting mod core.");
             
@@ -72,6 +42,10 @@ namespace M3
             Debug.Log("[M3] Initializing Guns...");
             Guns.Init();
             Debug.Log("[M3] Guns loaded!");
+
+            Debug.Log("[M3] Initializing CreditsWindow...");
+            CreditsWindow.Init();
+            Debug.Log("[M3] CreditsWindow loaded!");
 
             Debug.Log("[M3] Initializing Traits...");
             Traits.Init();
@@ -100,7 +74,7 @@ namespace M3
             {
                 if (powerButtonSelector != null)
                 {
-                    powerButtonSelector.setSelectedPower(Buttonz.balls, PowersAndDrops.ProtonPower);
+                    powerButtonSelector.setSelectedPower(Buttonz.balls, PowersAndDrops.FirePower);
                 }
                 else
                 {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using TuxModLoader;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace M3
 {
@@ -11,6 +12,7 @@ namespace M3
 	{
 		public static PowerButton balls;
         public static Buttonz instance;
+        private static GameObject content;
 
 		public string labelText = "THIS DONT WORK";
 		private Text labelTextComponent;
@@ -37,11 +39,6 @@ namespace M3
 
 			PowersTab tab = TabManager.FindTab("M3_TAB");
 
-			WindowBuilder windowBuilder = new WindowBuilder();
-			ScrollWindow newWindow = windowBuilder
-				.SetWindowID("my_window_1")
-				.SetWindowTitle("window_title_key")
-				.Build();
 
 			GameObject largeImageObject = new GameObject("LargeImage");
 			largeImageObject.transform.SetParent(tab.transform);
@@ -55,6 +52,8 @@ namespace M3
 			imageRect.sizeDelta = new Vector2(200, 100);
 			imageRect.anchorMin = new Vector2(0.5f, 0.5f);
 			imageRect.anchorMax = new Vector2(0.5f, 0.5f);
+
+			StartCoroutine(AnimateImage(largeImageObject));
 
 			GameObject textObject = new GameObject("LabelText");
 			textObject.transform.SetParent(tab.transform);
@@ -413,7 +412,7 @@ namespace M3
 				.Build();
 
 			new ButtonBuilder("discord_server")
-				.SetIcon(Resources.Load<Sprite>("ui/Icons/DiscordServer"))
+				.SetIcon(Resources.Load<Sprite>("ui/Icons/Discowd"))
 				.SetName("Discord Server")
 				.SetDescription("Options this to join the ModernBox Discord server!")
 				.SetPosition(new Vector2(180, -18))
@@ -467,11 +466,12 @@ namespace M3
 				.Build();
 
 			new ButtonBuilder("credits")
-				.SetIcon(Resources.Load<Sprite>("ui/icons/iconabout"))
+				.SetIcon(Resources.Load<Sprite>("ui/icons/iconTech"))
 				.SetName("Credits")
 				.SetDescription("All the people behind ModernBox and more!")
 				.SetPosition(new Vector2(216, -18))
 				.SetType("Options")
+				.SetOnClick(OpenCreditsWindow)
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -508,6 +508,7 @@ namespace M3
 				.SetDescription("Download custom galaxies + enter the starmap.")
 				.SetPosition(new Vector2(72, 18))
 				.SetType("Options")
+				.SetComingSoon()
 				.SetTab("M3_TAB")
 				.Build();
 
@@ -518,6 +519,7 @@ namespace M3
 				.SetPosition(new Vector2(72, -18))
 				.SetType("Options")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("arrowleft2")
@@ -527,6 +529,7 @@ namespace M3
 				.SetPosition(new Vector2(108, 18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("arrowleft3")
@@ -536,6 +539,7 @@ namespace M3
 				.SetPosition(new Vector2(108, -18))
 				.SetType("Active")
 				.SetTab("M3_TAB")
+				.SetComingSoon()
 				.Build();
 
 			new ButtonBuilder("spawn_mirv_bomber")
@@ -557,6 +561,39 @@ namespace M3
 				.Build();
 
 			Debug.Log($"Custom trait created successfully!");
+		}
+
+		public void OpenCreditsWindow()
+		{
+			WindowManager.ShowWindow("M3_credits");
+		}
+
+		private IEnumerator AnimateImage(GameObject target)
+		{
+			Vector3 originalScale = Vector3.one;
+			Vector3 targetScale = originalScale * 1.1f;
+
+			float duration = 0.5f;
+			float time = 0f;
+
+			while (time < duration)
+			{
+				time += Time.deltaTime;
+				float t = time / duration;
+				target.transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+				yield return null;
+			}
+
+			time = 0f;
+			while (time < duration)
+			{
+				time += Time.deltaTime;
+				float t = time / duration;
+				target.transform.localScale = Vector3.Lerp(targetScale, originalScale, t);
+				yield return null;
+			}
+
+			target.transform.localScale = originalScale;
 		}
 	}
 }
