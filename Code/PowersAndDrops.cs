@@ -321,6 +321,7 @@ namespace M3
 		  public static void action_FireClick(WorldTile pTile, string pPowerID) {
 				World.world.startShake(pIntensity: 0.5f, pShakeX: true);
 				EffectsLibrary.spawn("fx_napalm_flash", pTile);
+				EffectsLibrary.spawnAtTileRandomScale("fx_napalm_flash", pTile, 16.3f, 28.9f);
 				EffectsLibrary.spawnAtTileRandomScale("fx_explosion_tiny", pTile, 0.15f, 0.3f);
 		  }
 		  
