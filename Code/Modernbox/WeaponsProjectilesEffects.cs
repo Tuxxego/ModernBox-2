@@ -60,6 +60,9 @@ namespace ModernBox
             CustomWeapons.Add(AssetManager.items.get("Sluggershotgun"));
             CustomWeapons.Add(AssetManager.items.get("Americanshotgun"));
             CustomWeapons.Add(AssetManager.items.get("Flamethrower"));
+            CustomWeapons.Add(AssetManager.items.get("vrifle"));
+            CustomWeapons.Add(AssetManager.items.get("bigboy"));
+            CustomWeapons.Add(AssetManager.items.get("grifle"));
 
 
             CustomArmors.Add(AssetManager.items.get("modernarmor"));
@@ -238,6 +241,16 @@ namespace ModernBox
             }
 
 
+            if (__instance.dict.ContainsKey("vrifle"))
+            {
+                EquipmentAsset vrifle = __instance.get("vrifle");
+                if (!__instance.equipment_by_subtypes["firearm"].Contains(vrifle))
+                {
+                    __instance.equipment_by_subtypes["firearm"].Add(vrifle);
+                }
+            }
+
+
             if (__instance.dict.ContainsKey("MGL"))
             {
                 EquipmentAsset MGL = __instance.get("MGL");
@@ -257,6 +270,7 @@ namespace ModernBox
                 }
             }
 
+
             if (__instance.dict.ContainsKey("RPG"))
             {
                 EquipmentAsset rpg = __instance.get("RPG");
@@ -265,6 +279,30 @@ namespace ModernBox
                     __instance.equipment_by_subtypes["firearm"].Add(rpg);
                 }
             }
+
+
+
+            if (__instance.dict.ContainsKey("bigboy"))
+            {
+                EquipmentAsset bigboy = __instance.get("bigboy");
+                if (!__instance.equipment_by_subtypes["firearm"].Contains(bigboy))
+                {
+                    __instance.equipment_by_subtypes["firearm"].Add(bigboy);
+                }
+            }
+
+
+            if (__instance.dict.ContainsKey("grifle"))
+            {
+                EquipmentAsset grifle = __instance.get("grifle");
+                if (!__instance.equipment_by_subtypes["firearm"].Contains(grifle))
+                {
+                    __instance.equipment_by_subtypes["firearm"].Add(grifle);
+                }
+            }
+
+
+
 
             if (!__instance.equipment_by_subtypes.ContainsKey("stick"))
             {
@@ -589,6 +627,42 @@ AssetManager.items.pot_weapon_assets_all.Add(Uzi);
 AssetManager.items.pot_weapon_assets_unlocked.Add(Uzi);
 addWeaponsSprite(Uzi.id);
 
+EquipmentAsset vrifle = AssetManager.items.clone("vrifle", "$range");
+vrifle.equipment_type = EquipmentType.Weapon;
+vrifle.translation_key = "FNV varmit rifle";
+vrifle.equipment_subtype = "stick";
+vrifle.material = "basic";
+vrifle.group_id = "firearm";
+vrifle.metallic = true;
+vrifle.setCost(0, "wood", 2);
+vrifle.minimum_city_storage_resource_1 = 1;
+vrifle.rigidity_rating = 7;
+vrifle.is_pool_weapon = true;
+vrifle.pool_rate = 15;
+vrifle.path_icon = "ui/icons/items/icon_vrifle";
+vrifle.path_gameplay_sprite = "items/weapons/w_vrifle_copper";
+vrifle.projectile = "shotgun_bullet";
+vrifle.path_slash_animation = "effects/slashes/slash_punch";
+vrifle.base_stats["projectiles"] = 1f;
+vrifle.base_stats["attack_speed"] = .5f;
+vrifle.base_stats["accuracy"] = 0.9f;
+vrifle.base_stats["damage"] = 20f;
+vrifle.base_stats["critical_chance"] = 0.2f;
+vrifle.base_stats["critical_damage_multiplier"] = 0.3f;
+vrifle.base_stats["recoil"] = 0.1f;
+vrifle.base_stats["range"] = 15f;
+vrifle.name_templates = AssetLibrary<ItemAsset>.l<string>("shotgun_name");
+vrifle.base_stats["targets"] = 1f;
+vrifle.base_stats["damage_range"] = 0.8f;
+vrifle.base_stats["mana"] = 00f;
+vrifle.base_stats["stamina"] = 15f;
+vrifle.equipment_value = 691;
+vrifle.gameplay_sprites = FetchSprites("vrifle");
+AssetManager.items.add(vrifle);
+AssetManager.items.pot_weapon_assets_all.Add(vrifle);
+AssetManager.items.pot_weapon_assets_unlocked.Add(vrifle);
+addWeaponsSprite(vrifle.id);
+
 EquipmentAsset MP7 = AssetManager.items.clone("MP7", "$range");
 MP7.equipment_type = EquipmentType.Weapon;
 MP7.translation_key = "HK MP7";
@@ -837,6 +911,116 @@ Flamethrower.gameplay_sprites = FetchSprites("Flamethrower");
             AssetManager.items.pot_weapon_assets_all.Add(Flamethrower);
             AssetManager.items.pot_weapon_assets_unlocked.Add(Flamethrower);
             addWeaponsSprite(Flamethrower.id);
+
+
+            ProjectileAsset gauss = new ProjectileAsset();
+            gauss.id = "gauss";
+            gauss.texture = "blueplasma";
+            gauss.trail_effect_enabled = false;
+            gauss.trigger_on_collision = true;
+            gauss.look_at_target = true;
+            gauss.draw_light_area = true;
+            gauss.draw_light_size = 0.1f;
+            gauss.end_effect = "kameboomtest";
+            gauss.terraform_option = "demon_fireball";
+            gauss.terraform_range = 3;
+            gauss.scale_start = 0.1f;
+            gauss.scale_target = 0.1f;
+            gauss.speed = 20f;
+            gauss.can_be_left_on_ground = true;
+            gauss.can_be_blocked = true;
+            AssetManager.projectiles.add(gauss);
+
+            EquipmentAsset grifle = AssetManager.items.clone("grifle", "$range");
+            grifle.equipment_type = EquipmentType.Weapon;
+            grifle.translation_key = "Gauss_cannon";
+            grifle.equipment_subtype = "stick";
+            grifle.material = "basic";
+            grifle.group_id = "firearm";
+            grifle.metallic = true;
+            grifle.setCost(0, "wood", 4);
+            grifle.minimum_city_storage_resource_1 = 1;
+            grifle.rigidity_rating = 1;
+            grifle.name_templates = AssetLibrary<ItemAsset>.l<string>("shotgun_name");
+            grifle.is_pool_weapon = true;
+            grifle.pool_rate = 15;
+            grifle.path_icon = "ui/icons/items/icon_grifle";
+            grifle.path_gameplay_sprite = "items/weapons/w_grifle";
+            grifle.projectile = "gauss";
+            grifle.path_slash_animation = "effects/slashes/slash_punch";
+            grifle.base_stats["projectiles"] = 1f;
+            grifle.base_stats["accuracy"] = 0.7f;
+            grifle.base_stats["attack_speed"] = -5f;
+            grifle.base_stats["damage"] = 1000f;
+            grifle.base_stats["critical_chance"] = 0.5f;
+            grifle.base_stats["critical_damage_multiplier"] = 0.5f;
+            grifle.base_stats["recoil"] = 2f;
+            grifle.base_stats["range"] = 20f;
+            grifle.base_stats["targets"] = 3f;
+            grifle.base_stats["damage_range"] = 0.7f;
+            grifle.base_stats["mana"] = 10f;
+            grifle.base_stats["stamina"] = 20f;
+            grifle.equipment_value = 703;
+            grifle.gameplay_sprites = FetchSprites("grifle");
+            AssetManager.items.add(grifle);
+            AssetManager.items.pot_weapon_assets_all.Add(grifle);
+            AssetManager.items.pot_weapon_assets_unlocked.Add(grifle);
+            addWeaponsSprite(grifle.id);
+
+
+            ProjectileAsset mininuke = new ProjectileAsset();
+            mininuke.id = "mininuke";
+            mininuke.texture = "mininuke";
+            mininuke.trail_effect_enabled = false;
+            mininuke.trigger_on_collision = true;
+            mininuke.look_at_target = true;
+            mininuke.draw_light_area = true;
+            mininuke.draw_light_size = 0.1f;
+            mininuke.end_effect = "fx_explosion_nuke_atomic";
+            mininuke.terraform_option = "atomic_bomb";
+            mininuke.terraform_range = 5;
+            mininuke.scale_start = 0.1f;
+            mininuke.scale_target = 0.1f;
+            mininuke.speed = 20f;
+            mininuke.can_be_left_on_ground = true;
+            mininuke.can_be_blocked = true;
+            AssetManager.projectiles.add(mininuke);
+
+            EquipmentAsset bigboy = AssetManager.items.clone("bigboy", "$range");
+            bigboy.equipment_type = EquipmentType.Weapon;
+            bigboy.translation_key = "Fatman";
+            bigboy.equipment_subtype = "stick";
+            bigboy.material = "basic";
+            bigboy.group_id = "firearm";
+            bigboy.metallic = true;
+            bigboy.setCost(0, "wood", 4);
+            bigboy.minimum_city_storage_resource_1 = 1;
+            bigboy.rigidity_rating = 1;
+            bigboy.name_templates = AssetLibrary<ItemAsset>.l<string>("shotgun_name");
+            bigboy.is_pool_weapon = true;
+            bigboy.pool_rate = 15;
+            bigboy.path_icon = "ui/icons/items/icon_bigboy";
+            bigboy.path_gameplay_sprite = "items/weapons/w_bigboy";
+            bigboy.projectile = "mininuke";
+            bigboy.path_slash_animation = "effects/slashes/slash_punch";
+            bigboy.base_stats["projectiles"] = 1f;
+            bigboy.base_stats["accuracy"] = 0.7f;
+            bigboy.base_stats["attack_speed"] = -10f;
+            bigboy.base_stats["damage"] = 100f;
+            bigboy.base_stats["critical_chance"] = 0.5f;
+            bigboy.base_stats["critical_damage_multiplier"] = 0.5f;
+            bigboy.base_stats["recoil"] = 2f;
+            bigboy.base_stats["range"] = 20f;
+            bigboy.base_stats["targets"] = 1f;
+            bigboy.base_stats["damage_range"] = 0.7f;
+            bigboy.base_stats["mana"] = 10f;
+            bigboy.base_stats["stamina"] = 20f;
+            bigboy.equipment_value = 710;
+            bigboy.gameplay_sprites = FetchSprites("bigboy");
+            AssetManager.items.add(bigboy);
+            AssetManager.items.pot_weapon_assets_all.Add(bigboy);
+            AssetManager.items.pot_weapon_assets_unlocked.Add(bigboy);
+            addWeaponsSprite(bigboy.id);
 
             EquipmentAsset Minigun = AssetManager.items.clone("Minigun", "$range");
             Minigun.equipment_type = EquipmentType.Weapon;
@@ -1284,6 +1468,9 @@ addWeaponsSprite(HK416.id);
             AssetManager.items.equipment_by_subtypes["stick"].Add(Americanshotgun);
             AssetManager.items.equipment_by_subtypes["stick"].Add(Sluggershotgun);
             AssetManager.items.equipment_by_subtypes["stick"].Add(Flamethrower);
+            AssetManager.items.equipment_by_subtypes["stick"].Add(vrifle);
+            AssetManager.items.equipment_by_subtypes["stick"].Add(bigboy);
+            AssetManager.items.equipment_by_subtypes["stick"].Add(grifle);
 
             if (!AssetManager.items.pot_equipment_by_groups_all.ContainsKey("firearm"))
             {
@@ -1310,6 +1497,9 @@ addWeaponsSprite(HK416.id);
             AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(Americanshotgun);
             AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(Sluggershotgun);
             AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(Flamethrower);
+            AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(vrifle);
+            AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(bigboy);
+            AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(grifle);
 
             if (!AssetManager.items.pot_equipment_by_groups_unlocked.ContainsKey("firearm"))
             {
@@ -1336,6 +1526,9 @@ addWeaponsSprite(HK416.id);
             AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(Americanshotgun);
             AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(Sluggershotgun);
             AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(Flamethrower);
+            AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(vrifle);
+            AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(bigboy);
+            AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(grifle);
 
 
             /////////////////////////////////////////////////////////////////////////////
@@ -1411,67 +1604,66 @@ addWeaponsSprite(HK416.id);
         }
 
 
-public static void toggleChems()
-{
-    try
-    {
-        Main.modifyBoolOption("ChemOption", PowerButtons.GetToggleValue("chemical_warfare_toggle"));
-        if (PowerButtons.GetToggleValue("chemical_warfare_toggle"))
+        public static void toggleChems()
         {
-            turnOnChems();
+            try
+            {
+                Main.modifyBoolOption("ChemOption", PowerButtons.GetToggleValue("chemical_warfare_toggle"));
+                if (PowerButtons.GetToggleValue("chemical_warfare_toggle"))
+                {
+                    turnOnChems();
+                }
+                else
+                {
+                    turnOffChems();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("[toggleChems] Error: " + ex.Message);
+            }
         }
-        else
+
+        public static void turnOnChems()
         {
-            turnOffChems();
+            try
+            {
+                if (!AssetManager.items.pot_weapon_assets_all.Contains(MGL))
+                    AssetManager.items.pot_weapon_assets_all.Add(MGL);
+
+                if (!AssetManager.items.pot_weapon_assets_unlocked.Contains(MGL))
+                    AssetManager.items.pot_weapon_assets_unlocked.Add(MGL);
+
+                if (AssetManager.items.equipment_by_subtypes.ContainsKey("stick") &&
+                    !AssetManager.items.equipment_by_subtypes["stick"].Contains(MGL))
+                    AssetManager.items.equipment_by_subtypes["stick"].Add(MGL);
+
+                if (!CustomItemsList.CustomWeapons.Contains(AssetManager.items.get("MGL")))
+                    CustomItemsList.CustomWeapons.Add(AssetManager.items.get("MGL"));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("[turnOnChems] Error: " + ex.Message);
+            }
         }
-    }
-    catch (System.Exception ex)
-    {
-        Debug.LogError("[toggleChems] Error: " + ex.Message);
-    }
-}
 
-public static void turnOnChems()
-{
-    try
-    {
-        if (!AssetManager.items.pot_weapon_assets_all.Contains(MGL))
-            AssetManager.items.pot_weapon_assets_all.Add(MGL);
+        public static void turnOffChems()
+        {
+            try
+            {
+                AssetManager.items.pot_weapon_assets_all.Remove(MGL);
+                AssetManager.items.pot_weapon_assets_unlocked.Remove(MGL);
 
-        if (!AssetManager.items.pot_weapon_assets_unlocked.Contains(MGL))
-            AssetManager.items.pot_weapon_assets_unlocked.Add(MGL);
+                if (AssetManager.items.equipment_by_subtypes.ContainsKey("stick"))
+                    AssetManager.items.equipment_by_subtypes["stick"].Remove(MGL);
 
-        if (AssetManager.items.equipment_by_subtypes.ContainsKey("stick") && 
-            !AssetManager.items.equipment_by_subtypes["stick"].Contains(MGL))
-            AssetManager.items.equipment_by_subtypes["stick"].Add(MGL);
-
-        if (!CustomItemsList.CustomWeapons.Contains(AssetManager.items.get("MGL")))
-            CustomItemsList.CustomWeapons.Add(AssetManager.items.get("MGL"));
-    }
-    catch (System.Exception ex)
-    {
-        Debug.LogError("[turnOnChems] Error: " + ex.Message);
-    }
-}
-
-public static void turnOffChems()
-{
-    try
-    {
-        AssetManager.items.pot_weapon_assets_all.Remove(MGL);
-        AssetManager.items.pot_weapon_assets_unlocked.Remove(MGL);
-
-        if (AssetManager.items.equipment_by_subtypes.ContainsKey("stick"))
-            AssetManager.items.equipment_by_subtypes["stick"].Remove(MGL);
-
-        CustomItemsList.CustomWeapons.Remove(AssetManager.items.get("MGL"));
-    }
-    catch (System.Exception ex)
-    {
-        Debug.LogError("[turnOffChems] Error: " + ex.Message);
-    }
-}
-
+                CustomItemsList.CustomWeapons.Remove(AssetManager.items.get("MGL"));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError("[turnOffChems] Error: " + ex.Message);
+            }
+        }
 
 
 
