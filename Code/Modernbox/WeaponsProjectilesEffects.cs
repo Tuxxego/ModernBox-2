@@ -1638,6 +1638,10 @@ addWeaponsSprite(HK416.id);
                     !AssetManager.items.equipment_by_subtypes["stick"].Contains(MGL))
                     AssetManager.items.equipment_by_subtypes["stick"].Add(MGL);
 
+                AssetManager.items.pot_equipment_by_groups_all["firearm"].Add(MGL);
+
+                AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Add(MGL);
+
                 if (!CustomItemsList.CustomWeapons.Contains(AssetManager.items.get("MGL")))
                     CustomItemsList.CustomWeapons.Add(AssetManager.items.get("MGL"));
             }
@@ -1656,6 +1660,10 @@ addWeaponsSprite(HK416.id);
 
                 if (AssetManager.items.equipment_by_subtypes.ContainsKey("stick"))
                     AssetManager.items.equipment_by_subtypes["stick"].Remove(MGL);
+
+                AssetManager.items.pot_equipment_by_groups_all["firearm"].Remove(MGL);
+
+                AssetManager.items.pot_equipment_by_groups_unlocked["firearm"].Remove(MGL);
 
                 CustomItemsList.CustomWeapons.Remove(AssetManager.items.get("MGL"));
             }
