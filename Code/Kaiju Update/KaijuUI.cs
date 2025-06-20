@@ -27,7 +27,7 @@ namespace ModernBox
 			largeImageObject.transform.localScale = Vector3.one;
 
 			Image largeImage = largeImageObject.AddComponent<Image>();
-			largeImage.sprite = Resources.Load<Sprite>("ui/Icons/TabTextKaiju");
+			largeImage.sprite = Resources.Load<Sprite>("ui/icons/TabTextKaiju");
 
 			RectTransform imageRect = largeImageObject.GetComponent<RectTransform>();
 			imageRect.sizeDelta = new Vector2(200, 100);
@@ -35,6 +35,9 @@ namespace ModernBox
 			imageRect.anchorMax = new Vector2(0.5f, 0.5f);
 
             StatManager.Instance.RegisterImage(largeImage);
+
+
+
 
              ////////////////////////BOSSES///////////////////////////////////////
 
@@ -133,10 +136,17 @@ new ButtonBuilder("spawnIguanazilla")
     .Build();
 
 
-            SetupKaijuLines();
+
+           SetupKaijuLines();
 		}
+
+
+
+
+
         private void SetupKaijuLines()
         {
+
           PowersTab tab = KaijugetPowersTab("Tab_kaiju");
           InsertKaijuLine.KaijuAt(10, tab.transform);
           InsertKaijuLine.KaijuAt(25, tab.transform);

@@ -114,15 +114,16 @@ namespace ModernBox{
 				.SetIcon("ui/icon")
 				.Build();
 
-            //    PowersTab tab = TabManager.CreateTab("ModernBox", "ModernBox", "Best Mod Ever", Resources.Load<Sprite>("ui/icon"));
-
-            new TabBuilder()
+                new TabBuilder()
             .SetTabID("Tab_kaiju")
             .SetName("ModernBox KaijuBox")
             .SetDescription("Spawn kaiju directly in your world!")
             .SetPosition(200)
             .SetIcon("ui/icons/tabIconkaiju")
             .Build();
+
+            //    PowersTab tab = TabManager.CreateTab("ModernBox", "ModernBox", "Best Mod Ever", Resources.Load<Sprite>("ui/icon"));
+
 
            //       Debug.Log("[M2] Space Manager starting...");
            //     SpaceManager = gameObject.AddComponent<SpaceManager>();
