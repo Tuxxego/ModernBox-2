@@ -194,6 +194,9 @@ public class ButtonBuilder
         }
         else
         {
+			LM.AddToCurrentLocale(id, title);
+            LM.AddToCurrentLocale(id + "_description", description);
+            LM.ApplyLocale(true);
             switch (type)
             {
                 case ButtonType.Click:
@@ -203,7 +206,7 @@ public class ButtonBuilder
 
                 case ButtonType.Toggle:
                     PowerButtons.CreateButton(id, sprite, title, description, position, type, parent, function);
-                    Debug.Log($"[ButtonBuilder] Created button with: ID={id}, Type=Toggle, Title={title}, Position={position}, Parent={parent?.name}");    
+                    Debug.Log($"[ButtonBuilder] Created button with: ID={id}, Type=Toggle, Title={title}, Position={position}, Parent={parent?.name}");
                     break;
 
                 case ButtonType.GodPower:

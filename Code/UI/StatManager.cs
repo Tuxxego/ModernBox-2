@@ -58,7 +58,7 @@ public class StatManager : MonoBehaviour
     {
         timePlayed += Time.deltaTime;
 
-        // Count actors with "Unitpotential" trait
+
         int potentialUnits = 0;
         foreach (Actor actor in MapBox.instance.units)
         {

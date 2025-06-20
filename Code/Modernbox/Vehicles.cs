@@ -29,6 +29,7 @@ namespace ModernBox
 {
     class Vehicles : MonoBehaviour
     {
+
 		public static bool nukesEnabled;
 
         public static void init()
@@ -220,7 +221,7 @@ namespace ModernBox
 
 			ProjectileAsset missileartillery = new ProjectileAsset();
             missileartillery.id = "missileartillery";
-            missileartillery.speed = 30f;
+            missileartillery.speed = 100f;
             missileartillery.look_at_target = true;
 			missileartillery.texture = "missileartillery";
 			missileartillery.texture_shadow = "shadows/projectiles/shadow_ball";
@@ -245,7 +246,7 @@ namespace ModernBox
 
 			ProjectileAsset fireboneartillery = new ProjectileAsset();
             fireboneartillery.id = "fireboneartillery";
-            fireboneartillery.speed = 20f;
+            fireboneartillery.speed = 100f;
             fireboneartillery.look_at_target = true;
 			fireboneartillery.texture = "fireboneartillery";
 			fireboneartillery.texture_shadow = "shadows/projectiles/shadow_ball";
@@ -270,7 +271,7 @@ namespace ModernBox
 
 			ProjectileAsset frostmissileartillery = new ProjectileAsset();
             frostmissileartillery.id = "frostmissileartillery";
-            frostmissileartillery.speed = 20f;
+            frostmissileartillery.speed = 100f;
             frostmissileartillery.look_at_target = true;
 			frostmissileartillery.texture = "frostmissileartillery";
 			frostmissileartillery.texture_shadow = "shadows/projectiles/shadow_ball";
@@ -296,7 +297,7 @@ namespace ModernBox
 
 			ProjectileAsset plantmissileartillery = new ProjectileAsset();
             plantmissileartillery.id = "plantmissileartillery";
-            plantmissileartillery.speed = 20f;
+            plantmissileartillery.speed = 100f;
             plantmissileartillery.look_at_target = true;
 			plantmissileartillery.texture = "plantmissileartillery";
 			plantmissileartillery.texture_shadow = "shadows/projectiles/shadow_ball";
@@ -858,13 +859,13 @@ ProjectileAsset bigsnowball = new ProjectileAsset();
 
 			ProjectileAsset NUKER = new ProjectileAsset();
             NUKER.id = "NUKER";
-            NUKER.speed = 40f;
+            NUKER.speed = 150f;
 			NUKER.texture = "NUKER";
 			NUKER.look_at_target = true;
 			NUKER.texture_shadow = "shadows/projectiles/shadow_ball";
 			NUKER.terraform_option = "atomic_bomb";
 			NUKER.draw_light_area = true;
-			NUKER.terraform_range = 10;
+			NUKER.terraform_range = 20;
 			NUKER.sound_launch = "event:/SFX/WEAPONS/WeaponFireballStart";
 			NUKER.sound_impact = "event:/SFX/WEAPONS/WeaponFireballLand";
 			NUKER.end_effect = "fx_explosion_nuke_atomic";
@@ -3856,7 +3857,7 @@ AssetManager.tasks_actor.add(warBoatAttackTask);
 		CargoShip_alliance.base_stats["targets"] = 1f;
 		CargoShip_alliance.base_stats["area_of_effect"] = 0.5f;
 		CargoShip_alliance.base_stats["range"] = 6f;
-		CargoShip_alliance.inspect_avatar_scale = 0.4f;
+		CargoShip_alliance.inspect_avatar_scale = 1f;
 		CargoShip_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
 		CargoShip_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		CargoShip_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -3906,7 +3907,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		Transporter_alliance.base_stats["targets"] = 1f;
 		Transporter_alliance.base_stats["area_of_effect"] = 0.5f;
 		Transporter_alliance.base_stats["range"] = 6f;
-		Transporter_alliance.inspect_avatar_scale = 0.4f;
+		Transporter_alliance.inspect_avatar_scale = 1f;
 		Transporter_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
 		Transporter_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		Transporter_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -3930,18 +3931,21 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 
 	var aDestroyer_alliance = AssetManager.actor_library.clone("aDestroyer_alliance","$boat$");
 	    aDestroyer_alliance.id = "aDestroyer_alliance";
-	    aDestroyer_alliance.can_be_inspected = false;
+	    aDestroyer_alliance.can_be_inspected = true;
 		aDestroyer_alliance.boat_type = "destroyer_a_alliance_boat";
 		aDestroyer_alliance.name_locale = "Destroyer Ship";
 		aDestroyer_alliance.addDecision("warBoatAttackDecision");
 		aDestroyer_alliance.has_avatar_prefab = false;
+aDestroyer_alliance.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyer_avatar") };
+aDestroyer_alliance.has_override_avatar_frames = true;
+aDestroyer_alliance.inspect_avatar_scale = 4f;
+aDestroyer_alliance.inspect_avatar_offset_y = 6f;
 		aDestroyer_alliance.animation_speed_based_on_walk_speed = false;
 		aDestroyer_alliance.can_flip = true;
         aDestroyer_alliance.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    aDestroyer_alliance.is_boat = true;
 		aDestroyer_alliance.die_in_lava = false;
 		aDestroyer_alliance.has_override_sprite = false;
-	    aDestroyer_alliance.has_override_avatar_frames = false;
 		aDestroyer_alliance.base_stats["mass_2"] = 3000f;
 		aDestroyer_alliance.base_stats["stamina"] = 1000f;
 		aDestroyer_alliance.base_stats["scale"] = 0.25f;
@@ -3955,7 +3959,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		aDestroyer_alliance.base_stats["targets"] = 1f;
 		aDestroyer_alliance.base_stats["area_of_effect"] = 0.5f;
 		aDestroyer_alliance.base_stats["range"] = 20f;
-		aDestroyer_alliance.inspect_avatar_scale = 0.4f;
+		aDestroyer_alliance.inspect_avatar_scale = 1f;
 		aDestroyer_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         aDestroyer_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		aDestroyer_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -3974,23 +3978,27 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		aDestroyer_alliance.animation_swim = ActorAnimationSequences.swim_0_3;
 		aDestroyer_alliance.addTrait("boat");
 		aDestroyer_alliance.addTrait("light_lamp");
+		aDestroyer_alliance.addTrait("NavalUnit");
 		AssetManager.actor_library.add(aDestroyer_alliance);
 		Localization.addLocalization(aDestroyer_alliance.name_locale, aDestroyer_alliance.name_locale);
 
 	var bDestroyer_alliance = AssetManager.actor_library.clone("bDestroyer_alliance","$boat$");
 	    bDestroyer_alliance.id = "bDestroyer_alliance";
 		bDestroyer_alliance.boat_type = "destroyer_b_alliance_boat";
-		bDestroyer_alliance.can_be_inspected = false;
+		bDestroyer_alliance.can_be_inspected = true;
 		bDestroyer_alliance.name_locale = "Destroyer Ship";
 		bDestroyer_alliance.addDecision("warBoatAttackDecision");
 		bDestroyer_alliance.has_avatar_prefab = false;
+bDestroyer_alliance.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyer_avatar") };
+bDestroyer_alliance.has_override_avatar_frames = true;
+bDestroyer_alliance.inspect_avatar_scale = 4f;
+bDestroyer_alliance.inspect_avatar_offset_y = 6f;
 		bDestroyer_alliance.animation_speed_based_on_walk_speed = false;
 		bDestroyer_alliance.can_flip = true;
         bDestroyer_alliance.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    bDestroyer_alliance.is_boat = true;
 		bDestroyer_alliance.die_in_lava = false;
 		bDestroyer_alliance.has_override_sprite = false;
-	    bDestroyer_alliance.has_override_avatar_frames = false;
 		bDestroyer_alliance.base_stats["mass_2"] = 3000f;
 		bDestroyer_alliance.base_stats["stamina"] = 1000f;
 		bDestroyer_alliance.base_stats["scale"] = 0.25f;
@@ -4004,7 +4012,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		bDestroyer_alliance.base_stats["targets"] = 1f;
 		bDestroyer_alliance.base_stats["area_of_effect"] = 0.5f;
 		bDestroyer_alliance.base_stats["range"] = 20f;
-		bDestroyer_alliance.inspect_avatar_scale = 0.4f;
+		bDestroyer_alliance.inspect_avatar_scale = 1f;
 		bDestroyer_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         bDestroyer_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bDestroyer_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4023,6 +4031,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		bDestroyer_alliance.animation_swim = ActorAnimationSequences.swim_0_3;
 		bDestroyer_alliance.addTrait("boat");
 		bDestroyer_alliance.addTrait("light_lamp");
+		bDestroyer_alliance.addTrait("NavalUnit");
 		AssetManager.actor_library.add(bDestroyer_alliance);
 		Localization.addLocalization(bDestroyer_alliance.name_locale, bDestroyer_alliance.name_locale);
 
@@ -4032,16 +4041,19 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 	    CarrierVessel_alliance.id = "CarrierVessel_alliance";
 		CarrierVessel_alliance.boat_type = "carrier_alliance_boat";
 		CarrierVessel_alliance.name_locale = "Cargo Ship";
-		CarrierVessel_alliance.can_be_inspected = false;
+		CarrierVessel_alliance.can_be_inspected = true;
 		CarrierVessel_alliance.addDecision("warBoatAttackDecision");
-		CarrierVessel_alliance.has_avatar_prefab = false;
+CarrierVessel_alliance.has_avatar_prefab = false;
+CarrierVessel_alliance.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Carrier_avatar") };
+CarrierVessel_alliance.has_override_avatar_frames = true;
+CarrierVessel_alliance.inspect_avatar_scale = 4f;
+CarrierVessel_alliance.inspect_avatar_offset_y = 6f;
 		CarrierVessel_alliance.animation_speed_based_on_walk_speed = false;
 		CarrierVessel_alliance.can_flip = true;
         CarrierVessel_alliance.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    CarrierVessel_alliance.is_boat = true;
 		CarrierVessel_alliance.die_in_lava = false;
 		CarrierVessel_alliance.has_override_sprite = false;
-	    CarrierVessel_alliance.has_override_avatar_frames = false;
 		CarrierVessel_alliance.base_stats["mass_2"] = 3000f;
 		CarrierVessel_alliance.base_stats["stamina"] = 1000f;
 		CarrierVessel_alliance.base_stats["scale"] = 0.25f;
@@ -4055,7 +4067,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		CarrierVessel_alliance.base_stats["targets"] = 1f;
 		CarrierVessel_alliance.base_stats["area_of_effect"] = 0.5f;
 		CarrierVessel_alliance.base_stats["range"] = 16f;
-		CarrierVessel_alliance.inspect_avatar_scale = 0.4f;
+		CarrierVessel_alliance.inspect_avatar_scale = 1f;
 		CarrierVessel_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         CarrierVessel_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		CarrierVessel_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4074,6 +4086,7 @@ var Transporter_alliance = AssetManager.actor_library.clone("Transporter_allianc
 		CarrierVessel_alliance.animation_swim = ActorAnimationSequences.swim_0_3;
 		CarrierVessel_alliance.addTrait("boat");
 		CarrierVessel_alliance.addTrait("light_lamp");
+		CarrierVessel_alliance.addTrait("NavalUnit");
 		AssetManager.actor_library.add(CarrierVessel_alliance);
 		Localization.addLocalization(CarrierVessel_alliance.name_locale, CarrierVessel_alliance.name_locale);
 
@@ -4112,19 +4125,22 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    Submarine_alliance.id = "Submarine_alliance";
 		Submarine_alliance.boat_type = "submarine_alliance_boat";
 		Submarine_alliance.name_locale = "Cargo Ship";
-		Submarine_alliance.can_be_inspected = false;
+		Submarine_alliance.can_be_inspected = true;
 		Submarine_alliance.addDecision("missileArtilleryDecision");
 		Submarine_alliance.addDecision("nuclearmissileDecision");
 		Submarine_alliance.addDecision("AntiBossNukeDecision");
 		Submarine_alliance.addDecision("random_swim");
-		Submarine_alliance.has_avatar_prefab = false;
+Submarine_alliance.has_avatar_prefab = false;
+Submarine_alliance.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Sub_avatar") };
+Submarine_alliance.has_override_avatar_frames = true;
+Submarine_alliance.inspect_avatar_scale = 4f;
+Submarine_alliance.inspect_avatar_offset_y = 6f;
 		Submarine_alliance.animation_speed_based_on_walk_speed = false;
 		Submarine_alliance.can_flip = true;
         Submarine_alliance.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    Submarine_alliance.is_boat = true;
 		Submarine_alliance.die_in_lava = false;
 		Submarine_alliance.has_override_sprite = false;
-	    Submarine_alliance.has_override_avatar_frames = false;
 		Submarine_alliance.base_stats["mass_2"] = 3000f;
 		Submarine_alliance.base_stats["stamina"] = 1000f;
 		Submarine_alliance.base_stats["scale"] = 0.25f;
@@ -4138,7 +4154,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Submarine_alliance.base_stats["targets"] = 1f;
 		Submarine_alliance.base_stats["area_of_effect"] = 0.5f;
 		Submarine_alliance.base_stats["range"] = 200f;
-		Submarine_alliance.inspect_avatar_scale = 0.4f;
+		Submarine_alliance.inspect_avatar_scale = 1f;
 		Submarine_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
 		Submarine_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		Submarine_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4157,6 +4173,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Submarine_alliance.animation_swim = ActorAnimationSequences.swim_0_3;
 		Submarine_alliance.addTrait("boat");
 		Submarine_alliance.addTrait("light_lamp");
+		Submarine_alliance.addTrait("NavalUnit");
 		AssetManager.actor_library.add(Submarine_alliance);
 		Localization.addLocalization(Submarine_alliance.name_locale, Submarine_alliance.name_locale);
 
@@ -4188,7 +4205,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		FishingBoat_alliance.base_stats["targets"] = 1f;
 		FishingBoat_alliance.base_stats["area_of_effect"] = 0.5f;
 		FishingBoat_alliance.base_stats["range"] = 6f;
-		FishingBoat_alliance.inspect_avatar_scale = 0.4f;
+		FishingBoat_alliance.inspect_avatar_scale = 1f;
 		FishingBoat_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
 		FishingBoat_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingSpawn";
 		FishingBoat_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingIdleLoop";
@@ -4207,6 +4224,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		FishingBoat_alliance.animation_swim = ActorAnimationSequences.swim_0_3;
 		FishingBoat_alliance.addTrait("boat");
 		FishingBoat_alliance.addTrait("light_lamp");
+		FishingBoat_alliance.addTrait("NavalUnit");
 		AssetManager.actor_library.add(FishingBoat_alliance);
 		Localization.addLocalization(FishingBoat_alliance.name_locale, FishingBoat_alliance.name_locale);
 
@@ -4239,7 +4257,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		abrawler_alliance.base_stats["targets"] = 5f;
 		abrawler_alliance.base_stats["area_of_effect"] = 4f;
 		abrawler_alliance.base_stats["range"] = 5f;
-		abrawler_alliance.inspect_avatar_scale = 0.4f;
+		abrawler_alliance.inspect_avatar_scale = 1f;
 		abrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         abrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		abrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4288,7 +4306,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bbrawler_alliance.base_stats["targets"] = 5f;
 		bbrawler_alliance.base_stats["area_of_effect"] = 4f;
 		bbrawler_alliance.base_stats["range"] = 5f;
-		bbrawler_alliance.inspect_avatar_scale = 0.4f;
+		bbrawler_alliance.inspect_avatar_scale = 1f;
 		bbrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         bbrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bbrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4337,7 +4355,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		cbrawler_alliance.base_stats["targets"] = 5f;
 		cbrawler_alliance.base_stats["area_of_effect"] = 4f;
 		cbrawler_alliance.base_stats["range"] = 5f;
-		cbrawler_alliance.inspect_avatar_scale = 0.4f;
+		cbrawler_alliance.inspect_avatar_scale = 1f;
 		cbrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         cbrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		cbrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4386,7 +4404,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		dbrawler_alliance.base_stats["targets"] = 5f;
 		dbrawler_alliance.base_stats["area_of_effect"] = 4f;
 		dbrawler_alliance.base_stats["range"] = 5f;
-		dbrawler_alliance.inspect_avatar_scale = 0.4f;
+		dbrawler_alliance.inspect_avatar_scale = 1f;
 		dbrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         dbrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		dbrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4435,7 +4453,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		ebrawler_alliance.base_stats["targets"] = 5f;
 		ebrawler_alliance.base_stats["area_of_effect"] = 4f;
 		ebrawler_alliance.base_stats["range"] = 5f;
-		ebrawler_alliance.inspect_avatar_scale = 0.4f;
+		ebrawler_alliance.inspect_avatar_scale = 1f;
 		ebrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         ebrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		ebrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4484,7 +4502,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		fbrawler_alliance.base_stats["targets"] = 5f;
 		fbrawler_alliance.base_stats["area_of_effect"] = 4f;
 		fbrawler_alliance.base_stats["range"] = 5f;
-		fbrawler_alliance.inspect_avatar_scale = 0.4f;
+		fbrawler_alliance.inspect_avatar_scale = 1f;
 		fbrawler_alliance.sound_hit = "event:/SFX/HIT/HitMetal";
         fbrawler_alliance.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		fbrawler_alliance.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4549,7 +4567,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CargoShip_horde.base_stats["targets"] = 1f;
 		CargoShip_horde.base_stats["area_of_effect"] = 0.5f;
 		CargoShip_horde.base_stats["range"] = 6f;
-		CargoShip_horde.inspect_avatar_scale = 0.4f;
+		CargoShip_horde.inspect_avatar_scale = 1f;
 		CargoShip_horde.sound_hit = "event:/SFX/HIT/HitMetal";
 		CargoShip_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		CargoShip_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -4600,7 +4618,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Transporter_horde.base_stats["targets"] = 1f;
 		Transporter_horde.base_stats["area_of_effect"] = 0.5f;
 		Transporter_horde.base_stats["range"] = 6f;
-		Transporter_horde.inspect_avatar_scale = 0.4f;
+		Transporter_horde.inspect_avatar_scale = 1f;
 		Transporter_horde.sound_hit = "event:/SFX/HIT/HitMetal";
 		Transporter_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		Transporter_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -4624,18 +4642,21 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 
 	var aDestroyer_horde = AssetManager.actor_library.clone("aDestroyer_horde","$boat$");
 	    aDestroyer_horde.id = "aDestroyer_horde";
-	    aDestroyer_horde.can_be_inspected = false;
+	    aDestroyer_horde.can_be_inspected = true;
 		aDestroyer_horde.boat_type = "destroyer_a_horde_boat";
 		aDestroyer_horde.name_locale = "Destroyer Ship";
 		aDestroyer_horde.addDecision("warBoatAttackDecision");
 		aDestroyer_horde.has_avatar_prefab = false;
+aDestroyer_horde.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyerhorde_avatar") };
+aDestroyer_horde.has_override_avatar_frames = true;
+aDestroyer_horde.inspect_avatar_scale = 4f;
+aDestroyer_horde.inspect_avatar_offset_y = 6f;
 		aDestroyer_horde.animation_speed_based_on_walk_speed = false;
 		aDestroyer_horde.can_flip = true;
         aDestroyer_horde.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    aDestroyer_horde.is_boat = true;
 		aDestroyer_horde.die_in_lava = false;
 		aDestroyer_horde.has_override_sprite = false;
-	    aDestroyer_horde.has_override_avatar_frames = false;
 		aDestroyer_horde.base_stats["mass_2"] = 3000f;
 		aDestroyer_horde.base_stats["stamina"] = 1000f;
 		aDestroyer_horde.base_stats["scale"] = 0.25f;
@@ -4649,7 +4670,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		aDestroyer_horde.base_stats["targets"] = 1f;
 		aDestroyer_horde.base_stats["area_of_effect"] = 0.5f;
 		aDestroyer_horde.base_stats["range"] = 20f;
-		aDestroyer_horde.inspect_avatar_scale = 0.4f;
+		aDestroyer_horde.inspect_avatar_scale = 1f;
 		aDestroyer_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         aDestroyer_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		aDestroyer_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4674,17 +4695,20 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	var bDestroyer_horde = AssetManager.actor_library.clone("bDestroyer_horde","$boat$");
 	    bDestroyer_horde.id = "bDestroyer_horde";
 		bDestroyer_horde.boat_type = "destroyer_b_horde_boat";
-		bDestroyer_horde.can_be_inspected = false;
+		bDestroyer_horde.can_be_inspected = true;
 		bDestroyer_horde.name_locale = "Destroyer Ship";
 		bDestroyer_horde.addDecision("warBoatAttackDecision");
 		bDestroyer_horde.has_avatar_prefab = false;
+		bDestroyer_horde.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyerhorde_avatar") };
+bDestroyer_horde.has_override_avatar_frames = true;
+bDestroyer_horde.inspect_avatar_scale = 4f;
+bDestroyer_horde.inspect_avatar_offset_y = 6f;
 		bDestroyer_horde.animation_speed_based_on_walk_speed = false;
 		bDestroyer_horde.can_flip = true;
         bDestroyer_horde.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    bDestroyer_horde.is_boat = true;
 		bDestroyer_horde.die_in_lava = false;
 		bDestroyer_horde.has_override_sprite = false;
-	    bDestroyer_horde.has_override_avatar_frames = false;
 		bDestroyer_horde.base_stats["mass_2"] = 3000f;
 		bDestroyer_horde.base_stats["stamina"] = 1000f;
 		bDestroyer_horde.base_stats["scale"] = 0.25f;
@@ -4698,7 +4722,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bDestroyer_horde.base_stats["targets"] = 1f;
 		bDestroyer_horde.base_stats["area_of_effect"] = 0.5f;
 		bDestroyer_horde.base_stats["range"] = 20f;
-		bDestroyer_horde.inspect_avatar_scale = 0.4f;
+		bDestroyer_horde.inspect_avatar_scale = 1f;
 		bDestroyer_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         bDestroyer_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bDestroyer_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4726,16 +4750,19 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    CarrierVessel_horde.id = "CarrierVessel_horde";
 		CarrierVessel_horde.boat_type = "carrier_horde_boat";
 		CarrierVessel_horde.name_locale = "Cargo Ship";
-		CarrierVessel_horde.can_be_inspected = false;
+		CarrierVessel_horde.can_be_inspected = true;
 		CarrierVessel_horde.addDecision("warBoatAttackDecision");
 		CarrierVessel_horde.has_avatar_prefab = false;
+		CarrierVessel_horde.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Carrierhorde_avatar") };
+CarrierVessel_horde.has_override_avatar_frames = true;
+CarrierVessel_horde.inspect_avatar_scale = 4f;
+CarrierVessel_horde.inspect_avatar_offset_y = 6f;
 		CarrierVessel_horde.animation_speed_based_on_walk_speed = false;
 		CarrierVessel_horde.can_flip = true;
         CarrierVessel_horde.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    CarrierVessel_horde.is_boat = true;
 		CarrierVessel_horde.die_in_lava = false;
 		CarrierVessel_horde.has_override_sprite = false;
-	    CarrierVessel_horde.has_override_avatar_frames = false;
 		CarrierVessel_horde.base_stats["mass_2"] = 3000f;
 		CarrierVessel_horde.base_stats["stamina"] = 1000f;
 		CarrierVessel_horde.base_stats["scale"] = 0.25f;
@@ -4749,7 +4776,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CarrierVessel_horde.base_stats["targets"] = 1f;
 		CarrierVessel_horde.base_stats["area_of_effect"] = 0.5f;
 		CarrierVessel_horde.base_stats["range"] = 16f;
-		CarrierVessel_horde.inspect_avatar_scale = 0.4f;
+		CarrierVessel_horde.inspect_avatar_scale = 1f;
 		CarrierVessel_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         CarrierVessel_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		CarrierVessel_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4775,19 +4802,22 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    Submarine_horde.id = "Submarine_horde";
 		Submarine_horde.boat_type = "submarine_horde_boat";
 		Submarine_horde.name_locale = "Cargo Ship";
-		Submarine_horde.can_be_inspected = false;
+		Submarine_horde.can_be_inspected = true;
 		Submarine_horde.addDecision("HORDEmissileArtilleryDecision");
 		Submarine_horde.addDecision("nuclearmissileDecision");
 		Submarine_horde.addDecision("AntiBossNukeDecision");
 		Submarine_horde.addDecision("random_swim");
 		Submarine_horde.has_avatar_prefab = false;
+		Submarine_horde.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Subhorde_avatar") };
+Submarine_horde.has_override_avatar_frames = true;
+Submarine_horde.inspect_avatar_scale = 4f;
+Submarine_horde.inspect_avatar_offset_y = 6f;
 		Submarine_horde.animation_speed_based_on_walk_speed = false;
 		Submarine_horde.can_flip = true;
         Submarine_horde.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    Submarine_horde.is_boat = true;
 		Submarine_horde.die_in_lava = false;
 		Submarine_horde.has_override_sprite = false;
-	    Submarine_horde.has_override_avatar_frames = false;
 		Submarine_horde.base_stats["mass_2"] = 3000f;
 		Submarine_horde.base_stats["stamina"] = 1000f;
 		Submarine_horde.base_stats["scale"] = 0.25f;
@@ -4801,7 +4831,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Submarine_horde.base_stats["targets"] = 1f;
 		Submarine_horde.base_stats["area_of_effect"] = 0.5f;
 		Submarine_horde.base_stats["range"] = 200f;
-		Submarine_horde.inspect_avatar_scale = 0.4f;
+		Submarine_horde.inspect_avatar_scale = 1f;
 		Submarine_horde.sound_hit = "event:/SFX/HIT/HitMetal";
 		Submarine_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		Submarine_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4851,7 +4881,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		FishingBoat_horde.base_stats["targets"] = 1f;
 		FishingBoat_horde.base_stats["area_of_effect"] = 0.5f;
 		FishingBoat_horde.base_stats["range"] = 6f;
-		FishingBoat_horde.inspect_avatar_scale = 0.4f;
+		FishingBoat_horde.inspect_avatar_scale = 1f;
 		FishingBoat_horde.sound_hit = "event:/SFX/HIT/HitMetal";
 		FishingBoat_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingSpawn";
 		FishingBoat_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingIdleLoop";
@@ -4900,7 +4930,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		abrawler_horde.base_stats["targets"] = 5f;
 		abrawler_horde.base_stats["area_of_effect"] = 4f;
 		abrawler_horde.base_stats["range"] = 5f;
-		abrawler_horde.inspect_avatar_scale = 0.4f;
+		abrawler_horde.inspect_avatar_scale = 1f;
 		abrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         abrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		abrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4949,7 +4979,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bbrawler_horde.base_stats["targets"] = 5f;
 		bbrawler_horde.base_stats["area_of_effect"] = 4f;
 		bbrawler_horde.base_stats["range"] = 5f;
-		bbrawler_horde.inspect_avatar_scale = 0.4f;
+		bbrawler_horde.inspect_avatar_scale = 1f;
 		bbrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         bbrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bbrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -4998,7 +5028,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		cbrawler_horde.base_stats["targets"] = 5f;
 		cbrawler_horde.base_stats["area_of_effect"] = 4f;
 		cbrawler_horde.base_stats["range"] = 5f;
-		cbrawler_horde.inspect_avatar_scale = 0.4f;
+		cbrawler_horde.inspect_avatar_scale = 1f;
 		cbrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         cbrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		cbrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5047,7 +5077,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		dbrawler_horde.base_stats["targets"] = 5f;
 		dbrawler_horde.base_stats["area_of_effect"] = 4f;
 		dbrawler_horde.base_stats["range"] = 5f;
-		dbrawler_horde.inspect_avatar_scale = 0.4f;
+		dbrawler_horde.inspect_avatar_scale = 1f;
 		dbrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         dbrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		dbrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5096,7 +5126,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		ebrawler_horde.base_stats["targets"] = 5f;
 		ebrawler_horde.base_stats["area_of_effect"] = 4f;
 		ebrawler_horde.base_stats["range"] = 5f;
-		ebrawler_horde.inspect_avatar_scale = 0.4f;
+		ebrawler_horde.inspect_avatar_scale = 1f;
 		ebrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         ebrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		ebrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5145,7 +5175,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		fbrawler_horde.base_stats["targets"] = 5f;
 		fbrawler_horde.base_stats["area_of_effect"] = 4f;
 		fbrawler_horde.base_stats["range"] = 5f;
-		fbrawler_horde.inspect_avatar_scale = 0.4f;
+		fbrawler_horde.inspect_avatar_scale = 1f;
 		fbrawler_horde.sound_hit = "event:/SFX/HIT/HitMetal";
         fbrawler_horde.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		fbrawler_horde.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5198,7 +5228,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CargoShip_gaia.base_stats["targets"] = 1f;
 		CargoShip_gaia.base_stats["area_of_effect"] = 0.5f;
 		CargoShip_gaia.base_stats["range"] = 6f;
-		CargoShip_gaia.inspect_avatar_scale = 0.4f;
+		CargoShip_gaia.inspect_avatar_scale = 1f;
 		CargoShip_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
 		CargoShip_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		CargoShip_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -5249,7 +5279,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Transporter_gaia.base_stats["targets"] = 1f;
 		Transporter_gaia.base_stats["area_of_effect"] = 0.5f;
 		Transporter_gaia.base_stats["range"] = 6f;
-		Transporter_gaia.inspect_avatar_scale = 0.4f;
+		Transporter_gaia.inspect_avatar_scale = 1f;
 		Transporter_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
 		Transporter_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		Transporter_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -5273,18 +5303,21 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 
 	var aDestroyer_gaia = AssetManager.actor_library.clone("aDestroyer_gaia","$boat$");
 	    aDestroyer_gaia.id = "aDestroyer_gaia";
-	    aDestroyer_gaia.can_be_inspected = false;
+	    aDestroyer_gaia.can_be_inspected = true;
 		aDestroyer_gaia.boat_type = "destroyer_a_gaia_boat";
 		aDestroyer_gaia.name_locale = "Destroyer Ship";
 		aDestroyer_gaia.addDecision("warBoatAttackDecision");
 		aDestroyer_gaia.has_avatar_prefab = false;
+		aDestroyer_gaia.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyergaia_avatar") };
+aDestroyer_gaia.has_override_avatar_frames = true;
+aDestroyer_gaia.inspect_avatar_scale = 4f;
+aDestroyer_gaia.inspect_avatar_offset_y = 6f;
 		aDestroyer_gaia.animation_speed_based_on_walk_speed = false;
 		aDestroyer_gaia.can_flip = true;
         aDestroyer_gaia.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    aDestroyer_gaia.is_boat = true;
 		aDestroyer_gaia.die_in_lava = false;
 		aDestroyer_gaia.has_override_sprite = false;
-	    aDestroyer_gaia.has_override_avatar_frames = false;
 		aDestroyer_gaia.base_stats["mass_2"] = 3000f;
 		aDestroyer_gaia.base_stats["stamina"] = 1000f;
 		aDestroyer_gaia.base_stats["scale"] = 0.25f;
@@ -5298,7 +5331,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		aDestroyer_gaia.base_stats["targets"] = 1f;
 		aDestroyer_gaia.base_stats["area_of_effect"] = 0.5f;
 		aDestroyer_gaia.base_stats["range"] = 20f;
-		aDestroyer_gaia.inspect_avatar_scale = 0.4f;
+		aDestroyer_gaia.inspect_avatar_scale = 1f;
 		aDestroyer_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         aDestroyer_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		aDestroyer_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5323,17 +5356,20 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	var bDestroyer_gaia = AssetManager.actor_library.clone("bDestroyer_gaia","$boat$");
 	    bDestroyer_gaia.id = "bDestroyer_gaia";
 		bDestroyer_gaia.boat_type = "destroyer_b_gaia_boat";
-		bDestroyer_gaia.can_be_inspected = false;
+		bDestroyer_gaia.can_be_inspected = true;
 		bDestroyer_gaia.name_locale = "Destroyer Ship";
 		bDestroyer_gaia.addDecision("warBoatAttackDecision");
 		bDestroyer_gaia.has_avatar_prefab = false;
+bDestroyer_gaia.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyergaia_avatar") };
+bDestroyer_gaia.has_override_avatar_frames = true;
+bDestroyer_gaia.inspect_avatar_scale = 4f;
+bDestroyer_gaia.inspect_avatar_offset_y = 6f;
 		bDestroyer_gaia.animation_speed_based_on_walk_speed = false;
 		bDestroyer_gaia.can_flip = true;
         bDestroyer_gaia.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    bDestroyer_gaia.is_boat = true;
 		bDestroyer_gaia.die_in_lava = false;
 		bDestroyer_gaia.has_override_sprite = false;
-	    bDestroyer_gaia.has_override_avatar_frames = false;
 		bDestroyer_gaia.base_stats["mass_2"] = 3000f;
 		bDestroyer_gaia.base_stats["stamina"] = 1000f;
 		bDestroyer_gaia.base_stats["scale"] = 0.25f;
@@ -5347,7 +5383,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bDestroyer_gaia.base_stats["targets"] = 1f;
 		bDestroyer_gaia.base_stats["area_of_effect"] = 0.5f;
 		bDestroyer_gaia.base_stats["range"] = 20f;
-		bDestroyer_gaia.inspect_avatar_scale = 0.4f;
+		bDestroyer_gaia.inspect_avatar_scale = 1f;
 		bDestroyer_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         bDestroyer_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bDestroyer_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5375,16 +5411,19 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    CarrierVessel_gaia.id = "CarrierVessel_gaia";
 		CarrierVessel_gaia.boat_type = "carrier_gaia_boat";
 		CarrierVessel_gaia.name_locale = "Cargo Ship";
-		CarrierVessel_gaia.can_be_inspected = false;
+		CarrierVessel_gaia.can_be_inspected = true;
 		CarrierVessel_gaia.addDecision("warBoatAttackDecision");
 		CarrierVessel_gaia.has_avatar_prefab = false;
+CarrierVessel_gaia.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Carriergaia_avatar") };
+CarrierVessel_gaia.has_override_avatar_frames = true;
+CarrierVessel_gaia.inspect_avatar_scale = 4f;
+CarrierVessel_gaia.inspect_avatar_offset_y = 6f;
 		CarrierVessel_gaia.animation_speed_based_on_walk_speed = false;
 		CarrierVessel_gaia.can_flip = true;
         CarrierVessel_gaia.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    CarrierVessel_gaia.is_boat = true;
 		CarrierVessel_gaia.die_in_lava = false;
 		CarrierVessel_gaia.has_override_sprite = false;
-	    CarrierVessel_gaia.has_override_avatar_frames = false;
 		CarrierVessel_gaia.base_stats["mass_2"] = 3000f;
 		CarrierVessel_gaia.base_stats["stamina"] = 1000f;
 		CarrierVessel_gaia.base_stats["scale"] = 0.25f;
@@ -5398,7 +5437,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CarrierVessel_gaia.base_stats["targets"] = 1f;
 		CarrierVessel_gaia.base_stats["area_of_effect"] = 0.5f;
 		CarrierVessel_gaia.base_stats["range"] = 16f;
-		CarrierVessel_gaia.inspect_avatar_scale = 0.4f;
+		CarrierVessel_gaia.inspect_avatar_scale = 1f;
 		CarrierVessel_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         CarrierVessel_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		CarrierVessel_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5424,19 +5463,22 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    Submarine_gaia.id = "Submarine_gaia";
 		Submarine_gaia.boat_type = "submarine_gaia_boat";
 		Submarine_gaia.name_locale = "Cargo Ship";
-		Submarine_gaia.can_be_inspected = false;
+		Submarine_gaia.can_be_inspected = true;
 		Submarine_gaia.addDecision("GAIAmissileArtilleryDecision");
 		Submarine_gaia.addDecision("nuclearmissileDecision");
 		Submarine_gaia.addDecision("AntiBossNukeDecision");
 		Submarine_gaia.addDecision("random_swim");
 		Submarine_gaia.has_avatar_prefab = false;
+Submarine_gaia.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Subgaia_avatar") };
+Submarine_gaia.has_override_avatar_frames = true;
+Submarine_gaia.inspect_avatar_scale = 1f;
+Submarine_gaia.inspect_avatar_offset_y = 6f;
 		Submarine_gaia.animation_speed_based_on_walk_speed = false;
 		Submarine_gaia.can_flip = true;
         Submarine_gaia.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    Submarine_gaia.is_boat = true;
 		Submarine_gaia.die_in_lava = false;
 		Submarine_gaia.has_override_sprite = false;
-	    Submarine_gaia.has_override_avatar_frames = false;
 		Submarine_gaia.base_stats["mass_2"] = 3000f;
 		Submarine_gaia.base_stats["stamina"] = 1000f;
 		Submarine_gaia.base_stats["scale"] = 0.25f;
@@ -5450,7 +5492,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Submarine_gaia.base_stats["targets"] = 1f;
 		Submarine_gaia.base_stats["area_of_effect"] = 0.5f;
 		Submarine_gaia.base_stats["range"] = 200f;
-		Submarine_gaia.inspect_avatar_scale = 0.4f;
+		Submarine_gaia.inspect_avatar_scale = 1f;
 		Submarine_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
 		Submarine_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		Submarine_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5500,7 +5542,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		FishingBoat_gaia.base_stats["targets"] = 1f;
 		FishingBoat_gaia.base_stats["area_of_effect"] = 0.5f;
 		FishingBoat_gaia.base_stats["range"] = 6f;
-		FishingBoat_gaia.inspect_avatar_scale = 0.4f;
+		FishingBoat_gaia.inspect_avatar_scale = 1f;
 		FishingBoat_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
 		FishingBoat_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingSpawn";
 		FishingBoat_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingIdleLoop";
@@ -5549,7 +5591,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		abrawler_gaia.base_stats["targets"] = 5f;
 		abrawler_gaia.base_stats["area_of_effect"] = 4f;
 		abrawler_gaia.base_stats["range"] = 5f;
-		abrawler_gaia.inspect_avatar_scale = 0.4f;
+		abrawler_gaia.inspect_avatar_scale = 1f;
 		abrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         abrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		abrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5598,7 +5640,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bbrawler_gaia.base_stats["targets"] = 5f;
 		bbrawler_gaia.base_stats["area_of_effect"] = 4f;
 		bbrawler_gaia.base_stats["range"] = 5f;
-		bbrawler_gaia.inspect_avatar_scale = 0.4f;
+		bbrawler_gaia.inspect_avatar_scale = 1f;
 		bbrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         bbrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bbrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5647,7 +5689,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		cbrawler_gaia.base_stats["targets"] = 5f;
 		cbrawler_gaia.base_stats["area_of_effect"] = 4f;
 		cbrawler_gaia.base_stats["range"] = 5f;
-		cbrawler_gaia.inspect_avatar_scale = 0.4f;
+		cbrawler_gaia.inspect_avatar_scale = 1f;
 		cbrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         cbrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		cbrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5696,7 +5738,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		dbrawler_gaia.base_stats["targets"] = 5f;
 		dbrawler_gaia.base_stats["area_of_effect"] = 4f;
 		dbrawler_gaia.base_stats["range"] = 5f;
-		dbrawler_gaia.inspect_avatar_scale = 0.4f;
+		dbrawler_gaia.inspect_avatar_scale = 1f;
 		dbrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         dbrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		dbrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5745,7 +5787,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		ebrawler_gaia.base_stats["targets"] = 5f;
 		ebrawler_gaia.base_stats["area_of_effect"] = 4f;
 		ebrawler_gaia.base_stats["range"] = 5f;
-		ebrawler_gaia.inspect_avatar_scale = 0.4f;
+		ebrawler_gaia.inspect_avatar_scale = 1f;
 		ebrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         ebrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		ebrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5794,7 +5836,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		fbrawler_gaia.base_stats["targets"] = 5f;
 		fbrawler_gaia.base_stats["area_of_effect"] = 4f;
 		fbrawler_gaia.base_stats["range"] = 5f;
-		fbrawler_gaia.inspect_avatar_scale = 0.4f;
+		fbrawler_gaia.inspect_avatar_scale = 1f;
 		fbrawler_gaia.sound_hit = "event:/SFX/HIT/HitMetal";
         fbrawler_gaia.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		fbrawler_gaia.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5848,7 +5890,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CargoShip_harden.base_stats["targets"] = 1f;
 		CargoShip_harden.base_stats["area_of_effect"] = 0.5f;
 		CargoShip_harden.base_stats["range"] = 6f;
-		CargoShip_harden.inspect_avatar_scale = 0.4f;
+		CargoShip_harden.inspect_avatar_scale = 1f;
 		CargoShip_harden.sound_hit = "event:/SFX/HIT/HitMetal";
 		CargoShip_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		CargoShip_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -5899,7 +5941,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Transporter_harden.base_stats["targets"] = 1f;
 		Transporter_harden.base_stats["area_of_effect"] = 0.5f;
 		Transporter_harden.base_stats["range"] = 6f;
-		Transporter_harden.inspect_avatar_scale = 0.4f;
+		Transporter_harden.inspect_avatar_scale = 1f;
 		Transporter_harden.sound_hit = "event:/SFX/HIT/HitMetal";
 		Transporter_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingSpawn";
 		Transporter_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTrading/BoatTradingIdleLoop";
@@ -5923,18 +5965,21 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 
 	var aDestroyer_harden = AssetManager.actor_library.clone("aDestroyer_harden","$boat$");
 	    aDestroyer_harden.id = "aDestroyer_harden";
-	    aDestroyer_harden.can_be_inspected = false;
+	    aDestroyer_harden.can_be_inspected = true;
 		aDestroyer_harden.boat_type = "destroyer_a_harden_boat";
 		aDestroyer_harden.name_locale = "Destroyer Ship";
 		aDestroyer_harden.addDecision("warBoatAttackDecision");
 		aDestroyer_harden.has_avatar_prefab = false;
+		aDestroyer_harden.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyerharden_avatar") };
+aDestroyer_harden.has_override_avatar_frames = true;
+aDestroyer_harden.inspect_avatar_scale = 1f;
+aDestroyer_harden.inspect_avatar_offset_y = 6f;
 		aDestroyer_harden.animation_speed_based_on_walk_speed = false;
 		aDestroyer_harden.can_flip = true;
         aDestroyer_harden.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    aDestroyer_harden.is_boat = true;
 		aDestroyer_harden.die_in_lava = false;
 		aDestroyer_harden.has_override_sprite = false;
-	    aDestroyer_harden.has_override_avatar_frames = false;
 		aDestroyer_harden.base_stats["mass_2"] = 3000f;
 		aDestroyer_harden.base_stats["stamina"] = 1000f;
 		aDestroyer_harden.base_stats["scale"] = 0.25f;
@@ -5948,7 +5993,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		aDestroyer_harden.base_stats["targets"] = 1f;
 		aDestroyer_harden.base_stats["area_of_effect"] = 0.5f;
 		aDestroyer_harden.base_stats["range"] = 20f;
-		aDestroyer_harden.inspect_avatar_scale = 0.4f;
+		aDestroyer_harden.inspect_avatar_scale = 1f;
 		aDestroyer_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         aDestroyer_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		aDestroyer_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -5973,17 +6018,20 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	var bDestroyer_harden = AssetManager.actor_library.clone("bDestroyer_harden","$boat$");
 	    bDestroyer_harden.id = "bDestroyer_harden";
 		bDestroyer_harden.boat_type = "destroyer_b_harden_boat";
-		bDestroyer_harden.can_be_inspected = false;
+		bDestroyer_harden.can_be_inspected = true;
 		bDestroyer_harden.name_locale = "Destroyer Ship";
 		bDestroyer_harden.addDecision("warBoatAttackDecision");
 		bDestroyer_harden.has_avatar_prefab = false;
+bDestroyer_harden.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Destroyerharden_avatar") };
+bDestroyer_harden.has_override_avatar_frames = true;
+bDestroyer_harden.inspect_avatar_scale = 4f;
+bDestroyer_harden.inspect_avatar_offset_y = 6f;
 		bDestroyer_harden.animation_speed_based_on_walk_speed = false;
 		bDestroyer_harden.can_flip = true;
         bDestroyer_harden.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    bDestroyer_harden.is_boat = true;
 		bDestroyer_harden.die_in_lava = false;
 		bDestroyer_harden.has_override_sprite = false;
-	    bDestroyer_harden.has_override_avatar_frames = false;
 		bDestroyer_harden.base_stats["mass_2"] = 3000f;
 		bDestroyer_harden.base_stats["stamina"] = 1000f;
 		bDestroyer_harden.base_stats["scale"] = 0.25f;
@@ -5997,7 +6045,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bDestroyer_harden.base_stats["targets"] = 1f;
 		bDestroyer_harden.base_stats["area_of_effect"] = 0.5f;
 		bDestroyer_harden.base_stats["range"] = 20f;
-		bDestroyer_harden.inspect_avatar_scale = 0.4f;
+		bDestroyer_harden.inspect_avatar_scale = 1f;
 		bDestroyer_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         bDestroyer_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bDestroyer_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6025,16 +6073,19 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    CarrierVessel_harden.id = "CarrierVessel_harden";
 		CarrierVessel_harden.boat_type = "carrier_harden_boat";
 		CarrierVessel_harden.name_locale = "Cargo Ship";
-		CarrierVessel_harden.can_be_inspected = false;
+		CarrierVessel_harden.can_be_inspected = true;
 		CarrierVessel_harden.addDecision("warBoatAttackDecision");
 		CarrierVessel_harden.has_avatar_prefab = false;
+CarrierVessel_harden.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Carrierharden_avatar") };
+CarrierVessel_harden.has_override_avatar_frames = true;
+CarrierVessel_harden.inspect_avatar_scale = 4f;
+CarrierVessel_harden.inspect_avatar_offset_y = 6f;
 		CarrierVessel_harden.animation_speed_based_on_walk_speed = false;
 		CarrierVessel_harden.can_flip = true;
         CarrierVessel_harden.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    CarrierVessel_harden.is_boat = true;
 		CarrierVessel_harden.die_in_lava = false;
 		CarrierVessel_harden.has_override_sprite = false;
-	    CarrierVessel_harden.has_override_avatar_frames = false;
 		CarrierVessel_harden.base_stats["mass_2"] = 3000f;
 		CarrierVessel_harden.base_stats["stamina"] = 1000f;
 		CarrierVessel_harden.base_stats["scale"] = 0.25f;
@@ -6048,7 +6099,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		CarrierVessel_harden.base_stats["targets"] = 1f;
 		CarrierVessel_harden.base_stats["area_of_effect"] = 0.5f;
 		CarrierVessel_harden.base_stats["range"] = 16f;
-		CarrierVessel_harden.inspect_avatar_scale = 0.4f;
+		CarrierVessel_harden.inspect_avatar_scale = 1f;
 		CarrierVessel_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         CarrierVessel_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		CarrierVessel_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6074,19 +6125,22 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 	    Submarine_harden.id = "Submarine_harden";
 		Submarine_harden.boat_type = "submarine_harden_boat";
 		Submarine_harden.name_locale = "Cargo Ship";
-		Submarine_harden.can_be_inspected = false;
+		Submarine_harden.can_be_inspected = true;
 		Submarine_harden.addDecision("HARDENmissileArtilleryDecision");
 		Submarine_harden.addDecision("nuclearmissileDecision");
 		Submarine_harden.addDecision("AntiBossNukeDecision");
 		Submarine_harden.addDecision("random_swim");
 		Submarine_harden.has_avatar_prefab = false;
+Submarine_harden.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Subharden_avatar") };
+Submarine_harden.has_override_avatar_frames = true;
+Submarine_harden.inspect_avatar_scale = 4f;
+Submarine_harden.inspect_avatar_offset_y = 6f;
 		Submarine_harden.animation_speed_based_on_walk_speed = false;
 		Submarine_harden.can_flip = true;
         Submarine_harden.check_flip = (BaseSimObject _, WorldTile _) => true;
 	    Submarine_harden.is_boat = true;
 		Submarine_harden.die_in_lava = false;
 		Submarine_harden.has_override_sprite = false;
-	    Submarine_harden.has_override_avatar_frames = false;
 		Submarine_harden.base_stats["mass_2"] = 3000f;
 		Submarine_harden.base_stats["stamina"] = 1000f;
 		Submarine_harden.base_stats["scale"] = 0.25f;
@@ -6100,7 +6154,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		Submarine_harden.base_stats["targets"] = 1f;
 		Submarine_harden.base_stats["area_of_effect"] = 0.5f;
 		Submarine_harden.base_stats["range"] = 200f;
-		Submarine_harden.inspect_avatar_scale = 0.4f;
+		Submarine_harden.inspect_avatar_scale = 1f;
 		Submarine_harden.sound_hit = "event:/SFX/HIT/HitMetal";
 		Submarine_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		Submarine_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6150,7 +6204,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		FishingBoat_harden.base_stats["targets"] = 1f;
 		FishingBoat_harden.base_stats["area_of_effect"] = 0.5f;
 		FishingBoat_harden.base_stats["range"] = 6f;
-		FishingBoat_harden.inspect_avatar_scale = 0.4f;
+		FishingBoat_harden.inspect_avatar_scale = 1f;
 		FishingBoat_harden.sound_hit = "event:/SFX/HIT/HitMetal";
 		FishingBoat_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingSpawn";
 		FishingBoat_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatFishing/BoatFishingIdleLoop";
@@ -6200,7 +6254,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		abrawler_harden.base_stats["targets"] = 5f;
 		abrawler_harden.base_stats["area_of_effect"] = 4f;
 		abrawler_harden.base_stats["range"] = 5f;
-		abrawler_harden.inspect_avatar_scale = 0.4f;
+		abrawler_harden.inspect_avatar_scale = 1f;
 		abrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         abrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		abrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6249,7 +6303,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		bbrawler_harden.base_stats["targets"] = 5f;
 		bbrawler_harden.base_stats["area_of_effect"] = 4f;
 		bbrawler_harden.base_stats["range"] = 5f;
-		bbrawler_harden.inspect_avatar_scale = 0.4f;
+		bbrawler_harden.inspect_avatar_scale = 1f;
 		bbrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         bbrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		bbrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6298,7 +6352,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		cbrawler_harden.base_stats["targets"] = 5f;
 		cbrawler_harden.base_stats["area_of_effect"] = 4f;
 		cbrawler_harden.base_stats["range"] = 5f;
-		cbrawler_harden.inspect_avatar_scale = 0.4f;
+		cbrawler_harden.inspect_avatar_scale = 1f;
 		cbrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         cbrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		cbrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6347,7 +6401,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		dbrawler_harden.base_stats["targets"] = 5f;
 		dbrawler_harden.base_stats["area_of_effect"] = 4f;
 		dbrawler_harden.base_stats["range"] = 5f;
-		dbrawler_harden.inspect_avatar_scale = 0.4f;
+		dbrawler_harden.inspect_avatar_scale = 1f;
 		dbrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         dbrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		dbrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6396,7 +6450,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		ebrawler_harden.base_stats["targets"] = 5f;
 		ebrawler_harden.base_stats["area_of_effect"] = 4f;
 		ebrawler_harden.base_stats["range"] = 5f;
-		ebrawler_harden.inspect_avatar_scale = 0.4f;
+		ebrawler_harden.inspect_avatar_scale = 1f;
 		ebrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         ebrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		ebrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6445,7 +6499,7 @@ AssetManager.decisions_library.add(AntiBossNukeDecision);
 		fbrawler_harden.base_stats["targets"] = 5f;
 		fbrawler_harden.base_stats["area_of_effect"] = 4f;
 		fbrawler_harden.base_stats["range"] = 5f;
-		fbrawler_harden.inspect_avatar_scale = 0.4f;
+		fbrawler_harden.inspect_avatar_scale = 1f;
 		fbrawler_harden.sound_hit = "event:/SFX/HIT/HitMetal";
         fbrawler_harden.sound_spawn = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportSpawn";
 		fbrawler_harden.sound_idle_loop = "event:/SFX/UNITS/UNIQUE/BoatTransport/BoatTransportIdleLoop";
@@ -6537,6 +6591,28 @@ public static readonly string[] walk_0_5 = Toolbox.a<string>("walk_0", "walk_1",
 
 public static readonly string[] swim_0_5 = Toolbox.a<string>("swim_0", "swim_1", "swim_2", "swim_3", "swim_4", "swim_5" );
 
+
+
+	public static void toggleNukes()
+        {
+            Main.modifyBoolOption("NukeOption", PowerButtons.GetToggleValue("nukes_toggle"));
+            if (PowerButtons.GetToggleValue("nukes_toggle"))
+            {
+                turnOnNukes();
+                return;
+            }
+            turnOffNukes();
+        }
+
+        public static void turnOnNukes()
+        {
+			nukesEnabled = true;
+        }
+
+        public static void turnOffNukes()
+        {
+			nukesEnabled = false;
+        }
 
 
 
@@ -6807,26 +6883,8 @@ public static bool HARDENmissileArtilleryEffect(BaseSimObject pTarget, WorldTile
 }
 
 
-		public static void toggleNukes()
-        {
-            Main.modifyBoolOption("NukeOption", PowerButtons.GetToggleValue("nukes_toggle"));
-            if (PowerButtons.GetToggleValue("nukes_toggle"))
-            {
-                turnOnNukes();
-                return;
-            }
-            turnOffNukes();
-        }
 
-        public static void turnOnNukes()
-        {
-			nukesEnabled = true;
-        }
 
-        public static void turnOffNukes()
-        {
-			nukesEnabled = false;
-        }
 
 public static bool NuclearMissileArtilleryEffect(BaseSimObject pTarget, WorldTile pTile = null)
 {
@@ -6960,6 +7018,30 @@ public static bool AntiBossNuke(BaseSimObject pTarget, WorldTile pTile = null)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		[HarmonyPatch(typeof(ActorAnimationLoader), nameof(ActorAnimationLoader.loadAnimationBoat))]
+public static class Patch_ActorAnimationLoader_Fix
+{
+	static bool Prefix(string pTexturePath)
+	{
+		if (SpriteTextureLoader.getSpriteList("actors/boats/" + pTexturePath).Length == 0)
+			return false;
+		return true;
+	}
+}
 
 
        [HarmonyPatch(typeof(Actor), "setFamily")]
@@ -7197,7 +7279,7 @@ public static class Patch_ItemCrafting_ExcludeUnitpotential
     }
 }
 
-
+/*
     [HarmonyPatch(typeof(Projectile), "targetReached")]
     public static class Projectile_TargetReached_Patch
     {
@@ -7222,7 +7304,7 @@ public static class Patch_ItemCrafting_ExcludeUnitpotential
     }
 
 
-
+*/
 
 
 

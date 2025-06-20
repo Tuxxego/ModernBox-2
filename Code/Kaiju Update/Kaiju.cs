@@ -322,8 +322,8 @@ Localization.AddOrSet("subspecies_trait_GodzilaEgg_suggested_species", "Iguanazi
           Iguanazilla.addSubspeciesTrait("stomach");
           Iguanazilla.addSubspeciesTrait("reproduction_strategy_oviparity");
 		Iguanazilla.addSubspeciesTrait("GodzilaEgg");
-        Iguanazilla.addSubspeciesTrait("water_creature");
-        Iguanazilla.addSubspeciesTrait("diet_lithotroph");
+        Iguanazilla.addSubspeciesTrait("aquatic");
+        Iguanazilla.addSubspeciesTrait("diet_xylophagy");
         Iguanazilla.addSubspeciesTrait("diet_algivore");
         Iguanazilla.addSubspeciesTrait("death_grow_mythril");
         Iguanazilla.addSubspeciesTrait("bioproduct_gems");
@@ -332,6 +332,7 @@ Localization.AddOrSet("subspecies_trait_GodzilaEgg_suggested_species", "Iguanazi
        Iguanazilla.addSubspeciesTrait("population_minimal");
        Iguanazilla.addSubspeciesTrait("photosynthetic_skin");
 		Iguanazilla.addSubspeciesTrait("parental_care");
+        Iguanazilla.addSubspeciesTrait("heat_resistance");
           Iguanazilla.animal_breeding_close_units_limit = 4;
           Iguanazilla.can_evolve_into_new_species = false;
 		  Iguanazilla.color_hex = "#679ead";
@@ -662,6 +663,7 @@ PreloadHelpers.loadBuildingSprites(KingKong_remains);
 		Kong.addSubspeciesTrait("nimble");
 		Kong.addSubspeciesTrait("shiny_love");
         Kong.addSubspeciesTrait("diet_herbivore");
+        Kong.addSubspeciesTrait("heat_resistance");
           Kong.animal_breeding_close_units_limit = 4;
           Kong.can_evolve_into_new_species = false;
 		  Kong.color_hex = "#679ead";
@@ -995,6 +997,7 @@ Localization.AddOrSet("subspecies_trait_GhidorahEgg_suggested_species", "Hydrafl
         Hydraflians.addSubspeciesTrait("gift_of_thunder");
 		Hydraflians.addSubspeciesTrait("gift_of_air");
 		Hydraflians.addSubspeciesTrait("parental_care");
+        Hydraflians.addSubspeciesTrait("heat_resistance");
           Hydraflians.animal_breeding_close_units_limit = 4;
           Hydraflians.can_evolve_into_new_species = false;
 		  Hydraflians.color_hex = "#679ead";
@@ -1355,7 +1358,6 @@ Localization.AddOrSet("subspecies_trait_RodanEgg_suggested_species", "Radon");
 		Radon.addSubspeciesTrait("RodanEgg");
         Radon.addSubspeciesTrait("diet_carnivore");
         Radon.addSubspeciesTrait("diet_xylophagy");
-         Radon.addSubspeciesTrait("diet_lithotroph");
         Radon.addSubspeciesTrait("bioproduct_stone");
         Radon.addSubspeciesTrait("voracious");
       Radon.addSubspeciesTrait("long_lifespan");
@@ -1365,6 +1367,7 @@ Localization.AddOrSet("subspecies_trait_RodanEgg_suggested_species", "Radon");
         Radon.addSubspeciesTrait("gift_of_fire");
 		Radon.addSubspeciesTrait("gift_of_air");
 		Radon.addSubspeciesTrait("parental_care");
+        Radon.addSubspeciesTrait("heat_resistance");
           Radon.animal_breeding_close_units_limit = 4;
           Radon.can_evolve_into_new_species = false;
 		  Radon.color_hex = "#679ead";
@@ -1425,6 +1428,289 @@ Radon.phenotypes_list = new List<string> {
 
 
 
+var Mechagodzilla_Boss = AssetManager.kingdoms.clone("Mechagodzilla_Boss", "$TEMPLATE_MOB$");
+Mechagodzilla_Boss.concept = false;
+Mechagodzilla_Boss.id = "Mechagodzilla_Boss";
+Mechagodzilla_Boss.default_kingdom_color = new ColorAsset("#679ead");
+Mechagodzilla_Boss.mobs = true;
+Mechagodzilla_Boss.always_attack_each_other = true;
+Mechagodzilla_Boss.force_look_all_chunks = true;
+Mechagodzilla_Boss.units_always_aggressive = true;
+Mechagodzilla_Boss.setIcon("ui/icons/Mechagodzilla");
+Mechagodzilla_Boss.addTag("sliceable");
+Mechagodzilla_Boss.addFriendlyTag("nature_creature");
+Mechagodzilla_Boss.addEnemyTag("civ");
+Mechagodzilla_Boss.addFriendlyTag("wild_kaiju");
+AssetManager.kingdoms.add(Mechagodzilla_Boss);
+World.world.kingdoms_wild.newWildKingdom(Mechagodzilla_Boss);
+
+var Mechagodzilla_wild = AssetManager.kingdoms.clone("Mechagodzilla_wild", "$TEMPLATE_ANIMAL$");
+Mechagodzilla_wild.concept = false;
+Mechagodzilla_wild.id = "Mechagodzilla_wild";
+Mechagodzilla_wild.default_kingdom_color = new ColorAsset("#679ead");
+Mechagodzilla_wild.setIcon("ui/icons/Mechagodzilla");
+Mechagodzilla_wild.addTag("sliceable");
+Mechagodzilla_wild.addTag("nature_creature");
+Mechagodzilla_wild.addFriendlyTag("nature_creature");
+Mechagodzilla_wild.addTag("neutral_animals");
+Mechagodzilla_wild.addTag("neutral");
+Mechagodzilla_wild.addTag("wild_kaiju");
+AssetManager.kingdoms.add(Mechagodzilla_wild);
+World.world.kingdoms_wild.newWildKingdom(Mechagodzilla_wild);
+
+
+
+
+
+          var Mechagodzilla = AssetManager.actor_library.clone("Mechagodzilla", "$mob$");
+          Mechagodzilla.is_humanoid = false;
+	      Mechagodzilla.civ = false;
+          Mechagodzilla.name_locale = "Mechagodzilla";
+          Mechagodzilla.animation_speed_based_on_walk_speed = false;
+Mechagodzilla.has_avatar_prefab = false;
+Mechagodzilla.get_override_avatar_frames = (Actor pActor) => new Sprite[] { SpriteTextureLoader.getSprite("actors/Avatars/Mechagodzilla_avatar") };
+Mechagodzilla.has_override_avatar_frames = true;
+Mechagodzilla.inspect_avatar_scale = 1f;
+Mechagodzilla.inspect_avatar_offset_y = 6f;
+          Mechagodzilla.shadow_texture = "unitShadow_6";
+          Mechagodzilla.immune_to_slowness = true;
+          Mechagodzilla.effect_damage = true;
+          Mechagodzilla.unit_other = true;
+          Mechagodzilla.collective_term = "group_den";
+          Mechagodzilla.default_attack = "base_attack";
+          Mechagodzilla.affected_by_dust = false;
+          Mechagodzilla.kingdom_id_civilization = string.Empty;
+		  Mechagodzilla.build_order_template_id = string.Empty;
+          Mechagodzilla.show_on_meta_layer = false;
+          Mechagodzilla.show_in_knowledge_window = false;
+		  Mechagodzilla.show_in_taxonomy_tooltip = false;
+          Mechagodzilla.render_status_effects = true;
+          Mechagodzilla.use_phenotypes = false;
+          Mechagodzilla.death_animation_angle = true;
+          Mechagodzilla.can_be_inspected = true;
+          Mechagodzilla.name_template_sets = AssetLibrary<ActorAsset>.a<string>("crocodile_set");
+          Mechagodzilla.kingdom_id_wild = "Mechagodzilla_Boss";
+          Mechagodzilla.update_z = true;
+          Mechagodzilla.job = AssetLibrary<ActorAsset>.a<string>("attacker");
+          Mechagodzilla.addDecision("random_move_towards_civ_building");
+          Mechagodzilla.base_stats["lifespan"] = 200f;
+        Mechagodzilla.base_stats["mass_2"] = 100000f;
+        Mechagodzilla.base_stats["mass"] = 2000f;
+        Mechagodzilla.base_stats["stamina"] = 500f;
+        Mechagodzilla.base_stats["scale"] = 0.4f;
+        Mechagodzilla.base_stats["size"] = 4f;
+        Mechagodzilla.base_stats["health"] = 40000f;
+		Mechagodzilla.base_stats["speed"] = 40f;
+		Mechagodzilla.base_stats["armor"] = 40f;
+		Mechagodzilla.base_stats["attack_speed"] = 0.4f;
+		Mechagodzilla.base_stats["damage"] = 1000f;
+		Mechagodzilla.base_stats["knockback"] = 4f;
+		Mechagodzilla.base_stats["accuracy"] = 1f;
+		Mechagodzilla.base_stats["targets"] = 10f;
+		Mechagodzilla.base_stats["area_of_effect"] = 5f;
+		Mechagodzilla.base_stats["range"] = 2f;
+		Mechagodzilla.base_stats["critical_damage_multiplier"] = 10f;
+		Mechagodzilla.base_stats["multiplier_supply_timer"] = 1f;
+          Mechagodzilla.disable_jump_animation = true;
+          Mechagodzilla.can_be_moved_by_powers = true;
+          Mechagodzilla.actor_size = ActorSize.S16_Buffalo;
+        Mechagodzilla.animation_walk = Kaiju.walk_0_5;
+        Mechagodzilla.animation_idle = ActorAnimationSequences.walk_0;
+		Mechagodzilla.animation_swim = Kaiju.swim_0_5;
+          Mechagodzilla.can_flip = true;
+          Mechagodzilla.check_flip = (BaseSimObject _, WorldTile _) => true;
+          Mechagodzilla.texture_asset = new ActorTextureSubAsset("actors/Mechagodzilla/", false);
+          Mechagodzilla.icon = "Mechagodzilla";
+          Mechagodzilla.die_in_lava = false;
+          Mechagodzilla.visible_on_minimap = true;
+          Mechagodzilla.experience_given = 1000000;
+          Mechagodzilla.can_have_subspecies = false;
+          Mechagodzilla.affected_by_dust = false;
+          Mechagodzilla.inspect_children = false;
+          Mechagodzilla.special = true;
+          Mechagodzilla.has_advanced_textures = false;
+          Mechagodzilla.inspect_sex = false;
+		  Mechagodzilla.inspect_show_species = false;
+		  Mechagodzilla.inspect_generation = false;
+          Mechagodzilla.needs_to_be_explored = false;
+          Mechagodzilla.force_land_creature = true;
+		  Mechagodzilla.color_hex = "#679ead";
+          Mechagodzilla.addTrait("Mechagodzilla_Power");
+          Mechagodzilla.addTrait("tough");
+          Mechagodzilla.addResource("adamantine", 100);
+		Mechagodzilla.addResource("gold", 2000);
+ AssetManager.actor_library.add(Mechagodzilla);
+			Localization.addLocalization(Mechagodzilla.name_locale, Mechagodzilla.name_locale);
+
+
+BuildingAsset Mechagodzilla_remains = AssetManager.buildings.clone("Mechagodzilla_remains", "$mineral$");
+Mechagodzilla_remains.base_stats["health"] = 100000f;
+Mechagodzilla_remains.smoke = true;
+Mechagodzilla_remains.smoke_interval = 2.5f;
+Mechagodzilla_remains.smoke_offset = new Vector2Int(2, 3);
+Mechagodzilla_remains.produce_biome_food = true;
+Mechagodzilla_remains.sprite_path = "buildings/Mechagodzilla_remains";
+Mechagodzilla_remains.setShadow(0.5f, 0.23f, 0.27f);
+Mechagodzilla_remains.addResource("bones", 200);
+Mechagodzilla_remains.addResource("common_metals", 300);
+Mechagodzilla_remains.addResource("adamantine", 30);
+  Mechagodzilla_remains.has_sprites_main = true;
+  Mechagodzilla_remains.has_sprites_ruin = false;
+  Mechagodzilla_remains.has_sprites_main_disabled = false;
+  Mechagodzilla_remains.has_sprites_special = false;
+  Mechagodzilla_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
+AssetManager.buildings.add(Mechagodzilla_remains);
+PreloadHelpers.loadBuildingSprites(Mechagodzilla_remains);
+
+
+
+ var Mecha_egg = AssetManager.subspecies_traits.clone("Mecha_egg", "$egg$");
+Mecha_egg.rarity = Rarity.R0_Normal;
+Mecha_egg.id = "Mecha_egg";
+Mecha_egg.id_egg = "Mecha_egg";
+Mecha_egg.group_id = "eggs";
+Mecha_egg.phenotype_egg = true;
+Mecha_egg.base_stats_meta["maturation"] = 50f;
+Mecha_egg.sprite_path = "eggs/Mecha_egg";
+Mecha_egg.path_icon = "ui/icons/Mecha_egg";
+AssetManager.subspecies_traits.add(Mecha_egg);
+Localization.AddOrSet("subspecies_trait_Mecha_egg", "Mechagodzilla Egg");
+Localization.AddOrSet("subspecies_trait_Mecha_egg_info", "A mysterious egg, rumored to hatch a kaiju.");
+Localization.AddOrSet("subspecies_trait_Mecha_egg_suggested_species", "Guidorahhead");
+
+          var Guidorahhead = AssetManager.actor_library.clone("Guidorahhead", "$mob$");
+          Guidorahhead.is_humanoid = false;
+	      Guidorahhead.civ = false;
+          Guidorahhead.name_locale = "Guidorahhead";
+          Guidorahhead.animation_speed_based_on_walk_speed = false;
+          Guidorahhead.has_avatar_prefab = false;
+          Guidorahhead.inspect_avatar_scale = 0.4f;
+          Guidorahhead.inspect_avatar_offset_y = -4f;
+          Guidorahhead.shadow_texture = "unitShadow_6";
+          Guidorahhead.immune_to_slowness = true;
+          Guidorahhead.effect_damage = true;
+          Guidorahhead.unit_other = true;
+          Guidorahhead.collective_term = "group_den";
+          Guidorahhead.setSocialStructure("group_den", 10);
+          Guidorahhead.default_attack = "base_attack";
+          Guidorahhead.affected_by_dust = true;
+          Guidorahhead.inspect_children = true;
+          Guidorahhead.kingdom_id_civilization = string.Empty;
+		  Guidorahhead.build_order_template_id = string.Empty;
+          Guidorahhead.show_on_meta_layer = true;
+          Guidorahhead.show_in_knowledge_window = true;
+		  Guidorahhead.show_in_taxonomy_tooltip = true;
+          Guidorahhead.render_status_effects = true;
+          Guidorahhead.use_phenotypes = true;
+          Guidorahhead.death_animation_angle = true;
+          Guidorahhead.can_be_inspected = true;
+          Guidorahhead.name_template_sets = AssetLibrary<ActorAsset>.a<string>("crocodile_set");
+          Guidorahhead.kingdom_id_wild = "Mechagodzilla_wild";
+          Guidorahhead.update_z = true;
+          Guidorahhead.job = AssetLibrary<ActorAsset>.a<string>("attacker");
+          Guidorahhead.base_stats["lifespan"] = 100f;
+        Guidorahhead.base_stats["mass_2"] = 1000f;
+        Guidorahhead.base_stats["mass"] = 20f;
+        Guidorahhead.base_stats["stamina"] = 500f;
+        Guidorahhead.base_stats["scale"] = 0.1f;
+        Guidorahhead.base_stats["size"] = 1f;
+        Guidorahhead.base_stats["health"] = 500f;
+		Guidorahhead.base_stats["speed"] = 40f;
+		Guidorahhead.base_stats["armor"] = 40f;
+		Guidorahhead.base_stats["attack_speed"] = 0.4f;
+		Guidorahhead.base_stats["damage"] = 30f;
+		Guidorahhead.base_stats["knockback"] = 2f;
+		Guidorahhead.base_stats["accuracy"] = 1f;
+		Guidorahhead.base_stats["targets"] = 3f;
+		Guidorahhead.base_stats["area_of_effect"] = 2f;
+		Guidorahhead.base_stats["range"] = 1f;
+		Guidorahhead.base_stats["critical_damage_multiplier"] = 10f;
+		Guidorahhead.base_stats["multiplier_supply_timer"] = 1f;
+          Guidorahhead.disable_jump_animation = true;
+          Guidorahhead.can_be_moved_by_powers = true;
+          Guidorahhead.actor_size = ActorSize.S16_Buffalo;
+        Guidorahhead.animation_walk = ActorAnimationSequences.walk_0_2;
+        Guidorahhead.animation_idle = ActorAnimationSequences.walk_0;
+		Guidorahhead.animation_swim = ActorAnimationSequences.swim_0_2;
+          Guidorahhead.can_flip = true;
+          Guidorahhead.check_flip = (BaseSimObject _, WorldTile _) => true;
+          Guidorahhead.texture_asset = new ActorTextureSubAsset("actors/Guidorahhead/", false);
+          Guidorahhead.icon = "Guidorahhead";
+          Guidorahhead.die_in_lava = false;
+          Guidorahhead.visible_on_minimap = false;
+          Guidorahhead.has_baby_form = false;
+          Guidorahhead.experience_given = 20;
+          Guidorahhead.can_have_subspecies = true;
+          Guidorahhead.affected_by_dust = false;
+          Guidorahhead.special = true;
+          Guidorahhead.has_advanced_textures = false;
+          Guidorahhead.inspect_sex = true;
+		  Guidorahhead.inspect_show_species = true;
+		  Guidorahhead.inspect_generation = true;
+          Guidorahhead.needs_to_be_explored = false;
+          Guidorahhead.force_land_creature = true;
+          Guidorahhead.addGenome(("health", 80f), ("stamina", 120f), ("mutation", 1f), ("speed", 12f), ("lifespan", 80f), ("damage", 20f), ("armor", 15f), ("offspring", 2f));
+          Guidorahhead.addSubspeciesTrait("stomach");
+          Guidorahhead.addSubspeciesTrait("reproduction_parthenogenesis");
+          Guidorahhead.addSubspeciesTrait("reproduction_strategy_oviparity");
+        Guidorahhead.addSubspeciesTrait("diet_hematophagy");
+        Guidorahhead.addSubspeciesTrait("death_grow_mythril");
+        Guidorahhead.addSubspeciesTrait("gift_of_thunder");
+      Guidorahhead.addSubspeciesTrait("long_lifespan");
+        Guidorahhead.addSubspeciesTrait("Mecha_egg");
+       Guidorahhead.addSubspeciesTrait("population_minimal");
+       Guidorahhead.addSubspeciesTrait("photosynthetic_skin");
+		Guidorahhead.addSubspeciesTrait("parental_care");
+        Guidorahhead.addSubspeciesTrait("heat_resistance");
+          Guidorahhead.animal_breeding_close_units_limit = 4;
+          Guidorahhead.can_evolve_into_new_species = false;
+		  Guidorahhead.color_hex = "#679ead";
+          Guidorahhead.addTrait("tough");
+          Guidorahhead.name_taxonomic_kingdom = "robotica";
+		Guidorahhead.name_taxonomic_phylum = "necromanticus";
+		Guidorahhead.name_taxonomic_class = "craniata";
+		Guidorahhead.name_taxonomic_order = "mechmech";
+		Guidorahhead.name_taxonomic_family = "droida";
+		Guidorahhead.name_taxonomic_genus = "RogueControlSystem";
+        Guidorahhead.addResource("adamantine", 2);
+		Guidorahhead.addResource("gold", 10);
+        Guidorahhead.source_meat = true;
+Guidorahhead.phenotypes_dict = new Dictionary<string, List<string>>() {
+    { "default_color", new List<string> { "bright_yellow" } },
+    { "biome_savanna", new List<string> { "savanna", "dark_orange" } },
+    { "biome_swamp", new List<string> { "swamp" } },
+    { "biome_corrupted", new List<string> { "corrupted" } },
+    { "biome_desert", new List<string> { "desert" } },
+    { "biome_infernal", new List<string> { "infernal" } },
+    { "biome_lemon", new List<string> { "lemon" } },
+    { "biome_mushroom", new List<string> { "pink_yellow_mushroom" } },
+    { "biome_sand", new List<string> { "dark_orange", "wood" } },
+    { "biome_singularity", new List<string> { "bright_violet" } },
+    { "biome_garlic", new List<string> { "mid_gray" } },
+    { "biome_maple", new List<string> { "dark_orange" } },
+    { "biome_permafrost", new List<string> { "polar" } },
+    { "biome_rocklands", new List<string> { "gray_black" } },
+    { "biome_celestial", new List<string> { "bright_purple" } }
+};
+
+Guidorahhead.phenotypes_list = new List<string> {
+    "bright_yellow",
+    "savanna",
+    "dark_orange",
+    "swamp",
+    "corrupted",
+    "desert",
+    "infernal",
+    "lemon",
+    "pink_yellow_mushroom",
+    "wood",
+    "bright_violet",
+    "mid_gray",
+    "polar",
+    "bright_purple"
+};
+ AssetManager.actor_library.add(Guidorahhead);
+			Localization.addLocalization(Guidorahhead.name_locale, Guidorahhead.name_locale);
 
 
           }

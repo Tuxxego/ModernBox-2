@@ -23,27 +23,18 @@ using ai;
 using ai.behaviours;
 using System.Text.RegularExpressions;
 using Beebyte.Obfuscator;
-
+using NeoModLoader.General;
 
 namespace ModernBox
 {
     class Traits : MonoBehaviour
     {
-        public static bool vehiclesAllowed;
-        /*
-        private const string IFRIT_TEXTURE_PATH = "actors/IfritForm/";
-        private static ActorTextureSubAsset ifritTextureAsset = new ActorTextureSubAsset(IFRIT_TEXTURE_PATH);
-*/
-        public static void init()
+         public static bool vehiclesAllowed;
+
+         public static void init()
         {
             CoolStuff();
-/*
-            var harmony = new Harmony("m3.ifritform.patch");
-            harmony.Patch(
-                AccessTools.Method(typeof(Actor), "getTextureAsset"),
-                prefix: new HarmonyMethod(typeof(Traits), nameof(IfritFormTexturePatch))
-            );
-            */
+
         }
 
         private static void CoolStuff()
@@ -60,7 +51,7 @@ CartTransformations.InitCartTransformations();
         Ideology.name = "trait_group_Ideology";
         Ideology.color = "#5EFFFF";
         AssetManager.trait_groups.add(Ideology);
-        LocalizedTextManager.add("trait_group_Ideology", "Ideology");
+        LM.AddToCurrentLocale("trait_group_Ideology", "Ideology");
 
 
         /////////ideology must be changed so it does not override existing ideology of populace if they already had, only in rare occasions. Also, leaders should obtain a different ideology on a rare chance as they age or gain traits in a %. And reintroduction of ideological diplomacy.
@@ -79,10 +70,9 @@ CartTransformations.InitCartTransformations();
       Dynastic.addOpposite("Peoplewoven");
      Dynastic.addOpposite("Chaosvolt");
         AssetManager.traits.add(Dynastic);
-            LocalizedTextManager.add("trait_Dynastic", "Dynastic Ideology");
-            LocalizedTextManager.add("trait_Dynastic_info", "LONG LIVE THE KING!!!!");
-            LocalizedTextManager.add("trait_Dynastic_info_2", "Nepo bebes and cake loving royals");
-
+            LM.AddToCurrentLocale("trait_Dynastic", "Dynastic Ideology");
+            LM.AddToCurrentLocale("trait_Dynastic_info", "LONG LIVE THE KING!!!!");
+            LM.AddToCurrentLocale("trait_Dynastic_info_2", "Nepo bebes and cake loving royals");
 
         ActorTrait Martial = new ActorTrait();
         Martial.id = "Martial";
@@ -98,9 +88,9 @@ CartTransformations.InitCartTransformations();
       Martial.addOpposite("Peoplewoven");
        Martial.addOpposite("Chaosvolt");
         AssetManager.traits.add(Martial);
-            LocalizedTextManager.add("trait_Martial", "Martial Ideology");
-            LocalizedTextManager.add("trait_Martial_info", "All others will learn of our peaceful ways, BY FORCE!!!");
-            LocalizedTextManager.add("trait_Martial_info_2", "HOI4 enjoyers");
+            LM.AddToCurrentLocale("trait_Martial", "Martial Ideology");
+            LM.AddToCurrentLocale("trait_Martial_info", "All others will learn of our peaceful ways, BY FORCE!!!");
+            LM.AddToCurrentLocale("trait_Martial_info_2", "HOI4 enjoyers");
 
         ActorTrait Peoplewoven = new ActorTrait();
         Peoplewoven.id = "Peoplewoven";
@@ -116,9 +106,9 @@ CartTransformations.InitCartTransformations();
      Peoplewoven.addOpposite("Chaosvolt");
       Peoplewoven.addOpposite("Dynastic");
         AssetManager.traits.add(Peoplewoven);
-            LocalizedTextManager.add("trait_Peoplewoven", "Peoplewoven Ideology");
-            LocalizedTextManager.add("trait_Peoplewoven_info", "FOR THE PEASANTS!!");
-            LocalizedTextManager.add("trait_Peoplewoven_info_2", "HOI4 enjoyers as well");
+            LM.AddToCurrentLocale("trait_Peoplewoven", "Peoplewoven Ideology");
+            LM.AddToCurrentLocale("trait_Peoplewoven_info", "FOR THE PEASANTS!!");
+            LM.AddToCurrentLocale("trait_Peoplewoven_info_2", "HOI4 enjoyers as well");
 
                 ActorTrait Mercantile = new ActorTrait();
         Mercantile.id = "Mercantile";
@@ -134,9 +124,9 @@ CartTransformations.InitCartTransformations();
     Mercantile.addOpposite("Peoplewoven");
       Mercantile.addOpposite("Martial");
         AssetManager.traits.add(Mercantile);
-            LocalizedTextManager.add("trait_Mercantile", "Mercantile Ideology");
-            LocalizedTextManager.add("trait_Mercantile_info", "Not selling my own family for coins was the friends we made along the way");
-            LocalizedTextManager.add("trait_Mercantile_info_2", "bro, want some Maximcoin?");
+            LM.AddToCurrentLocale("trait_Mercantile", "Mercantile Ideology");
+            LM.AddToCurrentLocale("trait_Mercantile_info", "Not selling my own family for coins was the friends we made along the way");
+            LM.AddToCurrentLocale("trait_Mercantile_info_2", "bro, want some Maximcoin?");
 
 
                 ActorTrait Chaosvolt = new ActorTrait();
@@ -153,9 +143,9 @@ CartTransformations.InitCartTransformations();
       Chaosvolt.addOpposite("Peoplewoven");
       Chaosvolt.addOpposite("Dynastic");
         AssetManager.traits.add(Chaosvolt);
-            LocalizedTextManager.add("trait_Chaosvolt", "Chaosvolt Ideology");
-            LocalizedTextManager.add("trait_Chaosvolt_info", "REVOLT! REVOLT!! REVOLUTION!!!");
-            LocalizedTextManager.add("trait_Chaosvolt_info_2", "Mostly peaceful nuclear civil wars");
+            LM.AddToCurrentLocale("trait_Chaosvolt", "Chaosvolt Ideology");
+            LM.AddToCurrentLocale("trait_Chaosvolt_info", "REVOLT! REVOLT!! REVOLUTION!!!");
+            LM.AddToCurrentLocale("trait_Chaosvolt_info_2", "Mostly peaceful nuclear civil wars");
 
 
 
@@ -174,16 +164,29 @@ if (Unitpotential.base_stats == null)
 //Unitpotential.base_stats.addTag("strong_mind");
 Unitpotential.action_special_effect = new WorldAction(UnitpotentialEffect);
 AssetManager.traits.add(Unitpotential);
-            LocalizedTextManager.add("trait_Unitpotential", "Vehicle/War Unit");
-            LocalizedTextManager.add("trait_Unitpotential_info", "Enables lots of fun :3");
-            LocalizedTextManager.add("trait_Unitpotential_info_2", "helicopter helicopter");
+            LM.AddToCurrentLocale("trait_Unitpotential", "Vehicle/War Unit");
+            LM.AddToCurrentLocale("trait_Unitpotential_info", "Enables lots of fun :3");
+            LM.AddToCurrentLocale("trait_Unitpotential_info_2", "helicopter helicopter");
 
 
 
-
+        ActorTrait NavalUnit = new ActorTrait();
+        NavalUnit.id = "NavalUnit";
+        NavalUnit.needs_to_be_explored=false;
+        NavalUnit.rarity = Rarity.R0_Normal;
+		NavalUnit.path_icon = "ui/icons/WarBoat";
+		NavalUnit.group_id = "special";
+		NavalUnit.is_mutation_box_allowed = false;
+		NavalUnit.can_be_given = false;
+		NavalUnit.unlocked_with_achievement = false;
+AssetManager.traits.add(NavalUnit);
+            LM.AddToCurrentLocale("trait_NavalUnit", "Naval Unit");
+            LM.AddToCurrentLocale("trait_NavalUnit_info", "Enables lots of fun :3");
+            LM.AddToCurrentLocale("trait_NavalUnit_info_2", "Big boats, big cannons, and lots of fun :D");
 
 //trait for missile from heli based on bombardier
 
+            LM.ApplyLocale(true);
 
         }
 
@@ -191,59 +194,7 @@ AssetManager.traits.add(Unitpotential);
 ///////////skin colors for vehicles being given based on ideology, ideology diplomacy, unique vehicles for demons, aliens and angels, and, limit of spawned carts based on untis with unitpotential on village, and now instead of king, leaders are the ones that create vehicles, and race checked is of leader of home village, spawning of vehicles uses resources like boat do
 
 
-/*
 
-        private static bool IfritFormActivateAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
-        {
-            return ApplyIfritForm(pSelf);
-        }
-
-
-        private static bool IfritFormActivateGetHit(BaseSimObject pSelf, BaseSimObject pAttacker, WorldTile pTile)
-        {
-            return ApplyIfritForm(pSelf);
-        }
-
-
-        private static bool ApplyIfritForm(BaseSimObject pSelf)
-        {
-            if (pSelf == null || !pSelf.isActor() || !pSelf.isAlive())
-                return false;
-
-
-            pSelf.addStatusEffect("ifrit_form_status", 10f);
-
-            pSelf.a.dirty_sprite_main = true;
-            pSelf.a.clearLastColorCache();
-
-            Vector2 position = pSelf.current_position;
-            EffectsLibrary.spawnAt("fx_explosion", position, 0.3f);
-            MapBox.spawnLightningSmall(pSelf.current_tile, 0.15f, pSelf.a);
-
-            return true;
-        }
-
-        private static bool IfritFormStatusEnd(BaseSimObject pSelf, WorldTile pTile)
-        {
-            if (pSelf == null || !pSelf.isActor()) return false;
-            var actor = pSelf.a;
-            actor.asset.texture_asset = actor.asset.texture_asset.Clone();
-            actor.dirty_sprite_main = true;
-            actor.clearLastColorCache();
-            return true;
-        }
-
-        public static bool IfritFormTexturePatch(Actor __instance, ref ActorTextureSubAsset __result)
-        {
-            if (__instance.hasStatus("ifrit_form_status"))
-            {
-                __result = ifritTextureAsset;
-                return false;
-            }
-            return true;
-        }
-
-*/
 
 
 
@@ -640,7 +591,9 @@ private static void TransformUnit(Actor originalActor, string newActorId, WorldT
     ActionLibrary.removeUnit(originalActor);
 }
 
-		public static void toggleVehicles()
+
+
+public static void toggleVehicles()
         {
             Main.modifyBoolOption("FactoriesOption", PowerButtons.GetToggleValue("vehicle_toggle"));
             if (PowerButtons.GetToggleValue("vehicle_toggle"))
@@ -660,6 +613,7 @@ private static void TransformUnit(Actor originalActor, string newActorId, WorldT
         {
             vehiclesAllowed = false;
         }
+
 
 
 public static bool VehicleSummonEffect(BaseSimObject pTarget, WorldTile pTile = null)
@@ -731,6 +685,7 @@ int vehicleLimit = 0;
     vehicle.setCity(city);
     return true;
 }
+
 
 
 // vehicle.addTrait("spawnedvehicle");

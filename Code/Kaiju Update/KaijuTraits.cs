@@ -19,6 +19,7 @@ using Beebyte.Obfuscator;
 using ai;
 using ai.behaviours;
 using NeoModLoader;
+using NeoModLoader.General;
 
 namespace ModernBox
 {
@@ -34,7 +35,7 @@ namespace ModernBox
         Kaiju.name = "trait_group_Kaiju";
         Kaiju.color = "#5EFFFF";
         AssetManager.trait_groups.add(Kaiju);
-        LocalizedTextManager.add("trait_group_Kaiju", "Kaiju");
+        LM.AddToCurrentLocale("trait_group_Kaiju", "Kaiju");
 
 
 
@@ -55,8 +56,8 @@ poweredGodzillaStatus.base_stats["multiplier_attack_speed"] = 0.3f;
 poweredGodzillaStatus.draw_light_area = true;
 poweredGodzillaStatus.draw_light_size = 4f;
 AssetManager.status.add(poweredGodzillaStatus);
-LocalizedTextManager.add("status_poweredGodzillaStatus", "Godzilla's true power");
-LocalizedTextManager.add("status_poweredGodzillaStatus_desc", "The King shall retain his throne");
+LM.AddToCurrentLocale("status_poweredGodzillaStatus", "Godzilla's true power");
+LM.AddToCurrentLocale("status_poweredGodzillaStatus_desc", "The King shall retain his throne");
 
 
 
@@ -74,9 +75,9 @@ LocalizedTextManager.add("status_poweredGodzillaStatus_desc", "The King shall re
             GodzillaPower.base_stats = new BaseStats();
             GodzillaPower.base_stats.addTag("immunity_fire");
             AssetManager.traits.add(GodzillaPower);
-            LocalizedTextManager.add("trait_Godzilla_Power", "Godzilla Power");
-            LocalizedTextManager.add("trait_Godzilla_Power_info", "The King of Monsters. Earthquakes, Atomic Beams and an impenetrable defense");
-            LocalizedTextManager.add("trait_Godzilla_Power_info_2", "The bestest trait, perhabs, the biggest trait, so yuge");
+            LM.AddToCurrentLocale("trait_Godzilla_Power", "Godzilla Power");
+            LM.AddToCurrentLocale("trait_Godzilla_Power_info", "The King of Monsters. Earthquakes, Atomic Beams and an impenetrable defense");
+            LM.AddToCurrentLocale("trait_Godzilla_Power_info_2", "The bestest trait, perhabs, the biggest trait, so yuge");
 
 
 
@@ -98,8 +99,8 @@ poweredKingKongStatus.base_stats["multiplier_attack_speed"] = 0.3f;
 poweredKingKongStatus.draw_light_area = true;
 poweredKingKongStatus.draw_light_size = 4f;
 AssetManager.status.add(poweredKingKongStatus);
-LocalizedTextManager.add("status_poweredKingKongStatus", "Saiyan Beserker Kong");
-LocalizedTextManager.add("status_poweredKingKongStatus_desc", "KingKong is powered up!");
+LM.AddToCurrentLocale("status_poweredKingKongStatus", "Saiyan Beserker Kong");
+LM.AddToCurrentLocale("status_poweredKingKongStatus_desc", "KingKong is powered up!");
 
 
             ActorTrait KingKongPower = new ActorTrait();
@@ -115,9 +116,9 @@ LocalizedTextManager.add("status_poweredKingKongStatus_desc", "KingKong is power
     KingKongPower.base_stats = new BaseStats();
             KingKongPower.base_stats.addTag("immunity_fire");
             AssetManager.traits.add(KingKongPower);
-            LocalizedTextManager.add("trait_KingKong_Power", "King Kong strenght");
-            LocalizedTextManager.add("trait_KingKong_Power_info", "Extremely intelligent and gifted with great size, this beast can rule over all others");
-            LocalizedTextManager.add("trait_KingKong_Power_info_2", "mhmmmm... monkey");
+            LM.AddToCurrentLocale("trait_KingKong_Power", "King Kong strenght");
+            LM.AddToCurrentLocale("trait_KingKong_Power_info", "Extremely intelligent and gifted with great size, this beast can rule over all others");
+            LM.AddToCurrentLocale("trait_KingKong_Power_info_2", "mhmmmm... monkey");
 
 
 
@@ -139,8 +140,8 @@ poweredGhidorahStatus.base_stats["multiplier_attack_speed"] = 0.3f;
 poweredGhidorahStatus.draw_light_area = true;
 poweredGhidorahStatus.draw_light_size = 4f;
 AssetManager.status.add(poweredGhidorahStatus);
-LocalizedTextManager.add("status_poweredGhidorahStatus", "Guidorah Ultimate form");
-LocalizedTextManager.add("status_poweredGhidorahStatus_desc", "THE ENTIRE WORLD SHALL BE DEVOURED");
+LM.AddToCurrentLocale("status_poweredGhidorahStatus", "Guidorah Ultimate form");
+LM.AddToCurrentLocale("status_poweredGhidorahStatus_desc", "THE ENTIRE WORLD SHALL BE DEVOURED");
 
             ActorTrait GhidorahPower = new ActorTrait();
             GhidorahPower.id = "Ghidorah_Power";
@@ -155,9 +156,9 @@ if (GhidorahPower.base_stats == null)
             GhidorahPower.base_stats.addTag("immunity_fire");
             GhidorahPower.action_death = (WorldAction)Delegate.Combine(GhidorahPower.action_death, new WorldAction(GhidorahScrapsEffect));
             AssetManager.traits.add(GhidorahPower);
-            LocalizedTextManager.add("trait_Ghidorah_Power", "Ghidorah's overwhelming power");
-            LocalizedTextManager.add("trait_Ghidorah_Power_info", "Earth, Kaijus, Monsters, Beasts, all but food to be consumed");
-            LocalizedTextManager.add("trait_Ghidorah_Power_info_2", "Each head thinks the other is sus for stealing food");
+            LM.AddToCurrentLocale("trait_Ghidorah_Power", "Ghidorah's overwhelming power");
+            LM.AddToCurrentLocale("trait_Ghidorah_Power_info", "Earth, Kaijus, Monsters, Beasts, all but food to be consumed");
+            LM.AddToCurrentLocale("trait_Ghidorah_Power_info_2", "Each head thinks the other is sus for stealing food");
 
 
 
@@ -167,7 +168,7 @@ if (GhidorahPower.base_stats == null)
 
 
 
-                        StatusAsset poweredRodanStatus = new StatusAsset();
+StatusAsset poweredRodanStatus = new StatusAsset();
 poweredRodanStatus.id = "poweredRodanStatus";
 poweredRodanStatus.duration = 100f;
 poweredRodanStatus.path_icon = "ui/icons/iconPoweredRodan";
@@ -184,8 +185,8 @@ poweredRodanStatus.base_stats["multiplier_attack_speed"] = 0.3f;
 poweredRodanStatus.draw_light_area = true;
 poweredRodanStatus.draw_light_size = 4f;
 AssetManager.status.add(poweredRodanStatus);
-LocalizedTextManager.add("status_poweredRodanStatus", "Rodan Ultimate form");
-LocalizedTextManager.add("status_poweredRodanStatus_desc", "BURN BABY, BURN");
+LM.AddToCurrentLocale("status_poweredRodanStatus", "Rodan Ultimate form");
+LM.AddToCurrentLocale("status_poweredRodanStatus_desc", "BURN BABY, BURN");
 
             ActorTrait RodanPower = new ActorTrait();
             RodanPower.id = "Rodan_Power";
@@ -200,12 +201,49 @@ if (RodanPower.base_stats == null)
             RodanPower.base_stats.addTag("immunity_fire");
             RodanPower.action_death = (WorldAction)Delegate.Combine(RodanPower.action_death, new WorldAction(RodanScrapsEffect));
             AssetManager.traits.add(RodanPower);
-            LocalizedTextManager.add("trait_Rodan_Power", "Rodan's fiery essence");
-            LocalizedTextManager.add("trait_Rodan_Power_info", "From the deep down magma to the surface, the king of the skies shall oversee it all");
-            LocalizedTextManager.add("trait_Rodan_Power_info_2", "This is what happens when you give tacobell to a iguana");
+            LM.AddToCurrentLocale("trait_Rodan_Power", "Rodan's fiery essence");
+            LM.AddToCurrentLocale("trait_Rodan_Power_info", "From the deep down magma to the surface, the king of the skies shall oversee it all");
+            LM.AddToCurrentLocale("trait_Rodan_Power_info_2", "This is what happens when you give tacobell to a iguana");
 
 
 
+
+StatusAsset poweredMechagodzillaStatus = new StatusAsset();
+poweredMechagodzillaStatus.id = "poweredMechagodzillaStatus";
+poweredMechagodzillaStatus.duration = 100f;
+poweredMechagodzillaStatus.path_icon = "ui/icons/DamagedMechagodzilla";
+poweredMechagodzillaStatus.locale_id = "status_poweredMechagodzillaStatus";
+poweredMechagodzillaStatus.locale_description = "status_poweredMechagodzillaStatus_desc";
+poweredMechagodzillaStatus.action_on_receive = ApplyPoweredMechagodzilla;
+poweredMechagodzillaStatus.action_finish = RemovePoweredMechagodzilla;
+poweredMechagodzillaStatus.base_stats["armor"] = -30f;
+poweredMechagodzillaStatus.base_stats["damage"] = 3000f;
+poweredMechagodzillaStatus.base_stats["multiplier_damage"] = 2f;
+poweredMechagodzillaStatus.base_stats["multiplier_crit"] = 0.5f;
+poweredMechagodzillaStatus.base_stats["scale"] = 0.2f;
+poweredMechagodzillaStatus.base_stats["multiplier_attack_speed"] = 2f;
+poweredMechagodzillaStatus.draw_light_area = true;
+poweredMechagodzillaStatus.draw_light_size = 4f;
+AssetManager.status.add(poweredMechagodzillaStatus);
+LM.AddToCurrentLocale("status_poweredMechagodzillaStatus", "Mechagodzilla Ultimate form");
+LM.AddToCurrentLocale("status_poweredMechagodzillaStatus_desc", "BURN BABY, BURN");
+
+            ActorTrait MechagodzillaPower = new ActorTrait();
+            MechagodzillaPower.id = "Mechagodzilla_Power";
+            MechagodzillaPower.rarity = Rarity.R0_Normal;
+            MechagodzillaPower.group_id = "Kaiju";
+            MechagodzillaPower.path_icon = "ui/icons/Mechagodzilla";
+            MechagodzillaPower.can_be_given = false;
+            MechagodzillaPower.needs_to_be_explored=false;
+            MechagodzillaPower.action_special_effect = (WorldAction)Delegate.Combine(MechagodzillaPower.action_special_effect, new WorldAction(MechagodzillaEssenceEffect));
+if (MechagodzillaPower.base_stats == null)
+    MechagodzillaPower.base_stats = new BaseStats();
+            MechagodzillaPower.base_stats.addTag("immunity_fire");
+            MechagodzillaPower.action_death = (WorldAction)Delegate.Combine(MechagodzillaPower.action_death, new WorldAction(MechagodzillaScrapsEffect));
+            AssetManager.traits.add(MechagodzillaPower);
+            LM.AddToCurrentLocale("trait_Mechagodzilla_Power", "Mechagodzilla's fiery essence");
+            LM.AddToCurrentLocale("trait_Mechagodzilla_Power_info", "From the deep down magma to the surface, the king of the skies shall oversee it all");
+            LM.AddToCurrentLocale("trait_Mechagodzilla_Power_info_2", "This is what happens when you give tacobell to a iguana");
 
 
 
@@ -274,6 +312,12 @@ public static Dictionary<long, ActorAsset> originalRodanAssets = new Dictionary<
         proxy.animation_speed_based_on_walk_speed = false;
         proxy.disable_jump_animation = true;
         proxy.can_be_moved_by_powers = true;
+        proxy.can_be_killed_by_stuff = true;
+		proxy.can_be_killed_by_life_eraser = true;
+		proxy.can_attack_buildings = true;
+		proxy.can_be_hurt_by_powers = true;
+		proxy.effect_damage = true;
+		proxy.can_be_cloned = false;
 
         return proxy;
     }
@@ -887,6 +931,173 @@ public static bool RodanScrapsEffect(BaseSimObject pSelf, WorldTile pTile = null
     }
     return false;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public static bool ApplyPoweredMechagodzilla(BaseSimObject pSelf, WorldTile pTile = null)
+    {
+        var actor = pSelf as Actor;
+        if (actor == null) return false;
+
+        if (!originalGodzillaAssets.ContainsKey(actor.data.id))
+            originalGodzillaAssets[actor.data.id] = actor.asset;
+
+        var proxyAsset = CreateRenderingProxyAsset(actor.asset, "actors/DamagedMechagodzilla/", "DamagedMechagodzilla");
+        actor.asset = proxyAsset;
+
+        actor.clearGraphicsFully();
+        actor.dirty_sprite_main = true;
+        actor.checkAnimationContainer();
+        return true;
+    }
+
+    public static bool RemovePoweredMechagodzilla(BaseSimObject pSelf, WorldTile pTile = null)
+    {
+        var actor = pSelf as Actor;
+        if (actor == null) return false;
+
+        if (originalGodzillaAssets.TryGetValue(actor.data.id, out var originalAsset)) {
+            actor.asset = originalAsset;
+            originalGodzillaAssets.Remove(actor.data.id);
+        }
+
+        actor.clearGraphicsFully();
+        actor.dirty_sprite_main = true;
+        actor.checkAnimationContainer();
+        return true;
+    }
+
+
+
+
+public static bool MechagodzillaEssenceEffect(BaseSimObject pSelf, WorldTile pTile = null)
+{
+    if (pSelf == null || !pSelf.isActor())
+        return false;
+
+    Actor Mechagodzilla = pSelf.a;
+    bool result = false;
+    result |= MechagodzillaStatusOnLowHealthEffect(Mechagodzilla);
+    result |= MechagodzillaBeamEffect(pSelf, pTile);
+    return result;
+}
+
+
+
+public static bool MechagodzillaStatusOnLowHealthEffect(Actor actor)
+{
+    if (actor == null || !actor.isAlive())
+        return false;
+    float healthRatio = actor.getHealthRatio();
+    if (healthRatio < 0.5f && !actor.hasStatus("poweredMechagodzillaStatus"))
+    {
+        actor.addStatusEffect("poweredMechagodzillaStatus", 100f);
+        return true;
+    }
+    return false;
+}
+
+
+
+public static bool MechagodzillaBeamEffect(BaseSimObject pSelf, WorldTile pTile = null)
+{
+    if (pSelf == null || !pSelf.isActor())
+        return false;
+
+    Actor Mechagodzilla = pSelf.a;
+    if (!Mechagodzilla.isAlive())
+        return false;
+
+    if (!Randy.randomChance(0.3f))
+        return false;
+
+    float maxRange = 50f;
+    Actor target = null;
+    float closestDist = float.MaxValue;
+
+    foreach (var other in World.world.units)
+    {
+        if (other == null || !other.isAlive() || other == Mechagodzilla)
+            continue;
+        if (other.kingdom == null || Mechagodzilla.kingdom == null || !Mechagodzilla.kingdom.isEnemy(other.kingdom))
+            continue;
+
+        float dist = Vector2.Distance(Mechagodzilla.current_position, other.current_position);
+        if (dist < maxRange && dist < closestDist)
+        {
+            closestDist = dist;
+            target = other;
+        }
+    }
+
+    if (target == null)
+        return false;
+
+    Vector3 start = Mechagodzilla.current_position;
+    Vector3 end = target.current_position;
+    Vector3 dir = (end - start).normalized;
+    float distToTarget = Vector3.Distance(start, end);
+
+    Vector3 attackVector = Toolbox.getNewPoint(start.x, start.y, end.x, end.y, distToTarget);
+    Vector3 startProjectile = Toolbox.getNewPoint(start.x, start.y, end.x, end.y, Mechagodzilla.stats["size"]);
+    startProjectile.y += 0.5f;
+
+    World.world.projectiles.spawn(Mechagodzilla, null, "ElectroBeam", startProjectile, attackVector);
+    Mechagodzilla.punchTargetAnimation(attackVector, true, false, 50f);
+
+    return true;
+}
+
+
+
+public static bool MechagodzillaScrapsEffect(BaseSimObject pSelf, WorldTile pTile = null)
+{
+    Actor selfActor = pSelf as Actor;
+    if (selfActor == null) return false;
+
+    WorldTile targetTile = selfActor.current_tile;
+    if (targetTile != null)
+    {
+        World.world.buildings.addBuilding("Mechagodzilla_remains", targetTile, false, false, BuildPlacingType.New);
+
+        for (int i = 0; i < 12; i++)
+        {
+            World.world.units.createNewUnit(
+                "Guidorahhead",
+                targetTile,
+                pMiracleSpawn: false,
+                selfActor.position_height,
+                null, null,
+                pSpawnWithItems: false,
+                pAdultAge: false
+            );
+        }
+        return true;
+    }
+    return false;
+}
+
+
+
+
 
 
 

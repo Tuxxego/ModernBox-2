@@ -27,7 +27,7 @@ namespace ModernBox
 			largeImageObject.transform.localScale = Vector3.one;
 
 			Image largeImage = largeImageObject.AddComponent<Image>();
-			largeImage.sprite = Resources.Load<Sprite>("ui/Icons/TabText");
+			largeImage.sprite = Resources.Load<Sprite>("ui/icons/TabText");
 
 			RectTransform imageRect = largeImageObject.GetComponent<RectTransform>();
 			imageRect.sizeDelta = new Vector2(200, 100);
@@ -38,13 +38,13 @@ namespace ModernBox
 
             GameObject statLabelObject = new GameObject("StatLabel");
             statLabelObject.transform.SetParent(tab.transform);
-            statLabelObject.transform.localPosition = new Vector3(356, -18, 0); 
+            statLabelObject.transform.localPosition = new Vector3(356, -18, 0);
             statLabelObject.transform.localScale = Vector3.one;
 
             Text statText = statLabelObject.AddComponent<Text>();
             statText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             statText.fontSize = 9;
-            statText.color = new Color(1f, 0.95f, 0.8f); 
+            statText.color = new Color(1f, 0.95f, 0.8f);
             statText.supportRichText = true;
             statText.text = "Loading stats...";
 
@@ -57,11 +57,11 @@ namespace ModernBox
 
             GameObject discordAdObject = new GameObject("DiscordAd");
             discordAdObject.transform.SetParent(tab.transform);
-            discordAdObject.transform.localPosition = new Vector3(136, -20, 0); 
+            discordAdObject.transform.localPosition = new Vector3(136, -20, 0);
             discordAdObject.transform.localScale = Vector3.one;
 
             Image discordAdImage = discordAdObject.AddComponent<Image>();
-            discordAdImage.sprite = Resources.Load<Sprite>("ui/Icons/buttonSprite"); 
+            discordAdImage.sprite = Resources.Load<Sprite>("ui/icons/buttonSprite");
 
             RectTransform adRect = discordAdObject.GetComponent<RectTransform>();
             adRect.sizeDelta = new Vector2(65, 25);
@@ -162,10 +162,10 @@ namespace ModernBox
             .Build();
 
             new ButtonBuilder("nukes_toggle")
-                .SetSprite(Resources.Load<Sprite>("ui/Icons/Nuke"))
+                .SetSprite(Resources.Load<Sprite>("ui/icons/Nuke"))
                 .SetTitle("Toggle Nuclear Warfare")
                 .SetDescription("Kingdoms can nuke each other.")
-                .SetPosition(11, 0) 
+                .SetPosition(11, 0)
                 .SetType(ButtonType.Toggle)
                 .SetTransform(tab.transform)
                 .SetFunction(Vehicles.toggleNukes)
@@ -176,26 +176,13 @@ namespace ModernBox
                 Vehicles.toggleNukes();
             }
 
-            new ButtonBuilder("chemical_warfare_toggle")
-                .SetSprite(Resources.Load<Sprite>("ui/Icons/XenoInfectionIcon"))
-                .SetTitle("Toggle Chemical Warfare")
-                .SetDescription("Toggles weapons that release chemicals that drive people insane.")
-                .SetPosition(11, 1) 
-                .SetType(ButtonType.Toggle)
-                .SetTransform(tab.transform)
-                .SetFunction(WeaponsProjectilesEffects.toggleChems)
-                .Build();
 
-            if (Main.savedSettings.boolOptions["ChemOption"]) {
-                PowerButtons.ToggleButton("chemical_warfare_toggle");
-                WeaponsProjectilesEffects.toggleChems();
-            }
 
             new ButtonBuilder("vehicle_toggle")
                 .SetSprite(Resources.Load<Sprite>("actors/Heli_Human/new_helicopter1"))
                 .SetTitle("Toggle Vehicles")
                 .SetDescription("Toggles the ability for kingdoms to produce vehicles.")
-                .SetPosition(18, 1) 
+                .SetPosition(18, 1)
                 .SetType(ButtonType.Toggle)
                 .SetTransform(tab.transform)
                 .SetFunction(Traits.toggleVehicles)

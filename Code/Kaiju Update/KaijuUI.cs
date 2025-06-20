@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 using System.Collections.Generic;
@@ -12,6 +10,7 @@ using NCMS;
 using ReflectionUtility;
 using TuxModLoader.Reflection;
 using System.Reflection;
+using System;
 
 namespace ModernBox
 {
@@ -28,40 +27,22 @@ namespace ModernBox
 			largeImageObject.transform.localScale = Vector3.one;
 
 			Image largeImage = largeImageObject.AddComponent<Image>();
-			largeImage.sprite = Resources.Load<Sprite>("ui/icons/TabTextKaiju");
+			largeImage.sprite = Resources.Load<Sprite>("ui/Icons/TabTextKaiju");
 
 			RectTransform imageRect = largeImageObject.GetComponent<RectTransform>();
 			imageRect.sizeDelta = new Vector2(200, 100);
 			imageRect.anchorMin = new Vector2(0.5f, 0.5f);
 			imageRect.anchorMax = new Vector2(0.5f, 0.5f);
 
-    //        StatManager.Instance.RegisterImage(largeImage);
+            StatManager.Instance.RegisterImage(largeImage);
 
+             ////////////////////////BOSSES///////////////////////////////////////
 
-
-            SetupKaijus();
-
-            SetupKaijuLines();
-
-		}
-        private void SetupKaijuLines()
-        {
-          PowersTab tab = KaijugetPowersTab("Tab_kaiju");
-          InsertKaijuLine.KaijuAt(10, tab.transform);
-          InsertKaijuLine.KaijuAt(25, tab.transform);
-        }
-
-        private void SetupKaijus()
-        {
-            PowersTab tab = KaijugetPowersTab("Tab_kaiju");
-
-
-            ////////////////////////BOSSES///////////////////////////////////////
 
 new ButtonBuilder("spawnGodzilla")
     .AsUnitSpawner("Godzilla")
-    .SetGodPowerName("Godzilla")
-    .SetDescription("The King of Monsters")
+      .SetTitle("Godzilla")
+      .SetDescription("The King of Monsters")
     .SetGodPowerIconPath("ui/icons/Godzilla")
     .SetPosition(0, 0)
     .SetTransform(tab.transform)
@@ -90,6 +71,15 @@ new ButtonBuilder("spawnGodzilla")
     .SetGodPowerName("Rodan")
     .SetDescription("King of the skies")
     .SetGodPowerIconPath("ui/icons/Rodan")
+    .SetPosition(1, 1)
+    .SetTransform(tab.transform)
+    .Build();
+
+    new ButtonBuilder("spawnMechagodzilla")
+    .AsUnitSpawner("Mechagodzilla")
+    .SetGodPowerName("Mechagodzilla")
+    .SetDescription("Created with the remains of Ghidorah, it cannot be controlled")
+    .SetGodPowerIconPath("ui/icons/Mechagodzilla")
     .SetPosition(2, 0)
     .SetTransform(tab.transform)
     .Build();
@@ -133,10 +123,27 @@ new ButtonBuilder("spawnIguanazilla")
     .SetTransform(tab.transform)
     .Build();
 
+    new ButtonBuilder("spawnGuidorahhead")
+    .AsUnitSpawner("Guidorahhead")
+    .SetGodPowerName("Guidorahhead")
+    .SetDescription("Wild population of Guidorah heads used to create mechagodzilla")
+    .SetGodPowerIconPath("ui/icons/Guidorahhead")
+    .SetPosition(16, 0)
+    .SetTransform(tab.transform)
+    .Build();
 
 
-
+            SetupKaijuLines();
+		}
+        private void SetupKaijuLines()
+        {
+          PowersTab tab = KaijugetPowersTab("Tab_kaiju");
+          InsertKaijuLine.KaijuAt(10, tab.transform);
+          InsertKaijuLine.KaijuAt(25, tab.transform);
         }
+
+
+
 
           public static PowersTab KaijugetPowersTab(string id) {
             GameObject gameObject = GameObjects.FindEvenInactive(id);
