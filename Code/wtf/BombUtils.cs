@@ -68,7 +68,7 @@ namespace ModernBox
 
         public void action_FireBombClick(WorldTile pTile, string pPowerID)
         {
-            EffectsLibrary.spawnAtTileRandomScale("fx_nuke_flash", pTile, 5.4f, 5.6f);
+            EffectsLibrary.spawn("fx_nuke_flash", pTile, "moab");
             StatManager.Instance.DropBomb();
             if (World.world.explosion_checker.checkNearby(pTile, 120))
                 return;
