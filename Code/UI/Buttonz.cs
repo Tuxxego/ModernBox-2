@@ -73,7 +73,7 @@ namespace ModernBox
             Button adButton = discordAdObject.AddComponent<Button>();
             adButton.onClick.AddListener(() =>
             {
-                Application.OpenURL("https://discord.gg/c2fSfqvcdV");
+                Application.OpenURL("https://discord.gg/tuT25ESxuv");
 
             });
 

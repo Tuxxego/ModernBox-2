@@ -19,7 +19,6 @@ public class DiscordAdHover : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         isHovered = true;
         if (image != null)
         {
-                Debug.Log("Hovered over Discord Ad!");
             image.color = hoverColor;
             image.transform.localScale = maxScale;
         }
