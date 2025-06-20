@@ -77,7 +77,7 @@ public class StatManager : MonoBehaviour
             sb.AppendLine($"<b>Current Vehicles:</b> {currentVehicles}");
             sb.AppendLine($"<b>AI Nukes Dropped:</b> {unitsSpawned}");
             sb.AppendLine($"<b>Planets Visited:</b> {planetsVisited}");
-            sb.AppendLine($"<b>Version: 3.5.0.0</b>");
+            sb.AppendLine($"<b>Version: 3.5.1.0</b>");
             statLabel.text = sb.ToString();
         }
 

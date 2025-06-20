@@ -18,7 +18,7 @@ namespace ModernBox
     [Serializable]
     public class SavedSettings
     {
-        public string settingVersion = "3.5.0.0";
+        public string settingVersion = "3.5.1.0";
 
         public Dictionary<string, bool> boolOptions = new Dictionary<string, bool>
         {

@@ -34,6 +34,8 @@ namespace ModernBox
         public static List<EquipmentAsset> CustomBoots = new List<EquipmentAsset>();
         public static List<EquipmentAsset> CustomEquipment = new List<EquipmentAsset>();
 
+        public static bool GunsAllowed;
+
         public static void InitCustomItems()
         {
             if (!AssetManager.items.dict.ContainsKey("Glock17"))
@@ -75,6 +77,27 @@ namespace ModernBox
             CustomEquipment.Add(AssetManager.items.get("medicpack"));
         }
 
+        public static void toggleGuns()
+        {
+            Main.modifyBoolOption("GunOption", PowerButtons.GetToggleValue("gun_toggle"));
+            if (PowerButtons.GetToggleValue("gun_toggle"))
+            {
+                turnOnGuns();
+                return;
+            }
+            turnOffGuns();
+        }
+
+        public static void turnOnGuns()
+        {
+            GunsAllowed = true;
+        }
+
+        public static void turnOffGuns()
+        {
+            GunsAllowed = false;
+        }
+
         public static List<EquipmentAsset> GetCustomItemsForType(EquipmentType pType)
         {
             switch (pType)
@@ -98,6 +121,9 @@ namespace ModernBox
     {
         static bool Prefix(ref bool __result, Actor pActor, string pCreatorName, EquipmentType pType, int pTries, City pCity)
         {
+                if(!CustomItemsList.GunsAllowed)
+                return false;
+
             if (CustomItemsList.CustomWeapons.Count == 0)
                 CustomItemsList.InitCustomItems();
 

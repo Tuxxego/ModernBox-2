@@ -72,7 +72,7 @@ namespace ModernBox{
         public Bombs Bombs = new Bombs();
         public StatManager StatManager = new StatManager();
         public UnitTracker UnitTracker = new UnitTracker();
-        private static string correctSettingsVersion = "3.5.0.0"; 
+        private static string correctSettingsVersion = "3.5.1.0"; 
         public const string settingsKey = "MBoxSettings"; 
         public static bool isNewVersion;
         public static SavedSettings savedSettings = new SavedSettings();
@@ -298,7 +298,7 @@ namespace ModernBox{
             }
 
             Debug.Log("===============================");
-            Debug.Log("ModernBox 3.5.0.0");
+            Debug.Log("ModernBox 3.5.1.0");
             Debug.Log("Changes were made, saving!");
             Debug.Log("===============================");
 
@@ -358,11 +358,7 @@ namespace ModernBox{
         }
     }
 
-
-
-
-
-      [HarmonyPatch(typeof(ItemLibrary), "loadSprites")]
+    [HarmonyPatch(typeof(ItemLibrary), "loadSprites")]
     public static class LoadSpritesPatch
     {
 
@@ -375,16 +371,13 @@ namespace ModernBox{
     [HarmonyPatch]
     public static class Patch_DisableSortButtons
     {
-
         static MethodBase TargetMethod()
         {
             return AccessTools.Method(typeof(PowersTab), "sortButtons");
         }
 
-
         static bool Prefix(object __instance)
         {
-
             FieldInfo assetField = AccessTools.Field(__instance.GetType(), "_asset");
             if (assetField == null) return true;
 
@@ -395,15 +388,65 @@ namespace ModernBox{
             {
                 return false;
             }
-            else if (asset.id == "Tab_kaiju")
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(DragOrderElement), "Start")]
+    public static class Patch_DragOrderElement_Start
+    {
+        static bool Prefix(DragOrderElement __instance)
+        {
+            if (StupidShit.IsInOrRelatedToModernBox(__instance.gameObject))
             {
                 return false;
             }
-
             return true;
-                }
+        }
     }
 
+    [HarmonyPatch(typeof(DragOrderElement), "Update")]
+    public static class Patch_DragOrderElement_Update
+    {
+        static bool Prefix(DragOrderElement __instance)
+        {
+            if (StupidShit.IsInOrRelatedToModernBox(__instance.gameObject))
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    public static class StupidShit
+    {
+        public static bool IsInOrRelatedToModernBox(GameObject obj)
+        {
+            if (obj.name.Contains("ModernBox"))
+                return true;
+
+            Transform current = obj.transform.parent;
+            while (current != null)
+            {
+                if (current.name.Contains("ModernBox"))
+                    return true;
+                current = current.parent;
+            }
+
+            return CheckChildrenForModernBox(obj.transform);
+        }
+
+        private static bool CheckChildrenForModernBox(Transform parent)
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.name.Contains("ModernBox") || CheckChildrenForModernBox(child))
+                    return true;
+            }
+            return false;
+        }
+    }
 }
 
 

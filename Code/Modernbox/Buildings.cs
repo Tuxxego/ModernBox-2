@@ -246,7 +246,7 @@ market_alliance.sprite_path = "buildings/market_alliance";
 market_alliance.has_sprites_special = false;
   market_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(market_alliance);
-PreloadHelpers.loadBuildingSprites(market_alliance);
+// PreloadHelpers.loadBuildingSprites(market_alliance);
 
 /////////////////renaissance
 
@@ -681,8 +681,8 @@ allianceorder.requirements_orders = AssetLibrary<CityBuildOrderAsset>.a<string>(
 allianceorder = allianceBuild.addBuilding("order_library", 1, 0, 0, pCheckFullVillage: false, pCheckHouseLimit: false, 10);
 allianceorder.requirements_types = AssetLibrary<CityBuildOrderAsset>.a<string>("type_barracks");
 
-allianceorder = allianceBuild.addBuilding("order_market_alliance", 1, 0, 0, pCheckFullVillage: false, pCheckHouseLimit: false, 10);
-allianceorder.requirements_types = AssetLibrary<CityBuildOrderAsset>.a<string>("type_barracks");
+//allianceorder = allianceBuild.addBuilding("order_market_alliance", 1, 0, 0, pCheckFullVillage: false, pCheckHouseLimit: false, 10);
+//allianceorder.requirements_types = AssetLibrary<CityBuildOrderAsset>.a<string>("type_barracks");
 
 AssetManager.city_build_orders.add(allianceBuild);
 
@@ -2886,7 +2886,6 @@ public static class Patch_CustomBuildOrder
         { "order_bonfire_rain_alliance", "bonfire_rain_alliance" },
         { "order_barracks_rain_alliance", "Barracks_rain_alliance" },
         { "order_house_rain_alliance", "House_rain_alliance" },
-        { "order_market_alliance", "market_alliance" },
 
         // Gaia
         { "order_bonfire_gaia", "bonfire_gaia" },
@@ -2946,7 +2945,6 @@ public static class Patch_ArchitectureAsset_GetBuildingID
         { "order_bonfire_rain_alliance", "bonfire_rain_alliance" },
         { "order_barracks_rain_alliance", "Barracks_rain_alliance" },
         { "order_house_rain_alliance", "House_rain_alliance" },
-        { "order_market_alliance", "market_alliance" },
 
         // Gaia
         { "order_bonfire_gaia", "bonfire_gaia" },

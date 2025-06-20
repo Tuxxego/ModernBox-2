@@ -193,15 +193,20 @@ namespace ModernBox
                 Traits.toggleVehicles();
             }
 
-            new ButtonBuilder("balls4")
-                .SetSprite(Resources.Load<Sprite>("ui/icons/wat"))
-                .SetTitle("Coming soon")
-                .SetDescription("Be patient.")
+            new ButtonBuilder("gun_toggle")
+                .SetSprite(Resources.Load<Sprite>("ui/icons/items/icon_AK47"))
+                .SetTitle("Toggle Guns")
+                .SetDescription("Toggle if kingdoms can create guns.")
                 .SetPosition(12, 0)
-                .SetType(ButtonType.Click)
+                .SetType(ButtonType.Toggle)
                 .SetTransform(tab.transform)
-                .SetFunction(openNothing)
+                .SetFunction(CustomItemsList.toggleGuns)
                 .Build();
+
+            if (Main.savedSettings.boolOptions["GunOption"]) {
+                PowerButtons.ToggleButton("gun_toggle");
+                CustomItemsList.toggleGuns();
+            }
 
             new ButtonBuilder("balls5")
                 .SetSprite(Resources.Load<Sprite>("ui/icons/wat"))

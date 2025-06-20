@@ -68,21 +68,13 @@ namespace ModernBox
 
         public void action_FireBombClick(WorldTile pTile, string pPowerID)
         {
-            EffectsLibrary.spawn("fx_nuke_flash", pTile, "moab");
+            EffectsLibrary.spawn("fx_nuke_flash", pTile, "firebomb");
             StatManager.Instance.DropBomb();
             if (World.world.explosion_checker.checkNearby(pTile, 120))
                 return;
 
-            ExplodeInRadius(pTile, 120f);
+            ExplodeInFIRE(pTile, 120f);
             return;
-        }
-
-        public void ExplodeInRadius(WorldTile centerTile, float radius)
-        {
-            if (centerTile == null)
-                return;
-
-            World.world.StartCoroutine(ThisShitIsSoStupid(centerTile, radius));
         }
 
         public void action_TuxiumClick(WorldTile pTile, string pPowerID)
@@ -100,6 +92,14 @@ namespace ModernBox
 
             ExplodeInRadius(pTile, 290f);
             return true;
+        }
+
+        public void ExplodeInRadius(WorldTile centerTile, float radius)
+        {
+            if (centerTile == null)
+                return;
+
+            World.world.StartCoroutine(ThisShitIsSoStupid(centerTile, radius));
         }
 
         private IEnumerator ThisShitIsSoStupid(WorldTile centerTile, float radius)
@@ -198,6 +198,51 @@ namespace ModernBox
                         if (tile != null)
                         {
                             tile.freeze();
+                            tilesProcessed++;
+                        }
+
+                        if (tilesProcessed >= tilesPerFrame)
+                        {
+                            tilesProcessed = 0;
+                            yield return null;
+                        }
+                    }
+                }
+                yield return null;
+            }
+        }
+
+        public void ExplodeInFIRE(WorldTile centerTile, float radius)
+        {
+            if (centerTile == null)
+                return;
+
+            World.world.StartCoroutine(ThisShitIsSoFire(centerTile, radius));
+        }
+
+        private IEnumerator ThisShitIsSoFire(WorldTile centerTile, float radius)
+        {
+            Vector2Int center = centerTile.pos;
+            int intRadius = Mathf.CeilToInt(radius);
+            int tilesPerFrame = 400;
+
+            for (int r = 0; r <= intRadius; r++)
+            {
+                int tilesProcessed = 0;
+                for (int x = -r; x <= r; x++)
+                {
+                    for (int y = -r; y <= r; y++)
+                    {
+                        if (Mathf.RoundToInt(Vector2.Distance(new Vector2(x, y), Vector2.zero)) != r)
+                            continue;
+
+                        int checkX = center.x + x;
+                        int checkY = center.y + y;
+
+                        WorldTile tile = World.world.GetTile(checkX, checkY);
+                        if (tile != null)
+                        {
+                            tile.setFireData(true);
                             tilesProcessed++;
                         }
 
