@@ -195,7 +195,7 @@ public static class ExportResources
                     Sprite selectedSprite = sprite;
                     if (selectedSprite == null)
                     {
-                        Debug.LogError("Please select a Sprite object in the Unity Editor.");
+                        ModernBoxLogger.Error("Please select a Sprite object in the Unity Editor.");
                         return;
                     }
 
@@ -203,7 +203,7 @@ public static class ExportResources
                     Texture2D texture = selectedSprite.texture;
                     if (texture is Texture2D)
                     {
-                        //    Debug.Log(texture.width + "  " + texture.height);
+                        //    ModernBoxLogger.Log(texture.width + "  " + texture.height);
                         // 将Texture转换为可读写格式
                         Texture2D readableTexture = new Texture2D(
                             texture.width,
@@ -226,17 +226,17 @@ public static class ExportResources
                         // 将Texture2D保存为PNG图片
                         File.WriteAllBytes(path, readableTexture.EncodeToPNG());
 
-                        Debug.Log("Sprite exported successfully: " + path);
+                        ModernBoxLogger.Log("Sprite exported successfully: " + path);
                     }
                     else
                     {
-                        Debug.LogError("The texture of the sprite is not a Texture2D.");
+                        ModernBoxLogger.Error("The texture of the sprite is not a Texture2D.");
                     }
                 }
             }
             else
             {
-                Debug.LogError("No sprites found in the specified folder.");
+                ModernBoxLogger.Error("No sprites found in the specified folder.");
             }
         }
     }

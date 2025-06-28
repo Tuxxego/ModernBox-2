@@ -13,8 +13,6 @@ namespace ModernBox
         private GameObject content;
         private bool initialized = false;
         private Dictionary<string, PowerButton> loserButtons = new Dictionary<string, PowerButton>();
-        private static GameObject hiddenContainer;
-
 
         public static void Create()
         {
@@ -33,18 +31,7 @@ namespace ModernBox
 
         public void Init()
         {
-            if (hiddenContainer == null) {
-                hiddenContainer = new GameObject("HiddenButtons");
-                var canvas = GameObject.FindObjectOfType<Canvas>();
-                if (canvas != null) hiddenContainer.transform.SetParent(canvas.transform, false);
-
-                var cg = hiddenContainer.AddComponent<CanvasGroup>();
-                cg.alpha = 0f;
-                cg.interactable = false;
-                cg.blocksRaycasts = false;
-
-                DontDestroyOnLoad(hiddenContainer);
-            }
+            if (initialized) return;
 
             PowersTab tab = getPowersTab("ModernBox");
             window = Windows.CreateNewWindow("AllUnits", "SPAWN VEHICLES");
@@ -64,7 +51,7 @@ namespace ModernBox
             {
                 if (unit.sprite == null)
                 {
-                    Debug.LogWarning($"[M3] Skipping unit {unit.id} because sprite is null.");
+                    ModernBoxLogger.Warning($"[M3] Skipping unit {unit.id} because sprite is null.");
                     continue;
                 }
 
@@ -74,19 +61,16 @@ namespace ModernBox
                 int posX = startX + (col * buttonSpacingX);
                 int posY = startY + (row * buttonSpacingY);
 
-
-
-
-var loserButton = PowerButtons.CreateButton(
-    $"spawn_{unit.id}",
-    unit.sprite,
-    $"LOSER ({unit.id})",
-    $"This is the LOSER button for {unit.id}.",
-    new Vector2(-500, -500),
-    ButtonType.GodPower,
-    hiddenContainer.transform,
-    () => Debug.Log($"LOSER {unit.id} activated.")
-);
+                var loserButton = PowerButtons.CreateButton(
+                    $"spawn_{unit.id}",
+                    unit.sprite,
+                    $"LOSER ({unit.id})",
+                    $"This is the LOSER button for {unit.id}.",
+                    new Vector2(-500, -500),
+                    ButtonType.GodPower,
+                    tab.transform,
+                    () => ModernBoxLogger.Log($"LOSER {unit.id} activated.")
+                );
 
                 loserButtons[unit.id] = loserButton;
 
@@ -111,7 +95,7 @@ var loserButton = PowerButtons.CreateButton(
                             }
                             else
                             {
-                                Debug.LogWarning($"[UnitSpawnWindow] GodPower not found: {powerId}");
+                                ModernBoxLogger.Warning($"[UnitSpawnWindow] GodPower not found: {powerId}");
                             }
                         }
                     })
@@ -121,7 +105,7 @@ var loserButton = PowerButtons.CreateButton(
             }
 
             initialized = true;
-            Debug.Log("[M3] UnitSpawnWindow initialized.");
+            ModernBoxLogger.Log("[M3] UnitSpawnWindow initialized.");
         }
     }
 }

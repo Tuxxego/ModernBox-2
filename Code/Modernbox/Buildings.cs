@@ -2869,7 +2869,7 @@ public static class EvolutionPatches
                 }
             }
         } catch (Exception ex) {
-            Debug.LogError($"AssignBuildOrderTemplate missing for {id}: {ex.Message}");
+            ModernBoxLogger.Error($"AssignBuildOrderTemplate missing for {id}: {ex.Message}");
         }
     }
 }
@@ -2926,7 +2926,7 @@ public static class Patch_CustomBuildOrder
         // ok so i dont really know what this was needed for, probably will fuck me over later when large errors happen cuz this is commented :sob:.
         if (order.StartsWith("order_"))
         {
-       //     Debug.LogError($"[MOD] No building mapping for order: {order}");
+       //     ModernBoxLogger.Error($"[MOD] No building mapping for order: {order}");
             __result = null;
         }
 
@@ -2980,11 +2980,11 @@ public static class Patch_ArchitectureAsset_GetBuildingID
         }
         if (CustomOrderToBuilding.TryGetValue(pOrderID, out string fallback))
         {
-            Debug.LogWarning($"[MOD] Fallback for missing build order '{pOrderID}': using '{fallback}'");
+            ModernBoxLogger.Warning($"[MOD] Fallback for missing build order '{pOrderID}': using '{fallback}'");
             __result = fallback;
             return false;
         }
-        Debug.LogError($"[MOD] No mapping for build order '{pOrderID}' in architecture '{__instance.id}'");
+        ModernBoxLogger.Error($"[MOD] No mapping for build order '{pOrderID}' in architecture '{__instance.id}'");
         __result = null;
         return false;
     }

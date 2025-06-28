@@ -47,7 +47,7 @@ namespace ModernBox
             GameObject otherTabButton = FindAllGameObjectsCreditToNikonForThisFunctionBTW("button_other");
             if (otherTabButton == null)
             {
-                Debug.LogError("Error: Could not find 'Button_Other' to clone for tab creation.");
+                ModernBoxLogger.Error("Error: Could not find 'Button_Other' to clone for tab creation.");
                 return;
             }
                 Localization.AddOrSet(buttonID, name);
@@ -71,7 +71,7 @@ namespace ModernBox
             GameObject otherTab = FindAllGameObjectsCreditToNikonForThisFunctionBTW("other");
             if (otherTab == null)
             {
-                Debug.LogError("Error: Could not find 'Tab_Other' to clone for tab creation.");
+                ModernBoxLogger.Error("Error: Could not find 'Tab_Other' to clone for tab creation.");
                 return;
             }
             foreach (Transform child in otherTab.transform)

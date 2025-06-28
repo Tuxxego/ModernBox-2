@@ -67,7 +67,7 @@ namespace ModernBox
         
         void Start()
         {
-            Debug.Log("Localization Manager started.");
+            ModernBoxLogger.Log("Localization Manager started.");
             LoadLanguageFromFile();
             InitializeLocalizationDatabase();
 			
@@ -85,21 +85,21 @@ namespace ModernBox
                 if (languageCodeMap.TryGetValue(savedLanguageCode, out Language parsedLanguage))
                 {
                     currentLanguage = parsedLanguage;
-                    Debug.Log($"Language loaded from file: {currentLanguage}");
+                    ModernBoxLogger.Log($"Language loaded from file: {currentLanguage}");
                 }
                 else
                 {
-                    Debug.LogWarning($"Invalid language code in file: {savedLanguageCode}");
+                    ModernBoxLogger.Warning($"Invalid language code in file: {savedLanguageCode}");
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Failed to load language from file: {ex.Message}");
+                ModernBoxLogger.Error($"Failed to load language from file: {ex.Message}");
             }
         }
         else
         {
-            Debug.LogWarning("Language file not found. Defaulting to English.");
+            ModernBoxLogger.Warning("Language file not found. Defaulting to English.");
         }
     }
 		
@@ -109,7 +109,7 @@ namespace ModernBox
         public void ShowLanguageMenu()
         {
             isLanguageMenuVisible = true;
-            Debug.Log("Language menu displayed.");
+            ModernBoxLogger.Log("Language menu displayed.");
         }
 
         
@@ -117,16 +117,16 @@ namespace ModernBox
         {
             if (!localizationDatabase.ContainsKey(newLanguage))
             {
-                Debug.LogError($"Attempted to set unsupported language: {newLanguage}");
+                ModernBoxLogger.Error($"Attempted to set unsupported language: {newLanguage}");
                 return;
             }
 
             currentLanguage = newLanguage;
-            Debug.Log($"Language set to: {newLanguage}");
+            ModernBoxLogger.Log($"Language set to: {newLanguage}");
 
             
             isLanguageMenuVisible = false;
-            Debug.Log("Language menu closed after selection.");
+            ModernBoxLogger.Log("Language menu closed after selection.");
         }
 
         
@@ -138,7 +138,7 @@ namespace ModernBox
                 return value;
             }
 
-            Debug.LogWarning($"Localization key not found: {key} for language: {currentLanguage}");
+            ModernBoxLogger.Warning($"Localization key not found: {key} for language: {currentLanguage}");
             return key; 
         }
 
@@ -802,11 +802,11 @@ localizationDatabase[Language.French] = new Dictionary<string, string>
 };
 
 
-				Debug.Log("Localization database initialized successfully.");
+				ModernBoxLogger.Log("Localization database initialized successfully.");
 			}
             catch (System.Exception ex)
             {
-                Debug.LogError($"Error initializing localization database: {ex.Message}");
+                ModernBoxLogger.Error($"Error initializing localization database: {ex.Message}");
             }
         }
 
@@ -857,11 +857,11 @@ public class SetLanguagePatch
         {
             string filePath = Path.Combine(Application.persistentDataPath, "language.txt");
             File.WriteAllText(filePath, pLanguage); 
-            Debug.Log($"Language saved to {filePath}: {pLanguage}");
+            ModernBoxLogger.Log($"Language saved to {filePath}: {pLanguage}");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Failed to save language: {ex.Message}");
+            ModernBoxLogger.Error($"Failed to save language: {ex.Message}");
         }
     }
 }

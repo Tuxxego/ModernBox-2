@@ -58,7 +58,7 @@ namespace ModernBox
 				AchievementsWindow.EditButton(achievement.ID, "???", "???");
 			}
 			
-			Debug.Log("All achievements have been reset.");
+			ModernBoxLogger.Log("All achievements have been reset.");
 		}
 
         public void UnlockAchievement(string id)
@@ -90,7 +90,7 @@ namespace ModernBox
 
        public List<M3Achievement> GetAllAchievements()
         {
-            Debug.Log("Retrieving all achievements: " + m3achievements.Count);
+            ModernBoxLogger.Log("Retrieving all achievements: " + m3achievements.Count);
             return new List<M3Achievement>(m3achievements.Values);
         }
 	
@@ -137,7 +137,7 @@ namespace ModernBox
 			}
 			else
 			{
-				Debug.LogError("Achievement image not found: " + currentNotification.M3Achievement.SpritePath);
+				ModernBoxLogger.Error("Achievement image not found: " + currentNotification.M3Achievement.SpritePath);
 			}
 
 			GUI.Label(new Rect(startX, startY + 5, bannerWidth, 25), "NEW M2 ACHIEVEMENT UNLOCKED", titleStyle);

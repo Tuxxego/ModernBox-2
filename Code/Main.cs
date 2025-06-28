@@ -76,6 +76,7 @@ namespace ModernBox{
         public const string settingsKey = "MBoxSettings"; 
         public static bool isNewVersion;
         public static SavedSettings savedSettings = new SavedSettings();
+        public static PizzaManager PizzaManager = new PizzaManager();
 
         internal static string ModName
         {
@@ -92,11 +93,11 @@ namespace ModernBox{
                 if (worldBoxConsole != null)
                 {
                     worldBoxConsole.gameObject.SetActive(false);
-                    Debug.Log("WorldBoxConsole script has been disabled.");
+                    ModernBoxLogger.Log("WorldBoxConsole script has been disabled.");
                 }
                 else
                 {
-                    Debug.LogWarning("No GameObject with WorldBoxConsole script found in the scene.");
+                    ModernBoxLogger.Warning("No GameObject with WorldBoxConsole script found in the scene.");
                 }
 
                 NATOisStillNeededEspeciallyNow();
@@ -114,7 +115,9 @@ namespace ModernBox{
 				.SetIcon("ui/icon")
 				.Build();
 
-                new TabBuilder()
+            //    PowersTab tab = TabManager.CreateTab("ModernBox", "ModernBox", "Best Mod Ever", Resources.Load<Sprite>("ui/icon"));
+
+            new TabBuilder()
             .SetTabID("Tab_kaiju")
             .SetName("ModernBox KaijuBox")
             .SetDescription("Spawn kaiju directly in your world!")
@@ -122,54 +125,52 @@ namespace ModernBox{
             .SetIcon("ui/icons/tabIconkaiju")
             .Build();
 
-            //    PowersTab tab = TabManager.CreateTab("ModernBox", "ModernBox", "Best Mod Ever", Resources.Load<Sprite>("ui/icon"));
-
-
-           //       Debug.Log("[M2] Space Manager starting...");
+           //       ModernBoxLogger.Log("[M2] Space Manager starting...");
            //     SpaceManager = gameObject.AddComponent<SpaceManager>();
-           //     Debug.Log("[M2] That big manager has started.");
+           //     ModernBoxLogger.Log("[M2] That big manager has started.");
         		AchievementManager = gameObject.AddComponent<AchievementManager>();
         		StatManager = gameObject.AddComponent<StatManager>();
         		UnitTracker = gameObject.AddComponent<UnitTracker>();
         		testBombDebugger = gameObject.AddComponent<BombUtilities>();
-                Debug.Log("SpaceBoxModernBox: Pls no lag!");
+                gameObject.AddComponent<PizzaManager>();
+                ModernBoxLogger.Log("SpaceBoxModernBox: Pls no lag!");
 
-                Debug.Log("[M3] Initializing Bombs...");
+                ModernBoxLogger.Log("[M3] Initializing Bombs...");
                 Bombs.Init();
-                Debug.Log("[M3] Bombs loaded!");
+                ModernBoxLogger.Log("[M3] Bombs loaded!");
 
-                Debug.Log("[M3] Loading AboutWindow...");
+                ModernBoxLogger.Log("[M3] Loading AboutWindow...");
                 AboutWindow.init();
-                Debug.Log("[M3] AboutWindow loaded!");
+                ModernBoxLogger.Log("[M3] AboutWindow loaded!");
 
-                Debug.Log("[M3] Loading CreditsWindow...");
+                ModernBoxLogger.Log("[M3] Loading CreditsWindow...");
                 CreditsWindow.init();
-                Debug.Log("[M3] CreditsWindow loaded!");
+                ModernBoxLogger.Log("[M3] CreditsWindow loaded!");
 
-             //   Debug.Log("[M3] Loading SpaceWindow...");
+             //   ModernBoxLogger.Log("[M3] Loading SpaceWindow...");
             //    SpaceWindow.init();
-            //    Debug.Log("[M3] SpaceWindow loaded!");
-            //    Debug.Log("[M3] Loading CustomGalaxiesWindow...");
+            //    ModernBoxLogger.Log("[M3] SpaceWindow loaded!");
+            //    ModernBoxLogger.Log("[M3] Loading CustomGalaxiesWindow...");
             //    CustomGalaxiesWindow.init();
-             //   Debug.Log("[M3] CustomGalaxiesWindow loaded!");
+             //   ModernBoxLogger.Log("[M3] CustomGalaxiesWindow loaded!");
 
-                              Debug.Log("[M3] Loading AchievementsWindow...");
+                              ModernBoxLogger.Log("[M3] Loading AchievementsWindow...");
                  AchievementsWindow.init();
-                 Debug.Log("[M3] AchievementsWindow loaded!");
+                 ModernBoxLogger.Log("[M3] AchievementsWindow loaded!");
                  
-                Debug.Log("[M3] Initializing Buttonz...");
+                ModernBoxLogger.Log("[M3] Initializing Buttonz...");
                 Buttonz.Init();
-                Debug.Log("[M3] Buttonz loaded!");
+                ModernBoxLogger.Log("[M3] Buttonz loaded!");
 
-                Debug.Log("[M3] Buildings initialized");
+                ModernBoxLogger.Log("[M3] Buildings initialized");
 
 			    Windows.ShowWindow("AboutWindow");
 
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[M3] Exception in Awake: {ex.Message}");
-                Debug.LogError($"[M3] Stack Trace: {ex.StackTrace}");
+                ModernBoxLogger.Error($"[M3] Exception in Awake: {ex.Message}");
+                ModernBoxLogger.Error($"[M3] Stack Trace: {ex.StackTrace}");
             }
         }
 
@@ -185,8 +186,8 @@ namespace ModernBox{
             try
             {
                 modsResources = Reflection.GetField(typeof(ResourcesPatch), null, "modsResources") as Dictionary<string, UnityEngine.Object>;
-                Debug.Log("Meow meow meow, FEED ME YOU MOTHERF");
-                Debug.Log("No thanks Morfos.");
+                ModernBoxLogger.Log("Meow meow meow, FEED ME YOU MOTHERF");
+                ModernBoxLogger.Log("No thanks Morfos.");
 
                 Vehicles.init();
 
@@ -204,13 +205,16 @@ namespace ModernBox{
 
 
                 instance = this;
-                Debug.Log("[M3] All components initialized successfully");
+
+                PizzaWindow.init();
+
+                ModernBoxLogger.Log("[M3] All components initialized successfully");
 
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Exception in InitializeComponents: {ex.Message}");
-                Debug.LogError($"Stack Trace: {ex.StackTrace}");
+                ModernBoxLogger.Error($"Exception in InitializeComponents: {ex.Message}");
+                ModernBoxLogger.Error($"Stack Trace: {ex.StackTrace}");
             }
         }
 
@@ -294,14 +298,14 @@ namespace ModernBox{
         {
             if (previousSettings != null && savedSettings.Equals(previousSettings))
             {
-                Debug.Log("ModernBox: No changes to settings, skipping saving!");
+                ModernBoxLogger.Log("ModernBox: No changes to settings, skipping saving!");
                 return; 
             }
 
-            Debug.Log("===============================");
-            Debug.Log("ModernBox 3.5.1.0");
-            Debug.Log("Changes were made, saving!");
-            Debug.Log("===============================");
+            ModernBoxLogger.Log("===============================");
+            ModernBoxLogger.Log("ModernBox 3.5.1.0");
+            ModernBoxLogger.Log("Changes were made, saving!");
+            ModernBoxLogger.Log("===============================");
 
             foreach (var option in savedSettings.boolOptions)
             {
@@ -359,95 +363,52 @@ namespace ModernBox{
         }
     }
 
-    [HarmonyPatch(typeof(ItemLibrary), "loadSprites")]
+
+
+
+
+      [HarmonyPatch(typeof(ItemLibrary), "loadSprites")]
     public static class LoadSpritesPatch
     {
 
         static void Postfix(object __instance)
         {
-            Debug.Log("[loadSprites] Method completed");
+            ModernBoxLogger.Log("[loadSprites] Method completed");
             Main.StupidStuffOne();
         }
     }
     [HarmonyPatch]
     public static class Patch_DisableSortButtons
     {
+        // Target the sortButtons method
         static MethodBase TargetMethod()
         {
+            // Replace with the actual class name that contains sortButtons()
             return AccessTools.Method(typeof(PowersTab), "sortButtons");
         }
 
+        // Prefix patch that cancels the original method
         static bool Prefix(object __instance)
         {
+            // Skip execution of the original sortButtons method
+            // Get the private "_asset" field from PowersTab
             FieldInfo assetField = AccessTools.Field(__instance.GetType(), "_asset");
             if (assetField == null) return true;
 
             var asset = assetField.GetValue(__instance) as PowerTabAsset;
             if (asset == null) return true;
 
+            // Check the locale_key of the asset
             if (asset.id == "ModernBox")
             {
+                // Skip sortButtons() for ModernBox tab
                 return false;
             }
 
-            return true;
-        }
+            return true; // Allow original method for all other tabs
+                }
     }
 
-    [HarmonyPatch(typeof(DragOrderElement), "Start")]
-    public static class Patch_DragOrderElement_Start
-    {
-        static bool Prefix(DragOrderElement __instance)
-        {
-            if (StupidShit.IsInOrRelatedToModernBox(__instance.gameObject))
-            {
-                return false;
-            }
-            return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(DragOrderElement), "Update")]
-    public static class Patch_DragOrderElement_Update
-    {
-        static bool Prefix(DragOrderElement __instance)
-        {
-            if (StupidShit.IsInOrRelatedToModernBox(__instance.gameObject))
-            {
-                return false;
-            }
-            return true;
-        }
-    }
-
-    public static class StupidShit
-    {
-        public static bool IsInOrRelatedToModernBox(GameObject obj)
-        {
-            if (obj.name.Contains("ModernBox"))
-                return true;
-
-            Transform current = obj.transform.parent;
-            while (current != null)
-            {
-                if (current.name.Contains("ModernBox"))
-                    return true;
-                current = current.parent;
-            }
-
-            return CheckChildrenForModernBox(obj.transform);
-        }
-
-        private static bool CheckChildrenForModernBox(Transform parent)
-        {
-            foreach (Transform child in parent)
-            {
-                if (child.name.Contains("ModernBox") || CheckChildrenForModernBox(child))
-                    return true;
-            }
-            return false;
-        }
-    }
 }
 
 

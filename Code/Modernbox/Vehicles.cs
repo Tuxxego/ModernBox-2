@@ -50,6 +50,12 @@ namespace ModernBox
 			////////
 			////////spawn of vehicles based on what upgrade level the hall has and unitpotential should erase vehicles if they are below the corresponding tier of hall by ID
 
+			WorldLogAsset balls = AssetManager.world_log_library.clone("bigballs", "$basic_disaster$");
+			balls.locale_id = "Testy";
+			balls.path_icon = "ui/Icons/iconGreg";
+
+			AssetManager.world_log_library.add(balls);
+
             EquipmentAsset mountedmachinegun = AssetManager.items.clone("mountedmachinegun", "$range");
             mountedmachinegun.has_locales = false;
             mountedmachinegun.projectile = "shotgun_bullet";
@@ -6890,7 +6896,7 @@ public static bool NuclearMissileArtilleryEffect(BaseSimObject pTarget, WorldTil
 {
 	if (!nukesEnabled)
 	{
-	//	Debug.Log("Nukes disabled.");
+	//	ModernBoxLogger.Log("Nukes disabled.");
 		return false;
 	}
 
@@ -6950,6 +6956,7 @@ public static bool NuclearMissileArtilleryEffect(BaseSimObject pTarget, WorldTil
                         Vector3 attackVector = Toolbox.getNewPoint(selfPos.x, selfPos.y, attackPos.Value.x, attackPos.Value.y, dist);
                         Vector3 startProjectile = Toolbox.getNewPoint(selfPos.x, selfPos.y, attackPos.Value.x, attackPos.Value.y, caster.stats["size"]);
                         startProjectile.y += 0.5f;
+						addNews("this wont work");
                         World.world.projectiles.spawn(caster, null, "NUKER", startProjectile, attackVector);
 						StatManager.Instance.SpawnUnit();
                         caster.punchTargetAnimation(attackVector, true, false, 45f);
@@ -6962,11 +6969,18 @@ public static bool NuclearMissileArtilleryEffect(BaseSimObject pTarget, WorldTil
     return false;
 }
 
+        public static void addNews(string news)
+        {
+            WorldLogMessage worldLogMessage = new WorldLogMessage { asset_id = "bigballs" };
+
+            HistoryHud.instance.newHistory(worldLogMessage);
+        }
+
 public static bool AntiBossNuke(BaseSimObject pTarget, WorldTile pTile = null)
 {
 	if (!nukesEnabled)
 	{
-	//	Debug.Log("Nukes disabled.");
+	//	ModernBoxLogger.Log("Nukes disabled.");
 		return false;
 	}
 

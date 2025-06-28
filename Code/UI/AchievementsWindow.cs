@@ -100,7 +100,7 @@ namespace ModernBox
 				return true;
 			}
 
-			Debug.LogError($"PowerButton with name '{buttonID}' not found.");
+			ModernBoxLogger.Error($"PowerButton with name '{buttonID}' not found.");
 			return false;
 		}
 

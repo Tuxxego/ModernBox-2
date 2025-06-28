@@ -40,7 +40,7 @@ public class UnitTracker : MonoBehaviour
         Sprite sprite = LoadSpriteForUnit(id);
         if (sprite == null)
         {
-            Debug.LogWarning($"Could not find a sprite for unit '{id}'. Registration skipped.");
+            ModernBoxLogger.Warning($"Could not find a sprite for unit '{id}'. Registration skipped.");
             return;
         }
 
@@ -51,7 +51,7 @@ public class UnitTracker : MonoBehaviour
 
         AssetManager.powers.add(newPower);
         units.Add(new TrackedUnit(id, sprite));
-        Debug.Log($"Registered unit: {id}");
+        ModernBoxLogger.Log($"Registered unit: {id}");
     }
 
     private Sprite LoadSpriteForUnit(string id)
@@ -112,35 +112,35 @@ public class UnitTracker : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[SpawnVehicle] Could not retrieve Kingdom from City.");
+            ModernBoxLogger.Warning("[SpawnVehicle] Could not retrieve Kingdom from City.");
         }
     }
 
 			if (AssetManager.powers == null)
 			{
-				Debug.LogError("[spawnUnit] AssetManager.powers is null!");
+				ModernBoxLogger.Error("[spawnUnit] AssetManager.powers is null!");
 				return false;
 			}
 
 			GodPower godPower = AssetManager.powers.get(pPowerID);
 			if (godPower == null)
 			{
-				Debug.LogError($"[spawnUnit] GodPower with ID '{pPowerID}' not found!");
+				ModernBoxLogger.Error($"[spawnUnit] GodPower with ID '{pPowerID}' not found!");
 				return false;
 			}
 
-			Debug.Log($"[spawnUnit] Got GodPower: {godPower.id}");
+			ModernBoxLogger.Log($"[spawnUnit] Got GodPower: {godPower.id}");
 
 			string text;
 			if (godPower.actor_asset_ids != null && godPower.actor_asset_ids.Length > 0)
 			{
 				text = godPower.actor_asset_ids.GetRandom<string>();
-				Debug.Log($"[spawnUnit] Selected random actor from actor_asset_ids: {text}");
+				ModernBoxLogger.Log($"[spawnUnit] Selected random actor from actor_asset_ids: {text}");
 			}
 			else
 			{
 				text = godPower.actor_asset_id;
-				Debug.Log($"[spawnUnit] Using fallback actor_asset_id: {text}");
+				ModernBoxLogger.Log($"[spawnUnit] Using fallback actor_asset_id: {text}");
 			}
             
     TransformUnit(baseVehicle, text, pTile);
@@ -174,56 +174,56 @@ private static void TransformUnit(Actor originalActor, string newActorId, WorldT
 
 		public static Actor spawnUnit(WorldTile pTile, string pPowerID)
 		{
-			Debug.Log($"[spawnUnit] Called with pTile: {pTile}, pPowerID: {pPowerID}");
+			ModernBoxLogger.Log($"[spawnUnit] Called with pTile: {pTile}, pPowerID: {pPowerID}");
 
 			if (AssetManager.powers == null)
 			{
-				Debug.LogError("[spawnUnit] AssetManager.powers is null!");
+				ModernBoxLogger.Error("[spawnUnit] AssetManager.powers is null!");
 				return null;
 			}
 
 			GodPower godPower = AssetManager.powers.get(pPowerID);
 			if (godPower == null)
 			{
-				Debug.LogError($"[spawnUnit] GodPower with ID '{pPowerID}' not found!");
+				ModernBoxLogger.Error($"[spawnUnit] GodPower with ID '{pPowerID}' not found!");
 				return null;
 			}
 
-			Debug.Log($"[spawnUnit] Got GodPower: {godPower.id}");
+			ModernBoxLogger.Log($"[spawnUnit] Got GodPower: {godPower.id}");
 
 			MusicBox.playSound("event:/SFX/UNIQUE/SpawnWhoosh", (float)pTile.pos.x, (float)pTile.pos.y, false, false);
-			Debug.Log($"[spawnUnit] Played sound at ({pTile.pos.x}, {pTile.pos.y})");
+			ModernBoxLogger.Log($"[spawnUnit] Played sound at ({pTile.pos.x}, {pTile.pos.y})");
 
 			EffectsLibrary.spawn("fx_spawn", pTile, null, null, 0f, -1f, -1f);
-			Debug.Log("[spawnUnit] Spawned 'fx_spawn' effect.");
+			ModernBoxLogger.Log("[spawnUnit] Spawned 'fx_spawn' effect.");
 
 			string text;
 			if (godPower.actor_asset_ids != null && godPower.actor_asset_ids.Length > 0)
 			{
 				text = godPower.actor_asset_ids.GetRandom<string>();
-				Debug.Log($"[spawnUnit] Selected random actor from actor_asset_ids: {text}");
+				ModernBoxLogger.Log($"[spawnUnit] Selected random actor from actor_asset_ids: {text}");
 			}
 			else
 			{
 				text = godPower.actor_asset_id;
-				Debug.Log($"[spawnUnit] Using fallback actor_asset_id: {text}");
+				ModernBoxLogger.Log($"[spawnUnit] Using fallback actor_asset_id: {text}");
 			}
 
 			if (World.world == null || World.world.units == null)
 			{
-				Debug.LogError("[spawnUnit] World or World.units is null!");
+				ModernBoxLogger.Error("[spawnUnit] World or World.units is null!");
 				return null;
 			}
 
 			Actor actor = World.world.units.spawnNewUnit(text, pTile, true);
 			if (actor == null)
 			{
-				Debug.LogError("[spawnUnit] spawnNewUnit returned null!");
+				ModernBoxLogger.Error("[spawnUnit] spawnNewUnit returned null!");
 				return null;
 			}
 
 			actor.addTrait("miracle_born", false);
-			Debug.Log($"[spawnUnit] Spawned actor '{text}' at tile {pTile.pos}. Added trait 'miracle_born'.");
+			ModernBoxLogger.Log($"[spawnUnit] Spawned actor '{text}' at tile {pTile.pos}. Added trait 'miracle_born'.");
 
 			return actor;
 		}

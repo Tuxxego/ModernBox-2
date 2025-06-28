@@ -41,6 +41,7 @@ namespace ModernBox
                 return false;
 
             ExplodeInRadius(pTile, 90f);
+            ExplodeInFIRE(pTile, 90f);
             return true;
         }
 
@@ -124,7 +125,8 @@ namespace ModernBox
                         WorldTile tile = World.world.GetTile(checkX, checkY);
                         if (tile != null)
                         {
-                            MapAction.applyTileDamage(tile, radius, AssetManager.terraform.get("moab"));
+                            MapAction.applyTileDamage(tile, radius, AssetManager.terraform.get("czar_bomba"));
+                            //MapAction.damageWorld(tile, intRadius, AssetManager.terraform.get("czar_bomba"), null);                            
                             tilesProcessed++;
                         }
 
