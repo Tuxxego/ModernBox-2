@@ -83,7 +83,7 @@ mine_modern.has_sprite_construction = false;
   mine_modern.has_sprites_special = false;
   mine_modern.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(mine_modern);
-PreloadHelpers.loadBuildingSprites(mine_modern);
+// PreloadHelpers.preloadBuildingSprites(mine_modern);
 
 
 
@@ -234,7 +234,7 @@ bonfire_alliance.has_sprite_construction = true;
  bonfire_alliance.has_sprites_special = false;
   bonfire_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_alliance);
-PreloadHelpers.loadBuildingSprites(bonfire_alliance);
+// PreloadHelpers.preloadBuildingSprites(bonfire_alliance);
 
 
 BuildingAsset market_alliance = AssetManager.buildings.clone("market_alliance", "market_human");
@@ -246,7 +246,7 @@ market_alliance.sprite_path = "buildings/market_alliance";
 market_alliance.has_sprites_special = false;
   market_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(market_alliance);
-// PreloadHelpers.loadBuildingSprites(market_alliance);
+// // PreloadHelpers.preloadBuildingSprites(market_alliance);
 
 /////////////////renaissance
 
@@ -287,7 +287,7 @@ bonfire_rain_alliance.has_sprite_construction = true;
 bonfire_rain_alliance.has_sprites_special = false;
   bonfire_rain_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_rain_alliance);
-PreloadHelpers.loadBuildingSprites(bonfire_rain_alliance);
+// PreloadHelpers.preloadBuildingSprites(bonfire_rain_alliance);
 
 
  BuildingAsset House_rain_alliance = AssetManager.buildings.clone("House_rain_alliance", "$building_civ_human$");
@@ -319,7 +319,7 @@ House_rain_alliance.upgrade_to = "House_modern_alliance";
 House_rain_alliance.has_sprites_special = false;
   House_rain_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_rain_alliance);
-PreloadHelpers.loadBuildingSprites(House_rain_alliance);
+// PreloadHelpers.preloadBuildingSprites(House_rain_alliance);
 
 BuildingAsset Barracks_rain_alliance = AssetManager.buildings.clone("Barracks_rain_alliance", "$building_civ_human$");
 Barracks_rain_alliance.draw_light_area = true;
@@ -347,7 +347,7 @@ Barracks_rain_alliance.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingSt
 Barracks_rain_alliance.has_sprites_special = false;
   Barracks_rain_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_rain_alliance);
-PreloadHelpers.loadBuildingSprites(Barracks_rain_alliance);
+// PreloadHelpers.preloadBuildingSprites(Barracks_rain_alliance);
 
 
 BuildingAsset Temple_rain_alliance = AssetManager.buildings.clone("Temple_rain_alliance", "$building_civ_human$");
@@ -379,7 +379,7 @@ Temple_rain_alliance.upgraded_from = "temple_human";
 Temple_rain_alliance.has_sprites_special = false;
   Temple_rain_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Temple_rain_alliance);
-PreloadHelpers.loadBuildingSprites(Temple_rain_alliance);
+// PreloadHelpers.preloadBuildingSprites(Temple_rain_alliance);
 
 
 
@@ -418,7 +418,7 @@ Hall_rain_alliance.has_sprite_construction = false;
 Hall_rain_alliance.has_sprites_special = false;
   Hall_rain_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Hall_rain_alliance);
-PreloadHelpers.loadBuildingSprites(Hall_rain_alliance);
+// PreloadHelpers.preloadBuildingSprites(Hall_rain_alliance);
 
 
 
@@ -451,7 +451,7 @@ Docks_modern_alliance.upgraded_from = "docks_human";
 Docks_modern_alliance.has_sprites_special = false;
   Docks_modern_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Docks_modern_alliance);
-PreloadHelpers.loadBuildingSprites(Docks_modern_alliance);
+// PreloadHelpers.preloadBuildingSprites(Docks_modern_alliance);
 
 BuildingAsset bonfire_modern_alliance = AssetManager.buildings.clone("bonfire_modern_alliance", "$city_building$");
 bonfire_modern_alliance.draw_light_area = true;
@@ -489,7 +489,7 @@ bonfire_modern_alliance.has_sprite_construction = true;
 bonfire_modern_alliance.has_sprites_special = false;
   bonfire_modern_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_modern_alliance);
-PreloadHelpers.loadBuildingSprites(bonfire_modern_alliance);
+// PreloadHelpers.preloadBuildingSprites(bonfire_modern_alliance);
 
 
 
@@ -521,7 +521,7 @@ House_modern_alliance.upgraded_from = "House_rain_alliance";
 House_modern_alliance.has_sprites_special = false;
   House_modern_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_modern_alliance);
-PreloadHelpers.loadBuildingSprites(House_modern_alliance);
+// PreloadHelpers.preloadBuildingSprites(House_modern_alliance);
 
 
 BuildingAsset Barracks_modern_alliance = AssetManager.buildings.clone("Barracks_modern_alliance", "$building_civ_human$");
@@ -549,7 +549,7 @@ Barracks_modern_alliance.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuilding
 Barracks_modern_alliance.has_sprites_special = false;
   Barracks_modern_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_modern_alliance);
-PreloadHelpers.loadBuildingSprites(Barracks_modern_alliance);
+// PreloadHelpers.preloadBuildingSprites(Barracks_modern_alliance);
 
 
 
@@ -593,7 +593,7 @@ watch_tower_modern_alliance.smoke_offset = new Vector2Int(2, 3);
         watch_tower_modern_alliance.has_sprites_special = false;
   watch_tower_modern_alliance.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(watch_tower_modern_alliance);
-PreloadHelpers.loadBuildingSprites(watch_tower_modern_alliance);
+// PreloadHelpers.preloadBuildingSprites(watch_tower_modern_alliance);
 
 
 //var allianceBuild = AssetManager.city_build_orders.get("build_order_alliance_epochs");
@@ -842,7 +842,7 @@ bonfire_harden.has_sprite_construction = true;
 bonfire_harden.has_sprites_special = false;
   bonfire_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_harden);
-PreloadHelpers.loadBuildingSprites(bonfire_harden);
+// PreloadHelpers.preloadBuildingSprites(bonfire_harden);
 
 
 BuildingAsset market_harden = AssetManager.buildings.clone("market_harden", "market_human");
@@ -854,7 +854,7 @@ market_harden.sprite_path = "buildings/market_harden";
 market_harden.has_sprites_special = false;
   market_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(market_harden);
-PreloadHelpers.loadBuildingSprites(market_harden);
+// PreloadHelpers.preloadBuildingSprites(market_harden);
 
 /////////////////renaissance
 
@@ -895,7 +895,7 @@ bonfire_rain_harden.has_sprite_construction = true;
 bonfire_rain_harden.has_sprites_special = false;
   bonfire_rain_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_rain_harden);
-PreloadHelpers.loadBuildingSprites(bonfire_rain_harden);
+// PreloadHelpers.preloadBuildingSprites(bonfire_rain_harden);
 
 
  BuildingAsset House_rain_harden = AssetManager.buildings.clone("House_rain_harden", "$building_civ_human$");
@@ -927,7 +927,7 @@ House_rain_harden.upgrade_to = "House_modern_harden";
 House_rain_harden.has_sprites_special = false;
   House_rain_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_rain_harden);
-PreloadHelpers.loadBuildingSprites(House_rain_harden);
+// PreloadHelpers.preloadBuildingSprites(House_rain_harden);
 
 BuildingAsset Barracks_rain_harden = AssetManager.buildings.clone("Barracks_rain_harden", "$building_civ_human$");
 Barracks_rain_harden.draw_light_area = true;
@@ -955,7 +955,7 @@ Barracks_rain_harden.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingSton
 Barracks_rain_harden.has_sprites_special = false;
   Barracks_rain_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_rain_harden);
-PreloadHelpers.loadBuildingSprites(Barracks_rain_harden);
+// PreloadHelpers.preloadBuildingSprites(Barracks_rain_harden);
 
 
 BuildingAsset Temple_rain_harden = AssetManager.buildings.clone("Temple_rain_harden", "$building_civ_human$");
@@ -987,7 +987,7 @@ Temple_rain_harden.upgraded_from = "temple_human";
 Temple_rain_harden.has_sprites_special = false;
   Temple_rain_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Temple_rain_harden);
-PreloadHelpers.loadBuildingSprites(Temple_rain_harden);
+// PreloadHelpers.preloadBuildingSprites(Temple_rain_harden);
 
 
 
@@ -1026,7 +1026,7 @@ Hall_rain_harden.has_sprite_construction = false;
 Hall_rain_harden.has_sprites_special = false;
   Hall_rain_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Hall_rain_harden);
-PreloadHelpers.loadBuildingSprites(Hall_rain_harden);
+// PreloadHelpers.preloadBuildingSprites(Hall_rain_harden);
 
 
 
@@ -1059,7 +1059,7 @@ Docks_modern_harden.upgraded_from = "docks_human";
 Docks_modern_harden.has_sprites_special = false;
   Docks_modern_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Docks_modern_harden);
-PreloadHelpers.loadBuildingSprites(Docks_modern_harden);
+// PreloadHelpers.preloadBuildingSprites(Docks_modern_harden);
 
 BuildingAsset bonfire_modern_harden = AssetManager.buildings.clone("bonfire_modern_harden", "$city_building$");
 bonfire_modern_harden.draw_light_area = true;
@@ -1097,7 +1097,7 @@ bonfire_modern_harden.has_sprite_construction = true;
 bonfire_modern_harden.has_sprites_special = false;
   bonfire_modern_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_modern_harden);
-PreloadHelpers.loadBuildingSprites(bonfire_modern_harden);
+// PreloadHelpers.preloadBuildingSprites(bonfire_modern_harden);
 
 
 
@@ -1129,7 +1129,7 @@ House_modern_harden.upgraded_from = "House_rain_harden";
 House_modern_harden.has_sprites_special = false;
   House_modern_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_modern_harden);
-PreloadHelpers.loadBuildingSprites(House_modern_harden);
+// PreloadHelpers.preloadBuildingSprites(House_modern_harden);
 
 
 BuildingAsset Barracks_modern_harden = AssetManager.buildings.clone("Barracks_modern_harden", "$building_civ_human$");
@@ -1157,7 +1157,7 @@ Barracks_modern_harden.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingSt
 Barracks_modern_harden.has_sprites_special = false;
   Barracks_modern_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_modern_harden);
-PreloadHelpers.loadBuildingSprites(Barracks_modern_harden);
+// PreloadHelpers.preloadBuildingSprites(Barracks_modern_harden);
 
 
 
@@ -1201,7 +1201,7 @@ watch_tower_modern_harden.smoke_offset = new Vector2Int(2, 3);
         watch_tower_modern_harden.has_sprites_special = false;
   watch_tower_modern_harden.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(watch_tower_modern_harden);
-PreloadHelpers.loadBuildingSprites(watch_tower_modern_harden);
+// PreloadHelpers.preloadBuildingSprites(watch_tower_modern_harden);
 
 
 //var hardenBuild = AssetManager.city_build_orders.get("build_order_harden_epochs");
@@ -1451,7 +1451,7 @@ bonfire_gaia.has_sprite_construction = true;
         bonfire_gaia.has_sprites_special = false;
   bonfire_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_gaia);
-PreloadHelpers.loadBuildingSprites(bonfire_gaia);
+// PreloadHelpers.preloadBuildingSprites(bonfire_gaia);
 
 
 BuildingAsset market_gaia = AssetManager.buildings.clone("market_gaia", "market_human");
@@ -1463,7 +1463,7 @@ market_gaia.sprite_path = "buildings/market_gaia";
         market_gaia.has_sprites_special = false;
   market_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(market_gaia);
-PreloadHelpers.loadBuildingSprites(market_gaia);
+// PreloadHelpers.preloadBuildingSprites(market_gaia);
 
 /////////////////renaissance
 
@@ -1504,7 +1504,7 @@ bonfire_rain_gaia.has_sprite_construction = true;
         bonfire_rain_gaia.has_sprites_special = false;
   bonfire_rain_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_rain_gaia);
-PreloadHelpers.loadBuildingSprites(bonfire_rain_gaia);
+// PreloadHelpers.preloadBuildingSprites(bonfire_rain_gaia);
 
 
  BuildingAsset House_rain_gaia = AssetManager.buildings.clone("House_rain_gaia", "$building_civ_human$");
@@ -1536,7 +1536,7 @@ House_rain_gaia.upgrade_to = "House_modern_gaia";
 House_rain_gaia.has_sprites_special = false;
 House_rain_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_rain_gaia);
-PreloadHelpers.loadBuildingSprites(House_rain_gaia);
+// PreloadHelpers.preloadBuildingSprites(House_rain_gaia);
 
 BuildingAsset Barracks_rain_gaia = AssetManager.buildings.clone("Barracks_rain_gaia", "$building_civ_human$");
 Barracks_rain_gaia.draw_light_area = true;
@@ -1564,7 +1564,7 @@ Barracks_rain_gaia.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingStone"
 Barracks_rain_gaia.has_sprites_special = false;
 Barracks_rain_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_rain_gaia);
-PreloadHelpers.loadBuildingSprites(Barracks_rain_gaia);
+// PreloadHelpers.preloadBuildingSprites(Barracks_rain_gaia);
 
 
 BuildingAsset Temple_rain_gaia = AssetManager.buildings.clone("Temple_rain_gaia", "$building_civ_human$");
@@ -1596,7 +1596,7 @@ Temple_rain_gaia.upgraded_from = "temple_human";
 Temple_rain_gaia.has_sprites_special = false;
 Temple_rain_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Temple_rain_gaia);
-PreloadHelpers.loadBuildingSprites(Temple_rain_gaia);
+// PreloadHelpers.preloadBuildingSprites(Temple_rain_gaia);
 
 
 
@@ -1635,7 +1635,7 @@ Hall_rain_gaia.has_sprite_construction = false;
 Hall_rain_gaia.has_sprites_special = false;
 Hall_rain_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Hall_rain_gaia);
-PreloadHelpers.loadBuildingSprites(Hall_rain_gaia);
+// PreloadHelpers.preloadBuildingSprites(Hall_rain_gaia);
 
 
 
@@ -1668,7 +1668,7 @@ Docks_modern_gaia.upgraded_from = "docks_human";
 Docks_modern_gaia.has_sprites_special = false;
 Docks_modern_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Docks_modern_gaia);
-PreloadHelpers.loadBuildingSprites(Docks_modern_gaia);
+// PreloadHelpers.preloadBuildingSprites(Docks_modern_gaia);
 
 BuildingAsset bonfire_modern_gaia = AssetManager.buildings.clone("bonfire_modern_gaia", "$city_building$");
 bonfire_modern_gaia.draw_light_area = true;
@@ -1706,7 +1706,7 @@ bonfire_modern_gaia.has_sprite_construction = true;
 bonfire_modern_gaia.has_sprites_special = false;
 bonfire_modern_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_modern_gaia);
-PreloadHelpers.loadBuildingSprites(bonfire_modern_gaia);
+// PreloadHelpers.preloadBuildingSprites(bonfire_modern_gaia);
 
 
 
@@ -1738,7 +1738,7 @@ House_modern_gaia.upgraded_from = "House_rain_gaia";
 House_modern_gaia.has_sprites_special = false;
 House_modern_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_modern_gaia);
-PreloadHelpers.loadBuildingSprites(House_modern_gaia);
+// PreloadHelpers.preloadBuildingSprites(House_modern_gaia);
 
 
 BuildingAsset Barracks_modern_gaia = AssetManager.buildings.clone("Barracks_modern_gaia", "$building_civ_human$");
@@ -1766,7 +1766,7 @@ Barracks_modern_gaia.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingSton
 Barracks_modern_gaia.has_sprites_special = false;
 Barracks_modern_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_modern_gaia);
-PreloadHelpers.loadBuildingSprites(Barracks_modern_gaia);
+// PreloadHelpers.preloadBuildingSprites(Barracks_modern_gaia);
 
 
 
@@ -1810,7 +1810,7 @@ watch_tower_modern_gaia.smoke_offset = new Vector2Int(2, 3);
         watch_tower_modern_gaia.has_sprites_special = false;
 watch_tower_modern_gaia.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(watch_tower_modern_gaia);
-PreloadHelpers.loadBuildingSprites(watch_tower_modern_gaia);
+// PreloadHelpers.preloadBuildingSprites(watch_tower_modern_gaia);
 
 
 //var gaiaBuild = AssetManager.city_build_orders.get("build_order_gaia_epochs");
@@ -2057,7 +2057,7 @@ bonfire_horde.has_sprite_construction = true;
 bonfire_horde.has_sprites_special = false;
 bonfire_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_horde);
-PreloadHelpers.loadBuildingSprites(bonfire_horde);
+// PreloadHelpers.preloadBuildingSprites(bonfire_horde);
 
 
 BuildingAsset market_horde = AssetManager.buildings.clone("market_horde", "market_human");
@@ -2069,7 +2069,7 @@ market_horde.sprite_path = "buildings/market_horde";
 market_horde.has_sprites_special = false;
 market_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(market_horde);
-PreloadHelpers.loadBuildingSprites(market_horde);
+// PreloadHelpers.preloadBuildingSprites(market_horde);
 
 /////////////////renaissance
 
@@ -2110,7 +2110,7 @@ bonfire_rain_horde.has_sprite_construction = true;
 bonfire_rain_horde.has_sprites_special = false;
 bonfire_rain_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_rain_horde);
-PreloadHelpers.loadBuildingSprites(bonfire_rain_horde);
+// PreloadHelpers.preloadBuildingSprites(bonfire_rain_horde);
 
 
  BuildingAsset House_rain_horde = AssetManager.buildings.clone("House_rain_horde", "$building_civ_human$");
@@ -2142,7 +2142,7 @@ House_rain_horde.upgrade_to = "House_modern_horde";
 House_rain_horde.has_sprites_special = false;
 House_rain_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_rain_horde);
-PreloadHelpers.loadBuildingSprites(House_rain_horde);
+// PreloadHelpers.preloadBuildingSprites(House_rain_horde);
 
 BuildingAsset Barracks_rain_horde = AssetManager.buildings.clone("Barracks_rain_horde", "$building_civ_human$");
 Barracks_rain_horde.draw_light_area = true;
@@ -2170,7 +2170,7 @@ Barracks_rain_horde.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingStone
 Barracks_rain_horde.has_sprites_special = false;
 Barracks_rain_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_rain_horde);
-PreloadHelpers.loadBuildingSprites(Barracks_rain_horde);
+// PreloadHelpers.preloadBuildingSprites(Barracks_rain_horde);
 
 
 BuildingAsset Temple_rain_horde = AssetManager.buildings.clone("Temple_rain_horde", "$building_civ_human$");
@@ -2202,7 +2202,7 @@ Temple_rain_horde.upgraded_from = "temple_human";
 Temple_rain_horde.has_sprites_special = false;
 Temple_rain_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Temple_rain_horde);
-PreloadHelpers.loadBuildingSprites(Temple_rain_horde);
+// PreloadHelpers.preloadBuildingSprites(Temple_rain_horde);
 
 
 
@@ -2241,7 +2241,7 @@ Hall_rain_horde.has_sprite_construction = false;
 Hall_rain_horde.has_sprites_special = false;
 Hall_rain_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Hall_rain_horde);
-PreloadHelpers.loadBuildingSprites(Hall_rain_horde);
+// PreloadHelpers.preloadBuildingSprites(Hall_rain_horde);
 
 
 
@@ -2274,7 +2274,7 @@ Docks_modern_horde.upgraded_from = "docks_human";
 Docks_modern_horde.has_sprites_special = false;
 Docks_modern_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Docks_modern_horde);
-PreloadHelpers.loadBuildingSprites(Docks_modern_horde);
+// PreloadHelpers.preloadBuildingSprites(Docks_modern_horde);
 
 BuildingAsset bonfire_modern_horde = AssetManager.buildings.clone("bonfire_modern_horde", "$city_building$");
 bonfire_modern_horde.draw_light_area = true;
@@ -2312,7 +2312,7 @@ bonfire_modern_horde.has_sprite_construction = true;
 bonfire_modern_horde.has_sprites_special = false;
 bonfire_modern_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(bonfire_modern_horde);
-PreloadHelpers.loadBuildingSprites(bonfire_modern_horde);
+// PreloadHelpers.preloadBuildingSprites(bonfire_modern_horde);
 
 
 
@@ -2344,7 +2344,7 @@ House_modern_horde.upgraded_from = "House_rain_horde";
 House_modern_horde.has_sprites_special = false;
 House_modern_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(House_modern_horde);
-PreloadHelpers.loadBuildingSprites(House_modern_horde);
+// PreloadHelpers.preloadBuildingSprites(House_modern_horde);
 
 
 BuildingAsset Barracks_modern_horde = AssetManager.buildings.clone("Barracks_modern_horde", "$building_civ_human$");
@@ -2372,7 +2372,7 @@ Barracks_modern_horde.sound_destroyed = "event:/SFX/BUILDINGS/DestroyBuildingSto
 Barracks_modern_horde.has_sprites_special = false;
 Barracks_modern_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Barracks_modern_horde);
-PreloadHelpers.loadBuildingSprites(Barracks_modern_horde);
+// PreloadHelpers.preloadBuildingSprites(Barracks_modern_horde);
 
 
 
@@ -2416,7 +2416,7 @@ watch_tower_modern_horde.smoke_offset = new Vector2Int(2, 3);
         watch_tower_modern_horde.has_sprites_special = false;
 watch_tower_modern_horde.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(watch_tower_modern_horde);
-PreloadHelpers.loadBuildingSprites(watch_tower_modern_horde);
+// PreloadHelpers.preloadBuildingSprites(watch_tower_modern_horde);
 
 
 //var hordeBuild = AssetManager.city_build_orders.get("build_order_horde_epochs");

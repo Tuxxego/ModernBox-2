@@ -192,6 +192,7 @@ namespace ModernBox{
                 Vehicles.init();
 
                 Traits.init();
+               Gunz.init();
 
                WeaponsProjectilesEffects.init();
                WeaponsProjectilesEffects.FixAllWeapons();
@@ -208,6 +209,7 @@ namespace ModernBox{
 
                 PizzaWindow.init();
 
+                PreloadHelpers.preloadBuildingSprites();
                 ModernBoxLogger.Log("[M3] All components initialized successfully");
 
             }
@@ -380,32 +382,25 @@ namespace ModernBox{
     [HarmonyPatch]
     public static class Patch_DisableSortButtons
     {
-        // Target the sortButtons method
         static MethodBase TargetMethod()
         {
-            // Replace with the actual class name that contains sortButtons()
             return AccessTools.Method(typeof(PowersTab), "sortButtons");
         }
 
-        // Prefix patch that cancels the original method
         static bool Prefix(object __instance)
         {
-            // Skip execution of the original sortButtons method
-            // Get the private "_asset" field from PowersTab
             FieldInfo assetField = AccessTools.Field(__instance.GetType(), "_asset");
             if (assetField == null) return true;
 
             var asset = assetField.GetValue(__instance) as PowerTabAsset;
             if (asset == null) return true;
 
-            // Check the locale_key of the asset
             if (asset.id == "ModernBox")
             {
-                // Skip sortButtons() for ModernBox tab
                 return false;
             }
 
-            return true; // Allow original method for all other tabs
+            return true;
                 }
     }
 

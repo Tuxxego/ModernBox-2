@@ -225,7 +225,7 @@ Godzila_remains.addResource("adamantine", 30);
   Godzila_remains.has_sprites_special = false;
   Godzila_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Godzila_remains);
-PreloadHelpers.loadBuildingSprites(Godzila_remains);
+// PreloadHelpers.preloadBuildingSprites(Godzila_remains);
 
 
 
@@ -579,7 +579,7 @@ KingKong_remains.addResource("adamantine", 30);
   KingKong_remains.has_sprites_special = false;
   KingKong_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(KingKong_remains);
-PreloadHelpers.loadBuildingSprites(KingKong_remains);
+// PreloadHelpers.preloadBuildingSprites(KingKong_remains);
 
           var Kong = AssetManager.actor_library.clone("Kong", "$mob$");
           Kong.is_humanoid = false;
@@ -892,7 +892,7 @@ Ghidorah_remains.addResource("adamantine", 30);
   Ghidorah_remains.has_sprites_special = false;
   Ghidorah_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Ghidorah_remains);
-PreloadHelpers.loadBuildingSprites(Ghidorah_remains);
+// PreloadHelpers.preloadBuildingSprites(Ghidorah_remains);
 
 
 
@@ -1257,7 +1257,7 @@ Rodan_remains.addResource("adamantine", 30);
   Rodan_remains.has_sprites_special = false;
   Rodan_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Rodan_remains);
-PreloadHelpers.loadBuildingSprites(Rodan_remains);
+// PreloadHelpers.preloadBuildingSprites(Rodan_remains);
 
 
 
@@ -1560,7 +1560,7 @@ Mechagodzilla_remains.addResource("adamantine", 30);
   Mechagodzilla_remains.has_sprites_special = false;
   Mechagodzilla_remains.atlas_asset = AssetManager.dynamic_sprites_library.get("buildings");
 AssetManager.buildings.add(Mechagodzilla_remains);
-PreloadHelpers.loadBuildingSprites(Mechagodzilla_remains);
+// PreloadHelpers.preloadBuildingSprites(Mechagodzilla_remains);
 
 
 
